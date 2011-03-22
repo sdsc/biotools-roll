@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no"?>
+
+<graph>
+
+<description>
+BIOTOOLS
+</description>
+
+<copyright>
+Copyright (c) 2000 - 2011 The Regents of the University of California.
+All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
+</copyright>
+
+<changelog>
+</changelog>
+
+<edge from="base">
+  <to>biotools-common</to>
+</edge>
+<order from="head">
+  <tail>biotools-common</tail>
+</order>
+
+<edge from="envmodules-common">
+  <to>biotools-modules-common</to>
+</edge>
+<order head="envmodules-common">
+  <tail>biotools-modules-common</tail>
+</order>
+
+</graph>
