@@ -17,7 +17,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <edge from="base">
   <to>biotools-common</to>
 </edge>
-<order from="head">
+<order from="base">
   <tail>biotools-common</tail>
 </order>
 
