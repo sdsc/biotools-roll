@@ -54,13 +54,6 @@
 #
 # @Copyright@
 
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
-ifndef ROLLNETWORK
-  ROLLNETWORK = eth
-endif
-
 PKGROOT = /opt/biotools/bwa/$(VERSION)
 SOURCE = bwa-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
@@ -71,24 +64,19 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 build:
 	tar zxvf $(SOURCE).tar.gz
 	( \
-	cd $(SOURCE); \
-	make; \
+	  cd $(SOURCE); \
+	  make \
 	)
 
 install::
 	( \
-	cd $(SOURCE); \
-	mkdir -p $(ROOT)/$(PKGROOT); \
-	if [ ! -d $(PKGROOT) ]; then mkdir -p $(PKGROOT); fi; \
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT); \
-	mkdir $(ROOT)/$(PKGROOT)/lib; \
-	mkdir $(ROOT)/$(PKGROOT)/bin; \
-	mkdir $(ROOT)/$(PKGROOT)/include; \
-	cp bwa $(PKGROOT)/bin; \
-	cp *.pl $(PKGROOT)/bin; \
-	cp bwt_gen/libbwtgen.a $(PKGROOT)/lib; \
-	cp *.h $(PKGROOT)/include; \
-	umount $(PKGROOT); \
+	  cd $(SOURCE); \
+	  mkdir -p $(ROOT)/$(PKGROOT)/bin; \
+	  mkdir -p $(ROOT)/$(PKGROOT)/lib; \
+	  mkdir-p  $(ROOT)/$(PKGROOT)/include; \
+	  cp bwa *.pl $(ROOT)/$(PKGROOT)/bin; \
+	  cp bwt_gen/libbwtgen.a $(ROOT)/$(PKGROOT)/lib; \
+	  cp *.h $(ROOT)/$(PKGROOT)/include \
 	)
 
 clean::

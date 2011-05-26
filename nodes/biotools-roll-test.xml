@@ -1,0 +1,77 @@
+<?xml version="1.0" standalone="no"?>
+
+<kickstart>
+
+<description>
+The biotools roll installation test.
+</description>
+
+<copyright>
+Copyright (c) 2000 - 2011 The Regents of the University of California.
+All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
+</copyright>
+
+<changelog>
+</changelog>
+
+<post>
+
+/bin/mkdir -m 0755 /root/rolltests
+
+<file name="/root/rolltests/biotools.t" perms="0755">
+<![CDATA[#!/usr/bin/perl -w
+# biotools roll installation test.  Usage:
+# biotools.t [nodetype]
+#   where nodetype is one of "Compute", "Dbnode", "Frontend" or "Login"
+#   if not specified, the test assumes either Compute or Frontend
+
+use Test::More qw(no_plan);
+
+my $appliance = $#ARGV >= 0 ? $ARGV[0] :
+                -d '/export/rocks/install' ? 'Frontend' : 'Compute';
+my $installedOnAppliancesPattern = '.'; # all
+my $isInstalled = -d '/opt/biotools';
+my $output;
+
+# biotools-common.xml
+if($appliance =~ /$installedOnAppliancesPattern/) {
+  ok($isInstalled, 'biotools installed');
+} else {
+  ok(! $isInstalled, 'biotools not installed');
+}
+SKIP: {
+  skip 'biotools not installed', 1 if ! $isInstalled;
+  $output = `java -jar /opt/biotools/lib/biotools.jar /opt/biotools/examples/new_benchmark.xml 2>&1`;
+  ok($output =~ /Operator analysis/ && $output =~ /\d+\.\d+ seconds\s*$/,
+     'biotools benchmark run');
+  `/bin/rm -f mcmc.operators new_benchmark.log new_benchmark.trees`;
+}
+
+# biotools-modules-common
+SKIP: {
+
+  skip 'biotools not installed', 1 if ! $isInstalled;
+  my $modulesInstalled = -f '/etc/profile.d/modules.sh';
+  if($modulesInstalled) {
+    ok(! -f '/etc/profile.d/biotools.csh' &&
+       ! -f '/etc/profile.d/biotools.sh', 'biotools profile.d removed');
+    like($ENV{MODULEPATH}, qr#/opt/modulefiles/applications#,
+         'MODULEPATH set for applications');
+    ok(defined(glob('/opt/modulefiles/applications/biotools/[0-9]*')),
+       'biotools module installed');
+    ok(defined(glob('/opt/modulefiles/applications/biotools/.version.[0-9]*')),
+       'biotools version module installed');
+    ok(-l '/opt/modulefiles/applications/biotools/.version',
+       'biotools version module link created');
+  } else {
+    ok(-f '/etc/profile.d/biotools.csh' && -f '/etc/profile.d/biotools.sh',
+       'biotools profile.d installed');
+  }
+
+}
+]]>
+</file>
+
+</post>
+
+</kickstart> 

@@ -1,4 +1,4 @@
-ROLLNAME = biotools$(ROLLSUFFIX)
+ROLLNAME = biotools
 RELEASE  = 0
 COLOR    = orange
 
