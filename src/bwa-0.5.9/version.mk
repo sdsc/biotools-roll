@@ -1,3 +1,0 @@
-NAME    = bwa
-VERSION = 0.5.9
-RELEASE = 1
