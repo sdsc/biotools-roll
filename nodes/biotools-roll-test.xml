@@ -43,6 +43,7 @@ if($appliance =~ /$installedOnAppliancesPattern/) {
 } else {
   ok(! $isInstalled, 'biotools not installed');
 }
+
 my $packageHome = '/opt/biotools/blat';
 SKIP: {
   skip 'blat not installed', 1 if ! defined($packageHome);
@@ -51,11 +52,47 @@ SKIP: {
   ok($? == 0, 'blat works');
   `/bin/rm -f blat.out`;
 }
+
 $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! defined($packageHome);
   $output = `cd $packageHome; bin/bowtie indexes/e_coli reads/e_coli_1000.fq 2>&1`;
   ok($output =~ /Reported 699 alignments/, 'bowtie works');
+}
+
+$packageHome = '/opt/biotools/bwa';
+SKIP: {
+  skip 'bwa not installed', 1 if ! defined($packageHome);
+  open(OUT, '>mg323.fa');
+  print OUT <<END;
+>sp|P47565|Y323_MYCGE Uncharacterized protein MG323 OS=Mycoplasma genitalium GN=MG323 PE=4 SV=1
+MKRADFCIIGLGRFGMQVAQSLKENNFNLLLIDLDDKKTDTASQQFDYVICCDASNLTAL
+EELQIDEFAGVIVGVTNIEASIMICANLRELGQKNIIAKAKNEVHKRVLSTMGIREALIP
+EKIVGKNLVIRLIHGLENEIINLGNEIIFIRSAVNNKAFFNKRLEEINFRQNTDANIISI
+MRSNKTVVFPLGPNTEIQPGDIITAVCQQKSLNKYLNYINPKTKNKN
+END
+  close(OUT);
+  `$packageHome/bin/bwa index -p mg323 -a is mg323.fa >/dev/null 2>&1`;
+  ok(-f 'mg323.amb' && -f 'mg323.ann' && -f 'mg323.bwt' && -f 'mg323.pac' &&
+     -f 'mg323.rbwt' && -f 'mg323.rpac' && -f 'mg323.rsa' && -f 'mg323.sa',
+     'bwa index run works');
+  `/bin/rm -f mg323.*`;
+}
+
+$packageHome = '/opt/biotools/GenomeAnalysisTK';
+SKIP: {
+  skip 'samtools not installed', 1 if ! defined($packageHome);
+  $output = `java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta  -I $packageHome/resources/exampleBAM.bam -T CountReads`;
+  ok($output =~ /Traversal result is: 33/, 'GenomeAnalysisTK works');
+}
+
+$packageHome = '/opt/biotools/samtools';
+SKIP: {
+  skip 'samtools not installed', 1 if ! defined($packageHome);
+  `cd $packageHome/examples; ../bin/samtools faidx ex1.fa`;
+  $output = `cat $packageHome/examples/ex1.fa.fai`;
+  like($output, qr/seq2/, 'samtools index run works');
+  `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
 }
 
 # biotools-modules-common

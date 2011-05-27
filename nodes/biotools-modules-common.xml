@@ -39,14 +39,30 @@ if test -f /etc/profile.d/biotools.sh; then
 
 <file name="/opt/modulefiles/applications/biotools/1" perms="0644">
 #%Module1.0
+
 set biotoolsHome /opt/biotools
-set blathome $biotoolsHome/blat
-setenv BLATHOME $blathome
-prepend-path PATH $blathome/bin/x86_64
-set bowtiehome $biotoolsHome/bowtie
-setenv BOWTIEHOME $blathome
-prepend-path PATH $bowtiehome/bin
-prepend-path PATH $bowtiehome/scripts
+
+set packageHome $biotoolsHome/blat
+setenv BLATHOME $packageHome
+prepend-path PATH $packageHome/bin/x86_64
+
+set packageHome $biotoolsHome/bowtie
+setenv BOWTIEHOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path PATH $packageHome/scripts
+
+set packageHome /opt/biotools/bwa
+setenv BWAHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome /opt/biotools/GenomeAnalysisTK
+setenv GATKHOME $packageHome
+prepend-path CLASSPATH $packageHome
+
+set packageHome /opt/biotools/samtools
+setenv SAMTOOLSHOME $packageHome
+prepend-path PATH $packageHome/bin
+
 </file>
 <file name="/opt/modulefiles/applications/biotools/.version.1">
 #%Module1.0

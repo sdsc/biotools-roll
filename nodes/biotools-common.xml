@@ -32,12 +32,34 @@ setenv BLATHOME /opt/biotools/blat
 set path = ( $BLATHOME/bin/x86_64 $path )
 setenv BOWTIEHOME /opt/biotools/bowtie
 set path = ( $BOWTIEHOME/bin $BOWTIEHOME/scripts $path )
+setenv BWAHOME /opt/biotools/bwa
+set path = ( $BWAHOME/bin $path )
+setenv GATKHOME /opt/biotools/GenomeAnalysisTK
+if ($?CLASSPATH) then
+  setenv CLASSPATH "${GATKHOME}:$CLASSPATH"
+else
+  setenv CLASSPATH $GATKHOME
+endif
+set path = ( $BWAHOME/bin $path )
+setenv SAMTOOLSHOME /opt/biotools/samtools
+set path = ( $SAMTOOLSHOME/bin $path )
 </file>
+
 <file name="/etc/profile.d/biotools.sh" perms="0644">
 export BLATHOME=/opt/biotools/blat
 export PATH=$BLATHOME/bin/x86_64:$PATH
 export BOWTIEHOME=/opt/biotools/bowtie
 export PATH=$BOWTIMEHOME/bin:$BOWTIEHOME/scripts:$PATH
+export BWAHOME=/opt/biotools/bwa
+export PATH=$BWAHOME/bin:$PATH
+export GATKHOME=/opt/biotools/GenomeAnalysisTK
+if test -n "$CLASSPATH"; then
+  export CLASSPATH="${GATKHOME}:$CLASSPATH"
+else
+  export CLASSPATH=$GATKHOME
+fi
+export SAMTOOLSHOME=/opt/biotools/samtools
+export PATH=$SAMTOOLSHOME/bin:$PATH
 </file>
 
 </post>
