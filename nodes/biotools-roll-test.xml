@@ -29,22 +29,33 @@ use Test::More qw(no_plan);
 
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
-my $installedOnAppliancesPattern = '.'; # all
+my $installedOnAppliancesPattern = '.';
+my @packages = ('blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools');
 my $isInstalled = -d '/opt/biotools';
 my $output;
 
 # biotools-common.xml
 if($appliance =~ /$installedOnAppliancesPattern/) {
   ok($isInstalled, 'biotools installed');
+  foreach my $package(@packages) {
+    ok(-d "/opt/biotools/$package", "$package installed");
+  }
 } else {
   ok(! $isInstalled, 'biotools not installed');
 }
+my $packageHome = '/opt/biotools/blat';
 SKIP: {
-  skip 'biotools not installed', 1 if ! $isInstalled;
-  $output = `java -jar /opt/biotools/lib/biotools.jar /opt/biotools/examples/new_benchmark.xml 2>&1`;
-  ok($output =~ /Operator analysis/ && $output =~ /\d+\.\d+ seconds\s*$/,
-     'biotools benchmark run');
-  `/bin/rm -f mcmc.operators new_benchmark.log new_benchmark.trees`;
+  skip 'blat not installed', 1 if ! defined($packageHome);
+  `$packageHome/bin/x86_64/blat -verbose=0 $packageHome/test/target.fa  $packageHome/test/query.fa blat.out -minScore=190 >/dev/null 2>&1`;
+  `/usr/bin/cmp $packageHome/test/test1.psl blat.out`;
+  ok($? == 0, 'blat works');
+  `/bin/rm -f blat.out`;
+}
+$packageHome = '/opt/biotools/bowtie';
+SKIP: {
+  skip 'bowtie not installed', 1 if ! defined($packageHome);
+  $output = `cd $packageHome; bin/bowtie indexes/e_coli reads/e_coli_1000.fq 2>&1`;
+  ok($output =~ /Reported 699 alignments/, 'bowtie works');
 }
 
 # biotools-modules-common

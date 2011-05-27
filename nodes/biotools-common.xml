@@ -4,6 +4,11 @@
 
 <description>
 BIOTOOLS
+blat - http://genome.ucsc.edu
+bowtie - http://bowtie-bio.sourceforge.net
+bwa - http://bio-bwa.sourceforge.net
+GenomeAnalysisTK - http://www.broadinstitute.org/gsa/wiki/index.php/The_Genome_Analysis_Toolkit
+samtools - http://samtools.sourceforge.net
 </description>
 
 <copyright>
@@ -21,6 +26,20 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>samtools</package>
 
 <post>
+
+<file name="/etc/profile.d/biotools.csh" perms="0644">
+setenv BLATHOME /opt/biotools/blat
+set path = ( $BLATHOME/bin/x86_64 $path )
+setenv BOWTIEHOME /opt/biotools/bowtie
+set path = ( $BOWTIEHOME/bin $BOWTIEHOME/scripts $path )
+</file>
+<file name="/etc/profile.d/biotools.sh" perms="0644">
+export BLATHOME=/opt/biotools/blat
+export PATH=$BLATHOME/bin/x86_64:$PATH
+export BOWTIEHOME=/opt/biotools/bowtie
+export PATH=$BOWTIMEHOME/bin:$BOWTIEHOME/scripts:$PATH
+</file>
+
 </post>
 
 </kickstart>

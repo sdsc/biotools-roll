@@ -33,7 +33,7 @@ ifeq (${CGI_BIN},)
     CGI_BIN=/usr/local/apache/cgi-bin
 endif
 ifeq (${BINDIR},)
-    BINDIR = /opt/biotools/blat/34/bin/${MACHTYPE}
+    BINDIR = /opt/biotools/blat/bin/${MACHTYPE}
 endif
 MKDIR=mkdir -p
 ifeq (${STRIP},)

@@ -4,6 +4,11 @@
 
 <description>
 BIOTOOLS
+blat - http://genome.ucsc.edu
+bowtie - http://bowtie-bio.sourceforge.net
+bwa - http://bio-bwa.sourceforge.net
+GenomeAnalysisTK - http://www.broadinstitute.org/gsa/wiki/index.php/The_Genome_Analysis_Toolkit
+samtools - http://samtools.sourceforge.net
 </description>
 
 <copyright>

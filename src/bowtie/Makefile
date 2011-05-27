@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/biotools/bowtie/$(VERSION)
+PKGROOT = /opt/biotools/bowtie
 SOURCE = bowtie-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -69,13 +69,14 @@ build:
 	)
 
 install::
+	mkdir -p $(ROOT)/$(PKGROOT)/bin
 	( \
 	  cd $(SOURCE); \
-	  mkdir -p $(ROOT)/$(PKGROOT)/bin; \
 	  cp bowtie $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie-build $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie-inspect $(ROOT)/$(PKGROOT)/bin/; \
-	  cp -r scripts $(ROOT)/$(PKGROOT)/ \
+	  cp -r scripts $(ROOT)/$(PKGROOT)/; \
+	  cp -r indexes reads $(ROOT)/$(PKGROOT)/ \
 	)
 
 clean::

@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/biotools/bwa/$(VERSION)
+PKGROOT = /opt/biotools/bwa
 SOURCE = bwa-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -69,11 +69,11 @@ build:
 	)
 
 install::
+	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	mkdir -p $(ROOT)/$(PKGROOT)/lib
+	mkdir -p $(ROOT)/$(PKGROOT)/include
 	( \
 	  cd $(SOURCE); \
-	  mkdir -p $(ROOT)/$(PKGROOT)/bin; \
-	  mkdir -p $(ROOT)/$(PKGROOT)/lib; \
-	  mkdir-p  $(ROOT)/$(PKGROOT)/include; \
 	  cp bwa *.pl $(ROOT)/$(PKGROOT)/bin; \
 	  cp bwt_gen/libbwtgen.a $(ROOT)/$(PKGROOT)/lib; \
 	  cp *.h $(ROOT)/$(PKGROOT)/include \

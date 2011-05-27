@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/biotools/GenomeAnalysisTK/$(VERSION)
+PKGROOT = /opt/biotools/GenomeAnalysisTK
 SOURCE = GenomeAnalysisTK-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress

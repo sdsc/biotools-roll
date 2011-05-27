@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/biotools/blat/$(VERSION)
+PKGROOT = /opt/biotools/blat
 SOURCE = blatSrc_$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -66,17 +66,20 @@ build:
 	cp blatcommon_mod.mk $(SOURCE)/inc/common.mk
 
 install::
+	mkdir -p $(ROOT)/$(PKGROOT)/bin/x86_64
+	mkdir -p $(ROOT)/$(PKGROOT)/test
+	if [ ! -d $(PKGROOT) ]; then mkdir -p $(PKGROOT); fi
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
-	  cd $(SOURCE); \
 	  export MACHTEMP=$${MACHTYPE}; \
 	  export MACHTYPE=x86_64; \
-	  mkdir -p $(ROOT)/$(PKGROOT)/bin/x86_64; \
-	  if [ ! -d $(PKGROOT) ]; then mkdir -p $(PKGROOT); fi; \
-	  mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT); \
+	  cd $(SOURCE); \
 	  make; \
-	  export MACHTYPE=$${MACHTEMP}; \
-	  umount $(PKGROOT) \
+	  cp blat/test/intron50k/*.fa blat/test/intron50k/expected/*.psl \
+	     $(ROOT)/$(PKGROOT)/test/; \
+	  export MACHTYPE=$${MACHTEMP} \
 	)
+	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE)
