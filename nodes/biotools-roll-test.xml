@@ -105,10 +105,10 @@ SKIP: {
        ! -f '/etc/profile.d/biotools.sh', 'biotools profile.d removed');
     like($ENV{MODULEPATH}, qr#/opt/modulefiles/applications#,
          'MODULEPATH set for applications');
-    ok(defined(glob('/opt/modulefiles/applications/biotools/[0-9]*')),
-       'biotools module installed');
-    ok(defined(glob('/opt/modulefiles/applications/biotools/.version.[0-9]*')),
-       'biotools version module installed');
+    `/bin/ls /opt/modulefiles/applications/biotools/[0-9]* 2>&1`;
+    ok($? == 0, 'biotools module installed');
+    `/bin/ls /opt/modulefiles/applications/biotools/.version.[0-9]* 2>&1`;
+    ok($? == 0, 'biotools version module installed');
     ok(-l '/opt/modulefiles/applications/biotools/.version',
        'biotools version module link created');
   } else {
