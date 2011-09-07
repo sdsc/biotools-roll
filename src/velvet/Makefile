@@ -72,9 +72,11 @@ build:
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	mkdir -p $(ROOT)/$(PKGROOT)/testdata
 	( \
           cd $(SOURCE); \
-          cp velvetg velvetg_de velveth velveth_de  $(ROOT)/$(PKGROOT)/bin \
+          cp velvetg velvetg_de velveth velveth_de  $(ROOT)/$(PKGROOT)/bin; \
+          cp data/* $(ROOT)/$(PKGROOT)/testdata \
         )
  
 clean::
