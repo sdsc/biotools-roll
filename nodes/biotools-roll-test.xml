@@ -30,7 +30,7 @@ use Test::More qw(no_plan);
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $installedOnAppliancesPattern = '.';
-my @packages = ('blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools');
+my @packages = ('blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools','velvet');
 my $isInstalled = -d '/opt/biotools';
 my $output;
 
@@ -93,6 +93,14 @@ SKIP: {
   $output = `cat $packageHome/examples/ex1.fa.fai`;
   like($output, qr/seq2/, 'samtools index run works');
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
+}
+
+
+$packageHome = '/opt/biotools/velvet';
+SKIP: {
+  skip 'velvet not installed', 1 if ! -d $packageHome;
+  $output = `cd $packageHome; mkdir test; bin/velveth test 21 -shortPaired testdata/test_reads.fa; bin/velvetg test; rm -rf test 2>&1`;
+  ok($output =~ /Final graph has 16 nodes and n50 of 24184, max 44966, total 100080, using 0\/142858 reads/, 'velvet works');
 }
 
 # biotools-modules-common
