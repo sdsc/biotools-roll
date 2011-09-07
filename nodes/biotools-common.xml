@@ -9,11 +9,16 @@ bowtie - http://bowtie-bio.sourceforge.net
 bwa - http://bio-bwa.sourceforge.net
 GenomeAnalysisTK - http://www.broadinstitute.org/gsa/wiki/index.php/The_Genome_Analysis_Toolkit
 samtools - http://samtools.sourceforge.net
+velvet - http://www.ebi.ac.uk/~zerbino/velvet/
 </description>
 
 <copyright>
 Copyright (c) 2000 - 2011 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
+
+Copyright (C) 2007 Free Software Foundation, Inc. fsf.org
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 </copyright>
 
 <changelog>
@@ -24,6 +29,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>bwa</package>
 <package>GenomeAnalysisTK</package>
 <package>samtools</package>
+<package>velvet</package>
 
 <post>
 
@@ -60,8 +66,25 @@ else
 fi
 export SAMTOOLSHOME=/opt/biotools/samtools
 export PATH=$SAMTOOLSHOME/bin:$PATH
+export PATH=/opt/biotools/velvet/bin:$PATH
 </file>
 
+<file name="/etc/profile.d/biotools.csh" perms="0644">
+setenv BLATHOME /opt/biotools/blat
+setenv PATH $BLATHOME/bin/x86_64:$PATH
+setenv BOWTIEHOME /opt/biotools/bowtie
+setenv PATH $BOWTIMEHOME/bin:$BOWTIEHOME/scripts:$PATH
+setenv BWAHOME /opt/biotools/bwa
+setenv PATH $BWAHOME/bin:$PATH
+setenv GATKHOME /opt/biotools/GenomeAnalysisTK
+if ( -z "$CLASSPATH") then
+  setenv CLASSPATH "${GATKHOME}:$CLASSPATH"
+else 
+  setenv CLASSPATH $GATKHOME
+endif
+setenv SAMTOOLSHOME /opt/biotools/samtools
+setenv PATH $SAMTOOLSHOME/bin:$PATH
+</file>
 </post>
 
 </kickstart>
