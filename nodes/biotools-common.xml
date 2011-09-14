@@ -10,6 +10,7 @@ bwa - http://bio-bwa.sourceforge.net
 GenomeAnalysisTK - http://www.broadinstitute.org/gsa/wiki/index.php/The_Genome_Analysis_Toolkit
 samtools - http://samtools.sourceforge.net
 velvet - http://www.ebi.ac.uk/~zerbino/velvet/
+soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 </description>
 
 <copyright>
@@ -19,6 +20,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 Copyright (C) 2007 Free Software Foundation, Inc. fsf.org
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
+
+Copyright © 2007,2008-2010 Beijing Genomics Institute
 </copyright>
 
 <changelog>
@@ -30,6 +33,7 @@ Copyright (C) 2007 Free Software Foundation, Inc. fsf.org
 <package>GenomeAnalysisTK</package>
 <package>samtools</package>
 <package>velvet</package>
+<package>soapdenovo</package>
 
 <post>
 
@@ -48,6 +52,8 @@ else
 endif
 set path = ( $BWAHOME/bin $path )
 setenv SAMTOOLSHOME /opt/biotools/samtools
+set path = ( /opt/biotools/velvet/bin $path )
+set path = ( /opt/biotools/soapdenovo/bin $path )
 set path = ( $SAMTOOLSHOME/bin $path )
 </file>
 
@@ -67,24 +73,9 @@ fi
 export SAMTOOLSHOME=/opt/biotools/samtools
 export PATH=$SAMTOOLSHOME/bin:$PATH
 export PATH=/opt/biotools/velvet/bin:$PATH
+export PATH=/opt/biotools/soapdenovo/bin:$PATH
 </file>
 
-<file name="/etc/profile.d/biotools.csh" perms="0644">
-setenv BLATHOME /opt/biotools/blat
-setenv PATH $BLATHOME/bin/x86_64:$PATH
-setenv BOWTIEHOME /opt/biotools/bowtie
-setenv PATH $BOWTIMEHOME/bin:$BOWTIEHOME/scripts:$PATH
-setenv BWAHOME /opt/biotools/bwa
-setenv PATH $BWAHOME/bin:$PATH
-setenv GATKHOME /opt/biotools/GenomeAnalysisTK
-if ( -z "$CLASSPATH") then
-  setenv CLASSPATH "${GATKHOME}:$CLASSPATH"
-else 
-  setenv CLASSPATH $GATKHOME
-endif
-setenv SAMTOOLSHOME /opt/biotools/samtools
-setenv PATH $SAMTOOLSHOME/bin:$PATH
-</file>
 </post>
 
 </kickstart>
