@@ -9,7 +9,8 @@ bowtie - http://bowtie-bio.sourceforge.net
 bwa - http://bio-bwa.sourceforge.net
 GenomeAnalysisTK - http://www.broadinstitute.org/gsa/wiki/index.php/The_Genome_Analysis_Toolkit
 samtools - http://samtools.sourceforge.net
-velvet http://www.ebi.ac.uk/~zerbino/velvet/
+velvet - http://www.ebi.ac.uk/~zerbino/velvet/
+soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 </description>
 
 <copyright>
@@ -19,6 +20,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 Copyright (C) 2007 Free Software Foundation, Inc. fsf.org
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
+
+Copyright © 2007,2008-2010 Beijing Genomics Institute
 </copyright>
 
 <changelog>
