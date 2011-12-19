@@ -63,20 +63,20 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 build:
 	tar zxvf $(SOURCE).tgz
+	cp patch-files/Makefile $(SOURCE)
+	perl -pi -e "s!ROLL_INSTALL!$(ROOT)/$(PKGROOT)!" $(SOURCE)/Makefile
 	( \
-          cp patch-files/Makefile $(SOURCE); \
-          perl -pi -e "s!ROLL_INSTALL!$(PKGROOT)!" $(SOURCE)/Makefile; \
-          cd $(SOURCE); \
-          make compile \
-        )
+	  cd $(SOURCE); \
+	  make compile \
+	)
       
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
 	( \
-          cd $(SOURCE); \
-          make install  \
-        )
+	  cd $(SOURCE); \
+	  make install  \
+	)
  
 clean::
 	rm -rf $(SOURCE)
