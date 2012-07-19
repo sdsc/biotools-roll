@@ -28,22 +28,11 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
   <tail>biotools-common</tail>
 </order>
 
-<edge from="envmodules-common">
-  <to>biotools-modules-common</to>
-</edge>
-<order head="envmodules-common">
-  <tail>biotools-modules-common</tail>
-</order>
-
 <edge from="base">
   <to>biotools-roll-test</to>
 </edge>
 <order head="base">
   <tail>biotools-roll-test</tail>
-</order>
-
-<order head="biotools-common">
-  <tail>biotools-modules-common</tail>
 </order>
 
 </graph>

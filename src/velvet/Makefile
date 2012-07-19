@@ -55,7 +55,7 @@
 # @Copyright@
 
 PKGROOT = /opt/biotools/velvet
-SOURCE = velvet-$(VERSION)
+SOURCE = velvet_$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 

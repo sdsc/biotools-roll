@@ -74,8 +74,7 @@ END
   close(OUT);
   `$packageHome/bin/bwa index -p mg323 -a is mg323.fa >/dev/null 2>&1`;
   ok(-f 'mg323.amb' && -f 'mg323.ann' && -f 'mg323.bwt' && -f 'mg323.pac' &&
-     -f 'mg323.rbwt' && -f 'mg323.rpac' && -f 'mg323.rsa' && -f 'mg323.sa',
-     'bwa index run works');
+     -f 'mg323.sa', 'bwa index run works');
   `/bin/rm -f mg323.*`;
 }
 
@@ -103,26 +102,16 @@ SKIP: {
   ok($output =~ /Final graph has 16 nodes and n50 of 24184, max 44966, total 100080, using 0\/142858 reads/, 'velvet works');
 }
 
-# biotools-modules-common
 SKIP: {
 
-  skip 'biotools not installed', 1 if ! $isInstalled;
-  my $modulesInstalled = -f '/etc/profile.d/modules.sh';
-  if($modulesInstalled) {
-    ok(! -f '/etc/profile.d/biotools.csh' &&
-       ! -f '/etc/profile.d/biotools.sh', 'biotools profile.d removed');
-    like($ENV{MODULEPATH}, qr#/opt/modulefiles/applications#,
-         'MODULEPATH set for applications');
-    `/bin/ls /opt/modulefiles/applications/biotools/[0-9]* 2>&1`;
-    ok($? == 0, 'biotools module installed');
-    `/bin/ls /opt/modulefiles/applications/biotools/.version.[0-9]* 2>&1`;
-    ok($? == 0, 'biotools version module installed');
-    ok(-l '/opt/modulefiles/applications/biotools/.version',
-       'biotools version module link created');
-  } else {
-    ok(-f '/etc/profile.d/biotools.csh' && -f '/etc/profile.d/biotools.sh',
-       'biotools profile.d installed');
-  }
+  skip 'biotools not installed', 3 if ! $isInstalled;
+  skip 'modules not installed', 3 if ! -f '/etc/profile.d/modules.sh';
+  `/bin/ls /opt/modulefiles/applications/biotools/[0-9]* 2>&1`;
+  ok($? == 0, 'biotools module installed');
+  `/bin/ls /opt/modulefiles/applications/biotools/.version.[0-9]* 2>&1`;
+  ok($? == 0, 'biotools version module installed');
+  ok(-l '/opt/modulefiles/applications/biotools/.version',
+     'biotools version module link created');
 
 }
 ]]>

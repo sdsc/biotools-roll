@@ -63,7 +63,8 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 build:
 	tar zxvf $(SOURCE).tar.gz
-	cp blatcommon_mod.mk $(SOURCE)/inc/common.mk
+	cp patch-files/blatcommon_mod.mk $(SOURCE)/inc/common.mk
+	cp patch-files/fuzzyFind.c $(SOURCE)/jkOwnLib/
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin/x86_64
@@ -71,13 +72,10 @@ install::
 	if [ ! -d $(PKGROOT) ]; then mkdir -p $(PKGROOT); fi
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
-	  export MACHTEMP=$${MACHTYPE}; \
-	  export MACHTYPE=x86_64; \
 	  cd $(SOURCE); \
-	  make; \
+	  MACHTYPE=x86_64 make; \
 	  cp blat/test/intron50k/*.fa blat/test/intron50k/expected/*.psl \
-	     $(ROOT)/$(PKGROOT)/test/; \
-	  export MACHTYPE=$${MACHTEMP} \
+	     $(ROOT)/$(PKGROOT)/test/ \
 	)
 	umount $(PKGROOT)
 

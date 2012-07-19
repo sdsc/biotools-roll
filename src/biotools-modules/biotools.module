@@ -1,0 +1,27 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+set packageHome $biotoolsHome/blat
+setenv BLATHOME $packageHome
+prepend-path PATH $packageHome/bin/x86_64
+
+set packageHome $biotoolsHome/bowtie
+setenv BOWTIEHOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path PATH $packageHome/scripts
+
+set packageHome /opt/biotools/bwa
+setenv BWAHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome /opt/biotools/GenomeAnalysisTK
+setenv GATKHOME $packageHome
+prepend-path CLASSPATH $packageHome
+
+set packageHome /opt/biotools/samtools
+setenv SAMTOOLSHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+prepend-path /opt/biotools/velvet/bin
+prepend-path /opt/biotools/soapdenovo/bin

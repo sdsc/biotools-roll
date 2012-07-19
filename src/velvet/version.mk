@@ -1,3 +1,3 @@
 NAME    = velvet
-VERSION = 1.1.05
+VERSION = 1.2.07
 RELEASE = 1
