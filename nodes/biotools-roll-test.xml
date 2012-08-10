@@ -94,7 +94,6 @@ SKIP: {
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
 }
 
-
 $packageHome = '/opt/biotools/velvet';
 SKIP: {
   skip 'velvet not installed', 1 if ! -d $packageHome;

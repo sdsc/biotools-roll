@@ -26,8 +26,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>bwa</package>
 <package>GenomeAnalysisTK</package>
 <package>samtools</package>
-<package>velvet</package>
 <package>soapdenovo</package>
+<package>velvet</package>
 <package>biotools-modules</package>
 
 </kickstart>
