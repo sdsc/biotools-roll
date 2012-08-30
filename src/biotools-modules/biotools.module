@@ -23,5 +23,5 @@ set packageHome /opt/biotools/samtools
 setenv SAMTOOLSHOME $packageHome
 prepend-path PATH $packageHome/bin
 
-prepend-path /opt/biotools/velvet/bin
-prepend-path /opt/biotools/soapdenovo/bin
+prepend-path PATH /opt/biotools/velvet/bin
+prepend-path PATH /opt/biotools/soapdenovo/bin
