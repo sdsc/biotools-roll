@@ -30,7 +30,10 @@ use Test::More qw(no_plan);
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $installedOnAppliancesPattern = '.';
-my @packages = ('blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools','velvet');
+my @packages = (
+  'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
+  'velvet'
+);
 my $isInstalled = -d '/opt/biotools';
 my $output;
 
@@ -92,6 +95,33 @@ SKIP: {
   $output = `cat $packageHome/examples/ex1.fa.fai`;
   like($output, qr/seq2/, 'samtools index run works');
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
+}
+
+# Adapted from http://seqanswers.com/wiki/How-to/de_novo_assembly
+$packageHome = '/opt/biotools/soapdenovo';
+SKIP: {
+  skip 'soapdenovo not installed', 1 if ! -d $packageHome;
+  print "Downloading soapdenovo test data (takes a minute)\n";
+  `/usr/bin/wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR000/SRR000046/SRR000046_1.fastq.gz 2>&1`;
+  `/usr/bin/wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR000/SRR000046/SRR000046_2.fastq.gz 2>&1`;
+  skip 'unable to retrieve soapdenov test data', 1
+    if !-f 'SRR000046_1.fastq.gz' || !-f 'SRR000046_2.fastq.gz';
+  `/bin/gunzip SRR000046_1.fastq.gz SRR000046_2.fastq.gz`;
+  open(OUT, '>SRR000046.config');
+  print OUT <<END;
+max_rd_len=36
+[LIB]
+avg_ins=200
+reverse_seq=0
+asm_flags=1
+rank=1
+q1=./SRR000046_1.fastq
+q2=./SRR000046_2.fastq
+END
+  close(OUT);
+  `$packageHome/bin/SOAPdenovo-31mer pregraph -K 31 -s SRR000046.config -o SRR000046 2>&1`;
+  ok(-f './SRR000046.preArc', 'soapdenovo pregraph works');
+  `/bin/rm SRR000046*`;
 }
 
 $packageHome = '/opt/biotools/velvet';
