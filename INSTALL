@@ -1,0 +1,14 @@
+This roll bundles a collection of Biology packages: blat, bowtie, bwa,
+GenomeAnalysisTK, samtools, soapdenovo, and velvet.  To install, execute these
+instructions on a Rocks development machine (e.g., a frontend), starting in
+this directory:
+
+% make
+% rocks add roll *.iso
+% rocks enable roll biotools
+% cd /export/rocks/install
+% rocks create distro
+% rocks run roll biotools | bash
+
+In addition to the software itself, the roll installs individual environment
+module files for each tool in /opt/modulefiles/applications.
