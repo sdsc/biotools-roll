@@ -1,3 +1,3 @@
 NAME    = blat
-VERSION = 34
-RELEASE = 1
+VERSION = 35
+RELEASE = 0
