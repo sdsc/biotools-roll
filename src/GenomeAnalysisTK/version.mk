@@ -1,3 +1,3 @@
 NAME    = GenomeAnalysisTK
-VERSION = 2.2.16
+VERSION = 2.3.9
 RELEASE = 0
