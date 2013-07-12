@@ -1,3 +1,3 @@
 NAME    = bowtie
-VERSION = 0.12.9
+VERSION = 1.0.0
 RELEASE = 0
