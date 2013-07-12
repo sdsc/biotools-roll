@@ -1,3 +1,3 @@
 NAME    = samtools
-VERSION = 0.1.18
-RELEASE = 1
+VERSION = 0.1.19
+RELEAS9 = 1
