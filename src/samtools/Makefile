@@ -71,6 +71,7 @@ build:
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
 	mkdir -p $(ROOT)/$(PKGROOT)/lib
+	mkdir -p $(ROOT)/$(PKGROOT)/include/bam
 	( \
 	  cd $(SOURCE); \
 	  cp samtools $(ROOT)/$(PKGROOT)/bin/; \
@@ -84,7 +85,8 @@ install::
 	  cp misc/wgsim $(ROOT)/$(PKGROOT)/bin/; \
 	  cp misc/*.java $(ROOT)/$(PKGROOT)/bin/; \
 	  cp libbam.a $(ROOT)/$(PKGROOT)/lib/; \
-	  cp -r examples $(ROOT)/$(PKGROOT)/ \
+	  cp -r examples $(ROOT)/$(PKGROOT); \
+          cp *.h  $(ROOT)/$(PKGROOT)/include/bam \
 	)
 
 clean::
