@@ -6,6 +6,7 @@
 BIOTOOLS
 blat - http://genome.ucsc.edu
 bowtie - http://bowtie-bio.sourceforge.net
+bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 samtools - http://samtools.sourceforge.net
@@ -23,6 +24,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 
 <package>blat</package>
 <package>bowtie</package>
+<package>bowtie2</package>
 <package>bwa</package>
 <package>GenomeAnalysisTK</package>
 <package>samtools</package>
