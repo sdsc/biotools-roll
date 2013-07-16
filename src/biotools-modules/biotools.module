@@ -11,6 +11,11 @@ setenv BOWTIEHOME $packageHome
 prepend-path PATH $packageHome/bin
 prepend-path PATH $packageHome/scripts
 
+set packageHome $biotoolsHome/bowtie2
+setenv BOWTIE2HOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path PATH $packageHome/scripts
+
 set packageHome /opt/biotools/bwa
 setenv BWAHOME $packageHome
 prepend-path PATH $packageHome/bin
