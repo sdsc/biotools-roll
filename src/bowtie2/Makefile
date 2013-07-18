@@ -70,12 +70,17 @@ build:
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	mkdir -p $(ROOT)/$(PKGROOT)/reads
+	mkdir -p $(ROOT)/$(PKGROOT)/indexes
 	( \
 	  cd $(SOURCE); \
 	  cp bowtie2 $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie2-build $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie2-inspect $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-align $(ROOT)/$(PKGROOT)/bin/; \
 	  cp -r scripts $(ROOT)/$(PKGROOT)/; \
+	  cp -r example/reads/* $(ROOT)/$(PKGROOT)/reads; \
+	  cp -r example/index/* $(ROOT)/$(PKGROOT)/indexes; \
 	)
 
 clean::

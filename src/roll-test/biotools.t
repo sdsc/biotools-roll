@@ -11,7 +11,7 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
-  'velvet'
+  'velvet','bowtie2'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -40,6 +40,13 @@ SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
   $output = `cd $packageHome; bin/bowtie indexes/e_coli reads/e_coli_1000.fq 2>&1`;
   ok($output =~ /Reported 699 alignments/, 'bowtie works');
+}
+
+$packageHome = '/opt/biotools/bowtie2';
+SKIP: {
+  skip 'bowtie2 not installed', 1 if ! -d $packageHome;
+  $output = `cd $packageHome/indexes; ../bin/bowtie2 -p 8 -x lambda_virus ../reads/reads_1.fq 2>&1`;
+  ok($output =~ /94.04% overall alignment rate/, 'bowtie works');
 }
 
 $packageHome = '/opt/biotools/bwa';
