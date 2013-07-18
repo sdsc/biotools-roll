@@ -62,7 +62,7 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 -include $(ROCKSROOT)/etc/Rules.mk
 
 build:
-	tar zxvf $(SOURCE).tgz
+	tar zxvf $(SOURCE).tar.bz2
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
