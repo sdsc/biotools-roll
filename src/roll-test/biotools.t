@@ -46,7 +46,7 @@ $packageHome = '/opt/biotools/bowtie2';
 SKIP: {
   skip 'bowtie2 not installed', 1 if ! -d $packageHome;
   $output = `cd $packageHome/indexes; ../bin/bowtie2 -p 8 -x lambda_virus ../reads/reads_1.fq 2>&1`;
-  ok($output =~ /94.04% overall alignment rate/, 'bowtie works');
+  ok($output =~ /94.04% overall alignment rate/, 'bowtie2 works');
 }
 
 $packageHome = '/opt/biotools/bwa';
@@ -71,7 +71,7 @@ $packageHome = '/opt/biotools/GenomeAnalysisTK';
 SKIP: {
   skip 'samtools not installed', 1 if ! -d $packageHome;
   $output = `java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta  -I $packageHome/resources/exampleBAM.bam -T CountReads`;
-  ok($output =~ /Traversal result is: 33/, 'GenomeAnalysisTK works');
+  ok($output =~ /33 reads in the traversal/, 'GenomeAnalysisTK works');
 }
 
 $packageHome = '/opt/biotools/samtools';
