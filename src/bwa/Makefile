@@ -75,7 +75,7 @@ install::
 	( \
 	  cd $(SOURCE); \
 	  cp bwa *.pl $(ROOT)/$(PKGROOT)/bin; \
-	  cp bwt_gen/libbwtgen.a $(ROOT)/$(PKGROOT)/lib; \
+	  cp libbwa.a $(ROOT)/$(PKGROOT)/lib; \
 	  cp *.h $(ROOT)/$(PKGROOT)/include \
 	)
 
