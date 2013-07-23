@@ -64,16 +64,17 @@ build:
 	tar zxvf $(SOURCE).tar.gz
 	( \
                cd $(SOURCE); \
-               export LD_LIBRARY_PATH=/home/jpg/opt/boost/gnu/lib:$${LD_LIBRARY_PATH}; \
-              ./configure -prefix=/opt/cufflinks --with-boost=/opt/boost/gnu --with-bam-libdir=/opt/samtools/lib --with-bam=/opt/samtools --with-eigen=/opt/eigen/gnu
-              make; \
+               export LD_LIBRARY_PATH=/opt/boost/gnu/lib:$${LD_LIBRARY_PATH}; \
+              ./configure -prefix=/opt/biotools/cufflinks --with-boost=/opt/boost/gnu --with-bam-libdir=/opt/biotools/samtools/lib --with-bam=/opt/biotools/samtools --with-eigen=/opt/eigen/gnu; \
+              make \
         )
 
 install::
-	mkdir -p $(REDHAT.ROOT)/src/build-sequence-modules
 	( \
             cd $(SOURCE); \
-            make install \
+            make install; \
+            cd .. ;  \
+            cp test_data.sam $(ROOT)/$(PKGROOT) \
         )
 
 clean::
