@@ -1,0 +1,3 @@
+NAME	= gmap_gsnap
+VERSION	= 2013-06-27
+RELEASE	= 1

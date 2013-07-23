@@ -16,17 +16,36 @@ setenv BOWTIE2HOME $packageHome
 prepend-path PATH $packageHome/bin
 prepend-path PATH $packageHome/scripts
 
-set packageHome /opt/biotools/bwa
+set packageHome $biotoolsHome/bwa
 setenv BWAHOME $packageHome
 prepend-path PATH $packageHome/bin
 
-set packageHome /opt/biotools/GenomeAnalysisTK
+set packageHome $biotoolsHome/GenomeAnalysisTK
 setenv GATKHOME $packageHome
 prepend-path CLASSPATH $packageHome
 
-set packageHome /opt/biotools/samtools
+set packageHome $biotoolsHome/samtools
 setenv SAMTOOLSHOME $packageHome
 prepend-path PATH $packageHome/bin
 
-prepend-path PATH /opt/biotools/velvet/bin
-prepend-path PATH /opt/biotools/soapdenovo/bin
+set packageHome $biotoolsHome/velvet
+prepend-path PATH $packageHome/bin
+setenv VELVETHOME $packageHome
+
+set packageHome $biotoolsHome/soapdenovo
+prepend-path PATH $packageHome/bin
+setenv SOAPDENOVOHOME $packageHome
+
+set packageHome $biotoolsHome/cufflinks
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH=/opt/boost/gnu/lib
+setenv CUFFLINKSHOME $packageHome
+
+set packageHome $biotoolsHome/gmap_gsnap
+prepend-path PATH $packageHome/bin
+setenv GMAP_GSNAPHOME $packageHome
+
+set packageHome $biotoolsHome/tophat
+prepend-path PATH $packageHome/tophat
+prepend-path LD_LIBRARY_PATH=/opt/boost/gnu/lib
+setenv TOPHATHOME $packageHome

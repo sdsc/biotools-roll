@@ -11,6 +11,10 @@ GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
+GMAP-GSNAP (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
+Trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
+Cufflinks http://cufflinks.cbcb.umd.edu/
+Tophat http://tophat.cbcb.umd.edu/
 </description>
 
 <copyright>
