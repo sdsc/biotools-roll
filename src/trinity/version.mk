@@ -1,0 +1,3 @@
+NAME	= trinity
+VERSION	= 2013-02-25
+RELEASE	= 1
