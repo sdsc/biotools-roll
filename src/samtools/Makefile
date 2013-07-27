@@ -77,7 +77,7 @@ install::
 	  cd $(SOURCE); \
 	  cp samtools $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bcftools/bcftools $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bcftools/bcftools/vcfutils.pl $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bcftools/vcfutils.pl $(ROOT)/$(PKGROOT)/bin/; \
 	  cp misc/*.pl $(ROOT)/$(PKGROOT)/bin/; \
 	  cp misc/maq2sam-long $(ROOT)/$(PKGROOT)/bin/; \
 	  cp misc/maq2sam-short $(ROOT)/$(PKGROOT)/bin/; \
