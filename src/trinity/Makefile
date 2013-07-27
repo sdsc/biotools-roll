@@ -69,12 +69,7 @@ install::
               perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE)/Makefile; \
               cd $(SOURCE); \
               make; \
-              cd Inchworm; \
-              make install; \
-              cd ../Chrysalis; \
-              cp TranscriptomeFromVaryK RunButterfly  ReadsToTranscripts QuantifyGraph JoinTransByPairs IsoformAugment GraphFromFasta Chrysalis BreakTransByPairs $(ROOT)/$(PKGROOT)/bin; \
-              cd ../Butterfly; \
-              cp Butterfly.jar $(ROOT)/$(PKGROOT)/bin \
+              cp -r * $(PKGROOT)/$(ROOT) \
         )
 
 clean::

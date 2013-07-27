@@ -16,6 +16,7 @@ GMAP-GSNAP (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide 
 Trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
 Cufflinks http://cufflinks.cbcb.umd.edu/
 Tophat http://tophat.cbcb.umd.edu/
+fastx http://hannonlab.cshl.edu/fastx_toolkit
 </description>
 
 <copyright>
@@ -34,6 +35,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>samtools</package>
 <package>soapdenovo</package>
 <package>velvet</package>
+<package>fastx</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 

@@ -65,7 +65,7 @@ build:
 	( \
                cd $(SOURCE); \
                export LD_LIBRARY_PATH=/opt/boost/gnu/lib:$${LD_LIBRARY_PATH}; \
-              ./configure -prefix=/opt/biotools/cufflinks --with-boost=/opt/boost/gnu --with-bam-libdir=/opt/biotools/samtools/lib --with-bam=/opt/biotools/samtools --with-eigen=/opt/eigen/gnu; \
+              ./configure -prefix=/opt/biotools/cufflinks --with-boost=/opt/boost/gnu --with-bam-libdir=$(REDHAT.ROOT)/src/build-samtools/lib --with-bam=$(REDHAT.ROOT)/src/build-samtools --with-eigen=/opt/eigen/gnu; \
               make \
         )
 

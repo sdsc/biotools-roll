@@ -72,6 +72,7 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
 	mkdir -p $(ROOT)/$(PKGROOT)/lib
 	mkdir -p $(ROOT)/$(PKGROOT)/include/bam
+	mkdir -p $(REDHAT.ROOT)/src/build-samtools
 	( \
 	  cd $(SOURCE); \
 	  cp samtools $(ROOT)/$(PKGROOT)/bin/; \
@@ -87,6 +88,7 @@ install::
 	  cp libbam.a $(ROOT)/$(PKGROOT)/lib/; \
 	  cp -r examples $(ROOT)/$(PKGROOT); \
           cp *.h  $(ROOT)/$(PKGROOT)/include/bam \
+	  cp $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-samtools; \
 	)
 
 clean::
