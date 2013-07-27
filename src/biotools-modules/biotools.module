@@ -49,3 +49,16 @@ set packageHome $biotoolsHome/tophat
 prepend-path PATH $packageHome/tophat
 prepend-path LD_LIBRARY_PATH=/opt/boost/gnu/lib
 setenv TOPHATHOME $packageHome
+
+set packageHome $biotoolsHome/fastx
+setenv FASTXHOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH $packageHome/lib
+
+set packageHome $biotoolsHome/fastqc
+setenv FASTQCHOME $packageHome
+prepend-path PATH $packageHome
+
+set packageHome $biotoolsHome/cufflinks
+setenv CUFFLINKSHOME $packageHome
+prepend-path PATH $packageHome/bin
