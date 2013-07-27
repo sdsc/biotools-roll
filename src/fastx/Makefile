@@ -81,7 +81,8 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)/include/bam
 	( \
 	  cd $(SOURCE); \
-          make install \
+          make install; \
+          cp src/seqalign_test/seqalign_test $(ROOT)/$(PKGROOT)/bin \
 	)
 
 clean::
