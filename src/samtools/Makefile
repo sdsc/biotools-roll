@@ -87,8 +87,8 @@ install::
 	  cp misc/*.java $(ROOT)/$(PKGROOT)/bin/; \
 	  cp libbam.a $(ROOT)/$(PKGROOT)/lib/; \
 	  cp -r examples $(ROOT)/$(PKGROOT); \
-          cp *.h  $(ROOT)/$(PKGROOT)/include/bam \
-	  cp $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-samtools; \
+          cp *.h  $(ROOT)/$(PKGROOT)/include/bam; \
+	  cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-samtools; \
 	)
 
 clean::
