@@ -11,10 +11,11 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
-  'velvet','bowtie2'
+  'velvet','bowtie2','cufflinks','trinity','fastqc',fastx
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
+my $TESTFILE = 'tmpbiotools';
 
 # biotools-common.xml
 if($appliance =~ /$installedOnAppliancesPattern/) {
@@ -110,11 +111,36 @@ END
   `/bin/rm SRR000046*`;
 }
 
-$packageHome = '/opt/biotools/velvet';
+$packageHome = '/opt/biotools/cufflinks';
 SKIP: {
-  skip 'velvet not installed', 1 if ! -d $packageHome;
-  $output = `cd $packageHome; mkdir test; bin/velveth test 21 -shortPaired testdata/test_reads.fa; bin/velvetg test; rm -rf test 2>&1`;
-  ok($output =~ /Final graph has 16 nodes and n50 of 24184, max 44966, total 100080, using 0\/142858 reads/, 'velvet works');
+  skip 'cufflinks not installed', 1 if ! -d $packageHome;
+  mkdir -p $TESTFILE.dir
+  $output = `cd $TESTFILE.dir; /opt/biotools/cufflinks/bin/cufflinks /opt/biotools/cufflinks/test_data.sam 2>&1`;
+  ok($output =~ /Default Mean: 200/, 'cufflinks works');
+}
+
+$packageHome = '/opt/biotools/trinity';
+SKIP: {
+  skip 'trinity not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+ `export PATH=/opt/biotools/bowtie/bin:\$PATH;cd $TESTFILE.dir; cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh >& /dev/null`;
+  $out=`cat $TESTFILE.dir/trinity_out_dir/Trinity.fasta`;
+  ok($out =~ /len=517 path=\[1:0-167 169:168-516\]/, 'trinity works');
+}
+
+$packageHome = '/opt/biotools/fastqc';
+SKIP: {
+  skip 'fastax not installed', 1 if ! -d $packageHome;
+  `/bin/ls /opt/biotools/fastqc/fastqc 2>&1`;
+  ok($? == 0, 'fastqc script installed');
+}
+
+
+$packageHome = '/opt/biotools/fastx';
+SKIP: {
+  skip 'fastx not installed', 1 if ! -d $packageHome;
+  $out=`/opt/biotools/fastx/bin/seqalign_test 2>&1`;
+  ok($out =~ /A(AGGTTT)CCC/, 'fastx works');
 }
 
 SKIP: {
@@ -129,3 +155,4 @@ SKIP: {
      'biotools version module link created');
 
 }
+`rm -fr $TESTFILE*`;
