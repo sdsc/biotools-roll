@@ -36,6 +36,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>soapdenovo</package>
 <package>velvet</package>
 <package>fastx</package>
+<package>trinity</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 
