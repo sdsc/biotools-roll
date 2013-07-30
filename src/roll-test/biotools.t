@@ -11,7 +11,7 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
-  'velvet','bowtie2','cufflinks','trinity','fastqc',fastx
+  'velvet','bowtie2','cufflinks','trinity','fastqc','fastx'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -114,8 +114,8 @@ END
 $packageHome = '/opt/biotools/cufflinks';
 SKIP: {
   skip 'cufflinks not installed', 1 if ! -d $packageHome;
-  mkdir -p $TESTFILE.dir
-  $output = `cd $TESTFILE.dir; /opt/biotools/cufflinks/bin/cufflinks /opt/biotools/cufflinks/test_data.sam 2>&1`;
+  mkdir -p $TESTFILE.dir;
+  $output=`cd $TESTFILE.dir; /opt/biotools/cufflinks/bin/cufflinks /opt/biotools/cufflinks/test_data.sam 2>&1`;
   ok($output =~ /Default Mean: 200/, 'cufflinks works');
 }
 
