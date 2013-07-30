@@ -74,7 +74,7 @@ install::
             cd $(SOURCE); \
             make install; \
             cd .. ;  \
-            cp test_data.sam $(ROOT)/$(PKGROOT) \
+            cp -r test_data.sam $(ROOT)/$(PKGROOT) \
         )
 
 clean::
