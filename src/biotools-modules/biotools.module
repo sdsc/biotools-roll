@@ -62,3 +62,8 @@ prepend-path PATH $packageHome
 set packageHome $biotoolsHome/cufflinks
 setenv CUFFLINKSHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/picard
+setenv PICARDHOME $packageHome
+prepend-path CLASSPATH $packageHome
+prepend-path CLASSPATH $packageHome/picard-tools

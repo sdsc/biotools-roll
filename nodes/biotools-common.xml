@@ -37,6 +37,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>velvet</package>
 <package>fastx</package>
 <package>trinity</package>
+<package>picard</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 
