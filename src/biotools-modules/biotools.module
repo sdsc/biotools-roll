@@ -38,7 +38,7 @@ setenv SOAPDENOVOHOME $packageHome
 
 set packageHome $biotoolsHome/cufflinks
 prepend-path PATH $packageHome/bin
-prepend-path LD_LIBRARY_PATH=/opt/boost/gnu/lib
+prepend-path LD_LIBRARY_PATH /opt/boost/gnu/lib
 setenv CUFFLINKSHOME $packageHome
 
 set packageHome $biotoolsHome/gmap_gsnap
@@ -46,8 +46,8 @@ prepend-path PATH $packageHome/bin
 setenv GMAP_GSNAPHOME $packageHome
 
 set packageHome $biotoolsHome/tophat
-prepend-path PATH $packageHome/tophat
-prepend-path LD_LIBRARY_PATH=/opt/boost/gnu/lib
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH /opt/boost/gnu/lib
 setenv TOPHATHOME $packageHome
 
 set packageHome $biotoolsHome/fastx

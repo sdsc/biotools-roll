@@ -65,18 +65,18 @@ build:
 	( \
                cd $(SOURCE); \
                export LD_LIBRARY_PATH=/opt/boost/gnu/lib:$${LD_LIBRARY_PATH}; \
-              ./configure -prefix=/opt/tophat --with-boost=/opt/boost/gnu --with-bam-libdir=$(REDHAT.ROOT)/src/build-samtools/lib --with-bam=$(REDHAT.ROOT)/src/build-samtools --with-eigen=/opt/eigen/gnu; \
+              ./configure -prefix=$(PKGROOT) --with-boost=/opt/boost/gnu --with-bam-libdir=$(REDHAT.ROOT)/src/build-samtools/lib --with-bam=$(REDHAT.ROOT)/src/build-samtools --with-eigen=/opt/eigen/gnu; \
               make \
         )
 
 install::
-	mkdir -p $(REDHAT.ROOT)/src/build-sequence-modules
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(PKGROOT)
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
             cd $(SOURCE); \
             make install \
         )
-	cat tophat.module | perl -pi -e "s!MODULEROOT!/opt/modulefiles/applications/tophat!g;s!VERSION!$(VERSION)!g" \
-	  > $(REDHAT.ROOT)/src/build-sequence-modules/$(NAME).module
-
+	umount $(PKGROOT)
 clean::
 	rm -rf $(SOURCE)
