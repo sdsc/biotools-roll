@@ -69,7 +69,7 @@ build:
         )
 
 install::
-	mkdir -p $(REDHAT.ROOT)/src/build-sequence-modules
+	mkdir -p $(ROOT)/$(PKGROOT)
 	( \
             cd $(SOURCE); \
             make install \

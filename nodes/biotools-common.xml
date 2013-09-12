@@ -32,10 +32,12 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>bowtie2</package>
 <package>bwa</package>
 <package>GenomeAnalysisTK</package>
+<package>cufflinks</package>
 <package>samtools</package>
 <package>soapdenovo</package>
 <package>velvet</package>
 <package>fastx</package>
+<package>fastqc</package>
 <package>trinity</package>
 <package>picard</package>
 <package>biotools-modules</package>
