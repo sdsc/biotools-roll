@@ -76,7 +76,10 @@ install::
 	  cp bowtie-build $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie-inspect $(ROOT)/$(PKGROOT)/bin/; \
 	  cp -r scripts $(ROOT)/$(PKGROOT)/; \
-	  cp -r indexes reads $(ROOT)/$(PKGROOT)/ \
+	  cp -r indexes reads $(ROOT)/$(PKGROOT)/; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/scripts; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/indexes; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/reads \
 	)
 
 clean::

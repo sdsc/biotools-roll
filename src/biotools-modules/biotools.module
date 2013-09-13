@@ -63,6 +63,14 @@ set packageHome $biotoolsHome/cufflinks
 setenv CUFFLINKSHOME $packageHome
 prepend-path PATH $packageHome/bin
 
+set packageHome $biotoolsHome/trinity
+setenv TRINITYHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/SOAPsnp
+setenv SOAPSNPHOME $packageHome
+prepend-path PATH $packageHome
+
 set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
 prepend-path CLASSPATH $packageHome
