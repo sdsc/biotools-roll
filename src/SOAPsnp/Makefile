@@ -54,23 +54,24 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/biotools/trinity
-SOURCE = trinity-$(VERSION)
+PKGROOT = /opt/biotools/SOAPsnp
+SOURCE = SOAPsnp-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 
 build:
+	tar zxvf $(SOURCE).tar.gz
+	( \
+              cd $(SOURCE); \
+              make \
+        )
 
 install::
-	tar zxvf $(SOURCE).tar.gz
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-              cp patch-files/Makefile $(SOURCE); \
-              perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE)/Makefile; \
-              cd $(SOURCE); \
-              make; \
-              cp -r * $(ROOT)/$(PKGROOT) \
+            cd $(SOURCE); \
+            cp soapsnp $(ROOT)/$(PKGROOT) \
         )
 
 clean::

@@ -40,6 +40,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>fastqc</package>
 <package>trinity</package>
 <package>picard</package>
+<package>SOAPsnp</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 
