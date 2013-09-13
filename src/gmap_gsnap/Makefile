@@ -64,16 +64,19 @@ build:
 	tar zxvf $(SOURCE).tar.gz
 	( \
               cd $(SOURCE); \
-              ./configure --prefix=$(ROOT)/$(PKGROOT); \
+              ./configure --prefix=$(PKGROOT); \
               make; \
         )
 
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(PKGROOT)
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
             cd $(SOURCE); \
             make install \
         )
+	umount $(PKGROOT)
 
 clean::
-	rm -rf $(SOURCE) gmap-2013-06-27
+	rm -rf $(SOURCE) 

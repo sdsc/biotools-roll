@@ -68,7 +68,7 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	( \
           cd $(SOURCE); \
-          cp * $(ROOT)/$(PKGROOT)/ \
+          cp -r * $(ROOT)/$(PKGROOT)/ \
         )
 
 clean::

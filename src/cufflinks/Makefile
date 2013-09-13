@@ -70,12 +70,16 @@ build:
         )
 
 install::
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(PKGROOT)
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
             cd $(SOURCE); \
             make install; \
             cd .. ;  \
             cp -r test_data.sam $(ROOT)/$(PKGROOT) \
         )
+	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE)
