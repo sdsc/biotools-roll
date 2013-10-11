@@ -75,3 +75,8 @@ set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
 prepend-path CLASSPATH $packageHome
 prepend-path CLASSPATH $packageHome/picard-tools
+
+
+set packageHome $biotoolsHome/spades
+setenv SPADES $packageHome
+prepend-path PATH $packageHome
