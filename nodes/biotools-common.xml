@@ -15,8 +15,10 @@ velvet - http://www.ebi.ac.uk/~zerbino/velvet
 GMAP-GSNAP (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
 Trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
 Cufflinks http://cufflinks.cbcb.umd.edu/
+SOAPsnp http://soap.genomics.org.cn/soapsnp.html
 Tophat http://tophat.cbcb.umd.edu/
 fastx http://hannonlab.cshl.edu/fastx_toolkit
+spades http://bioinf.spbau.ru/en/spades
 </description>
 
 <copyright>
@@ -40,6 +42,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>fastqc</package>
 <package>trinity</package>
 <package>picard</package>
+<package>spades</package>
 <package>SOAPsnp</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
