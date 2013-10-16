@@ -76,7 +76,16 @@ install::
 	( \
           cd $(SOURCE); \
           cp velvetg velvetg_de velveth velveth_de  $(ROOT)/$(PKGROOT)/bin; \
-          cp data/* $(ROOT)/$(PKGROOT)/testdata \
+          cp tests/* $(ROOT)/$(PKGROOT)/testdata; \
+          cp ../patch-files/run-tests.sh $(ROOT)/$(PKGROOT)/testdata; \
+          perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $(ROOT)/$(PKGROOT)/testdata/run-tests.sh; \
+          cp ../patch-files/run-tests.functions $(ROOT)/$(PKGROOT)/testdata; \
+          perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $(ROOT)/$(PKGROOT)/testdata/run-tests.functions; \
+          cp ../patch-files/*.t $(ROOT)/$(PKGROOT)/testdata; \
+          files=`ls $(ROOT)/$(PKGROOT)/testdata/*.t`; \
+          for file in $$files; do \
+             perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $$files ; \
+          done; \
         )
  
 clean::
