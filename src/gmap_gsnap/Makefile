@@ -55,7 +55,7 @@
 # @Copyright@
 
 PKGROOT = /opt/biotools/gmap_gsnap
-SOURCE = gmap_gsnap-$(VERSION)
+SOURCE = gmap-gsnap-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
@@ -70,11 +70,13 @@ build:
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
             cd $(SOURCE); \
-            make install \
+            make install; \
+            cp tests/ss.chr17test  tests/ss.her2 $(PKGROOT)/tests \
         )
 	umount $(PKGROOT)
 
