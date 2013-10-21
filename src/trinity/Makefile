@@ -55,6 +55,7 @@
 # @Copyright@
 
 PKGROOT = /opt/biotools/trinity
+ROLLBIOTOOLS=/opt/biotools
 SOURCE = trinity-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
@@ -67,7 +68,11 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
               cp patch-files/Makefile $(SOURCE); \
+              cp patch-files/runMe.sh $(SOURCE)/sample_data/test_Trinity_Assembly; \
+              cp patch-files/Trinity.pl $(SOURCE); \
               perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE)/Makefile; \
+              perl -pi -e "s!ROLLBIOTOOLS!$(ROLLBIOTOOLS)!g" $(SOURCE)/Trinity.pl; \
+              perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE)/sample_data/test_Trinity_Assembly/runMe.sh; \
               cd $(SOURCE); \
               make; \
               cp -r * $(ROOT)/$(PKGROOT) \
