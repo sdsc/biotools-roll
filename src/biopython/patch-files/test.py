@@ -26,4 +26,5 @@ class test_biopython:
         # change back to the current directory
         os.chdir(this_dir)
 
-
+test=test_biopython()
+test.run()
