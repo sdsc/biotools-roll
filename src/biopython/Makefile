@@ -73,13 +73,13 @@ build:
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/Tests
 	( \
+          cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests; \
 	  cd $(SOURCE); \
           module load scipy; \
           module load intel; \
           export PYTHONPATH=/opt/biotools/biopython:$${PYTHONPATH}; \
           python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          cp Tests/* $(ROOT)/$(PKGROOT)/Tests; \
-          cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests \
+          cp Tests/* $(ROOT)/$(PKGROOT)/Tests \
 	)
 
 clean::
