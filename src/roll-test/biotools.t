@@ -11,7 +11,8 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
-  'velvet','bowtie2','cufflinks','trinity','fastqc','fastx'
+  'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
+   'gmap-gsnap','biopython'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -123,9 +124,8 @@ $packageHome = '/opt/biotools/trinity';
 SKIP: {
   skip 'trinity not installed', 1 if ! -d $packageHome;
   `mkdir -p $TESTFILE.dir`;
- `export PATH=/opt/biotools/bowtie/bin:\$PATH;cd $TESTFILE.dir; cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh >& /dev/null`;
-  $out=`cat $TESTFILE.dir/trinity_out_dir/Trinity.fasta`;
-  ok($out =~ /len=517 path=\[1:0-167 169:168-516\]/, 'trinity works');
+ $out=`cd $TESTFIL.dir;export PATH=/opt/biotools/trinity/bin:\$PATH;cd $TESTFILE.dir; cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
+  ok($out =~ /All commands completed successfully. :-)/, 'trinity works');
 }
 
 $packageHome = '/opt/biotools/fastqc';
@@ -141,6 +141,58 @@ SKIP: {
   skip 'fastx not installed', 1 if ! -d $packageHome;
   $out=`/opt/biotools/fastx/bin/seqalign_test 2>&1`;
   ok($out =~ /A(AGGTTT)CCC/, 'fastx works');
+}
+
+$packageHome = '/opt/biotools/gmap_gsnap';
+SKIP: {
+  skip 'gmap_gsnap not installed', 1 if ! -d $packageHome;
+  $out=`$packageHome/bin/gmap -A -g $packageHome/tests/ss.chr17test $packageHome/tests/ss.her2 2>&1`;
+  ok($out =~ /Trimmed coverage: 100.0 (trimmed length: 4624 bp, trimmed region: 1..4624)/, 'gmap-gsnap works');
+}
+
+$packageHome = '/opt/biotools/velvet';
+SKIP: {
+  skip 'velvet not installed', 1 if ! -d $packageHome;
+  $out=`mkdir .tmp.$$; cd .tmp.$$ export PATH=/opt/biotools/velvet/bin:$PATH;$packageHome/testdata/run-tests.sh 2>&1;rm -rf .tmp.$$`;
+  ok($out =~ /passed all 5 tests/, 'velvet works');
+}
+
+$packageHome = '/opt/biotools/SOAPsnp';
+SKIP: {
+  skip 'SOAPsnp not installed', 1 if ! -d $packageHome;
+  $out=`/opt/biotools/SOAPsnp/bin/soapsnp 2>&1`;
+  ok($out =~ /Compulsory Parameters:/, 'SOAPsnp executable works');
+}
+
+$packageHome = '/opt/biotools/picard';
+SKIP: {
+  skip 'picard not installed', 1 if ! -d $packageHome;
+  $out=`java -jar $packageHome/FastqToSam.jar --help 2>&1`;
+  ok($out =~ /Compulsory Parameters:/, 'picard works');
+}
+
+$packageHome = '/opt/biotools/tophat';
+SKIP: {
+  skip 'tophat not installed', 1 if ! -d $packageHome;
+  $out=`$packageHome/tophat --help 2>&1`;
+  ok($out =~ /TopHat maps short sequences from spliced transcripts to whole genomes./, 'tophat executable works');
+}
+
+$packageHome = '/opt/biotools/spades';
+SKIP: {
+  skip 'spades not installed', 1 if ! -d $packageHome;
+  $out=`$packageHome/bin/spades.py --test 2>&1`;
+  ok($out =~ /======= SPAdes pipeline finished./, 'spades executable works');
+}
+
+
+$packageHome = '/opt/biotools/biopython';
+SKIP: {
+  skip 'biopython not installed', 1 if ! -d $packageHome;
+  $out=`mkdir Tests; cp -r $packageHome/Tests/* Tests;module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib64/python2.6/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+  $count=system("echo \$out|grep -c ' ok' >& /dev/null");
+  ok($count == 256,'biopython works');
+  `rm -rf Tests`;
 }
 
 SKIP: {
