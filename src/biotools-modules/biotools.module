@@ -69,14 +69,17 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/SOAPsnp
 setenv SOAPSNPHOME $packageHome
-prepend-path PATH $packageHome
+prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
 prepend-path CLASSPATH $packageHome
 prepend-path CLASSPATH $packageHome/picard-tools
 
-
 set packageHome $biotoolsHome/spades
-setenv SPADES $packageHome
+setenv SPADESHOME $packageHome
 prepend-path PATH $packageHome
+
+set packageHome $biotoolsHome/biopython
+setenv BIOPYTHONHOME $packageHome
+prepend-path PYTHONPATH $packageHome

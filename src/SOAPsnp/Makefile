@@ -68,10 +68,10 @@ build:
         )
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
             cd $(SOURCE); \
-            cp soapsnp $(ROOT)/$(PKGROOT) \
+            cp soapsnp $(ROOT)/$(PKGROOT)/bin \
         )
 
 clean::

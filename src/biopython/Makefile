@@ -79,7 +79,7 @@ install::
           module load intel; \
           export PYTHONPATH=/opt/biotools/biopython:$${PYTHONPATH}; \
           python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          cp Tests/* $(ROOT)/$(PKGROOT)/Tests \
+          cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests \
 	)
 
 clean::

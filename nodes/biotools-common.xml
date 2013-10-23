@@ -19,6 +19,7 @@ SOAPsnp http://soap.genomics.org.cn/soapsnp.html
 Tophat http://tophat.cbcb.umd.edu/
 fastx http://hannonlab.cshl.edu/fastx_toolkit
 spades http://bioinf.spbau.ru/en/spades
+picard http://picard.sourceforge.net/
 </description>
 
 <copyright>

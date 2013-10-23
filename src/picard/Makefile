@@ -66,7 +66,8 @@ build:
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE)/* $(ROOT)/$(PKGROOT)
+	cp -r $(SOURCE)/*.jar $(ROOT)/$(PKGROOT)
+	cp -r $(SOURCE)/*0/* $(ROOT)/$(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE)
