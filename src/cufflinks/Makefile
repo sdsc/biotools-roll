@@ -77,7 +77,7 @@ install::
             cd $(SOURCE); \
             make install; \
             cd .. ;  \
-            cp -r test_data.sam $(ROOT)/$(PKGROOT) \
+            cp -r patch-files/test_data.sam $(ROOT)/$(PKGROOT) \
         )
 	umount $(PKGROOT)
 
