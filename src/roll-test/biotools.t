@@ -115,7 +115,7 @@ END
 $packageHome = '/opt/biotools/cufflinks';
 SKIP: {
   skip 'cufflinks not installed', 1 if ! -d $packageHome;
-  mkdir -p $TESTFILE.dir;
+  `mkdir -p $TESTFILE.dir`;
   $output=`cd $TESTFILE.dir; /opt/biotools/cufflinks/bin/cufflinks /opt/biotools/cufflinks/test_data.sam 2>&1`;
   ok($output =~ /Default Mean: 200/, 'cufflinks works');
 }
@@ -124,8 +124,8 @@ $packageHome = '/opt/biotools/trinity';
 SKIP: {
   skip 'trinity not installed', 1 if ! -d $packageHome;
   `mkdir -p $TESTFILE.dir`;
- $out=`cd $TESTFIL.dir;export PATH=/opt/biotools/trinity/bin:\$PATH;cd $TESTFILE.dir; cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
-  ok($out =~ /All commands completed successfully. :-)/, 'trinity works');
+ $out=`cd $TESTFILE.dir;export PATH=/opt/biotools/trinity/bin:\$PATH;cd $TESTFILE.dir; cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
+  ok($out =~ /All commands completed successfully. :-\)/, 'trinity works');
 }
 
 $packageHome = '/opt/biotools/fastqc';
@@ -153,7 +153,7 @@ SKIP: {
 $packageHome = '/opt/biotools/velvet';
 SKIP: {
   skip 'velvet not installed', 1 if ! -d $packageHome;
-  $out=`mkdir .tmp.$$; cd .tmp.$$ export PATH=/opt/biotools/velvet/bin:$PATH;$packageHome/testdata/run-tests.sh 2>&1;rm -rf .tmp.$$`;
+  $out=`mkdir .tmp.$$; cd .tmp.$$ export PATH=/opt/biotools/velvet/bin:\$PATH;\$packageHome/testdata/run-tests.sh 2>&1;rm -rf .tmp.$$`;
   ok($out =~ /passed all 5 tests/, 'velvet works');
 }
 
