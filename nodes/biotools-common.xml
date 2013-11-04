@@ -3,7 +3,6 @@
 <kickstart>
 
 <description>
-BIOTOOLS
 blat - http://genome.ucsc.edu
 bowtie - http://bowtie-bio.sourceforge.net
 bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
@@ -12,14 +11,16 @@ GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
-GMAP-GSNAP (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
-Trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
+gmap-gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
+trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
 Cufflinks http://cufflinks.cbcb.umd.edu/
 SOAPsnp http://soap.genomics.org.cn/soapsnp.html
 Tophat http://tophat.cbcb.umd.edu/
 fastx http://hannonlab.cshl.edu/fastx_toolkit
 spades http://bioinf.spbau.ru/en/spades
 picard http://picard.sourceforge.net/
+biopython http://biopython.org
+fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 </description>
 
 <copyright>
@@ -29,7 +30,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 
 <changelog>
 </changelog>
-
 <package>blat</package>
 <package>bowtie</package>
 <package>bowtie2</package>
@@ -45,6 +45,9 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>picard</package>
 <package>spades</package>
 <package>SOAPsnp</package>
+<package>biopython</package>
+<package>gmap-gsnap</package>
+<package>tophat</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 
