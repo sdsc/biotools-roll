@@ -12,7 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap-gsnap','biopython'
+   'gmap_gsnap','biopython'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -116,16 +116,18 @@ $packageHome = '/opt/biotools/cufflinks';
 SKIP: {
   skip 'cufflinks not installed', 1 if ! -d $packageHome;
   `mkdir -p $TESTFILE.dir`;
-  $output=`cd $TESTFILE.dir; /opt/biotools/cufflinks/bin/cufflinks /opt/biotools/cufflinks/test_data.sam 2>&1`;
+  $output=`cd $TESTFILE.dir; export LD_LIBRARY_PATH=/opt/boost/gnu/lib:\$LD_LIBRARY_PATH;/opt/biotools/cufflinks/bin/cufflinks /opt/biotools/cufflinks/test_data.sam 2>&1`;
   ok($output =~ /Default Mean: 200/, 'cufflinks works');
+  `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/trinity';
 SKIP: {
   skip 'trinity not installed', 1 if ! -d $packageHome;
   `mkdir -p $TESTFILE.dir`;
- $out=`cd $TESTFILE.dir;export PATH=/opt/biotools/trinity/bin:\$PATH;cd $TESTFILE.dir; cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
+ $out=`cd $TESTFILE.dir;export PATH=/opt/biotools/trinity/bin:\$PATH;cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
   ok($out =~ /All commands completed successfully. :-\)/, 'trinity works');
+  `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/fastqc';
@@ -147,14 +149,16 @@ $packageHome = '/opt/biotools/gmap_gsnap';
 SKIP: {
   skip 'gmap_gsnap not installed', 1 if ! -d $packageHome;
   $out=`$packageHome/bin/gmap -A -g $packageHome/tests/ss.chr17test $packageHome/tests/ss.her2 2>&1`;
-  ok($out =~ /Trimmed coverage: 100.0 (trimmed length: 4624 bp, trimmed region: 1..4624)/, 'gmap-gsnap works');
+  ok($out =~ /Trimmed coverage: 100.0 \(trimmed length: 4624 bp, trimmed region: 1..4624\)/, 'gmap_gsnap works');
 }
 
 $packageHome = '/opt/biotools/velvet';
 SKIP: {
   skip 'velvet not installed', 1 if ! -d $packageHome;
-  $out=`mkdir .tmp.$$; cd .tmp.$$ export PATH=/opt/biotools/velvet/bin:\$PATH;\$packageHome/testdata/run-tests.sh 2>&1;rm -rf .tmp.$$`;
+  `mkdir -p $TESTFILE.dir`;
+  $out=`cd $TESTFILE.dir; export PATH=/opt/biotools/velvet/bin:\$PATH;$packageHome/testdata/run-tests.sh 2>&1`;
   ok($out =~ /passed all 5 tests/, 'velvet works');
+  `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/SOAPsnp';
@@ -168,21 +172,22 @@ $packageHome = '/opt/biotools/picard';
 SKIP: {
   skip 'picard not installed', 1 if ! -d $packageHome;
   $out=`java -jar $packageHome/FastqToSam.jar --help 2>&1`;
-  ok($out =~ /Compulsory Parameters:/, 'picard works');
+  ok($out =~ /Extracts read sequences and qualities from the input fastq file/, 'picard works');
 }
 
 $packageHome = '/opt/biotools/tophat';
 SKIP: {
   skip 'tophat not installed', 1 if ! -d $packageHome;
-  $out=`$packageHome/tophat --help 2>&1`;
+  $out=`$packageHome/bin/tophat --help 2>&1`;
   ok($out =~ /TopHat maps short sequences from spliced transcripts to whole genomes./, 'tophat executable works');
 }
 
 $packageHome = '/opt/biotools/spades';
 SKIP: {
   skip 'spades not installed', 1 if ! -d $packageHome;
-  $out=`$packageHome/bin/spades.py --test 2>&1`;
+  $out=`python $packageHome/bin/spades.py --test 2>&1`;
   ok($out =~ /======= SPAdes pipeline finished./, 'spades executable works');
+  `rm -rf spades_test`;
 }
 
 
@@ -190,8 +195,14 @@ $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   $out=`mkdir Tests; cp -r $packageHome/Tests/* Tests;module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib64/python2.6/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
-  $count=system("echo \$out|grep -c ' ok' >& /dev/null");
-  ok($count == 256,'biopython works');
+  @output = split(/\n/,$out);
+  $count = 0;
+  for $line (@output) {
+    if ( $line =~ / ok/) {
+       $count +=1;
+    }
+  }
+  ok($count == 184,'biopython works');
   `rm -rf Tests`;
 }
 
