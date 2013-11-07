@@ -21,6 +21,7 @@ spades http://bioinf.spbau.ru/en/spades
 picard http://picard.sourceforge.net/
 biopython http://biopython.org
 fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+plink http://pngu.mgh.harvard.edu/~purcell/plink
 </description>
 
 <copyright>
@@ -48,6 +49,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>biopython</package>
 <package>gmap-gsnap</package>
 <package>tophat</package>
+<package>plink</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 
