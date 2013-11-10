@@ -12,16 +12,17 @@ samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
 gmap-gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
-trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
-Cufflinks http://cufflinks.cbcb.umd.edu/
+trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net
+Cufflinks http://cufflinks.cbcb.umd.edu
 SOAPsnp http://soap.genomics.org.cn/soapsnp.html
-Tophat http://tophat.cbcb.umd.edu/
+Tophat http://tophat.cbcb.umd.edu
 fastx http://hannonlab.cshl.edu/fastx_toolkit
 spades http://bioinf.spbau.ru/en/spades
-picard http://picard.sourceforge.net/
+picard http://picard.sourceforge.net
 biopython http://biopython.org
-fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc
 plink http://pngu.mgh.harvard.edu/~purcell/plink
+bismark  http://http://www.bioinformatics.babraham.ac.uk/projects/bismark
 </description>
 
 <copyright>
@@ -50,6 +51,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>gmap-gsnap</package>
 <package>tophat</package>
 <package>plink</package>
+<package>bismark</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 

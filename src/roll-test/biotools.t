@@ -12,7 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython','plink');
+   'gmap_gsnap','biopython','plink','bismark');
 my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
@@ -214,6 +214,13 @@ SKIP: {
   $output = `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE.dir; plink --file hapmap1 2>&1`;
   ok($output =~ /After frequency and genotyping pruning, there are 83534 SNPs/, 'plink works');
   `rm -rf $TESTFILE.dir`;
+}
+
+$packageHome = '/opt/biotools/bismark';
+SKIP: {
+  skip 'bismark not installed', 1 if ! -d $packageHome;
+  $output = `. /etc/profile.d/modules.sh;module load biotools;bismark 2>&1`;
+  ok($output =~ /USAGE: bismark [options] <genome_folder> {-1 <mates1> -2 <mates2> | <singles>}/, 'bismark works');
 }
 
 SKIP: {

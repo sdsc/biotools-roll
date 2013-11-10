@@ -87,3 +87,7 @@ prepend-path PYTHONPATH $packageHome/lib64/python2.6/site-packages
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/bismark
+setenv BISMARKHOME $packageHome
+prepend-path PATH $packageHome
