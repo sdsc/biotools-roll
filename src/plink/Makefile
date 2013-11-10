@@ -54,7 +54,7 @@
 #
 # @Copyright@
 
-PKGROOT = /opt/plink
+PKGROOT = /opt/biotools/plink
 SOURCE = plink-$(VERSION)
 REDHAT.ROOT = $(PWD)/../../
 
@@ -78,7 +78,9 @@ build:
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	mkdir $(ROOT)/$(PKGROOT)/examples
 	cp $(SOURCE)/plink $(ROOT)/$(PKGROOT)/bin
+	cp patch-files/hapmap* $(ROOT)/$(PKGROOT)/examples
 
 clean::
 	rm -rf $(SOURCE)

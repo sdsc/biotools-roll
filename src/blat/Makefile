@@ -75,7 +75,7 @@ install::
 	  cp blat/test/intron50k/*.fa blat/test/intron50k/expected/*.psl \
 	     $(ROOT)/$(PKGROOT)/test/ \
 	)
-	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE)
+	-umount $(PKGROOT)

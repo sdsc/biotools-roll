@@ -78,7 +78,7 @@ install::
             make install; \
             cp tests/ss.chr17test  tests/ss.her2 $(PKGROOT)/tests \
         )
-	umount $(PKGROOT)
 
 clean::
-	rm -rf $(SOURCE) 
+	rm -rf $(SOURCE)
+	-umount $(PKGROOT)

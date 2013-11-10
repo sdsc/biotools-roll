@@ -78,8 +78,12 @@ prepend-path CLASSPATH $packageHome/picard-tools
 
 set packageHome $biotoolsHome/spades
 setenv SPADESHOME $packageHome
-prepend-path PATH $packageHome
+prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/biopython
 setenv BIOPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome
+prepend-path PYTHONPATH $packageHome/lib64/python2.6/site-packages
+
+set packageHome $biotoolsHome/plink
+setenv PLINKHOME $packageHome
+prepend-path PATH $packageHome/bin

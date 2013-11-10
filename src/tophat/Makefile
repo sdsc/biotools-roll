@@ -77,6 +77,6 @@ install::
             cd $(SOURCE); \
             make install \
         )
-	umount $(PKGROOT)
 clean::
 	rm -rf $(SOURCE)
+	-umount $(PKGROOT)

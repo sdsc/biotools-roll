@@ -79,7 +79,7 @@ install::
             cd .. ;  \
             cp -r patch-files/test_data.sam $(ROOT)/$(PKGROOT) \
         )
-	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE)
+	-umount $(PKGROOT)
