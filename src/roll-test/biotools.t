@@ -12,8 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython'
-);
+   'gmap_gsnap','biopython','plink');
 my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
@@ -71,7 +70,7 @@ END
 
 $packageHome = '/opt/biotools/GenomeAnalysisTK';
 SKIP: {
-  skip 'samtools not installed', 1 if ! -d $packageHome;
+  skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
   $output = `java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta  -I $packageHome/resources/exampleBAM.bam -T CountReads`;
   ok($output =~ /33 reads in the traversal/, 'GenomeAnalysisTK works');
 }
@@ -89,7 +88,6 @@ SKIP: {
 $packageHome = '/opt/biotools/soapdenovo';
 SKIP: {
   skip 'soapdenovo not installed', 1 if ! -d $packageHome;
-  print "Downloading soapdenovo test data (takes a minute)\n";
   `/usr/bin/wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR000/SRR000046/SRR000046_1.fastq.gz 2>&1`;
   `/usr/bin/wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR000/SRR000046/SRR000046_2.fastq.gz 2>&1`;
   skip 'unable to retrieve soapdenov test data', 1
@@ -194,7 +192,9 @@ SKIP: {
 $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
-  $out=`mkdir Tests; cp -r $packageHome/Tests/* Tests;module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib64/python2.6/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+  `mkdir Tests`;
+  `cp -r $packageHome/Tests/* Tests`;
+   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib64/python2.6/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
@@ -202,8 +202,18 @@ SKIP: {
        $count +=1;
     }
   }
-  ok($count == 184,'biopython works');
   `rm -rf Tests`;
+  ok($count >= 183,'biopython works');
+}
+  
+$packageHome = '/opt/biotools/plink';
+SKIP: {
+  skip 'plink not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+  `cp $packageHome/examples/* $TESTFILE.dir`;
+  $output = `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE.dir; plink --file hapmap1 2>&1`;
+  ok($output =~ /After frequency and genotyping pruning, there are 83534 SNPs/, 'plink works');
+  `rm -rf $TESTFILE.dir`;
 }
 
 SKIP: {
