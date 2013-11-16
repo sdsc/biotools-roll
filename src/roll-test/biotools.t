@@ -12,7 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython','plink','bismark');
+   'gmap_gsnap','biopython','plink','bismark','bamtools');
 my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
@@ -221,6 +221,17 @@ SKIP: {
   skip 'bismark not installed', 1 if ! -d $packageHome;
   $output = `. /etc/profile.d/modules.sh;module load biotools;bismark 2>&1`;
   ok($output =~ /USAGE: bismark [options] <genome_folder> {-1 <mates1> -2 <mates2> | <singles>}/, 'bismark works');
+}
+
+$packageHome = '/opt/biotools/bamtools';
+`mkdir $TESTFILE`;
+`cp $packageHome/tests/* $TESTFILE`;
+
+SKIP: {
+  skip 'bamtools not installed', 1 if ! -d $packageHome;
+  `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE;g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools>&1`;
+  $output=`cd $TESTFILE;./test test.bam`;
+  ok($output =~ /Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
 }
 
 SKIP: {
