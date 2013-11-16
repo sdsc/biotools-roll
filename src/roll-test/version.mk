@@ -1,5 +1,4 @@
 NAME	= biotools-roll-test
 VERSION	= 1
 RELEASE	= 0
-
-RPM.EXTRAS = "AutoReq: no"
+RPM.EXTRAS = AutoReq:No
