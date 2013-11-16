@@ -49,9 +49,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>picard</package>
 <package>spades</package>
 <package>SOAPsnp</package>
-<<<<<<< biotools-common.xml
 <package>bamtools</package>
-=======
 <package>biopython</package>
 <package>gmap-gsnap</package>
 <package>tophat</package>
