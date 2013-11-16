@@ -18,6 +18,8 @@ SOAPsnp http://soap.genomics.org.cn/soapsnp.html
 Tophat http://tophat.cbcb.umd.edu
 fastx http://hannonlab.cshl.edu/fastx_toolkit
 spades http://bioinf.spbau.ru/en/spades
+picard http://picard.sourceforge.net/
+bamtools http://https://github.com/pezmaster31/bamtools
 picard http://picard.sourceforge.net
 biopython http://biopython.org
 fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc
@@ -47,6 +49,9 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>picard</package>
 <package>spades</package>
 <package>SOAPsnp</package>
+<<<<<<< biotools-common.xml
+<package>bamtools</package>
+=======
 <package>biopython</package>
 <package>gmap-gsnap</package>
 <package>tophat</package>
