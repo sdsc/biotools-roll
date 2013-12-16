@@ -7,13 +7,13 @@ GenomeAnalysisTK, samtools, soapdenovo, and velvet.
 
 For more information about the various biology packages included in the biotools roll please visit their official web pages:
 
-- <a href="http://genome.ucsc.edu/goldenPath/help/blatSpec.html" target="_blank">blat</a>.
-- <a href="http://bowtie-bio.sourceforge.net/index.shtml" target="_blank">bowtie</a>.
-- <a href="http://bio-bwa.sourceforge.net" target="_blank">bwa</a>.
-- <a href="http://beast.bio.ed.ac.uk/Main_Page" target="_blank">GenomeAnalysisTK</a>.
-- <a href="http://samtools.sourceforge.net" target="_blank">samtools</a>.
-- <a href="http://soap.genomics.org.cn/soapdenovo.html" target="_blank">soapdenovo</a>.
-- <a href="http://www.ebi.ac.uk/~zerbino/velvet/" target="_blank">velvet</a>.
+- <a href="http://genome.ucsc.edu/goldenPath/help/blatSpec.html" target="_blank">blat</a>
+- <a href="http://bowtie-bio.sourceforge.net/index.shtml" target="_blank">bowtie</a>
+- <a href="http://bio-bwa.sourceforge.net" target="_blank">bwa</a>
+- <a href="http://beast.bio.ed.ac.uk/Main_Page" target="_blank">GenomeAnalysisTK</a>
+- <a href="http://samtools.sourceforge.net" target="_blank">samtools</a>
+- <a href="http://soap.genomics.org.cn/soapdenovo.html" target="_blank">soapdenovo</a>
+- <a href="http://www.ebi.ac.uk/~zerbino/velvet/" target="_blank">velvet</a>
 
 
 ## Requirements
