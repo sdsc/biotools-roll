@@ -20,7 +20,7 @@ For more information about the various biology packages included in the biotools
 
 To build/install this roll you must have root access to a Rocks development machine (e.g., a frontend or development appliance).
 
-If your Rocks development machine does *not* have Internet access you must download the appropriate R source file(s) using a machine that does have Internet access and copy them into the `src/<package>` directories on your Rocks development machine.
+If your Rocks development machine does *not* have Internet access you must download the appropriate biotools source file(s) using a machine that does have Internet access and copy them into the `src/<package>` directories on your Rocks development machine.
 
 
 ## Dependencies
