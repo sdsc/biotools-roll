@@ -82,6 +82,7 @@ install::
 	  cp -r patch-files/test_data.sam $(ROOT)/$(PKGROOT) \
 	)
 	@echo "::: Package $(NAME) install complete :::"
+	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE_DIR)
