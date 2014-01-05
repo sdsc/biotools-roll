@@ -70,7 +70,7 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
-	  cp -r * $(ROOT)/$(PKGROOT)
+	  cp -r * $(ROOT)/$(PKGROOT) \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 
