@@ -12,5 +12,5 @@ SOURCE_SUFFIX      = zip
 SOURCE_PKG         = $(SOURCE_NAME)-$(SOURCE_VERSION)-source.$(SOURCE_SUFFIX)
 SOURCE_DIR         = $(SOURCE_NAME)-$(SOURCE_VERSION)
 
-ZIP_PKGS           = $(SOURCE_PKG)a
+ZIP_PKGS           = $(SOURCE_PKG)
 
