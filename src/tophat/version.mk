@@ -4,7 +4,7 @@ RELEASE            = 3
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/tophat
 
-SRC_SUBDIR         = tophot
+SRC_SUBDIR         = tophat
 
 SOURCE_NAME        = $(NAME)
 SOURCE_VERSION     = $(VERSION)
