@@ -75,7 +75,7 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
-	  cp bin/* $(ROOT)/$(PKGROOT)/bin
+	  cp bin/* $(ROOT)/$(PKGROOT)/bin \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 
