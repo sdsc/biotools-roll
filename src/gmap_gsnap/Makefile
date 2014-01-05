@@ -81,6 +81,7 @@ install::
 	  cp tests/ss.chr17test  tests/ss.her2 $(PKGROOT)/tests \
 	)
 	@echo "::: Package $(NAME) install complete :::"
+	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE_DIR)
