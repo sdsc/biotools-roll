@@ -77,7 +77,8 @@ install::
 	  perl -pi -e "s!ROLLBIOTOOLS!$(ROLLBIOTOOLS)!g" $(SOURCE_DIR)/Trinity.pl; \
 	  perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh; \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) prefix=$(ROOT)/$(PKGROOT) install; \
+          export FORCE_UNSAFE_CONFIGURE=1; \
+	  $(MAKE); \
 	  cp -r * $(ROOT)/$(PKGROOT) \
 	)
 	@echo "::: Package $(NAME) install complete :::"
