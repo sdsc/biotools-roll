@@ -12,7 +12,9 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython','plink','bismark','bamtools');
+   'gmap_gsnap','biopython','plink','bismark','bamtools','bsseeker','htseq','rnastar',
+   'trimmomatic'
+);
 my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
@@ -194,7 +196,7 @@ SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `mkdir Tests`;
   `cp -r $packageHome/Tests/* Tests`;
-   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib64/python2.6/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
@@ -203,7 +205,7 @@ SKIP: {
     }
   }
   `rm -rf Tests`;
-  ok($count >= 183,'biopython works');
+  ok($count >= 182,'biopython works');
 }
   
 $packageHome = '/opt/biotools/plink';
@@ -225,13 +227,51 @@ SKIP: {
 
 $packageHome = '/opt/biotools/bamtools';
 `mkdir $TESTFILE`;
-`cp $packageHome/tests/* $TESTFILE`;
+`cp $packageHome/examples/* $TESTFILE`;
 
 SKIP: {
   skip 'bamtools not installed', 1 if ! -d $packageHome;
   `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE;g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools>&1`;
   $output=`cd $TESTFILE;./test test.bam`;
   ok($output =~ /Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
+}
+
+$packageHome = '/opt/biotools/bsseeker';
+`mkdir $TESTFILE`;
+
+SKIP: {
+  skip 'bseeker not installed', 1 if ! -d $packageHome;
+  $output=`cd $TESTFILE;. /etc/profile.d/modules.sh;module load biotools;module load python;python $packageHome/BS_Seeker.py 2> /dev/null`;
+  ok($output =~ /Bowtie path:\/opt\/biotools\/bowtie\//, 'bsseeker works');
+}
+
+
+`mkdir $TESTFILE.dir`;
+$packageHome = '/opt/biotools/htseq';
+SKIP: {
+  skip 'htseq not installed', 1 if ! -d $packageHome;
+  open(OUT, '>in');
+  print OUT <<END;
+import HTSeq
+END
+  close(OUT);
+  `.  /etc/profile.d/modules.sh;module load python; module load intel; module load scipy; module load biotools;module load python;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
+  ok(`grep -c 0 .o` == 1, 'htseq works');
+  `rm -f $TESTFILE*`;
+}
+
+$packageHome = '/opt/biotools/rnastar';
+SKIP: {
+  skip 'rnastar not installed', 1 if ! -d $packageHome;
+  ok( -X "$packageHome/bin/STAR", 'rnastar executable exists');
+}
+
+$packageHome = '/opt/biotools/trimmomatic';
+
+SKIP: {
+  skip 'trimmomatic not installed', 1 if ! -d $packageHome;
+  $output=`. /etc/profile.d/modules.sh;module load biotools; java org.usadellab.trimmomatic.TrimmomaticPE 2>&1`;
+  ok($output =~ /Usage: TrimmomaticPE/, 'trimmomatic  works');
 }
 
 SKIP: {
