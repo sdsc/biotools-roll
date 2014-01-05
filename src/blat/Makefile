@@ -78,6 +78,7 @@ install::
 		$(ROOT)/$(PKGROOT)/test/ \
 	)
 	@echo "::: Package $(NAME) install complete :::"
+	umount $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE_DIR)
