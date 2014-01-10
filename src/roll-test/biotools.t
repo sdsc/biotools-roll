@@ -226,24 +226,26 @@ SKIP: {
 }
 
 $packageHome = '/opt/biotools/bamtools';
-`mkdir $TESTFILE`;
+`mkdir $TESTFILE.dir`;
 `cp $packageHome/examples/* $TESTFILE`;
 
 SKIP: {
   skip 'bamtools not installed', 1 if ! -d $packageHome;
   `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE;g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools>&1`;
-  $output=`cd $TESTFILE;./test test.bam`;
+  $output=`cd $TESTFILE.dir;./test test.bam`;
   ok($output =~ /Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
+   `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/bsseeker';
-`mkdir $TESTFILE`;
+`mkdir $TESTFILE.dir`;
 
 SKIP: {
   skip 'bseeker not installed', 1 if ! -d $packageHome;
   $output=`cd $TESTFILE;. /etc/profile.d/modules.sh;module load biotools;module load python;python $packageHome/BS_Seeker.py 2> /dev/null`;
   ok($output =~ /Bowtie path:\/opt\/biotools\/bowtie\//, 'bsseeker works');
 }
+`rm -rf $TESTFILE.dir`;
 
 
 `mkdir $TESTFILE.dir`;
