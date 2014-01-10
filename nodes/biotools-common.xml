@@ -25,7 +25,7 @@ biopython http://biopython.org
 fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc
 plink http://pngu.mgh.harvard.edu/~purcell/plink
 bismark  http://http://www.bioinformatics.babraham.ac.uk/projects/bismark
-bssseeker http://pellegrini.mcdb.ucla.edu/BS_Seeker/
+bsseeker http://pellegrini.mcdb.ucla.edu/BS_Seeker/
 htseq http://www-huber.embl.de/users/anders/HTSeq
 rnastar https://code.google.com/p/rna-star
 trimmomatic http://www.usadellab.org/cms/?page=trimmomatic
