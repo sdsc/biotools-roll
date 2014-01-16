@@ -13,7 +13,7 @@ my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','bsseeker','htseq','rnastar',
-   'trimmomatic'
+   'trimmomatic','blast'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -196,7 +196,7 @@ SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `mkdir Tests`;
   `cp -r $packageHome/Tests/* Tests`;
-   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+   $out=`module load python scipy/2.7; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
@@ -204,9 +204,7 @@ SKIP: {
        $count +=1;
     }
   }
-  `rm -rf Tests`;
-  ok($count >= 182,'biopython works');
-}
+  `rm -rf Tests`; ok($count >= 181,'biopython works'); }
   
 $packageHome = '/opt/biotools/plink';
 SKIP: {
@@ -226,40 +224,38 @@ SKIP: {
 }
 
 $packageHome = '/opt/biotools/bamtools';
-`mkdir $TESTFILE.dir`;
-`cp $packageHome/examples/* $TESTFILE`;
 
 SKIP: {
   skip 'bamtools not installed', 1 if ! -d $packageHome;
-  `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE;g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools>&1`;
-  $output=`cd $TESTFILE.dir;./test test.bam`;
+  `mkdir $TESTFILE.dir`;
+  `cp $packageHome/examples/* $TESTFILE.dir`;
+  `. /etc/profile.d/modules.sh;module load biotools;cd $TESTFILE.dir;g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools>&1`;
+  $output=`cd $TESTFILE.dir;. /etc/profile.d/modules.sh; module load biotools; ./test test.bam`;
   ok($output =~ /Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
-   `rm -rf $TESTFILE.dir`;
+   `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/bsseeker';
-`mkdir $TESTFILE.dir`;
 
 SKIP: {
   skip 'bseeker not installed', 1 if ! -d $packageHome;
-  $output=`cd $TESTFILE;. /etc/profile.d/modules.sh;module load biotools;module load python;python $packageHome/BS_Seeker.py 2> /dev/null`;
+  $output=`. /etc/profile.d/modules.sh;module load biotools;module load python;python $packageHome/BS_Seeker.py 2> /dev/null`;
   ok($output =~ /Bowtie path:\/opt\/biotools\/bowtie\//, 'bsseeker works');
 }
-`rm -rf $TESTFILE.dir`;
 
 
-`mkdir $TESTFILE.dir`;
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
   open(OUT, '>in');
   print OUT <<END;
 import HTSeq
 END
   close(OUT);
-  `.  /etc/profile.d/modules.sh;module load python; module load intel; module load scipy; module load biotools;module load python;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
-  ok(`grep -c 0 .o` == 1, 'htseq works');
-  `rm -f $TESTFILE*`;
+  `.  /etc/profile.d/modules.sh;module load python; module load intel; module load scipy/2.7; module load biotools;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
+  ok(`grep -c 0 $TESTFILE.dir/.o` == 0, 'htseq works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/rnastar';
@@ -275,6 +271,45 @@ SKIP: {
   $output=`. /etc/profile.d/modules.sh;module load biotools; java org.usadellab.trimmomatic.TrimmomaticPE 2>&1`;
   ok($output =~ /Usage: TrimmomaticPE/, 'trimmomatic  works');
 }
+
+
+$packageHome = '/opt/biotools/blast';
+SKIP: {
+  skip 'blast not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  open(OUT, ">$TESTFILE.dir/$TESTFILE.in");
+  print OUT <<END;
+>
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+ATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAG
+CCCGCACCTGACAGTGCGGGCTTTTTTTTTCGACCAAAGGTAACGAGGTAACAACCATGCGAGTGTTGAA
+GTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGTGTTGCCGATATTCTGGAAAGCAATGCC
+AGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCACCTGGTGGCGATGATTG
+AAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATTTTTGCCGAACTTTT
+END
+  close(OUT);
+   open(OUT, ">$TESTFILE.sh");
+print OUT <<END;
+. /etc/profile.d/modules.sh
+module load intel biotools
+cd $TESTFILE.dir
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/drosoph.nt.gz
+gunzip drosoph.nt.gz
+makeblastdb -dbtype nucl -in *.nt 
+blastn -db *.nt  -query $TESTFILE.in -task blastn -out out
+END
+close(OUT);
+ `bash $TESTFILE.sh 2>&1`;
+  open(OUT, "<$TESTFILE.dir/out");
+  @output=<OUT>;
+  close(OUT);
+  ok(grep(/Score = 33.7 bits \(36\),  Expect = 4.5/,@output) gt 0, 'blast works');
+  `rm -rf $TESTFILE*`;
+}
+
+
 
 SKIP: {
 
