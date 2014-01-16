@@ -65,6 +65,7 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	   cd $(SOURCE_DIR); \
+           . /etc/profile.d/modules.sh; \
            module load intel python scipy/2.7; \
            python setup.py build \
         )
@@ -75,6 +76,7 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	( \
 	     cd $(SOURCE_DIR); \
+             . /etc/profile.d/modules.sh; \
              module load intel python scipy/2.7; \
              mkdir -p $(ROOT)/$(PKGROOT)/lib/python2.7/site-packages; \
              export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python2.7/site-packages:$${PYTHONPATH}; \
