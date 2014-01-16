@@ -82,7 +82,7 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/biopython
 setenv BIOPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib64/python2.7/site-packages
+prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages
 
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome
@@ -103,3 +103,12 @@ prepend-path PATH $packageHome/bin
 set packageHome $biotoolsHome/trimmomatic
 setenv TRIMMOMATICHOME $packageHome
 prepend-path CLASSPATH $packageHome/trimmomatic-0.32.jar
+ 
+set packageHome $biotoolsHome/blast
+setenv BLASTHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/bamtools
+setenv BAMTOOLSHOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH $packageHome/lib/bamtools
