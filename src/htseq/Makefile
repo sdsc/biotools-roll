@@ -66,7 +66,7 @@ build: $(SRC_DIRS)
 	( \
 	   cd $(SOURCE_DIR); \
            . /etc/profile.d/modules.sh; \
-           module load intel python scipy/2.7; \
+           module load intel scipy; \
            python setup.py build \
         )
 	@echo "::: Package $(NAME) build complete :::"
@@ -77,7 +77,7 @@ install::
 	( \
 	     cd $(SOURCE_DIR); \
              . /etc/profile.d/modules.sh; \
-             module load intel python scipy/2.7; \
+             module load intel scipy; \
              mkdir -p $(ROOT)/$(PKGROOT)/lib/python2.7/site-packages; \
              export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python2.7/site-packages:$${PYTHONPATH}; \
              python setup.py install --prefix=$(ROOT)/$(PKGROOT) \

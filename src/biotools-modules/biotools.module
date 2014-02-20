@@ -65,7 +65,7 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/trinity
 setenv TRINITYHOME $packageHome
-prepend-path PATH $packageHome/bin
+prepend-path PATH $packageHome/bin:$packageHome
 
 set packageHome $biotoolsHome/SOAPsnp
 setenv SOAPSNPHOME $packageHome

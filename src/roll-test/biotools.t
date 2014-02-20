@@ -196,7 +196,7 @@ SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `mkdir Tests`;
   `cp -r $packageHome/Tests/* Tests`;
-   $out=`module load python scipy/2.7; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
@@ -239,7 +239,7 @@ $packageHome = '/opt/biotools/bsseeker';
 
 SKIP: {
   skip 'bseeker not installed', 1 if ! -d $packageHome;
-  $output=`. /etc/profile.d/modules.sh;module load biotools;module load python;python $packageHome/BS_Seeker.py 2> /dev/null`;
+  $output=`. /etc/profile.d/modules.sh;module load biotools;python $packageHome/BS_Seeker.py 2> /dev/null`;
   ok($output =~ /Bowtie path:\/opt\/biotools\/bowtie\//, 'bsseeker works');
 }
 
@@ -253,7 +253,7 @@ SKIP: {
 import HTSeq
 END
   close(OUT);
-  `.  /etc/profile.d/modules.sh;module load python; module load intel; module load scipy/2.7; module load biotools;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
+  `.  /etc/profile.d/modules.sh;module load; module load intel; module load scipy; module load biotools;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
   ok(`grep -c 0 $TESTFILE.dir/.o` == 0, 'htseq works');
   `rm -rf $TESTFILE*`;
 }
