@@ -1,6 +1,6 @@
 NAME               = biopython
-VERSION            = 1.62
-RELEASE            = 1
+VERSION            = 1.63
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/biopython
 
