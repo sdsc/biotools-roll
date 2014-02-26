@@ -69,7 +69,6 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	cp -r $(SOURCE_DIR)/*.jar $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/*0/* $(ROOT)/$(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
