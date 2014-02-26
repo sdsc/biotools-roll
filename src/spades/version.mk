@@ -1,12 +1,12 @@
 NAME               = spades
-VERSION            = 2.5.1
-RELEASE            = 1
+VERSION            = 3.0.0
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/spades
 
 SRC_SUBDIR         = spades
 
-SOURCE_NAME        = $(NAME)
+SOURCE_NAME        = SPAdes
 SOURCE_VERSION     = $(VERSION)
 SOURCE_SUFFIX      = tar.gz
 SOURCE_PKG         = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
