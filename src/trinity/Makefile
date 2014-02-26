@@ -70,9 +70,9 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-	  cp patch-files/Makefile $(SOURCE_DIR); \
-	  cp patch-files/runMe.sh $(SOURCE_DIR)/sample_data/test_Trinity_Assembly; \
-	  cp patch-files/Trinity.pl $(SOURCE_DIR); \
+	  patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh patch-files/runMe.sh.patch; \
+	  patch $(SOURCE_DIR)/Trinity.pl patch-files/Trinity.pl.patch; \
+	  patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
 	  perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile; \
 	  perl -pi -e "s!ROLLBIOTOOLS!$(ROLLBIOTOOLS)!g" $(SOURCE_DIR)/Trinity.pl; \
 	  perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh; \

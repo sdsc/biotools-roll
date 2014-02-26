@@ -1,0 +1,25 @@
+--- trinityrnaseq_r20131110/Makefile	2013-11-10 14:38:07.000000000 -0800
++++ patch-files/Makefile	2014-02-25 20:57:54.000000000 -0800
+@@ -21,19 +21,19 @@
+ inchworm_target:
+ 	@echo Using $(TRINITY_COMPILER) compiler for Inchworm and Chrysalis
+ 	cd Inchworm && (test -e configure || autoreconf) \
+-                && ./configure --prefix=`pwd` $(INCHWORM_CONFIGURE_FLAGS) && $(MAKE) install
++                && ./configure --prefix=ROLLPREFIX $(INCHWORM_CONFIGURE_FLAGS) && $(MAKE) install
+ 
+ chrysalis_target:
+ 	cd Chrysalis && $(MAKE) UNSUPPORTED=yes $(CHRYSALIS_MAKE_FLAGS)
+ 
+ jellyfish:
+-	cd trinity-plugins/jellyfish && ./configure CC=gcc CXX=g++ --prefix=`pwd` && $(MAKE) AM_CPPFLAGS="-Wall -Wnon-virtual-dtor -I"`pwd`
++	cd trinity-plugins/jellyfish && ./configure CC=gcc CXX=g++ --prefix=ROLLPREFIX && $(MAKE) AM_CPPFLAGS="-Wall -Wnon-virtual-dtor -I"`pwd`
+ 
+ fastool:
+ 	cd trinity-plugins/fastool && $(MAKE)
+ 
+ parafly:
+-	cd trinity-plugins/parafly && ./configure --prefix=`pwd` && $(MAKE) install
++	cd trinity-plugins/parafly && ./configure --prefix=ROLLPREFIX && $(MAKE) install
+ 
+ slclust:
+ 	cd trinity-plugins/slclust && $(MAKE) install

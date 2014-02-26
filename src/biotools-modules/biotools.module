@@ -82,7 +82,11 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/biopython
 setenv BIOPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages
+
+set packageHome $biotoolsHome/dendropy
+setenv DENDROPYHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages
 
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome

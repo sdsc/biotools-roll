@@ -13,7 +13,7 @@ my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','bsseeker','htseq','rnastar',
-   'trimmomatic','blast'
+   'trimmomatic','blast','dendropy'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -205,6 +205,13 @@ SKIP: {
     }
   }
   `rm -rf Tests`; ok($count >= 181,'biopython works'); }
+
+$packageHome = '/opt/biotools/dendropy';
+SKIP: {
+   skip 'dendropy not installed', 1 if ! -d $packageHome;
+   $output=`module load scipy biotools;python $packageHome/test/test_popgenstat.py 2>&1`;
+   ok($output =~ /OK/, 'dendropy works');
+}
   
 $packageHome = '/opt/biotools/plink';
 SKIP: {

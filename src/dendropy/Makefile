@@ -1,4 +1,3 @@
-#
 # $Id$
 #
 # @Copyright@
@@ -56,28 +55,46 @@
 # @Copyright@
 #
 # $Log$
-#
 
-PKGROOT = /opt/modulefiles/applications/biotools
 REDHAT.ROOT = $(CURDIR)/../../
+RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
+include pull.mk
+
 
 ifndef PYPATH
   PYPATH = python
 endif
 PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
-build:
-
+build: $(SRC_DIRS)
+	( \
+          patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py patch-files/test_popgenstat.py.patch; \
+	  perl -pi -e "s!ROLLPATH!$(PKGROOT)!" $(SOURCE_DIR)/dendropy/test/test_popgenstat.py; \
+	  cd $(SOURCE_DIR); \
+          . /etc/profile.d/modules.sh; \
+	  module load scipy; \
+	  python setup.py build \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+	
 install::
-	  mkdir -p $(ROOT)/$(PKGROOT)
-	  cp biotools.module $(ROOT)/$(PKGROOT)/$(VERSION)
-	  cp biotools.version $(ROOT)/$(PKGROOT)/.version.$(VERSION)
-	  perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(PKGROOT)/$(VERSION)
-	  perl -pi -e 's/PYV/$(PYVERSION)/g' $(ROOT)/$(PKGROOT)/$(VERSION)
-	  perl -pi -e 's/VERSION/$(VERSION)/g' $(ROOT)/$(PKGROOT)/.version.$(VERSION)
-	  ln -s $(PKGROOT)/.version.$(VERSION) $(ROOT)/$(PKGROOT)/.version
+	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
+	mkdir -p $(ROOT)/$(PKGROOT)/test
+	( \
+	   cd $(SOURCE_DIR); \
+          . /etc/profile.d/modules.sh; \
+	   module load scipy; \
+	   export PYTHONPATH=/opt/biotools/dendropy/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+	   python setup.py install --prefix=$(PKGROOT); \
+           cp  dendropy/test/data/chars/COII_Apes.nex $(ROOT)/$(PKGROOT)/test; \
+           cp  dendropy/test/data/chars/orti.nex $(ROOT)/$(PKGROOT)/test; \
+           cp  dendropy/test/test_popgenstat.py $(ROOT)/$(PKGROOT)/test \
+	)
+	@echo "::: Package $(NAME) install complete :::"
 
 clean::
+	rm -rf $(SOURCE_DIR)
+

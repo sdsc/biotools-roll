@@ -3,30 +3,29 @@
 <kickstart>
 
 <description>
-bamtools - https://github.com/pezmaster31/bamtools
-biopython - http://biopython.org
-bismark - http://www.bioinformatics.babraham.ac.uk/projects/bismark
-blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
+bsseeker http://http://pellegrini.mcdb.ucla.edu/BS_Seeker
+biopython http://biopython.org
+blast //http://blast.ncbi.nlm.nih.gov/Blast.cgi
 blat - http://genome.ucsc.edu
 bowtie - http://bowtie-bio.sourceforge.net
 bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
-Cufflinks - http://cufflinks.cbcb.umd.edu
-fastqc - http://www.bioinformatics.babraham.ac.uk/projects/fastqc
-fastx - http://hannonlab.cshl.edu/fastx_toolkit
+Cufflinks http://cufflinks.cbcb.umd.edu/
+dendropy http://pythonhosted.org/DendroPy/
+fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+fastx http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
-gmap-gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program - http://research-pub.gene.com/gmap/
-htseq - https://pypi.python.org/pypi/HTSeq
-picard - http://picard.sourceforge.net/
-plink - http://pngu.mgh.harvard.edu/~purcell/plink
-rnastar - https://code.google.com/p/rna-star
+gmap-gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
+htseq http://www-huber.embl.de/users/anders/HTSeq
+picard http://picard.sourceforge.net/
+rnastar https://code.google.com/p/rna-star
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
-SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
-spades - http://bioinf.spbau.ru/en/spades
-Tophat - http://tophat.cbcb.umd.edu
-trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
-trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net
+SOAPsnp http://soap.genomics.org.cn/soapsnp.html
+spades http://bioinf.spbau.ru/en/spades
+Tophat http://tophat.cbcb.umd.edu/
+trimmomatic http://www.usadellab.org/cms/?page=trimmomatic
+trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
 </description>
 
@@ -47,6 +46,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>bowtie2</package>
 <package>bwa</package>
 <package>cufflinks</package>
+<package>dendropy</package>
 <package>fastqc</package>
 <package>fastx</package>
 <package>GenomeAnalysisTK</package>
