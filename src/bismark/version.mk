@@ -1,5 +1,5 @@
 NAME               = bismark
-VERSION            = 0.10.0
+VERSION            = 0.10.1
 RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/bismark
