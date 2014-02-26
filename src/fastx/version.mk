@@ -1,12 +1,12 @@
 NAME                  = fastx
-VERSION               = 0.0.13.2
-RELEASE               = 1
+VERSION               = 0.0.14
+RELEASE               = 0
 RPM.EXTRAS            = AutoReq:No
 PKGROOT               = /opt/biotools/fastx
 
 SRC_SUBDIR            = fastx
 
-SOURCE_NAME           = $(NAME)
+SOURCE_NAME           = fastx_toolkit
 SOURCE_VERSION        = $(VERSION)
 SOURCE_SUFFIX         = tar.bz2
 SOURCE_PKG            = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
