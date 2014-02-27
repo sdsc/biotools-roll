@@ -1,6 +1,6 @@
 NAME                  = fastx
 VERSION               = 0.0.13.2
-RELEASE               = 1
+RELEASE               = 0
 RPM.EXTRAS            = AutoReq:No
 PKGROOT               = /opt/biotools/fastx
 

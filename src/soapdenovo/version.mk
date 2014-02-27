@@ -1,6 +1,6 @@
 NAME               = soapdenovo
 VERSION            = 1.05
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/soapdenovo
 

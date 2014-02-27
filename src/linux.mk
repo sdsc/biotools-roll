@@ -59,4 +59,5 @@ SRCDIRS = `find . -maxdepth 1 -type d \
         -not -name samtools \
         -not -name cufflinks \
         -not -name tophat \
+        -not -name bsseeker \
 	-not -name .` samtools cufflinks tophat

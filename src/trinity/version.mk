@@ -1,6 +1,6 @@
 NAME               = trinity
 VERSION            = 20131110
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/trinity
 

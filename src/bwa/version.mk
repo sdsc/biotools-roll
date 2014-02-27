@@ -1,6 +1,6 @@
 NAME               = bwa
 VERSION            = 0.7.5a
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/bwa
 

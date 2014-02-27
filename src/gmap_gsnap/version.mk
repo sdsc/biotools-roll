@@ -1,6 +1,6 @@
 NAME               = gmap_gsnap
 VERSION            = 2013_10_15
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/gmap_gsnap
 

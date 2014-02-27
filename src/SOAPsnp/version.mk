@@ -1,6 +1,6 @@
 NAME               = SOAPsnp
 VERSION            = v1.03
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/SOAPsnp
 

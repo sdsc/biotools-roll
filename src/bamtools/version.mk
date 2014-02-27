@@ -1,6 +1,6 @@
 NAME               = bamtools
 VERSION            = 2.3.0
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/bamtools
 
