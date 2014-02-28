@@ -3,7 +3,6 @@
 <kickstart>
 
 <description>
-bsseeker http://http://pellegrini.mcdb.ucla.edu/BS_Seeker
 biopython http://biopython.org
 blast //http://blast.ncbi.nlm.nih.gov/Blast.cgi
 blat - http://genome.ucsc.edu

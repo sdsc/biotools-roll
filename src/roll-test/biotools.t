@@ -12,7 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython','plink','bismark','bamtools','bsseeker','htseq','rnastar',
+   'gmap_gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
    'trimmomatic','blast','dendropy'
 );
 my $isInstalled = -d '/opt/biotools';
@@ -196,7 +196,7 @@ SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `mkdir Tests`;
   `cp -r $packageHome/Tests/* Tests`;
-   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+   $out=`module load scipy; module load intel; module load biotools;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
@@ -242,13 +242,13 @@ SKIP: {
    `rm -rf $TESTFILE*`;
 }
 
-$packageHome = '/opt/biotools/bsseeker';
-
-SKIP: {
-  skip 'bseeker not installed', 1 if ! -d $packageHome;
-  $output=`. /etc/profile.d/modules.sh;module load biotools;python $packageHome/BS_Seeker.py 2> /dev/null`;
-  ok($output =~ /Bowtie path:\/opt\/biotools\/bowtie\//, 'bsseeker works');
-}
+#$packageHome = '/opt/biotools/bsseeker';
+#
+#SKIP: {
+#  skip 'bseeker not installed', 1 if ! -d $packageHome;
+#  $output=`. /etc/profile.d/modules.sh;module load biotools;python $packageHome/BS_Seeker.py 2> /dev/null`;
+#  ok($output =~ /Bowtie path:\/opt\/biotools\/bowtie\//, 'bsseeker works');
+#}
 
 
 $packageHome = '/opt/biotools/htseq';

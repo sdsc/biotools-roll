@@ -81,7 +81,7 @@ install::
           . /etc/profile.d/modules.sh; \
 	  module load scipy; \
 	  module load intel; \
-	  export PYTHONPATH=$(PKGROOT):$${PYTHONPATH}; \
+	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests \
 	)
