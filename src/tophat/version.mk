@@ -1,5 +1,5 @@
 NAME               = tophat
-VERSION            = 2.1.0
+VERSION            = 2.0.10
 RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
 PKGROOT            = /opt/biotools/tophat

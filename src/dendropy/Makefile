@@ -81,14 +81,14 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	mkdir -p $(ROOT)/$(PKGROOT)/test
+	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	( \
 	   cd $(SOURCE_DIR); \
           . /etc/profile.d/modules.sh; \
 	   module load scipy; \
-	   export PYTHONPATH=/opt/biotools/dendropy/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	   python setup.py install --prefix=$(PKGROOT); \
+	   export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+	   python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
            cp  dendropy/test/data/chars/COII_Apes.nex $(ROOT)/$(PKGROOT)/test; \
            cp  dendropy/test/data/chars/orti.nex $(ROOT)/$(PKGROOT)/test; \
            cp  dendropy/test/test_popgenstat.py $(ROOT)/$(PKGROOT)/test \
@@ -96,5 +96,3 @@ install::
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
-

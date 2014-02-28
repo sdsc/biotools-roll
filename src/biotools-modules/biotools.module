@@ -9,7 +9,7 @@ module-whatis "cufflinks 2.1.1   dendropy 3.12.0         fastqc 0.10.1"
 module-whatis "fastx 0.0.13.2    GenomeAnalysisTK 2.7.4  gmap_gsnap 2013_10_15"
 module-whatis "htseq 0.5.4p5     picard 1.100            plink 1.07"
 module-whatis "rnastar 2.3.0e    samtools 0.1.19         soapdenovo 1.05"
-module-whatis "SOAPsnp v1.03     spades 2.5.1            tophat 2.1.0"
+module-whatis "SOAPsnp v1.03     spades 2.5.1            tophat 2.0.10"
 module-whatis "trimmomatic 0.32  trinity 20131110        velvet 1.2.10"
 
 set packageHome $biotoolsHome/blat
@@ -92,11 +92,11 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/biopython
 setenv BIOPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
 
 set packageHome $biotoolsHome/dendropy
 setenv DENDROPYHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
 
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome

@@ -196,7 +196,7 @@ SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `mkdir Tests`;
   `cp -r $packageHome/Tests/* Tests`;
-   $out=`module load scipy; module load intel; export PYTHONPATH=/opt/biotools/biopython/lib/python2.7/site-packages:\$PYTHONPATH;python Tests/test.py 2>&1`;
+   $out=`module load scipy; module load intel; module load biotools;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
