@@ -1,6 +1,6 @@
 NAME               = HTSeq
 VERSION            = 0.5.4p5
-RELEASE            = 1
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/htseq
 
