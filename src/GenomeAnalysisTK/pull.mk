@@ -38,7 +38,7 @@ $(SRC_PKGS):
 # For cleanup convert that package archive names into directory names.
 # This can likely be 'generalized' with a variable I don't know yet...
 TAR_GZ_DIRS = $(TAR_GZ_PKGS:%.tar.gz=%)
-TAR_BZ2_DIRS = $(TAR_BZ2_PKGS:%.tar.bz2=%)
+TAR_BZ2_DIRS = $(SOURCE_NAME)-$(EXTENDED_VERSION)
 TGZ_DIRS = $(TGZ_PKGS:%.tgz=%)
 ZIP_DIRS = $(ZIP_PKGS:%.zip=%)
 
@@ -51,7 +51,7 @@ $(TAR_GZ_DIRS): $(TAR_GZ_PKGS)
 
 $(TAR_BZ2_DIRS): $(TAR_BZ2_PKGS)
 	@echo "::: Unbundling $@.tar.bz2 :::"
-	@$(TAR.CMD) $(TBZ2.OPTS) $@.tar.bz2
+	@$(TAR.CMD) $(TBZ2.OPTS) $(TAR_BZ2_PKGS)
 	@echo ""
 
 $(TGZ_DIRS): $(TGZ_PKGS)

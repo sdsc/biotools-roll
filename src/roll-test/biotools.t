@@ -261,7 +261,7 @@ import HTSeq
 END
   close(OUT);
   `.  /etc/profile.d/modules.sh;module load; module load intel; module load scipy; module load biotools;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
-  ok(`grep -c 0 $TESTFILE.dir/.o` == 0, 'htseq works');
+  ok(`grep -c 0 $TESTFILE.dir/.o` == 1, 'htseq works');
   `rm -rf $TESTFILE*`;
 }
 

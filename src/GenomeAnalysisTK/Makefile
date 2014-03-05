@@ -75,5 +75,4 @@ install::
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
 
