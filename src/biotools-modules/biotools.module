@@ -7,7 +7,7 @@ module-whatis "bamtools 2.3.0         biopython 1.62          bismark 0.10.1"
 module-whatis "blast 2.2.29           blat 35                 bowtie 1.0.0"
 module-whatis "bowtie2 2.1.0          bwa 0.7.5a              cufflinks 2.1.1"
 module-whatis "dendropy 3.12.0        fastqc 0.10.1           fastx 0.0.14"
-module-whatis "GenomeAnalysisTK 2.8.1 gmap-gsnap 2014_02_20   htseq 0.5.4p5"
+module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
 module-whatis "picard 1.108"          plink 1.07              rnastar 2.3.0e"
 module-whatis "samtools 0.1.19        soapdenovo 1.05         SOAPsnp v1.03"
 module-whatis "spades 3.0.0           tophat 2.0.10           trimmomatic 0.32"
@@ -52,7 +52,7 @@ prepend-path PATH $packageHome/bin
 prepend-path LD_LIBRARY_PATH /opt/boost/gnu/lib
 setenv CUFFLINKSHOME $packageHome
 
-set packageHome $biotoolsHome/gmap-gsnap
+set packageHome $biotoolsHome/gmap_gsnap
 prepend-path PATH $packageHome/bin
 setenv GMAP_GSNAPHOME $packageHome
 
