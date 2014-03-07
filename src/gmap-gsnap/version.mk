@@ -1,8 +1,8 @@
-NAME               = gmap_gsnap
+NAME               = gmap-gsnap
 VERSION            = 2014_02_20
 RELEASE            = 0
 RPM.EXTRAS         = AutoReq:No
-PKGROOT            = /opt/biotools/gmap_gsnap
+PKGROOT            = /opt/biotools/gmap-gsnap
 
 SRC_SUBDIR         = $(NAME)
 

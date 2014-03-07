@@ -12,7 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
+   'gmap-gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
    'trimmomatic','blast','dendropy'
 );
 my $isInstalled = -d '/opt/biotools';
@@ -145,11 +145,11 @@ SKIP: {
   ok($out =~ /A(AGGTTT)CCC/, 'fastx works');
 }
 
-$packageHome = '/opt/biotools/gmap_gsnap';
+$packageHome = '/opt/biotools/gmap-gsnap';
 SKIP: {
-  skip 'gmap_gsnap not installed', 1 if ! -d $packageHome;
+  skip 'gmap-gsnap not installed', 1 if ! -d $packageHome;
   $out=`$packageHome/bin/gmap -A -g $packageHome/tests/ss.chr17test $packageHome/tests/ss.her2 2>&1`;
-  ok($out =~ /Trimmed coverage: 100.0 \(trimmed length: 4624 bp, trimmed region: 1..4624\)/, 'gmap_gsnap works');
+  ok($out =~ /Trimmed coverage: 100.0 \(trimmed length: 4624 bp, trimmed region: 1..4624\)/, 'gmap-gsnap works');
 }
 
 $packageHome = '/opt/biotools/velvet';
