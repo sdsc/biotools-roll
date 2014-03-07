@@ -14,7 +14,7 @@ dendropy http://pythonhosted.org/DendroPy/
 fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 fastx http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
-gmap-gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
+gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
 htseq http://www-huber.embl.de/users/anders/HTSeq
 picard http://picard.sourceforge.net/
 rnastar https://code.google.com/p/rna-star
