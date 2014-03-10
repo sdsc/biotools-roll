@@ -1,4 +1,4 @@
-NAME               = HTSeq
+NAME               = htseq
 VERSION            = 0.5.4p5
 RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
