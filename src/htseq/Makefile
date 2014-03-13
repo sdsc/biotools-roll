@@ -66,7 +66,7 @@ build: $(SRC_DIRS)
 	( \
 	   cd $(SOURCE_DIR); \
            . /etc/profile.d/modules.sh; \
-           module load intel scipy python; \
+           module load intel scipy; \
            python setup.py build \
         )
 	@echo "::: Package $(NAME) build complete :::"
