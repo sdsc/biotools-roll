@@ -73,14 +73,13 @@ build: $(SRC_DIRS)
     
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
+	mkdir -p $(ROOT)/$(PKGROOT)/lib
 	( \
 	     cd $(SOURCE_DIR); \
              . /etc/profile.d/modules.sh; \
-             module load intel scipy python; \
-             mkdir -p $(ROOT)/$(PKGROOT)/lib/python2.7/site-packages; \
-             export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python2.7/site-packages:$${PYTHONPATH}; \
-             python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
+             module load intel scipy; \
+             export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
+             python setup.py install --install-lib=$(ROOT)/$(PKGROOT)/lib \
         )
 	@echo "::: Package $(NAME) install complete :::"
 

@@ -109,7 +109,7 @@ prepend-path PATH $packageHome
 
 set packageHome $biotoolsHome/htseq
 setenv HTSEQHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages
+prepend-path PYTHONPATH $packageHome/lib
 
 set packageHome $biotoolsHome/rnastar
 setenv RNASTARHOME $packageHome
