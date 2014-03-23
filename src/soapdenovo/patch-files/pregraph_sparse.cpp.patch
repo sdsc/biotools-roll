@@ -1,0 +1,11 @@
+--- SOAPdenovo2-src-r240/sparsePregraph/pregraph_sparse.cpp	2013-07-08 20:46:52.000000000 -0700
++++ patch-files/pregraph_sparse.cpp	2014-03-21 15:31:44.705750806 -0700
+@@ -32,6 +32,8 @@
+ #include "seq_util.h"
+ #include "convert_soapdenovo.h"
+ 
++#include <unistd.h>
++
+ 
+ static int LOAD_GRAPH = 0, BUILD_DBG = 1, BUILD_EDGES = 1, BUILD_PREARCS = 1;
+ //static    int run_mode=0;

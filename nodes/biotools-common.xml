@@ -11,11 +11,13 @@ bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
 Cufflinks http://cufflinks.cbcb.umd.edu/
 dendropy http://pythonhosted.org/DendroPy/
+edena http://www.genomic.ch/edena.php
 fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 fastx http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
-gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
-htseq http://www-huber.embl.de/users/anders/HTSeq
+gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program) - http://research-pub.gene.com/gmap/
+htseq - http://www-huber.embl.de/users/anders/HTSeq
+idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 picard http://picard.sourceforge.net/
 rnastar https://code.google.com/p/rna-star
 samtools - http://samtools.sourceforge.net
@@ -46,11 +48,13 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>bwa</package>
 <package>cufflinks</package>
 <package>dendropy</package>
+<package>edena</package>
 <package>fastqc</package>
 <package>fastx</package>
 <package>GenomeAnalysisTK</package>
 <package>gmap_gsnap</package>
 <package>htseq</package>
+<package>idba-ud</package>
 <package>picard</package>
 <package>plink</package>
 <package>rnastar</package>

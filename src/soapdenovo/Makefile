@@ -65,8 +65,17 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
+          . /etc/profile.d/modules.sh; \
+          module load intel; \
+          patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
+          patch $(SOURCE_DIR)/sparsePregraph/Makefile patch-files/Makefile.sparse.patch; \
+          patch $(SOURCE_DIR)/standardPregraph/Makefile patch-files/Makefile.standard.patch; \
+          patch $(SOURCE_DIR)/sparsePregraph/multi_threads.cpp patch-files/multi_threads.cpp.patch; \
+          patch $(SOURCE_DIR)/sparsePregraph/build_preArc.cpp patch-files/build_preArc.cpp.patch; \
+          patch $(SOURCE_DIR)/sparsePregraph/build_graph.cpp patch-files/build_graph.cpp.patch; \
+          patch $(SOURCE_DIR)/sparsePregraph/pregraph_sparse.cpp patch-files/pregraph_sparse.cpp.patch; \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) compile; \
+	  $(MAKE); \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
@@ -74,8 +83,7 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) install; \
-	  cp bin/* $(ROOT)/$(PKGROOT)/bin \
+	  cp *mer $(ROOT)/$(PKGROOT)/bin \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

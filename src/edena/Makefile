@@ -1,4 +1,3 @@
-#
 # $Id$
 #
 # @Copyright@
@@ -56,33 +55,31 @@
 # @Copyright@
 #
 # $Log$
-#
 
-PKGROOT = /opt/modulefiles/applications/biotools
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
+include pull.mk
 
-ifndef PYPATH
-  PYPATH = python
-endif
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
-
-build:
-
+build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/src/Makefile patch-files/Makefile.patch
+	( \
+           . /etc/profile.d/modules.sh; \
+           module load intel; \
+	   cd $(SOURCE_DIR); \
+           make \
+        )
+	@echo "::: Package $(NAME) build complete :::"
+    
+	
 install::
-	  mkdir -p $(ROOT)/$(PKGROOT)
-	  cp biotools.module $(ROOT)/$(PKGROOT)/$(VERSION)
-	  cp biotools.version $(ROOT)/$(PKGROOT)/.version.$(VERSION)
-	  perl -pi -e "s!VERSION!$(VERSION)!g" $(ROOT)/$(PKGROOT)/$(VERSION)
-	  perl -pi -e "s!PYV!$(PYVERSION)!g" $(ROOT)/$(PKGROOT)/$(VERSION)
-	  perl -pi -e "s!VERSION!$(VERSION)!g" $(ROOT)/$(PKGROOT)/.version.$(VERSION)
-	  ln -s $(PKGROOT)/.version.$(VERSION) $(ROOT)/$(PKGROOT)/.version
-	  ( \
-               . /etc/profile.d/modules.sh; \
-               module load intel; \
-               perl -pi -e "s!INTELHOME!$${INTELHOME}!g" $(ROOT)/$(PKGROOT)/$(VERSION) \
-          )
+	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	( \
+	   cd $(SOURCE_DIR)/bin; \
+           cp * $(ROOT)/$(PKGROOT)/bin \
+        )
+	@echo "::: Package $(NAME) install complete :::"
 
 clean::
+	rm -rf *.py *.txt

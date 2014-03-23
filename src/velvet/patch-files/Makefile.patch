@@ -1,0 +1,13 @@
+--- velvet_1.2.10/Makefile	2013-06-06 13:00:50.000000000 -0700
++++ patch-files/Makefile	2014-03-21 13:21:59.774422867 -0700
+@@ -1,8 +1,8 @@
+-CC = gcc
++CC = icc
+ CFLAGS = -Wall
+ DEBUG = -g
+ LIBS = -lm
+-OPT = -O3
++OPT = -xHost
+ MAXKMERLENGTH=31
+ CATEGORIES=2
+ DEF = -D MAXKMERLENGTH=$(MAXKMERLENGTH) -D CATEGORIES=$(CATEGORIES)

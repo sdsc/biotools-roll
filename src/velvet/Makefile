@@ -64,10 +64,13 @@ include Rules.mk
 include pull.mk
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
+          . /etc/profile.d/modules.sh; \
+          module load intel; \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE); \
-	  $(MAKE) color; \
+	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \
+	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color; \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
@@ -78,11 +81,11 @@ install::
 	  cd $(SOURCE_DIR); \
 	  cp velvetg velvetg_de velveth velveth_de  $(ROOT)/$(PKGROOT)/bin; \
 	  cp tests/* $(ROOT)/$(PKGROOT)/testdata; \
-	  cp ../patch-files/run-tests.sh $(ROOT)/$(PKGROOT)/testdata; \
+	  cp ../run-tests.sh $(ROOT)/$(PKGROOT)/testdata; \
 	  perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $(ROOT)/$(PKGROOT)/testdata/run-tests.sh; \
-	  cp ../patch-files/run-tests.functions $(ROOT)/$(PKGROOT)/testdata; \
+	  cp ../run-tests.functions $(ROOT)/$(PKGROOT)/testdata; \
 	  perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $(ROOT)/$(PKGROOT)/testdata/run-tests.functions; \
-	  cp ../patch-files/*.t $(ROOT)/$(PKGROOT)/testdata; \
+	  cp ../*.t $(ROOT)/$(PKGROOT)/testdata; \
 	  files=`ls $(ROOT)/$(PKGROOT)/testdata/*.t`; \
 	  for file in $$files; do \
 	    perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $$files ; \

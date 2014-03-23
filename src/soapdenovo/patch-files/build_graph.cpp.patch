@@ -1,0 +1,11 @@
+--- SOAPdenovo2-src-r240/sparsePregraph/build_graph.cpp	2013-07-08 20:46:52.000000000 -0700
++++ patch-files/build_graph.cpp	2014-03-21 15:02:59.055118035 -0700
+@@ -16,6 +16,8 @@
+ #include "io_func.h"
+ #include "build_graph.h"
+ 
++#include <unistd.h>
++
+ static void process_round1_threaded ( struct read_t * read, struct hashtable2 * ht, pthread_spinlock_t * locks, size_t * bucket_count, int K_size, int gap );
+ //static void process_round2_threaded(struct read_t *read,struct hashtable2 *ht,pthread_spinlock_t *locks,size_t *edge_cnt,int K_size,int gap);
+ 

@@ -107,7 +107,7 @@ q1=./SRR000046_1.fastq
 q2=./SRR000046_2.fastq
 END
   close(OUT);
-  `$packageHome/bin/SOAPdenovo-31mer pregraph -K 31 -s SRR000046.config -o SRR000046 2>&1`;
+  `$packageHome/bin/SOAPdenovo-63mer pregraph -K 31 -s SRR000046.config -o SRR000046 2>&1`;
   ok(-f './SRR000046.preArc', 'soapdenovo pregraph works');
   `/bin/rm SRR000046*`;
 }
@@ -125,7 +125,7 @@ $packageHome = '/opt/biotools/trinity';
 SKIP: {
   skip 'trinity not installed', 1 if ! -d $packageHome;
   `mkdir -p $TESTFILE.dir`;
- $out=`cd $TESTFILE.dir;export PATH=/opt/biotools/trinity/bin:\$PATH;cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
+ $out=`cd $TESTFILE.dir;. /etc/profile.d/modules.sh;module load biotools;cp /opt/biotools/trinity/sample_data/test_Trinity_Assembly/*.gz .;/opt/biotools/trinity/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
   ok($out =~ /All commands completed successfully. :-\)/, 'trinity works');
   `rm -rf $TESTFILE.dir`;
 }
@@ -156,7 +156,7 @@ $packageHome = '/opt/biotools/velvet';
 SKIP: {
   skip 'velvet not installed', 1 if ! -d $packageHome;
   `mkdir -p $TESTFILE.dir`;
-  $out=`cd $TESTFILE.dir; export PATH=/opt/biotools/velvet/bin:\$PATH;$packageHome/testdata/run-tests.sh 2>&1`;
+  $out=`cd $TESTFILE.dir; . /etc/profile.d/modules.sh; module load biotools;$packageHome/testdata/run-tests.sh 2>&1`;
   ok($out =~ /passed all 5 tests/, 'velvet works');
   `rm -rf $TESTFILE.dir`;
 }

@@ -6,16 +6,35 @@ module-whatis "                       biotools"
 module-whatis "bamtools 2.3.0         biopython 1.62          bismark 0.10.1"
 module-whatis "blast 2.2.29           blat 35                 bowtie 1.0.0"
 module-whatis "bowtie2 2.1.0          bwa 0.7.5a              cufflinks 2.1.1"
-module-whatis "dendropy 3.12.0        fastqc 0.10.1           fastx 0.0.14"
-module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
-module-whatis "picard 1.108"          plink 1.07              rnastar 2.3.0e"
-module-whatis "samtools 0.1.19        soapdenovo 1.05         SOAPsnp v1.03"
-module-whatis "spades 3.0.0           tophat 2.0.10           trimmomatic 0.32"
-module-whatis "trinity 20131110       velvet 1.2.10"
+module-whatis "dendropy 3.12.0        edena 3.131028          fastqc 0.10.1"
+module-whatis "fastx 0.0.14           GenomeAnalysisTK 2.8.1  gmap_gsnap 2014_02_20"
+module-whatis "htseq 0.5.4p5          idba-ud 1.1.1           picard 1.108"
+module-whatis "plink 1.07             rnastar 2.3.0e          samtools 0.1.19"
+module-whatis "soapdenovo r240        SOAPsnp v1.03           spades 3.0.0"
+module-whatis "tophat 2.0.10          trimmomatic 0.32        trinity 20131110"
+module-whatis "velvet 1.2.10"
+
+
+set packageHome $biotoolsHome/bamtools
+setenv BAMTOOLSHOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH $packageHome/lib/bamtools
 
 set packageHome $biotoolsHome/blat
 setenv BLATHOME $packageHome
 prepend-path PATH $packageHome/bin/x86_64
+
+set packageHome $biotoolsHome/biopython
+setenv BIOPYTHONHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
+
+set packageHome $biotoolsHome/bismark
+setenv BISMARKHOME $packageHome
+prepend-path PATH $packageHome
+
+set packageHome $biotoolsHome/blast
+setenv BLASTHOME $packageHome
+prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/bowtie
 setenv BOWTIEHOME $packageHome
@@ -31,55 +50,42 @@ set packageHome $biotoolsHome/bwa
 setenv BWAHOME $packageHome
 prepend-path PATH $packageHome/bin
 
-set packageHome $biotoolsHome/GenomeAnalysisTK
-setenv GATKHOME $packageHome
-prepend-path CLASSPATH $packageHome
-
-set packageHome $biotoolsHome/samtools
-setenv SAMTOOLSHOME $packageHome
-prepend-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/velvet
-prepend-path PATH $packageHome/bin
-setenv VELVETHOME $packageHome
-
-set packageHome $biotoolsHome/soapdenovo
-prepend-path PATH $packageHome/bin
-setenv SOAPDENOVOHOME $packageHome
-
 set packageHome $biotoolsHome/cufflinks
 prepend-path PATH $packageHome/bin
 prepend-path LD_LIBRARY_PATH /opt/boost/gnu/lib
 setenv CUFFLINKSHOME $packageHome
 
-set packageHome $biotoolsHome/gmap_gsnap
-prepend-path PATH $packageHome/bin
-setenv GMAP_GSNAPHOME $packageHome
+set packageHome $biotoolsHome/dendropy
+setenv DENDROPYHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
 
-set packageHome $biotoolsHome/tophat
+set packageHome $biotoolsHome/edena
+setenv EDENAHOME $packageHome
 prepend-path PATH $packageHome/bin
-prepend-path LD_LIBRARY_PATH /opt/boost/gnu/lib
-setenv TOPHATHOME $packageHome
+
+set packageHome $biotoolsHome/fastqc
+setenv FASTQCHOME $packageHome
+prepend-path PATH $packageHome
 
 set packageHome $biotoolsHome/fastx
 setenv FASTXHOME $packageHome
 prepend-path PATH $packageHome/bin
 prepend-path LD_LIBRARY_PATH $packageHome/lib
 
-set packageHome $biotoolsHome/fastqc
-setenv FASTQCHOME $packageHome
-prepend-path PATH $packageHome
+set packageHome $biotoolsHome/GenomeAnalysisTK
+setenv GATKHOME $packageHome
+prepend-path CLASSPATH $packageHome
 
-set packageHome $biotoolsHome/cufflinks
-setenv CUFFLINKSHOME $packageHome
+set packageHome $biotoolsHome/gmap_gsnap
 prepend-path PATH $packageHome/bin
+setenv GMAP_GSNAPHOME $packageHome
 
-set packageHome $biotoolsHome/trinity
-setenv TRINITYHOME $packageHome
-prepend-path PATH $packageHome/bin:$packageHome
+set packageHome $biotoolsHome/htseq
+setenv HTSEQHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib
 
-set packageHome $biotoolsHome/SOAPsnp
-setenv SOAPSNPHOME $packageHome
+set packageHome $biotoolsHome/idba-ud
+setenv IDBAUDHOME $packageHome
 prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/picard
@@ -87,43 +93,45 @@ setenv PICARDHOME $packageHome
 prepend-path CLASSPATH $packageHome
 prepend-path CLASSPATH $packageHome/picard-tools
 
-set packageHome $biotoolsHome/spades
-setenv SPADESHOME $packageHome
-prepend-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/biopython
-setenv BIOPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
-
-set packageHome $biotoolsHome/dendropy
-setenv DENDROPYHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
-
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome
 prepend-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/bismark
-setenv BISMARKHOME $packageHome
-prepend-path PATH $packageHome
-
-set packageHome $biotoolsHome/htseq
-setenv HTSEQHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib
 
 set packageHome $biotoolsHome/rnastar
 setenv RNASTARHOME $packageHome
 prepend-path PATH $packageHome/bin
 
+set packageHome $biotoolsHome/samtools
+setenv SAMTOOLSHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/soapdenovo
+prepend-path PATH $packageHome/bin
+setenv SOAPDENOVOHOME $packageHome
+
+set packageHome $biotoolsHome/SOAPsnp
+setenv SOAPSNPHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/spades
+setenv SPADESHOME $packageHome
+prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/tophat
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH /opt/boost/gnu/lib
+setenv TOPHATHOME $packageHome
+
 set packageHome $biotoolsHome/trimmomatic
 setenv TRIMMOMATICHOME $packageHome
 prepend-path CLASSPATH $packageHome/trimmomatic-0.32.jar
- 
-set packageHome $biotoolsHome/blast
-setenv BLASTHOME $packageHome
-prepend-path PATH $packageHome/bin
 
-set packageHome $biotoolsHome/bamtools
-setenv BAMTOOLSHOME $packageHome
+set packageHome $biotoolsHome/trinity
+setenv TRINITYHOME $packageHome
+prepend-path PATH $packageHome/bin:$packageHome
+
+set packageHome $biotoolsHome/velvet
 prepend-path PATH $packageHome/bin
-prepend-path LD_LIBRARY_PATH $packageHome/lib/bamtools
+setenv VELVETHOME $packageHome
+
+prepend-path LD_LIBRARY_PATH INTELHOME/compiler/lib/intel64

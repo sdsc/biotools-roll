@@ -1,0 +1,10 @@
+--- SOAPdenovo2-src-r240/sparsePregraph/multi_threads.cpp	2013-07-08 20:46:51.000000000 -0700
++++ patch-files/multi_threads.cpp	2014-03-21 14:51:47.276660443 -0700
+@@ -26,6 +26,7 @@
+ #include "stdinc.h"
+ 
+ #include "build_preArc.h"
++#include <unistd.h>
+ 
+ void creatThrds ( pthread_t * threads, PARAMETER * paras )
+ {

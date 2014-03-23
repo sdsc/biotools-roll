@@ -1,0 +1,11 @@
+--- SOAPdenovo2-src-r240/sparsePregraph/build_preArc.cpp	2013-07-08 20:46:52.000000000 -0700
++++ patch-files/build_preArc.cpp	2014-03-21 14:53:46.807901469 -0700
+@@ -45,6 +45,8 @@
+ 
+ #include "sparse_kmer.h"
+ 
++#include <unistd.h>
++
+ //programming guide:
+ 
+ //step1:read edge & build  vertex hash
