@@ -7,7 +7,7 @@
  CFLAGS=         -O0 -g -fomit-frame-pointer
  else
 -CFLAGS=         -O4 -fomit-frame-pointer
-+CFLAGS=         -xHost
++CFLAGS=         -xHost -fomit-frame-pointer
  endif
  
  SUBDIRS = sparsePregraph standardPregraph
