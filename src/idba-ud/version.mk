@@ -4,7 +4,7 @@ RELEASE = 8
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/idba-ud
 
-SRC_SUBDIR         = idba
+SRC_SUBDIR         = idba-ud
 
 SOURCE_NAME        = idba
 SOURCE_VERSION     = $(VERSION)
