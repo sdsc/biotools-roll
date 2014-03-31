@@ -4,7 +4,7 @@ RELEASE = 8
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/edena
 
-SRC_SUBDIR         = iedena
+SRC_SUBDIR         = edena
 
 SOURCE_NAME        = Edena
 SOURCE_VERSION     = $(VERSION)
