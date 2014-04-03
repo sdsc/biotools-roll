@@ -1,10 +1,10 @@
 --- EdenaV3.131028/src/Makefile	2013-10-28 08:07:23.000000000 -0700
-+++ patch-files/Makefile	2014-03-21 17:55:35.052224110 -0700
++++ patch-files/Makefile	2014-03-31 21:18:23.615044953 -0700
 @@ -1,5 +1,5 @@
 -CCC 	=	g++
 -CFLAGS	=	-O2 -ansi -pthread
 +CCC 	=	icpc
-+CFLAGS	=	-xHost -ansi -pthread
++CFLAGS	=	-O2 -ansi -pthread -xavx
  
  all: edena
  

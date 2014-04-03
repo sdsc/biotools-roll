@@ -1,6 +1,6 @@
 NAME               = ibda-ud
 VERSION            = 1.1.1
-RELEASE = 8
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/idba-ud
 

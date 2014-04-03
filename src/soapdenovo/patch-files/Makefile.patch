@@ -1,5 +1,5 @@
 --- SOAPdenovo2-src-r240/Makefile	2013-07-08 21:00:24.000000000 -0700
-+++ patch-files/Makefile	2014-03-21 14:28:53.856448801 -0700
++++ patch-files/Makefile	2014-04-01 07:28:08.136477492 -0700
 @@ -1,8 +1,8 @@
 -CC = g++
 +CC = icc
@@ -7,7 +7,7 @@
  CFLAGS=         -O0 -g -fomit-frame-pointer
  else
 -CFLAGS=         -O4 -fomit-frame-pointer
-+CFLAGS=         -xHost -fomit-frame-pointer
++CFLAGS=         -O4 -fomit-frame-pointer -xavx
  endif
  
  SUBDIRS = sparsePregraph standardPregraph

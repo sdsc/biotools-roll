@@ -1,6 +1,6 @@
 NAME               = edena
 VERSION            = 3.131028
-RELEASE = 8
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/edena
 

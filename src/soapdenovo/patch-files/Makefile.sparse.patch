@@ -1,5 +1,5 @@
 --- SOAPdenovo2-src-r240/sparsePregraph/Makefile	2013-07-08 21:00:40.000000000 -0700
-+++ patch-files/Makefile.sparse	2014-03-21 14:41:57.599808252 -0700
++++ patch-files/Makefile.sparse	2014-04-01 07:29:00.856785089 -0700
 @@ -1,8 +1,8 @@
 -CC=            g++ # /opt/blc/gcc-4.5.0/bin/gcc #gcc
 +CC=            icc # /opt/blc/gcc-4.5.0/bin/gcc #gcc
@@ -7,7 +7,7 @@
  CFLAGS=         -O0 -g -fomit-frame-pointer #-static #-mcrc32 -march=core2 -msse4.1 -msse4.2
  else
 -CFLAGS=         -O4 -fomit-frame-pointer #-static #-mcrc32 -march=core2 -msse4.1 -msse4.2
-+CFLAGS=         -xHost -fomit-frame-pointer #-static #-mcrc32 -march=core2 -msse4.1 -msse4.2
++CFLAGS=         -O3 -fomit-frame-pointer -xavx
  endif
  
  DFLAGS=         
