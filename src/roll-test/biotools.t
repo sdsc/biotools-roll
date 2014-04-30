@@ -13,7 +13,7 @@ my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
-   'trimmomatic','blast','dendropy'
+   'trimmomatic','blast','dendropy','qiime'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -196,7 +196,7 @@ SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `mkdir Tests`;
   `cp -r $packageHome/Tests/* Tests`;
-   $out=`module load scipy; module load intel; module load biotools;python Tests/test.py 2>&1`;
+   $out=`. /etc/profile.d/modules.sh; module load intel; module load biotools;module load scipy;python Tests/test.py 2>&1`;
   @output = split(/\n/,$out);
   $count = 0;
   for $line (@output) {
@@ -260,7 +260,7 @@ SKIP: {
 import HTSeq
 END
   close(OUT);
-  `.  /etc/profile.d/modules.sh;module load; module load intel; module load scipy; module load biotools;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
+  `.  /etc/profile.d/modules.sh;module load intel; module load biotools; module load scipy;mv in $TESTFILE.dir; cd $TESTFILE.dir;python in; echo $? > .o`;
   ok(`grep -c 0 $TESTFILE.dir/.o` == 1, 'htseq works');
   `rm -rf $TESTFILE*`;
 }
@@ -316,6 +316,29 @@ close(OUT);
   `rm -rf $TESTFILE*`;
 }
 
+my $packageHome = '/opt/biotools/qiime';
+SKIP: {
+  skip 'qimme not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+# $out=`cd $TESTFILE.dir; . /etc/profile.d/modules.sh; module load biotools python ; python $packageHome/tests/all_tests.py 2>&1`;
+ `cd $TESTFILE.dir; . /etc/profile.d/modules.sh; module load biotools python ; python $packageHome/tests/all_tests.py >& ../out`;
+  $out=`cat out`;
+  @output = split(/\n/,$out);
+  $count = 0;
+  for $line (@output) {
+    if ( $line =~ / ok/) {
+       $count +=1;
+    }
+    if ( $line =~ /^OK/) {
+       $count +=1;
+    }
+    if ( $line =~ /^ok/) {
+       $count +=1;
+    }
+  }
+  ok($count >= 676,'qiime works');
+  `rm -rf $TESTFILE*`;
+}
 
 
 SKIP: {

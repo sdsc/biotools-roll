@@ -8,13 +8,33 @@ GenomeAnalysisTK, samtools, soapdenovo, and velvet.
 For more information about the various biology packages included in the biotools
 roll please visit their official web pages:
 
+- <a href="http://biopython.org" target="_blank">biopython</a>
+- <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">blast</a>
 - <a href="http://genome.ucsc.edu/goldenPath/help/blatSpec.html" target="_blank">blat</a>
-- <a href="http://bowtie-bio.sourceforge.net/index.shtml" target="_blank">bowtie</a>
+- <a href="http://bowtie-bio.sourceforge.net" target="_blank">bowtie</a>
+- <a href="http://bowtie-bio.sourceforge.net/bowtie2" target="_blank">bowtie2</a>
 - <a href="http://bio-bwa.sourceforge.net" target="_blank">bwa</a>
-- <a href="http://beast.bio.ed.ac.uk/Main_Page" target="_blank">GenomeAnalysisTK</a>
+- <a href="http://cufflinks.cbcb.umd.edu" target="_blank">cufflinks</a>
+- <a href="http://pythonhosted.org/DendroPy" target="_blank">dendropy</a>
+- <a href="http://www.genomic.ch/edena.php" target="_blank">edena</a>
+- <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc" target="_blank">fastqc</a>
+- <a href="http://hannonlab.cshl.edu/fastx_toolkit" target="_blank">fastx</a>
+- <a href="http://www.broadinstitute.org/gatk" target="_blank">GenomeAnalysisTK</a>
+- <a href="http://research-pub.gene.com/gmap" target="_blank">gmap_gsnap</a>
+- <a href="http://www-huber.embl.de/users/anders/HTSeq" target="_blank">htseq</a>
+- <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a>
+- <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">picard</a>
+- <a href="http://qiime.org" target="_blank">qiime</a>
+- <a href="http://code.google.com/p/rna-star" target="_blank">rnsatar</a>
 - <a href="http://samtools.sourceforge.net" target="_blank">samtools</a>
 - <a href="http://soap.genomics.org.cn/soapdenovo.html" target="_blank">soapdenovo</a>
+- <a href="http://soap.genomics.org.cn/soapsnp.html" target="_blank">soapsnp</a>
+- <a href="http://bioinf.spbau.ru/en/spades" target="_blank">spades</a>
+- <a href="http://tophat.cbcb.umd.ed" target="_blank">tophat</a>
+- <a href="http://www.usadellab.org/cms/?page=trimmomatic" target="_blank">trimmomatic</a>
+- <a href="http://trinityrnaseq.sourceforge.net" target="_blank">trinity</a>
 - <a href="http://www.ebi.ac.uk/~zerbino/velvet/" target="_blank">velvet</a>
+</description>
 
 
 ## Requirements
@@ -30,8 +50,8 @@ development machine.
 
 ## Dependencies
 
-Unknown at this time.
 
+rolls: cmake,intel (for access to the mkl libraries),math,scipy,
 
 ## Building
 
@@ -102,10 +122,4 @@ run the test scripts execute the following command(s):
 
 ```shell
 % /root/rolltests/biotools.t 
-ok 1 - biotools is installed
-ok 2 - biotools test run
-ok 3 - biotools module installed
-ok 4 - biotools version module installed
-ok 5 - biotools version module link created
-1..5
 ```

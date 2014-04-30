@@ -5,14 +5,14 @@ set biotoolsHome /opt/biotools
 module-whatis "                       biotools"
 module-whatis "bamtools 2.3.0         biopython 1.62          bismark 0.10.1"
 module-whatis "blast 2.2.29           blat 35                 bowtie 1.0.0"
-module-whatis "bowtie2 2.1.0          bwa 0.7.5a              cufflinks 2.1.1"
+module-whatis "bowtie2 2.1.0          bwa 0.7.5a              cufflinks 2.2.0"
 module-whatis "dendropy 3.12.0        edena 3.131028          fastqc 0.10.1"
 module-whatis "fastx 0.0.14           GenomeAnalysisTK 2.8.1  gmap_gsnap 2014_02_20"
 module-whatis "htseq 0.5.4p5          idba-ud 1.1.1           picard 1.108"
-module-whatis "plink 1.07             rnastar 2.3.0e          samtools 0.1.19"
-module-whatis "soapdenovo r240        SOAPsnp v1.03           spades 3.0.0"
-module-whatis "tophat 2.0.10          trimmomatic 0.32        trinity 20131110"
-module-whatis "velvet 1.2.10"
+module-whatis "plink 1.07             qiime 1.8.0             rnastar 2.3.0e"
+module-whatis "samtools 0.1.19        soapdenovo r240         SOAPsnp v1.03"
+module-whatis "spades 3.0.0           tophat 2.0.10           trimmomatic 0.32"
+module-whatis "trinity 20131110       velvet 1.2.10"
 
 
 set packageHome $biotoolsHome/bamtools
@@ -96,6 +96,10 @@ prepend-path CLASSPATH $packageHome/picard-tools
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/qiime
+setenv QIIMEHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages:$packageHome/lib64/python2.7/site-packages
 
 set packageHome $biotoolsHome/rnastar
 setenv RNASTARHOME $packageHome

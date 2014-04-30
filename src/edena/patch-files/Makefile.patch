@@ -4,7 +4,7 @@
 -CCC 	=	g++
 -CFLAGS	=	-O2 -ansi -pthread
 +CCC 	=	icpc
-+CFLAGS	=	-O2 -ansi -pthread -xavx
++CFLAGS	=	-O2 -ansi -pthread
  
  all: edena
  

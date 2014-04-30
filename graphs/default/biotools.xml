@@ -19,6 +19,7 @@ gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide 
 htseq http://www-huber.embl.de/users/anders/HTSeq
 idba-ud http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 picard http://picard.sourceforge.net/
+qiime http://qiime.org
 rnastar https://code.google.com/p/rna-star
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
