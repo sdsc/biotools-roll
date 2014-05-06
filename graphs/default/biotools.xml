@@ -3,31 +3,33 @@
 <graph>
 
 <description>
-biopython http://biopython.org
-blast //http://blast.ncbi.nlm.nih.gov/Blast.cgi
+biopython - http://biopython.org
+blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
 blat - http://genome.ucsc.edu
 bowtie - http://bowtie-bio.sourceforge.net
 bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
-Cufflinks http://cufflinks.cbcb.umd.edu/
-dendropy http://pythonhosted.org/DendroPy/
-edena http://www.genomic.ch/edena.php
-fastqc http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-fastx http://hannonlab.cshl.edu/fastx_toolkit
+bx-python - https://pypi.python.org/pypi/bx-python
+Cufflinks - http://cufflinks.cbcb.umd.edu/
+dendropy - http://pythonhosted.org/DendroPy/
+edena - http://www.genomic.ch/edena.php
+fastqc - http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+fastx - http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
-gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program http://research-pub.gene.com/gmap/
-htseq http://www-huber.embl.de/users/anders/HTSeq
-idba-ud http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
-picard http://picard.sourceforge.net/
-qiime http://qiime.org
-rnastar https://code.google.com/p/rna-star
+gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program - http://research-pub.gene.com/gmap/
+htseq  - http://www-huber.embl.de/users/anders/HTSeq
+idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
+picard - http://picard.sourceforge.net/
+pysam - https://github.com/pysam-developers
+qiime - http://qiime.org
+rnastar -  https://code.google.com/p/rna-star
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
-SOAPsnp http://soap.genomics.org.cn/soapsnp.html
-spades http://bioinf.spbau.ru/en/spades
-Tophat http://tophat.cbcb.umd.edu/
-trimmomatic http://www.usadellab.org/cms/?page=trimmomatic
-trinity (Inchworm, Chrysalis,Butterfly) http://trinityrnaseq.sourceforge.net/
+SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
+spades - http://bioinf.spbau.ru/en/spades
+Tophat - http://tophat.cbcb.umd.edu/
+trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
+trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
 </description>
 

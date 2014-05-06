@@ -5,14 +5,15 @@ set biotoolsHome /opt/biotools
 module-whatis "                       biotools"
 module-whatis "bamtools 2.3.0         biopython 1.62          bismark 0.10.1"
 module-whatis "blast 2.2.29           blat 35                 bowtie 1.0.0"
-module-whatis "bowtie2 2.1.0          bwa 0.7.5a              cufflinks 2.2.0"
-module-whatis "dendropy 3.12.0        edena 3.131028          fastqc 0.10.1"
-module-whatis "fastx 0.0.14           GenomeAnalysisTK 2.8.1  gmap_gsnap 2014_02_20"
-module-whatis "htseq 0.5.4p5          idba-ud 1.1.1           picard 1.108"
-module-whatis "plink 1.07             qiime 1.8.0             rnastar 2.3.0e"
-module-whatis "samtools 0.1.19        soapdenovo r240         SOAPsnp v1.03"
-module-whatis "spades 3.0.0           tophat 2.0.10           trimmomatic 0.32"
-module-whatis "trinity 20131110       velvet 1.2.10"
+module-whatis "bowtie2 2.1.0          bwa 0.7.5a              bx-python 0.7.2"
+module-whatis "cufflinks 2.2.0        dendropy 3.12.0         edena 3.131028"
+module-whatis "fastqc 0.10.1          fastx 0.0.14            GenomeAnalysisTK 2.8.1"
+module-whatis "gmap_gsnap 2014_02_20  htseq 0.5.4p5           idba-ud 1.1.1"
+module-whatis "picard 1.108           plink 1.07              pysam 0.7.8pre" 
+module-whatis "qiime 1.8.0            rnastar 2.3.0e          samtools 0.1.19"
+module-whatis "soapdenovo r240        SOAPsnp v1.03           spades 3.0.0"
+module-whatis "tophat 2.0.10          trimmomatic 0.32        trinity 20131110"
+module-whatis "velvet 1.2.10"
 
 
 set packageHome $biotoolsHome/bamtools
@@ -49,6 +50,10 @@ prepend-path PATH $packageHome/scripts
 set packageHome $biotoolsHome/bwa
 setenv BWAHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/bx-python
+setenv BXPYTHONHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
 
 set packageHome $biotoolsHome/cufflinks
 prepend-path PATH $packageHome/bin
@@ -96,6 +101,10 @@ prepend-path CLASSPATH $packageHome/picard-tools
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/pysam
+setenv PYSAMHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
 
 set packageHome $biotoolsHome/qiime
 setenv QIIMEHOME $packageHome

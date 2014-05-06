@@ -10,6 +10,7 @@ roll please visit their official web pages:
 
 - <a href="http://biopython.org" target="_blank">biopython</a>
 - <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">blast</a>
+- <a href="http://https://pypi.python.org/pypi/bx-python" target="_blank">bx-python</a>
 - <a href="http://genome.ucsc.edu/goldenPath/help/blatSpec.html" target="_blank">blat</a>
 - <a href="http://bowtie-bio.sourceforge.net" target="_blank">bowtie</a>
 - <a href="http://bowtie-bio.sourceforge.net/bowtie2" target="_blank">bowtie2</a>
@@ -24,6 +25,7 @@ roll please visit their official web pages:
 - <a href="http://www-huber.embl.de/users/anders/HTSeq" target="_blank">htseq</a>
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a>
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">picard</a>
+- <a href="https://github.com/pysam-developers target="_blank">pysam</a>
 - <a href="http://qiime.org" target="_blank">qiime</a>
 - <a href="http://code.google.com/p/rna-star" target="_blank">rnsatar</a>
 - <a href="http://samtools.sourceforge.net" target="_blank">samtools</a>
@@ -51,7 +53,7 @@ development machine.
 ## Dependencies
 
 
-rolls: cmake,intel (for access to the mkl libraries),math,scipy,
+rolls: cmake,intel (for access to the mkl libraries),math,scipy
 
 ## Building
 

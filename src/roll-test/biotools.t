@@ -13,7 +13,7 @@ my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
-   'trimmomatic','blast','dendropy','qiime'
+   'trimmomatic','blast','dendropy','qiime','bx-python','pysam'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -339,6 +339,57 @@ SKIP: {
   ok($count >= 676,'qiime works');
   `rm -rf $TESTFILE*`;
 }
+
+$packageHome = '/opt/biotools/bx-python';
+SKIP: {
+  skip 'bx-python not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+   open(OUT, ">$TESTFILE.sh");
+   print OUT <<END;
+. /etc/profile.d/modules.sh
+module load intel biotools scipy
+cd $TESTFILE.dir
+wget http://mirror.vcu.edu/vcu/encode/Bigwig/GSM595923_UW.Fetal_Brain.ChromatinAccessibility.H-23266.DS14718.bigWig
+python in
+END
+   close(OUT);
+   open(OUT, ">in");
+   print OUT <<END;
+from bx.intervals.io import GenomicIntervalReader
+from bx.bbi.bigwig_file import BigWigFile
+import numpy as np
+bw = BigWigFile(open('GSM595923_UW.Fetal_Brain.ChromatinAccessibility.H-23266.DS14718.bigWig'))
+mySummary = bw.query("chr1", 10000, 10500, 1)
+myInterval = bw.get("chr1", 10000, 10500)
+myArrayInterval = bw.get_as_array("chr1", 10000, 10500)
+print mySummary
+print myInterval
+END
+   close(OUT);
+   `mv in $TESTFILE.dir`;
+   $out=`bash $TESTFILE.sh 2>&1`;
+   ok($out =~ /'std_dev': 9.310512767924612/, 'bx-python  works');
+   `rm -rf $TESTFILE*`;
+}
+
+$packageHome = '/opt/biotools/pysam';
+SKIP: {
+  skip 'pysam not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+   open(OUT, ">$TESTFILE.sh");
+   print OUT <<END;
+. /etc/profile.d/modules.sh
+module load intel biotools scipy
+cd $TESTFILE.dir
+cp -r $packageHome/tests/* .
+python compile_test.py
+END
+   close(OUT);
+   $out=`bash $TESTFILE.sh 2>&1`;
+   ok($out =~ /OK/, 'pysam  works');
+  `rm -rf $TESTFILE*`;
+}
+
 
 
 SKIP: {
