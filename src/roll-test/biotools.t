@@ -317,12 +317,11 @@ close(OUT);
   `rm -rf $TESTFILE*`;
 }
 
-my $packageHome = '/opt/biotools/qiime';
+$packageHome = '/opt/biotools/qiime';
 SKIP: {
   skip 'qimme not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-# $out=`cd $TESTFILE.dir; . /etc/profile.d/modules.sh; module load biotools python ; python $packageHome/tests/all_tests.py 2>&1`;
- `cd $TESTFILE.dir; . /etc/profile.d/modules.sh; module load biotools python ; python $packageHome/tests/all_tests.py >& ../out`;
+ `cd $TESTFILE.dir; . /etc/profile.d/modules.sh; module load scipy biotools intel; python $packageHome/tests/all_tests.py >& ../out`;
   $out=`cat out`;
   @output = split(/\n/,$out);
   $count = 0;
@@ -453,6 +452,7 @@ END
   }
   ok($count == 24,'ViennaRNA works');
   `rm -rf $TESTFILE*`;
+}
 
 $packageHome = '/opt/biotools/miRDeep2';
 SKIP: {
