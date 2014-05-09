@@ -79,7 +79,7 @@ install::
                 . /etc/profile.d/modules.sh; \
                 module load scipy/2.7; \
                 export PYTHONPATH=$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-                pip install --install-option="--prefix=$(PKGROOT)" numpy; \
+                pip install --install-option="--prefix=$(PKGROOT)" numpy==1.7.1; \
                 pip install --install-option="--prefix=$(PKGROOT)" qiime; \
                 mkdir  $(PKGROOT)/tests; \
                 cd $(SOURCE_DIR); \
