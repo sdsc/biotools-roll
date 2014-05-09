@@ -24,18 +24,22 @@ roll please visit their official web pages:
 - <a href="http://research-pub.gene.com/gmap" target="_blank">gmap_gsnap</a>
 - <a href="http://www-huber.embl.de/users/anders/HTSeq" target="_blank">htseq</a>
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a>
+- <a href="https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep" target="_blank">miRDeep2</a>
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">picard</a>
 - <a href="https://github.com/pysam-developers target="_blank">pysam</a>
 - <a href="http://qiime.org" target="_blank">qiime</a>
+- <a href="http://bioinformatics.psb.ugent.be/software/details/Randfold" target="_blank">randfold</a>
 - <a href="http://code.google.com/p/rna-star" target="_blank">rnsatar</a>
 - <a href="http://samtools.sourceforge.net" target="_blank">samtools</a>
 - <a href="http://soap.genomics.org.cn/soapdenovo.html" target="_blank">soapdenovo</a>
 - <a href="http://soap.genomics.org.cn/soapsnp.html" target="_blank">soapsnp</a>
 - <a href="http://bioinf.spbau.ru/en/spades" target="_blank">spades</a>
+- <a href="squid http://selab.janelia.org/software.html" target="_blank">squid</a>
 - <a href="http://tophat.cbcb.umd.ed" target="_blank">tophat</a>
 - <a href="http://www.usadellab.org/cms/?page=trimmomatic" target="_blank">trimmomatic</a>
 - <a href="http://trinityrnaseq.sourceforge.net" target="_blank">trinity</a>
 - <a href="http://www.ebi.ac.uk/~zerbino/velvet/" target="_blank">velvet</a>
+- <a href="http://www.tbi.univie.ac.at/~ronny/RNA/index.html" target="_blank">viennaRNA</a>
 </description>
 
 

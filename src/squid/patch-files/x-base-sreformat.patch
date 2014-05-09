@@ -1,0 +1,21 @@
+--- squid-1.9g/Testsuite/x-base-sreformat	2002-03-05 15:11:28.000000000 -0800
++++ patch-files/x-base-sreformat	2014-05-07 23:47:30.719733398 -0700
+@@ -3,11 +3,11 @@
+ use testsuite;
+ 
+ testsuite::description("x-base-sreformat", "basic tests of sreformat");
+-testsuite::run("../sreformat fasta   ../Formats/fasta       > /dev/null");
+-testsuite::run("../sreformat embl    ../Formats/fasta       > /dev/null");
+-testsuite::run("../sreformat genbank ../Formats/fasta       > /dev/null");
+-testsuite::run("../sreformat gcg     ../Formats/fasta       > /dev/null");
+-testsuite::run("../sreformat gcgdata ../Formats/fasta       > /dev/null");
+-testsuite::run("../sreformat pir     ../Formats/fasta       > /dev/null");
+-testsuite::run("../sreformat raw     ../Formats/fasta       > /dev/null");
++testsuite::run("sreformat fasta   fasta       > /dev/null");
++testsuite::run("sreformat embl    fasta       > /dev/null");
++testsuite::run("sreformat genbank fasta       > /dev/null");
++testsuite::run("sreformat gcg     fasta       > /dev/null");
++testsuite::run("sreformat gcgdata fasta       > /dev/null");
++testsuite::run("sreformat pir     fasta       > /dev/null");
++testsuite::run("sreformat raw     fasta       > /dev/null");
+ testsuite::done();

@@ -1,10 +1,10 @@
-NAME               = bx-python
-VERSION            = 0.7.1
+NAME               = squid
+VERSION            = 1.9g
 RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
-PKGROOT            = /opt/biotools/bx-python
+PKGROOT            = /opt/biotools/squid
 
-SRC_SUBDIR         = bx-python
+SRC_SUBDIR         = squid
 
 SOURCE_NAME        = $(NAME)
 SOURCE_VERSION     = $(VERSION)

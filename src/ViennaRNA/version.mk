@@ -1,10 +1,10 @@
-NAME               = bx-python
-VERSION            = 0.7.1
+NAME               = ViennaRNA
+VERSION            = 2.1.7
 RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
-PKGROOT            = /opt/biotools/bx-python
+PKGROOT            = /opt/biotools/ViennaRNA
 
-SRC_SUBDIR         = bx-python
+SRC_SUBDIR         = ViennaRNA
 
 SOURCE_NAME        = $(NAME)
 SOURCE_VERSION     = $(VERSION)

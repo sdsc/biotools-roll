@@ -1,0 +1,23 @@
+--- squid-1.9g/Testsuite/x-base-alistat	2002-03-05 15:11:28.000000000 -0800
++++ patch-files/x-base-alistat	2014-05-07 23:42:47.580378150 -0700
+@@ -3,12 +3,12 @@
+ use testsuite;
+ 
+ testsuite::description("x-base-alistat", "basic tests of alistat");
+-testsuite::run("../alistat ../Formats/a2m         > /dev/null");
+-testsuite::run("../alistat ../Formats/clustal     > /dev/null");
+-testsuite::run("../alistat ../Formats/msf         > /dev/null");
+-testsuite::run("../alistat ../Formats/phylip      > /dev/null");
+-testsuite::run("../alistat ../Formats/selex.1     > /dev/null");
+-testsuite::run("../alistat ../Formats/selex.2     > /dev/null");
+-testsuite::run("../alistat ../Formats/stockholm.1 > /dev/null");
+-testsuite::run("../alistat ../Formats/stockholm.2 > /dev/null");
++testsuite::run("alistat a2m         > /dev/null");
++testsuite::run("alistat clustal     > /dev/null");
++testsuite::run("alistat msf         > /dev/null");
++testsuite::run("alistat phylip      > /dev/null");
++testsuite::run("alistat selex.1     > /dev/null");
++testsuite::run("alistat selex.2     > /dev/null");
++testsuite::run("alistat stockholm.1 > /dev/null");
++testsuite::run("alistat stockholm.2 > /dev/null");
+ testsuite::done();

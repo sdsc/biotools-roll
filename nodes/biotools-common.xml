@@ -19,18 +19,22 @@ GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program) - http://research-pub.gene.com/gmap/
 htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
+miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
 picard - http://picard.sourceforge.net/
 pysam - https://github.com/pysam-developers
 qiime http://qiime.org
+randfold http://bioinformatics.psb.ugent.be/software/details/Randfold
 rnastar - https://code.google.com/p/rna-star
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
+squid http://selab.janelia.org/software.html
 Tophat - http://tophat.cbcb.umd.edu/
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
+viennaRNA - http://www.tbi.univie.ac.at/~ronny/RNA/index.html
 </description>
 
 <copyright>
@@ -59,17 +63,21 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>gmap_gsnap</package>
 <package>htseq</package>
 <package>idba-ud</package>
+<package>miRDeep2</package>
 <package>picard</package>
 <package>plink</package>
+<package>randfold</package>
 <package>rnastar</package>
 <package>samtools</package>
 <package>soapdenovo</package>
 <package>SOAPsnp</package>
 <package>spades</package>
+<package>squid</package>
 <package>tophat</package>
 <package>trimmomatic</package>
 <package>trinity</package>
 <package>velvet</package>
+<package>ViennaRNA</package>
 <package>biotools-modules</package>
 <package>biotools-roll-test</package>
 </kickstart>

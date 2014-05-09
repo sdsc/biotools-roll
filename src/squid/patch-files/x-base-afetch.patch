@@ -1,0 +1,15 @@
+--- squid-1.9g/Testsuite/x-base-afetch	2002-03-05 15:11:28.000000000 -0800
++++ patch-files/x-base-afetch	2014-05-07 23:40:19.419913093 -0700
+@@ -4,8 +4,8 @@
+ 
+ testsuite::description("x-base-afetch", "basic tests of afetch");
+ $tmp = testsuite::tempname(); 
+-testsuite::run("cp ../Formats/stockholm.2 $tmp");
+-testsuite::run("../afetch --index $tmp > /dev/null");
+-testsuite::run("../afetch $tmp rrm > /dev/null");
+-testsuite::run("../afetch $tmp 14-3-3 > /dev/null");
++testsuite::run("cp stockholm.2 $tmp");
++testsuite::run("afetch --index $tmp > /dev/null");
++testsuite::run("afetch $tmp rrm > /dev/null");
++testsuite::run("afetch $tmp 14-3-3 > /dev/null");
+ testsuite::done();

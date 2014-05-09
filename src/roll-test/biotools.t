@@ -13,7 +13,8 @@ my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
-   'trimmomatic','blast','dendropy','qiime','bx-python','pysam'
+   'trimmomatic','blast','dendropy','qiime','bx-python','pysam','randfold',
+   'squid','ViennaRNA','miRDeep2'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -390,6 +391,91 @@ END
   `rm -rf $TESTFILE*`;
 }
 
+$packageHome = '/opt/biotools/randfold';
+SKIP: {
+  skip 'randfold not installed', 1 if ! -d $packageHome;
+   $out=`. /etc/profile.d/modules.sh; module load biotools; randfold -d $packageHome/tests/let7.tfa 999  2>&1`;
+   ok($out =~ /cel-let-7	-42.90	0.001000/, 'randfold  works');
+}
+
+$packageHome = '/opt/biotools/squid';
+SKIP: {
+  skip 'squid not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+   open(OUT, ">$TESTFILE.sh");
+   print OUT <<END;
+. /etc/profile.d/modules.sh
+module load biotools
+cd $TESTFILE.dir
+cp -r $packageHome/tests/* .
+XBASE='x-base-afetch x-base-alistat x-base-seqstat x-base-sfetch x-base-shuffle x-base-sindex x-base-sreformat'
+BUGLIST=bug-1-sfetch-paths
+for xprog in \$XBASE; do
+    ./\$xprog;\
+done
+for bugprog in \$BUGLIST; do\
+    ./\$bugprog;
+done
+END
+   close(OUT);
+   $out=`bash $TESTFILE.sh 2>&1`;
+   @output = split(/\n/,$out);
+   $count = 0;
+   for $line (@output) {
+    if ( $line =~ /ok/) {
+       $count +=1;
+    }
+  }
+  ok($count == 8,'squid works');
+  `rm -rf $TESTFILE*`;
+}
+
+$packageHome = '/opt/biotools/ViennaRNA';
+SKIP: {
+  skip 'ViennaRNA not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+   open(OUT, ">$TESTFILE.sh");
+   print OUT <<END;
+. /etc/profile.d/modules.sh
+module load biotools
+cd $TESTFILE.dir
+cp -r $packageHome/tests/* .
+perl test.pl
+END
+   close(OUT);
+   $out=`bash $TESTFILE.sh 2>&1`;
+   @output = split(/\n/,$out);
+   $count = 0;
+   for $line (@output) {
+    if ( $line =~ /ok/) {
+       $count +=1;
+    }
+  }
+  ok($count == 24,'ViennaRNA works');
+  `rm -rf $TESTFILE*`;
+
+$packageHome = '/opt/biotools/miRDeep2';
+SKIP: {
+  skip 'miRDeep2 not installed', 1 if ! -d $packageHome;
+  `mkdir -p $TESTFILE.dir`;
+   open(OUT, ">$TESTFILE.sh");
+   print OUT <<END;
+. /etc/profile.d/modules.sh
+module load biotools
+cd $TESTFILE.dir
+cp -r $packageHome/tests/* .
+bowtie-build cel_cluster.fa cel_cluster
+mapper.pl reads.fa -c -j -k TCGTATGCCGTCTTCTGCTTGT  -l 18 -m -p cel_cluster -s reads_collapsed.fa -t r
+eads_collapsed_vs_genome.arf -v
+quantifier.pl -p precursors_ref_this_species.fa -m mature_ref_this_species.fa -r reads_collapsed.fa -t cel -y 16_19
+miRDeep2.pl reads_collapsed.fa cel_cluster.fa reads_collapsed_vs_genome.arf mature_ref_this_species.fa mature_ref_other_species.fa precursors_ref_this_species.fa -t C.elegans 2> report.log
+END
+   close(OUT);
+   `bash $TESTFILE.sh >& /dev/null`;
+   ok(`grep -c "cel-miR-41      87.00   cel-mir-41      87.00   87.00   509.68" $TESTFILE.dir/miRNAs_expressed_all_samples_16_19.csv` == 1, 'miRDeep2 works');
+ `rm -rf $TESTFILE*`;
+
+}
 
 
 SKIP: {

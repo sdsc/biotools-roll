@@ -1,0 +1,13 @@
+--- squid-1.9g/Testsuite/x-base-sfetch	2002-03-05 15:11:28.000000000 -0800
++++ patch-files/x-base-sfetch	2014-05-07 23:44:54.018895451 -0700
+@@ -3,7 +3,7 @@
+ use testsuite;
+ 
+ testsuite::description("x-base-sfetch", "basic tests of sfetch");
+-testsuite::run("../sfetch -d ../Formats/fasta AC3.1  > /dev/null");
+-testsuite::run("../sfetch -d ../Formats/fasta AC3.2  > /dev/null");
+-testsuite::run("../sfetch -d ../Formats/fasta AC3.3  > /dev/null");
++testsuite::run("sfetch -d fasta AC3.1  > /dev/null");
++testsuite::run("sfetch -d fasta AC3.2  > /dev/null");
++testsuite::run("sfetch -d fasta AC3.3  > /dev/null");
+ testsuite::done();

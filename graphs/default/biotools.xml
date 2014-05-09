@@ -19,8 +19,11 @@ GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program - http://research-pub.gene.com/gmap/
 htseq  - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
+miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
 picard - http://picard.sourceforge.net/
 pysam - https://github.com/pysam-developers
+randfold http://bioinformatics.psb.ugent.be/software/details/Randfold
+squid http://selab.janelia.org/software.html
 qiime - http://qiime.org
 rnastar -  https://code.google.com/p/rna-star
 samtools - http://samtools.sourceforge.net
@@ -31,6 +34,7 @@ Tophat - http://tophat.cbcb.umd.edu/
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
+viennaRNA - http://www.tbi.univie.ac.at/~ronny/RNA/index.html
 </description>
 
 <copyright>

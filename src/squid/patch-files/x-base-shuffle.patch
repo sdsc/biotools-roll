@@ -1,0 +1,9 @@
+--- squid-1.9g/Testsuite/x-base-shuffle	2002-03-05 15:11:28.000000000 -0800
++++ patch-files/x-base-shuffle	2014-05-07 23:45:12.402697657 -0700
+@@ -3,5 +3,5 @@
+ use testsuite;
+ 
+ testsuite::description("x-base-shuffle", "basic tests of shuffle");
+-testsuite::run("../shuffle ../Formats/fasta       > /dev/null");
++testsuite::run("shuffle fasta       > /dev/null");
+ testsuite::done();

@@ -1,10 +1,10 @@
-NAME               = bx-python
-VERSION            = 0.7.1
+NAME               = randfold
+VERSION            = 2.0
 RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
-PKGROOT            = /opt/biotools/bx-python
+PKGROOT            = /opt/biotools/randfold
 
-SRC_SUBDIR         = bx-python
+SRC_SUBDIR         = randfold
 
 SOURCE_NAME        = $(NAME)
 SOURCE_VERSION     = $(VERSION)

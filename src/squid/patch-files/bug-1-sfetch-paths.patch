@@ -1,0 +1,27 @@
+--- squid-1.9g/Testsuite/bug-1-sfetch-paths	2002-03-06 19:18:02.000000000 -0800
++++ patch-files/bug-1-sfetch-paths	2014-05-08 00:12:07.355107210 -0700
+@@ -13,17 +13,17 @@
+ $tmpdir = testsuite::tempname(); 
+ mkdir $tmpdir, 0700;
+ 
+-testsuite::run("../shuffle -i --dna -n 10 -t 100 > $tmp");
+-testsuite::run("../sindex $tmp > /dev/null");
+-testsuite::run("../sfetch -d $tmp randseq5 > /dev/null");
++testsuite::run("shuffle -i --dna -n 10 -t 100 > $tmp");
++testsuite::run("sindex $tmp > /dev/null");
++testsuite::run("sfetch -d $tmp randseq5 > /dev/null");
+ 
+-testsuite::run("../shuffle -i --dna -n 10 -t 100 > $tmpdir/foo");
+-testsuite::run("../sindex $tmpdir/foo > /dev/null");
+-testsuite::run("../sfetch -d $tmpdir/foo randseq5 > /dev/null");
++testsuite::run("shuffle -i --dna -n 10 -t 100 > $tmpdir/foo");
++testsuite::run("sindex $tmpdir/foo > /dev/null");
++testsuite::run("sfetch -d $tmpdir/foo randseq5 > /dev/null");
+ 
+ testsuite::run("cp $tmp $tmpdir/");
+ testsuite::run("cp $tmp.ssi $tmpdir/");
+-testsuite::run("../sfetch -d $tmpdir/$tmp randseq5 > /dev/null");
++testsuite::run("sfetch -d $tmpdir/$tmp randseq5 > /dev/null");
+ 
+ system("rm -rf $tmpdir");
+ testsuite::done();

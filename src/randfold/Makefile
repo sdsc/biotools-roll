@@ -2,11 +2,12 @@
 #
 # @Copyright@
 # 
-# 				Rocks(tm)
+# 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		        version 4.3 (Mars Hill)
+# 		         version 5.6 (Emerald Boa)
+# 		         version 6.1 (Emerald Boa)
 # 
-# Copyright (c) 2000 - 2011 The Regents of the University of California.
+# Copyright (c) 2000 - 2013 The Regents of the University of California.
 # All rights reserved.	
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -24,7 +25,7 @@
 # 3. All advertising and press materials, printed or electronic, mentioning
 # features or use of this software must display the following acknowledgement: 
 # 
-# 	"This product includes software developed by the Rocks(tm)
+# 	"This product includes software developed by the Rocks(r)
 # 	Cluster Group at the San Diego Supercomputer Center at the
 # 	University of California, San Diego and its contributors."
 # 
@@ -53,14 +54,40 @@
 # 
 # @Copyright@
 #
+# $Log$
 
-SRCDIRS = `find . -maxdepth 1 -type d \
-	-not -name CVS \
-        -not -name samtools \
-        -not -name cufflinks \
-        -not -name tophat \
-        -not -name bsseeker \
-        -not -name pysam \
-        -not -name squid \
-        -not -name randfold \
-	-not -name .` samtools cufflinks tophat pysam squid randfold
+REDHAT.ROOT = $(CURDIR)/../../
+RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
+
+ifndef PYPATH
+  PYPATH = python
+endif
+
+PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
+
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include pull.mk
+
+build: $(SRC_DIRS)
+	( \
+          patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
+          perl -pi -e "s!ROLLSQUID!/opt/biotools/squid!g" $(SOURCE_DIR)/Makefile; \
+	  cd $(SOURCE_DIR); \
+          make \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+	
+install::
+	mkdir -p $(ROOT)/$(PKGROOT)/tests
+	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	( \
+	  cd $(SOURCE_DIR); \
+          cp randfold $(ROOT)/$(PKGROOT)/bin;  \
+          cp let7.tfa $(ROOT)/$(PKGROOT)/tests  \
+	)
+	@echo "::: Package $(NAME) install complete :::"
+
+clean::
+	rm -rf $(SOURCE_DIR)
+
