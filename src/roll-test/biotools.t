@@ -472,7 +472,7 @@ miRDeep2.pl reads_collapsed.fa cel_cluster.fa reads_collapsed_vs_genome.arf matu
 END
    close(OUT);
    `bash $TESTFILE.sh >& /dev/null`;
-   ok(`grep -c "cel-miR-41      87.00   cel-mir-41      87.00   87.00   509.68" $TESTFILE.dir/miRNAs_expressed_all_samples_16_19.csv` == 1, 'miRDeep2 works');
+   ok(`grep -c "cel-miR-41	87.00	cel-mir-41	87.00	87.00	509.68" $TESTFILE.dir/miRNAs_expressed_all_samples_16_19.csv` == 1, 'miRDeep2 works');
  `rm -rf $TESTFILE*`;
 
 }
