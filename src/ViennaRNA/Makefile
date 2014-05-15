@@ -72,20 +72,23 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
+	  ./configure --prefix=$(PKGROOT); \
           make \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/tests
+	mkdir -p $(ROOT)/$(PKGROOT)
 	mkdir -p $(REDHAT.ROOT)/src/build-ViennaRNA
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
           make install; \
           cp -r  $(ROOT)/$(PKGROOT)/*  $(REDHAT.ROOT)/src/build-ViennaRNA; \
           cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \
 	)
+	umount $(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
