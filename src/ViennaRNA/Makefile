@@ -79,7 +79,7 @@ build: $(SRC_DIRS)
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/tests
-	mkdir -p $(ROOT)/$(PKGROOT)
+	mkdir -p $(PKGROOT)
 	mkdir -p $(REDHAT.ROOT)/src/build-ViennaRNA
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
