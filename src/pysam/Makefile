@@ -86,7 +86,7 @@ install::
           . /etc/profile.d/modules.sh; \
           module load scipy; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          cd tests/pysam_data; \
+          cd tests; \
           export PATH=$(REDHAT.ROOT)/src/build-samtools/bin:$${PATH}; \
           make; \
           mkdir $(ROOT)/$(PKGROOT)/tests; \

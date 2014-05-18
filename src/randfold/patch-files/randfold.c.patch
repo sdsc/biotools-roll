@@ -1,0 +1,10 @@
+--- randfold-2.0/randfold.c	2005-04-06 02:32:08.000000000 -0700
++++ patch-files/randfold.c	2014-05-16 13:46:42.644486359 -0700
+@@ -20,6 +20,7 @@
+ *******************************************************************************/
+ 
+ #include<stdio.h>
++#include<string.h>
+ #include<time.h>
+ #include<squid.h>
+ #include<fold.h>

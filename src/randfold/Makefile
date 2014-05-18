@@ -72,7 +72,8 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
           patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
-          perl -pi -e "s!ROLLSQUID!/opt/biotools/squid!g" $(SOURCE_DIR)/Makefile; \
+          patch $(SOURCE_DIR)/randfold.c patch-files/randfold.c.patch; \
+          perl -pi -e "s!ROLLSQUID!/$(REDHAT.ROOT)/src/build-squid!g" $(SOURCE_DIR)/Makefile; \
 	  cd $(SOURCE_DIR); \
           make \
 	)

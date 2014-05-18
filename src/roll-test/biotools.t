@@ -12,7 +12,7 @@ my $installedOnAppliancesPattern = '.';
 my @packages = (
   'blat', 'bowtie', 'bwa', 'GenomeAnalysisTK', 'samtools', 'soapdenovo',
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
-   'gmap_gsnap','biopython','plink','bismark','bamtools','htseq','rnastar',
+   'gmap_gsnap','biopython','plink','bismark','bamtools','htseq',
    'trimmomatic','blast','dendropy','qiime','bx-python','pysam','randfold',
    'squid','ViennaRNA','miRDeep2'
 );
@@ -266,12 +266,6 @@ END
   `rm -rf $TESTFILE*`;
 }
 
-$packageHome = '/opt/biotools/rnastar';
-SKIP: {
-  skip 'rnastar not installed', 1 if ! -d $packageHome;
-  ok( -X "$packageHome/bin/STAR", 'rnastar executable exists');
-}
-
 $packageHome = '/opt/biotools/trimmomatic';
 
 SKIP: {
@@ -382,7 +376,7 @@ SKIP: {
 module load intel biotools scipy
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
-python compile_test.py
+python python pysam_test.py
 END
    close(OUT);
    $out=`bash $TESTFILE.sh 2>&1`;
