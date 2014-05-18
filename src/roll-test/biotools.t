@@ -376,7 +376,7 @@ SKIP: {
 module load intel biotools scipy
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
-python python pysam_test.py
+python pysam_test.py
 END
    close(OUT);
    $out=`bash $TESTFILE.sh 2>&1`;
