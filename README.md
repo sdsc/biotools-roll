@@ -26,7 +26,7 @@ roll please visit their official web pages:
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a>
 - <a href="https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep" target="_blank">miRDeep2</a>
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">picard</a>
-- <a href="https://github.com/pysam-developers target="_blank">pysam</a>
+- <a href="https://github.com/pysam-developers” target="_blank">pysam</a>
 - <a href="http://qiime.org" target="_blank">qiime</a>
 - <a href="http://bioinformatics.psb.ugent.be/software/details/Randfold" target="_blank">randfold</a>
 - <a href="http://code.google.com/p/rna-star" target="_blank">rnsatar</a>
