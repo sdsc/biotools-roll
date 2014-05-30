@@ -70,6 +70,7 @@ build: $(SRC_DIRS)
           cd $(SOURCE_DIR); \
           mkdir build; \
           cd build; \
+          export CC=gcc; \
           cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) .. \
 	)
 	@echo "::: Package $(NAME) build complete :::"

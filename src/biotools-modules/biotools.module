@@ -5,7 +5,7 @@ set biotoolsHome /opt/biotools
 module-whatis "                       biotools"
 module-whatis "bamtools 2.3.0         biopython 1.62          bismark 0.10.1"
 module-whatis "blast 2.2.29           blat 35                 bowtie 1.0.0"
-module-whatis "bowtie2 2.1.0          bwa 0.7.5a              bx-python 0.7.2"
+module-whatis "bowtie2 2.2.3          bwa 0.7.5a              bx-python 0.7.2"
 module-whatis "cufflinks 2.2.0        dendropy 3.12.0         edena 3.131028"
 module-whatis "fastqc 0.10.1          fastx 0.0.14            GenomeAnalysisTK 2.8.1"
 module-whatis "gmap_gsnap 2014_02_20  htseq 0.5.4p5           idba-ud 1.1.1"

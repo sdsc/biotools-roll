@@ -78,8 +78,13 @@ install::
 	  cd $(SOURCE_DIR); \
 	  cp bowtie2 $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie2-build $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-build-s $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-build-l $(ROOT)/$(PKGROOT)/bin/; \
 	  cp bowtie2-inspect $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-align $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-inspect-s $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-inspect-l $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-align-s $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie2-align-l $(ROOT)/$(PKGROOT)/bin/; \
 	  cp -r scripts $(ROOT)/$(PKGROOT)/; \
 	  cp -r example/reads/* $(ROOT)/$(PKGROOT)/reads; \
 	  cp -r example/index/* $(ROOT)/$(PKGROOT)/indexes; \
