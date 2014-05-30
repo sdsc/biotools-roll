@@ -79,6 +79,7 @@ build: $(SRC_DIRS)
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/tests
+	mkdir -p $(REDHAT.ROOT)/src/build-squid
 	( \
 	  cd $(SOURCE_DIR); \
           make install; \
@@ -92,7 +93,8 @@ install::
 	  patch Testsuite/x-base-sreformat  ../patch-files/x-base-sreformat.patch; \
 	  patch Testsuite/bug-1-sfetch-paths  ../patch-files/bug-1-sfetch-paths.patch; \
           cp -r Testsuite/* $(ROOT)/$(PKGROOT)/tests; \
-          cp Formats/* $(ROOT)/$(PKGROOT)/tests \
+          cp Formats/* $(ROOT)/$(PKGROOT)/tests; \
+          cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-squid \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

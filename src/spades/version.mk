@@ -1,5 +1,5 @@
 NAME               = spades
-VERSION            = 3.0.0
+VERSION            = 3.1.0
 RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/spades

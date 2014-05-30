@@ -90,8 +90,7 @@ install::
           export PATH=$(REDHAT.ROOT)/src/build-samtools/bin:$${PATH}; \
           make; \
           mkdir $(ROOT)/$(PKGROOT)/tests; \
-          cd ..; \
-          cp -r * $(ROOT)/$(PKGROOT)/tests; \
+          cp -r * $(ROOT)/$(PKGROOT)/tests \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 
