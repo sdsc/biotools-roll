@@ -9,12 +9,12 @@ module-whatis "bowtie2 2.2.3          bwa 0.7.5a              bx-python 0.7.2"
 module-whatis "cufflinks 2.2.0        dendropy 3.12.0         edena 3.131028"
 module-whatis "fastqc 0.10.1          fastx 0.0.14            GenomeAnalysisTK 2.8.1"
 module-whatis "gmap_gsnap 2014_02_20  htseq 0.5.4p5           idba-ud 1.1.1"
-module-whatis "miRDeep2 0.0.5         picard 1.108            plink 1.07"
-module-whatis "pysam 0.7.8pre         qiime 1.8.0             randfold 2.0"
-module-whatis "rnastar 2.3.0e         samtools 0.1.19         soapdenovo r240"
-module-whatis "SOAPsnp v1.03          spades 3.1.0            squid 1.9g"
-module-whatis "tophat 2.0.10          trimmomatic 0.32        trinity 20131110"
-module-whatis "velvet 1.2.10          ViennaRNA 2.1.7"
+module-whatis "matt 1.00              miRDeep2 0.0.5          picard 1.108"
+module-whatis "plink 1.07             pysam 0.7.8pre          qiime 1.8.0"
+module-whatis "randfold 2.0           rnastar 2.3.0e          samtools 0.1.19"
+module-whatis "soapdenovo r240        SOAPsnp v1.03           spades 3.1.0"
+module-whatis "squid 1.9g             tophat 2.0.10           trimmomatic 0.32"
+module-whatis "trinity 20131110       velvet 1.2.10           ViennaRNA 2.1.7"
 
 
 set packageHome $biotoolsHome/bamtools
@@ -168,5 +168,9 @@ set packageHome $biotoolsHome/miRDeep2
 prepend-path PERL5LIB $packageHome/share/perl5
 prepend-path PATH $packageHome/bin
 setenv MIRDEEP2HOME $packageHome
+
+set packageHome $biotoolsHome/matt
+prepend-path PATH $packageHome/bin
+setenv MATTHOME $packageHome
 
 prepend-path LD_LIBRARY_PATH INTELHOME/compiler/lib/intel64

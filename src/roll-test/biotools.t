@@ -14,7 +14,7 @@ my @packages = (
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','htseq',
    'trimmomatic','blast','dendropy','qiime','bx-python','pysam','randfold',
-   'squid','ViennaRNA','miRDeep2'
+   'squid','ViennaRNA','miRDeep2','matt'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -469,6 +469,13 @@ END
    ok(`grep -c "cel-miR-41	87.00	cel-mir-41	87.00	87.00	509.68" $TESTFILE.dir/miRNAs_expressed_all_samples_16_19.csv` == 1, 'miRDeep2 works');
  `rm -rf $TESTFILE*`;
 
+}
+
+$packageHome = '/opt/biotools/matt';
+SKIP: {
+  skip 'matt not installed', 1 if ! -d $packageHome;
+  $output = `. /etc/profile.d/modules.sh;module load biotools;Matt 2>&1`;
+  ok($output =~ /Matt version 1.00 Single Threaded build./, 'matt works');
 }
 
 
