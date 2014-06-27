@@ -1,6 +1,6 @@
 NAME               = pysam
 VERSION            = 0.7.8pre
-RELEASE = 10
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/pysam
 
