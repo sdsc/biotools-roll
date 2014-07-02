@@ -3,18 +3,19 @@
 set biotoolsHome /opt/biotools
 
 module-whatis "                       biotools"
-module-whatis "bamtools 2.3.0         biopython 1.62          bismark 0.10.1"
-module-whatis "blast 2.2.29           blat 35                 bowtie 1.0.0"
-module-whatis "bowtie2 2.2.3          bwa 0.7.5a              bx-python 0.7.2"
-module-whatis "cufflinks 2.2.0        dendropy 3.12.0         edena 3.131028"
-module-whatis "fastqc 0.10.1          fastx 0.0.14            GenomeAnalysisTK 2.8.1"
-module-whatis "gmap_gsnap 2014_02_20  htseq 0.5.4p5           idba-ud 1.1.1"
-module-whatis "matt 1.00              miRDeep2 0.0.5          picard 1.108"
-module-whatis "plink 1.07             pysam 0.7.8pre          qiime 1.8.0"
-module-whatis "randfold 2.0           rnastar 2.3.0e          samtools 0.1.19"
-module-whatis "soapdenovo r240        SOAPsnp v1.03           spades 3.1.0"
-module-whatis "squid 1.9g             tophat 2.0.10           trimmomatic 0.32"
-module-whatis "trinity 20131110       velvet 1.2.10           ViennaRNA 2.1.7"
+module-whatis "bedtools 2.20.1        bamtools 2.3.0          biopython 1.62"
+module-whatis "bismark 0.10.1         blast 2.2.29            blat 35"
+module-whatis "bowtie 1.0.0           bowtie2 2.2.3           bwa 0.7.5a"
+module-whatis "bx-python 0.7.2        cufflinks 2.2.0         dendropy 3.12.0"
+module-whatis "edena 3.131028         fastqc 0.10.1           fastx 0.0.14"
+module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
+module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.5"
+module-whatis "miso 0.5.2             picard 1.108            plink 1.07"
+module-whatis "pysam 0.7.8pre         qiime 1.8.0             randfold 2.0"
+module-whatis "samtools 0.1.19        soapdenovo r240         SOAPsnp v1.03"
+module-whatis "spades 3.1.0           squid 1.9g              tophat 2.0.10"
+module-whatis "trimmomatic 0.32       trinity 20131110        velvet 1.2.10"
+module-whatis "ViennaRNA 2.1.7"
 
 
 set packageHome $biotoolsHome/bamtools
@@ -111,10 +112,6 @@ set packageHome $biotoolsHome/qiime
 setenv QIIMEHOME $packageHome
 prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages:$packageHome/lib64/python2.7/site-packages
 
-set packageHome $biotoolsHome/rnastar
-setenv RNASTARHOME $packageHome
-prepend-path PATH $packageHome/bin
-
 set packageHome $biotoolsHome/samtools
 setenv SAMTOOLSHOME $packageHome
 prepend-path PATH $packageHome/bin
@@ -172,5 +169,13 @@ setenv MIRDEEP2HOME $packageHome
 set packageHome $biotoolsHome/matt
 prepend-path PATH $packageHome/bin
 setenv MATTHOME $packageHome
+
+set packageHome $biotoolsHome/bedtools
+prepend-path PATH $packageHome/bin
+setenv BEDTOOLSHOME $packageHome
+
+set packageHome $biotoolsHome/miso
+setenv MISOHOME $packageHome
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/PYV/site-packages
 
 prepend-path LD_LIBRARY_PATH INTELHOME/compiler/lib/intel64
