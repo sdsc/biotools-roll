@@ -64,17 +64,22 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
-           patch $(SOURCE_DIR)/Genome.cpp patch-files/Genome.cpp.patch; \
+           . /etc/profile.d/modules.sh; \
+           module load scipy; \
 	   cd $(SOURCE_DIR); \
-           rm -f *.o STAR; \
-           make \
+           python setup.py  build \
         )
 	@echo "::: Package $(NAME) build complete :::"
     
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	cp $(SOURCE_DIR)/STAR $(ROOT)/$(PKGROOT)/bin
+	mkdir -p $(ROOT)/$(PKGROOT)
+	( \
+           . /etc/profile.d/modules.sh; \
+           module load scipy; \
+	   cd $(SOURCE_DIR); \
+           python setup.py  install --prefix=$(ROOT)/$(PKGROOT) \
+        )
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

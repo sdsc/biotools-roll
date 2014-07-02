@@ -3,6 +3,8 @@
 <kickstart>
 
 <description>
+bamtools - https://github.com/pezmaster31/bamtools
+bedtools - https://github.com/arq5x/bedtools2
 biopython - http://biopython.org
 blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
 blat - http://genome.ucsc.edu
@@ -21,6 +23,7 @@ htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
+miso - http://genes.mit.edu/burgelab/miso/software.html
 picard - http://picard.sourceforge.net/
 pysam - https://github.com/pysam-developers
 qiime http://qiime.org
@@ -30,7 +33,7 @@ soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
 squid http://selab.janelia.org/software.html
-Tophat - http://tophat.cbcb.umd.edu/
+tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
@@ -46,6 +49,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </changelog>
 
 <package>bamtools</package>
+<package>bedtools</package>
 <package>biopython</package>
 <package>bismark</package>
 <package>blast</package>
@@ -65,6 +69,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>idba-ud</package>
 <package>matt</package>
 <package>miRDeep2</package>
+<package>miso</package>
 <package>picard</package>
 <package>plink</package>
 <package>randfold</package>
