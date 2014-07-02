@@ -67,6 +67,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>gmap_gsnap</package>
 <package>htseq</package>
 <package>idba-ud</package>
+<package>matt</package>
 <package>miRDeep2</package>
 <package>miso</package>
 <package>picard</package>
