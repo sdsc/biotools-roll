@@ -1,6 +1,6 @@
 NAME               = miso
 VERSION            = 0.5.2
-RELEASE = 13
+RELEASE            = 0
 RPM.EXTRAS         = "AutoReq: no"
 PKGROOT            = /opt/biotools/miso
 

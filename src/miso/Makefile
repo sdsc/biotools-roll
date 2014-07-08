@@ -58,27 +58,28 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
+ifndef PYPATH
+  PYPATH = python
+endif
+PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include pull.mk
 
 build: $(SRC_DIRS)
-	( \
-           . /etc/profile.d/modules.sh; \
-           module load scipy; \
-	   cd $(SOURCE_DIR); \
-           python setup.py  build \
-        )
 	@echo "::: Package $(NAME) build complete :::"
     
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
+	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	( \
            . /etc/profile.d/modules.sh; \
+           module load intel; \
            module load scipy; \
-	   cd $(SOURCE_DIR); \
-           python setup.py  install --prefix=$(ROOT)/$(PKGROOT) \
+           export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+           easy_install --no-deps --prefix=$(ROOT)/$(PKGROOT) $(SOURCE_PKG) \
         )
 	@echo "::: Package $(NAME) install complete :::"
 

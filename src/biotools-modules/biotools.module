@@ -176,6 +176,7 @@ setenv BEDTOOLSHOME $packageHome
 
 set packageHome $biotoolsHome/miso
 setenv MISOHOME $packageHome
+prepend-path PATH $packageHome/bin
 prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/PYV/site-packages
 
 prepend-path LD_LIBRARY_PATH INTELHOME/compiler/lib/intel64

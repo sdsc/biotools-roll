@@ -14,7 +14,7 @@ my @packages = (
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','htseq',
    'trimmomatic','blast','dendropy','qiime','bx-python','pysam','randfold',
-   'squid','ViennaRNA','miRDeep2','matt','bedtools'
+   'squid','ViennaRNA','miRDeep2','matt','bedtools','miso'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -496,6 +496,13 @@ SKIP: {
   `rm -f $TESTFILE`;
 }
 
+
+$packageHome = '/opt/biotools/miso';
+SKIP: {
+  skip 'miso not installed', 1 if ! -d $packageHome;
+  $output=`. /etc/profile.d/modules.sh; module load biotools; module load intel; module load scipy;python $packageHome/lib/python2.7/site-packages/*.egg/misopy/test_miso.py 2>&1`;
+  ok(grep(/OK/, $output),'miso works');
+}
 
 SKIP: {
 
