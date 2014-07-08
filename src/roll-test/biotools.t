@@ -14,7 +14,7 @@ my @packages = (
   'velvet','bowtie2','cufflinks','trinity','fastqc','fastx','SOAPsnp','spades',
    'gmap_gsnap','biopython','plink','bismark','bamtools','htseq',
    'trimmomatic','blast','dendropy','qiime','bx-python','pysam','randfold',
-   'squid','ViennaRNA','miRDeep2','matt'
+   'squid','ViennaRNA','miRDeep2','matt','bedtools','miso'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -478,6 +478,31 @@ SKIP: {
   ok($output =~ /Matt version 1.00 Single Threaded build./, 'matt works');
 }
 
+$packageHome = '/opt/biotools/bedtools';
+SKIP: {
+  skip 'bedtools not installed', 1 if ! -d $packageHome;
+  @exes=('annotateBed','bedToBam','complementBed','genomeCoverageBed','mapBed','nucBed','slopBed','windowBed','bamToBed','bedToIgv','coverageBed','getOverlap','maskFastaFromBed','pairToBed','sortBed','windowMaker','bamToFastq','expandCols','groupBy','mergeBed','pairToPair','subtractBed','bed12ToBed6','closestBed','fastaFromBed','intersectBed','multiBamCov','randomBed','tagBam','bedpeToBam','clusterBed','flankBed','linksBed','shuffleBed');
+  `rm -f $TESTFILE`;
+  foreach $exe (@exes)
+  {
+        `$packageHome/bin/$exe  --help >> $TESTFILE 2>&1`;
+  }
+  @exes=('unionBedGraphs','multiIntersectBed');
+  foreach $exe (@exes)
+  {
+        `$packageHome/bin/$exe  >> $TESTFILE 2>&1`;
+  }
+  ok(`grep -c "v2.20.1" $TESTFILE` == 36, 'all bedtools exes work');
+  `rm -f $TESTFILE`;
+}
+
+
+$packageHome = '/opt/biotools/miso';
+SKIP: {
+  skip 'miso not installed', 1 if ! -d $packageHome;
+  $output=`. /etc/profile.d/modules.sh; module load biotools; module load intel; module load scipy;python $packageHome/lib/python2.7/site-packages/*.egg/misopy/test_miso.py 2>&1`;
+  ok(grep(/OK/, $output),'miso works');
+}
 
 SKIP: {
 

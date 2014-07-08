@@ -64,9 +64,7 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
-           patch $(SOURCE_DIR)/Genome.cpp patch-files/Genome.cpp.patch; \
 	   cd $(SOURCE_DIR); \
-           rm -f *.o STAR; \
            make \
         )
 	@echo "::: Package $(NAME) build complete :::"
@@ -74,7 +72,7 @@ build: $(SRC_DIRS)
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	cp $(SOURCE_DIR)/STAR $(ROOT)/$(PKGROOT)/bin
+	cp $(SOURCE_DIR)/bin/* $(ROOT)/$(PKGROOT)/bin
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
