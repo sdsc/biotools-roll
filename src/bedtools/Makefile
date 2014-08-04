@@ -76,4 +76,4 @@ install::
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf *.py *.txt
+	rm -rf *.py *.txt $(SOURCE_DIR)
