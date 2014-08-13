@@ -63,6 +63,14 @@ ifndef PYPATH
   PYPATH = python
 endif
 
+COMPILERSETUP = \
+  if test -e /etc/profile.d/modules.sh; then \
+    . /etc/profile.d/modules.sh; \
+    latestGnu=`module avail 2>&1 | grep -o 'gnu/[^ (]*' | sed 's/gnu.//' | sort -t. -k1,1n -k2,2n -k3,3n | tail -1`; \
+    module load gnu/$${latestGnu}; \
+  fi \
+
+
 PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
@@ -71,6 +79,7 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
+          $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
           make \

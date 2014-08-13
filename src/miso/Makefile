@@ -78,8 +78,8 @@ install::
            . /etc/profile.d/modules.sh; \
            module load intel; \
            module load scipy; \
-           export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-           easy_install --no-deps --prefix=$(ROOT)/$(PKGROOT) $(SOURCE_PKG) \
+           export PYTHONPATH=$(REDHAT.ROOT)/src/build-pysam/lib/python$(PYVERSION)/site-packages:/opt/python/lib/python$(PYVERSION)/site-packages:$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+           pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" $(SOURCE_PKG) \
         )
 	@echo "::: Package $(NAME) install complete :::"
 

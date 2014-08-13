@@ -500,7 +500,7 @@ SKIP: {
 $packageHome = '/opt/biotools/miso';
 SKIP: {
   skip 'miso not installed', 1 if ! -d $packageHome;
-  $output=`. /etc/profile.d/modules.sh; module load biotools; module load intel; module load scipy;python $packageHome/lib/python2.7/site-packages/*.egg/misopy/test_miso.py 2>&1`;
+  $output=`. /etc/profile.d/modules.sh; module load biotools; module load intel; module load scipy;python $packageHome/lib/python2.7/site-packages/misopy/test_miso.py 2>&1`;
   ok(grep(/OK/, $output),'miso works');
 }
 

@@ -73,4 +73,5 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
+	rm -rf snappy*
 

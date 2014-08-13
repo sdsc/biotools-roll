@@ -80,15 +80,15 @@ build: $(SRC_DIRS)
 	
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
+	mkdir -p $(REDHAT.ROOT)/src/build-pysam
 	( \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
           . /etc/profile.d/modules.sh; \
           module load scipy; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-pysam; \
           cd tests; \
-          export PATH=$(REDHAT.ROOT)/src/build-samtools/bin:$${PATH}; \
-          make; \
           mkdir $(ROOT)/$(PKGROOT)/tests; \
           cp -r * $(ROOT)/$(PKGROOT)/tests \
 	)

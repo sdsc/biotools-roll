@@ -79,7 +79,7 @@ install::
              . /etc/profile.d/modules.sh; \
              module load intel scipy; \
              export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
-             python setup.py install --install-lib=$(ROOT)/$(PKGROOT)/lib \
+             python setup.py install --install-lib=$(ROOT)/$(PKGROOT)/lib --install-scripts=$(ROOT)/$(PKGROOT)/bin \
         )
 	@echo "::: Package $(NAME) install complete :::"
 
