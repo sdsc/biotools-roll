@@ -1,16 +1,16 @@
-NAME               = picard
-VERSION            = 1.108
-RELEASE            = 0
-RPM.EXTRAS         = AutoReq:No
-PKGROOT            = /opt/biotools/picard
+NAME           = picard
+VERSION        = 1.108
+RELEASE        = 0
+PKGROOT        = /opt/biotools/$(NAME)
 
-SRC_SUBDIR         = picard
+SRC_SUBDIR     = $(NAME)
 
-SOURCE_NAME        = picard-tools
-SOURCE_VERSION     = $(VERSION)
-SOURCE_SUFFIX      = zip
-SOURCE_PKG         = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
-SOURCE_DIR         = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
+SOURCE_NAME    = picard-tools
+SOURCE_SUFFIX  = zip
+SOURCE_VERSION = $(VERSION)
+SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
-ZIP_PKGS           = $(SOURCE_PKG)
+ZIP_PKGS       = $(SOURCE_PKG)
 
+RPM.EXTRAS     = AutoReq:No

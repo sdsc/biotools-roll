@@ -1,15 +1,16 @@
-NAME               = pysam
-VERSION            = 0.7.8pre
-RELEASE            = 0
-RPM.EXTRAS         = "AutoReq: no"
-PKGROOT            = /opt/biotools/pysam
+NAME           = pysam
+VERSION        = 0.7.8pre
+RELEASE        = 0
+PKGROOT        = /opt/biotools/$(NAME)
 
-SRC_SUBDIR         = pysam
+SRC_SUBDIR     = $(NAME)
 
-SOURCE_NAME        = $(NAME)
-SOURCE_VERSION     = $(VERSION)
-SOURCE_SUFFIX      = tar.gz
-SOURCE_PKG         = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
-SOURCE_DIR         = $(SOURCE_NAME)-master
+SOURCE_NAME    = $(NAME)
+SOURCE_SUFFIX  = tar.gz
+SOURCE_VERSION = $(VERSION)
+SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_DIR     = $(SOURCE_NAME)-master
 
-TAR_GZ_PKGS        = $(SOURCE_PKG)
+TAR_GZ_PKGS    = $(SOURCE_PKG)
+
+RPM.EXTRAS     = AutoReq:No
