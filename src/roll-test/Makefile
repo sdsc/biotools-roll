@@ -58,7 +58,6 @@
 # $Log$
 #
 
-PKGROOT = /root/rolltests
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
