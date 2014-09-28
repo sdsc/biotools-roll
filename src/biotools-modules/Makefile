@@ -58,7 +58,6 @@
 # $Log$
 #
 
-PKGROOT = /opt/modulefiles/applications/biotools
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
