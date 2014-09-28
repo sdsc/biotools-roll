@@ -64,6 +64,7 @@ SRCDIRS = `find . -maxdepth 1 -type d \
         -not -name squid \
         -not -name randfold \
         -not -name qiime \
+	-not -name build-* \
         -not -name htseq \
         -not -name miso \
 	-not -name .` samtools cufflinks tophat pysam squid randfold miso qiime htseq
