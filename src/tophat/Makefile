@@ -62,26 +62,54 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+BOOSTSETUP = \
+  module load boost || true; \
+  echo === BOOSTHOME ===; \
+  echo $${BOOSTHOME}
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
+EIGENSETUP = \
+  module load eigen || true; \
+  echo === EIGENHOME ===; \
+  echo $${EIGENHOME}
+
 build: $(SRC_DIRS)
 	( \
+	  $(COMPILERSETUP); \
+	  $(BOOSTSETUP); \
+	  $(EIGENSETUP); \
 	  cd $(SOURCE_DIR); \
-	  export LD_LIBRARY_PATH=/opt/boost/gnu/lib:$${LD_LIBRARY_PATH}; \
-	  ./configure -prefix=$(PKGROOT) --with-boost=/opt/boost/gnu --with-bam-libdir=$(REDHAT.ROOT)/src/build-samtools/lib --with-bam=$(REDHAT.ROOT)/src/build-samtools --with-eigen=/opt/eigen/gnu; \
-	  $(MAKE); \
+	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
+	  ./configure -prefix=$(PKGROOT) --with-boost=$${BOOSTHOME} --with-bam-libdir=$(REDHAT.ROOT)/src/build-samtools/lib --with-bam=$(REDHAT.ROOT)/src/build-samtools --with-eigen=$${EIGENHOME}; \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	mkdir -p -m 755 $(PKGROOT)
+	-mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) install; \
+	  $(MAKE) install \
 	)
-	@echo "::: Package $(NAME) install complete :::"
 	umount $(PKGROOT)
+	-rmdir -p $(PKGROOT)
+	@echo "::: Package $(NAME) install complete :::"
 
 clean::
 	rm -rf $(SOURCE_DIR)
-	-umount $(PKGROOT)
