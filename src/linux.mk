@@ -54,17 +54,15 @@
 # @Copyright@
 #
 
-SRCDIRS = `find . -maxdepth 1 -type d \
-	-not -name CVS \
-        -not -name samtools \
-        -not -name cufflinks \
-        -not -name tophat \
-        -not -name bsseeker \
-        -not -name pysam \
-        -not -name squid \
-        -not -name randfold \
-        -not -name qiime \
-	-not -name build-* \
-        -not -name htseq \
-        -not -name miso \
-	-not -name .` samtools cufflinks tophat pysam squid randfold miso qiime htseq
+# cufflinks depends on samtools
+# miso depends on pysam
+# randfold depends on squid
+# tophat depends on samtools
+# pysam build is broken
+SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
+  -not -name build-* \
+  -not -name cufflinks \
+  -not -name miso \
+  -not -name randfold \
+  -not -name tophat \
+  -not -name pysam` cufflinks randfold tophat
