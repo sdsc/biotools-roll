@@ -6,6 +6,7 @@
 bamtools - https://github.com/pezmaster31/bamtools
 bedtools - https://github.com/arq5x/bedtools2
 biopython - http://biopython.org
+bismark - http://www.bioinformatics.babraham.ac.uk/projects/bismark/
 blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
 blat - http://genome.ucsc.edu
 bowtie - http://bowtie-bio.sourceforge.net
@@ -26,8 +27,8 @@ miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_
 miso - http://genes.mit.edu/burgelab/miso/software.html
 picard - http://picard.sourceforge.net/
 pysam - https://github.com/pysam-developers
-qiime http://qiime.org
-randfold http://bioinformatics.psb.ugent.be/software/details/Randfold
+qiime - http://qiime.org
+randfold - http://bioinformatics.psb.ugent.be/software/details/Randfold
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
@@ -69,6 +70,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>miso</package>
 <package>picard</package>
 <package>plink</package>
+<package>pysam</package>
+<package>qiime</package>
 <package>randfold</package>
 <package>samtools</package>
 <package>soapdenovo</package>
