@@ -80,12 +80,10 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/tests
 	mkdir -p $(PKGROOT)
-	mkdir -p $(REDHAT.ROOT)/src/build-ViennaRNA
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
           make install; \
-          cp -r  $(ROOT)/$(PKGROOT)/*  $(REDHAT.ROOT)/src/build-ViennaRNA; \
           cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \
 	)
 	umount $(PKGROOT)
