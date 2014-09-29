@@ -65,7 +65,6 @@ include pull.mk
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/src/Makefile patch-files/Makefile.patch
 	( \
-           . /etc/profile.d/modules.sh; \
            module load intel; \
 	   cd $(SOURCE_DIR); \
            make \

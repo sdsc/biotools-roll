@@ -69,7 +69,6 @@ build: $(SRC_DIRS)
 	  cp patch-files/sets.cpp $(SOURCE_DIR); \
 	  cp patch-files/elf.cpp $(SOURCE_DIR); \
 	  cp patch-files/idhelp.cpp $(SOURCE_DIR); \
-	  . /etc/profile.d/modules.sh; \
 	  module load intel; \
 	  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
 	  module unload intel; \

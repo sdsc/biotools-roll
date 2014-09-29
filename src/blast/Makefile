@@ -65,7 +65,6 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	   cd $(SOURCE_DIR)/c++; \
-           . /etc/profile.d/modules.sh; \
            module load intel; \
            export CC=icc; \
            export CXX=icpc; \

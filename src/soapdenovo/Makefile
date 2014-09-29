@@ -65,7 +65,6 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
-          . /etc/profile.d/modules.sh; \
           module load intel; \
           patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
           patch $(SOURCE_DIR)/sparsePregraph/Makefile patch-files/Makefile.sparse.patch; \

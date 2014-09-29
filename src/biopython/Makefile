@@ -66,7 +66,6 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-          . /etc/profile.d/modules.sh; \
 	  module load scipy; \
 	  module load intel; \
 	  python setup.py build \
@@ -78,7 +77,6 @@ install::
 	( \
 	  cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests; \
 	  cd $(SOURCE_DIR); \
-          . /etc/profile.d/modules.sh; \
 	  module load scipy; \
 	  module load intel; \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \

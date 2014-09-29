@@ -65,7 +65,6 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
-          . /etc/profile.d/modules.sh; \
           module load cmake; \
           cd $(SOURCE_DIR); \
           mkdir build; \

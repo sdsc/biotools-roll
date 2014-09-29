@@ -64,11 +64,7 @@ include Rules.mk
 include pull.mk
 
 COMPILERSETUP = \
-  if test -e /etc/profile.d/modules.sh; then \
-    . /etc/profile.d/modules.sh; \
-    latestGnu=`module avail 2>&1 | grep -o 'gnu/[^ (]*' | sed 's/gnu.//' | sort -t. -k1,1n -k2,2n -k3,3n | tail -1`; \
-    module load gnu/$${latestGnu}; \
-  fi \
+  module load gnu
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"

@@ -66,7 +66,6 @@ include pull.mk
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
-          . /etc/profile.d/modules.sh; \
           module load intel; \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \

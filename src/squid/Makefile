@@ -64,11 +64,7 @@ ifndef PYPATH
 endif
 
 COMPILERSETUP = \
-  if test -e /etc/profile.d/modules.sh; then \
-    . /etc/profile.d/modules.sh; \
-    latestGnu=`module avail 2>&1 | grep -o 'gnu/[^ (]*' | sed 's/gnu.//' | sort -t. -k1,1n -k2,2n -k3,3n | tail -1`; \
-    module load gnu/$${latestGnu}; \
-  fi \
+  module load gnu
 
 
 PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")

@@ -81,8 +81,7 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-          . /etc/profile.d/modules.sh; \
-          module load intel scipy; \
+	  module load intel scipy; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	)
 	@echo "::: Package $(NAME) install complete :::"

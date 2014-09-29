@@ -76,7 +76,6 @@ install::
 	mkdir -p $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
-                . /etc/profile.d/modules.sh; \
                 module load scipy; \
                 module load intel; \
                 pip install --install-option="--prefix=$(PKGROOT)" numpy==1.8.0; \

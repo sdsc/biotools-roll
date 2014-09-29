@@ -72,7 +72,6 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-          . /etc/profile.d/modules.sh; \
           module load scipy; \
 	  python setup.py build \
 	)
@@ -84,7 +83,6 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-          . /etc/profile.d/modules.sh; \
           module load scipy; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-pysam; \

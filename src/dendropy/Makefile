@@ -74,7 +74,6 @@ build: $(SRC_DIRS)
           patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py patch-files/test_popgenstat.py.patch; \
 	  perl -pi -e "s!ROLLPATH!$(PKGROOT)!" $(SOURCE_DIR)/dendropy/test/test_popgenstat.py; \
 	  cd $(SOURCE_DIR); \
-          . /etc/profile.d/modules.sh; \
 	  module load scipy; \
 	  python setup.py build \
 	)
@@ -85,7 +84,6 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	( \
 	   cd $(SOURCE_DIR); \
-          . /etc/profile.d/modules.sh; \
 	   module load scipy; \
 	   export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	   python setup.py install --prefix=$(ROOT)/$(PKGROOT); \

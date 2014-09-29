@@ -75,7 +75,6 @@ install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	( \
-           . /etc/profile.d/modules.sh; \
            module load intel; \
            module load scipy; \
            export PYTHONPATH=$(REDHAT.ROOT)/src/build-pysam/lib/python$(PYVERSION)/site-packages:/opt/python/lib/python$(PYVERSION)/site-packages:$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
