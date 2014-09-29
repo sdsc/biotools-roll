@@ -23,9 +23,9 @@ setenv BAMTOOLSHOME $packageHome
 prepend-path PATH $packageHome/bin
 prepend-path LD_LIBRARY_PATH $packageHome/lib/bamtools
 
-set packageHome $biotoolsHome/blat
-setenv BLATHOME $packageHome
-prepend-path PATH $packageHome/bin/x86_64
+set packageHome $biotoolsHome/bedtools
+prepend-path PATH $packageHome/bin
+setenv BEDTOOLSHOME $packageHome
 
 set packageHome $biotoolsHome/biopython
 setenv BIOPYTHONHOME $packageHome
@@ -38,6 +38,10 @@ prepend-path PATH $packageHome
 set packageHome $biotoolsHome/blast
 setenv BLASTHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/blat
+setenv BLATHOME $packageHome
+prepend-path PATH $packageHome/bin/x86_64
 
 set packageHome $biotoolsHome/bowtie
 setenv BOWTIEHOME $packageHome
@@ -96,6 +100,20 @@ set packageHome $biotoolsHome/idba-ud
 setenv IDBAUDHOME $packageHome
 prepend-path PATH $packageHome/bin
 
+set packageHome $biotoolsHome/matt
+prepend-path PATH $packageHome/bin
+setenv MATTHOME $packageHome
+
+set packageHome $biotoolsHome/miRDeep2
+prepend-path PERL5LIB $packageHome/share/perl5
+prepend-path PATH $packageHome/bin
+setenv MIRDEEP2HOME $packageHome
+
+set packageHome $biotoolsHome/miso
+setenv MISOHOME $packageHome
+prepend-path PATH $packageHome/bin
+prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/PYV/site-packages
+
 set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
 prepend-path CLASSPATH $packageHome
@@ -113,6 +131,10 @@ set packageHome /opt/biotools/qiime
 setenv QIIMEHOME $packageHome
 prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages:$packageHome/lib64/python2.7/site-packages
 
+set packageHome $biotoolsHome/randfold
+prepend-path PATH $packageHome/bin
+setenv RANDFOLDHOME $packageHome
+
 set packageHome $biotoolsHome/samtools
 setenv SAMTOOLSHOME $packageHome
 prepend-path PATH $packageHome/bin
@@ -128,6 +150,11 @@ prepend-path PATH $packageHome/bin
 set packageHome $biotoolsHome/spades
 setenv SPADESHOME $packageHome
 prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/squid
+prepend-path PATH $packageHome/bin
+prepend-path LD_LIBRARY_PATH $packageHome/lib
+setenv SQUIDHOME $packageHome
 
 set packageHome $biotoolsHome/tophat
 prepend-path PATH $packageHome/bin
@@ -146,38 +173,10 @@ set packageHome $biotoolsHome/velvet
 prepend-path PATH $packageHome/bin
 setenv VELVETHOME $packageHome
 
-
 set packageHome $biotoolsHome/ViennaRNA
 prepend-path PATH $packageHome/bin
 prepend-path LD_LIBRARY_PATH $packageHome/lib
 prepend-path PERL5LIB $packageHome/lib64/perl5
 setenv VIENNARNAHOME $packageHome
 
-set packageHome $biotoolsHome/squid
-prepend-path PATH $packageHome/bin
-prepend-path LD_LIBRARY_PATH $packageHome/lib
-setenv SQUIDHOME $packageHome
-
-set packageHome $biotoolsHome/randfold
-prepend-path PATH $packageHome/bin
-setenv RANDFOLDHOME $packageHome
-
-set packageHome $biotoolsHome/miRDeep2
-prepend-path PERL5LIB $packageHome/share/perl5
-prepend-path PATH $packageHome/bin
-setenv MIRDEEP2HOME $packageHome
-
-set packageHome $biotoolsHome/matt
-prepend-path PATH $packageHome/bin
-setenv MATTHOME $packageHome
-
-set packageHome $biotoolsHome/bedtools
-prepend-path PATH $packageHome/bin
-setenv BEDTOOLSHOME $packageHome
-
-set packageHome $biotoolsHome/miso
-setenv MISOHOME $packageHome
-prepend-path PATH $packageHome/bin
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/PYV/site-packages
-
-prepend-path LD_LIBRARY_PATH INTELHOME/compiler/lib/intel64
+module load intel gnu mkl scipy python

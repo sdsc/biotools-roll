@@ -1,5 +1,5 @@
 NAME       = biotools-roll-test
-VERSION    = 1
+VERSION    = 2
 RELEASE    = 0
 PKGROOT    = /root/rolltests
 
