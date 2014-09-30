@@ -59,8 +59,11 @@ development machine.
 
 ## Dependencies
 
-
-rolls: cmake,intel (for access to the mkl libraries),math,scipy
+cmake package and modulefile - available from cmake roll
+gnu and intel compilers and modulefiles
+python modules - available from python roll
+boost and eigen packages and modulefiles - available from math roll
+mkl libraries  and modulefile - available from intel and mkl rolls
 
 ## Building
 
@@ -109,10 +112,10 @@ To install, execute these instructions on a Rocks frontend:
 
 ```shell
 % rocks add roll *.iso
-% rocks enable roll beast
+% rocks enable roll biotools
 % cd /export/rocks/install
 % rocks create distro
-% rocks run roll beast | bash
+% rocks run roll biotools | bash
 ```
 
 In addition to the software itself, the roll installs biotools environment
