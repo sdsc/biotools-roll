@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -62,23 +60,31 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
+ROLLPY = python
+
+PYSETUP = \
+  module load $(ROLLPY) || true; \
+  echo === python version ===; \
+  python -V
+
 build: $(SRC_DIRS)
 	( \
-	   cd $(SOURCE_DIR); \
-           module load intel scipy; \
-           python setup.py build \
-        )
+	  $(PYSETUP); \
+	  cd $(SOURCE_DIR); \
+	  python setup.py build \
+	)
 	@echo "::: Package $(NAME) build complete :::"
     
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/lib
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
 	( \
-	     cd $(SOURCE_DIR); \
-             module load intel scipy; \
-             export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
-             python setup.py install --install-lib=$(ROOT)/$(PKGROOT)/lib --install-scripts=$(ROOT)/$(PKGROOT)/bin \
-        )
+	  $(PYSETUP); \
+	  cd $(SOURCE_DIR); \
+	  python setup.py install \
+	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
+	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
+	)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -66,8 +64,8 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -63,26 +61,31 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
+ROLLPY = python
+
+PYSETUP = \
+  module load $(ROLLPY) || true; \
+  echo === python version ===; \
+  python -V
+
 build: $(SRC_DIRS)
 	( \
+	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
-	  module load scipy; \
-	  module load intel; \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/Tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/Tests
 	( \
-	  cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests; \
+	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
-	  module load scipy; \
-	  module load intel; \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests \
+	  cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests/ \
 	)
+	cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

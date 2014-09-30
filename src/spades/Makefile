@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -63,8 +61,25 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
-COMPILERSETUP = \
-  module load gnu
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+CMAKESETUP = \
+  module load cmake || true; \
+  echo === cmake version ===; \
+  cmake --version
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
@@ -72,11 +87,11 @@ build: $(SRC_DIRS)
 install::
 	( \
 	  $(COMPILERSETUP); \
-	  export CC=`which gcc`; \
-	  module load cmake; \
+	  $(CMAKESETUP); \
 	  cd $(SOURCE_DIR); \
+	  export CC=`which $(CC)`; \
 	  export PREFIX=$(ROOT)/$(PKGROOT); \
-	  ./spades_compile.sh; \
+	  ./spades_compile.sh \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

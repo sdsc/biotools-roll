@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -63,23 +61,25 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
+GTEXTUTILS_CACHE = $(REDHAT.ROOT)/src/build-gtextutils
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \
-	  ./configure --prefix=$(REDHAT.ROOT)/src/build-gtextutils; \
+	  ./configure --prefix=$(GTEXTUTILS_CACHE); \
 	  $(MAKE); \
 	  $(MAKE) install; \
 	  cd ../$(SOURCE_DIR); \
-	  export PKG_CONFIG_PATH=$(REDHAT.ROOT)/src/build-gtextutils/lib/pkgconfig:$${PKG_CONFIG_PATH}; \
+	  export PKG_CONFIG_PATH=$(GTEXTUTILS_CACHE)/lib/pkgconfig; \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	mkdir -p $(ROOT)/$(PKGROOT)/lib
-	mkdir -p $(ROOT)/$(PKGROOT)/include/bam
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/include/bam
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \

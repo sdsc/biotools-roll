@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -67,12 +65,9 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	( \
-	  cd $(SOURCE_DIR); \
-	  cp -r * $(ROOT)/$(PKGROOT); \
-	  chmod 0755 $(ROOT)/$(PKGROOT)/fastqc \
-	)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)/
+	chmod 0755 $(ROOT)/$(PKGROOT)/fastqc
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

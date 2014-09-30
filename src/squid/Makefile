@@ -53,42 +53,46 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-
-ifndef PYPATH
-  PYPATH = python
-endif
-
-COMPILERSETUP = \
-  module load gnu
-
-
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
+SQUID_CACHE = $(REDHAT.ROOT)/src/build-squid
+
 build: $(SRC_DIRS)
 	( \
-          $(COMPILERSETUP); \
+	  $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
-          make \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/tests
-	mkdir -p $(REDHAT.ROOT)/src/build-squid
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	( \
 	  cd $(SOURCE_DIR); \
-          make install; \
-          make check; \
+	  make install; \
+	  make check; \
 	  patch Testsuite/x-base-afetch     ../patch-files/x-base-afetch.patch; \
 	  patch Testsuite/x-base-alistat    ../patch-files/x-base-alistat.patch; \
 	  patch Testsuite/x-base-seqstat    ../patch-files/x-base-seqstat.patch; \
@@ -97,10 +101,10 @@ install::
 	  patch Testsuite/x-base-sindex     ../patch-files/x-base-sindex.patch; \
 	  patch Testsuite/x-base-sreformat  ../patch-files/x-base-sreformat.patch; \
 	  patch Testsuite/bug-1-sfetch-paths  ../patch-files/bug-1-sfetch-paths.patch; \
-          cp -r Testsuite/* $(ROOT)/$(PKGROOT)/tests; \
-          cp Formats/* $(ROOT)/$(PKGROOT)/tests; \
-          cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-squid \
+	  cp -r Testsuite/* Formats/* $(ROOT)/$(PKGROOT)/tests \
 	)
+	mkdir -p -m 755 $(SQUID_CACHE)
+	cp -r $(ROOT)/$(PKGROOT)/* $(SQUID_CACHE)/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

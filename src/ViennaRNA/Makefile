@@ -53,17 +53,9 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-
-ifndef PYPATH
-  PYPATH = python
-endif
-
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -73,20 +65,21 @@ build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT); \
-          make \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/tests
-	mkdir -p $(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	-mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
-          make install; \
-          cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \
+	  make install; \
+	  cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \
 	)
 	umount $(PKGROOT)
+	-rmdir -p $(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

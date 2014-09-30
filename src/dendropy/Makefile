@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -63,34 +61,40 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
+ROLLPY = python
 
-ifndef PYPATH
-  PYPATH = python
-endif
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
+PYSETUP = \
+  module load $(ROLLPY) || true; \
+  echo === python version ===; \
+  python -V
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py \
+	      patch-files/test_popgenstat.py.patch
+	perl -pi -e "s!ROLLPATH!$(PKGROOT)!" \
+	     $(SOURCE_DIR)/dendropy/test/test_popgenstat.py
 	( \
-          patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py patch-files/test_popgenstat.py.patch; \
-	  perl -pi -e "s!ROLLPATH!$(PKGROOT)!" $(SOURCE_DIR)/dendropy/test/test_popgenstat.py; \
+	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
-	  module load scipy; \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/test
-	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
 	( \
-	   cd $(SOURCE_DIR); \
-	   module load scipy; \
-	   export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	   python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-           cp  dendropy/test/data/chars/COII_Apes.nex $(ROOT)/$(PKGROOT)/test; \
-           cp  dendropy/test/data/chars/orti.nex $(ROOT)/$(PKGROOT)/test; \
-           cp  dendropy/test/test_popgenstat.py $(ROOT)/$(PKGROOT)/test \
+	  $(PYSETUP); \
+	  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
+	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  mkdir -p -m 755 $${PYDIR}; \
+	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
+	  cd $(SOURCE_DIR); \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cp dendropy/test/data/chars/COII_Apes.nex \
+	     dendropy/test/data/chars/orti.nex \
+	     dendropy/test/test_popgenstat.py $(ROOT)/$(PKGROOT)/test/ \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
+	rm -fr $(SOURCE_DIR)

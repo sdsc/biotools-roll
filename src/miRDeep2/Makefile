@@ -53,17 +53,9 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-
-ifndef PYPATH
-  PYPATH = python
-endif
-
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -71,21 +63,21 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
-            cd $(PDF_DIR); \
-            perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
-            make; \
-            make install \
-        )
+	  cd $(PDF_DIR); \
+	  perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+	  $(MAKE) \
+	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
-            cd $(SOURCE_DIR); \
-	    mkdir -p $(ROOT)/$(PKGROOT)/bin; \
-            cp *.pl $(ROOT)/$(PKGROOT)/bin; \
-            cp -r tutorial_dir/* $(ROOT)/$(PKGROOT)/tests; \
-            cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT)/bin \
+	  cd $(SOURCE_DIR); \
+	  $(MAKE) install; \
+	  cp *.pl $(ROOT)/$(PKGROOT)/bin; \
+	  cp -r tutorial_dir/* $(ROOT)/$(PKGROOT)/tests; \
+	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT)/bin \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

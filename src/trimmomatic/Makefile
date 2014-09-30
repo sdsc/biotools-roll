@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -65,17 +63,16 @@ include pull.mk
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	( \
-           cd $(SOURCE_DIR); \
-           ant; \
-        )
+	  cd $(SOURCE_DIR); \
+	  ant \
+	)
     
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/adapters $(ROOT)/$(PKGROOT)
-	cp $(SOURCE_DIR)/distSrc/LICENSE $(ROOT)/$(PKGROOT)
-	cp $(SOURCE_DIR)/dist/jar/trimmomatic-0.32.jar $(ROOT)/$(PKGROOT)
-
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	cp -r $(SOURCE_DIR)/adapters $(ROOT)/$(PKGROOT)/
+	cp $(SOURCE_DIR)/distSrc/LICENSE $(ROOT)/$(PKGROOT)/
+	cp $(SOURCE_DIR)/dist/jar/trimmomatic-0.32.jar $(ROOT)/$(PKGROOT)/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

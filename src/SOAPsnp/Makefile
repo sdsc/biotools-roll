@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -65,16 +63,13 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE); \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
-	( \
-	  cd $(SOURCE_DIR); \
-	  cp soapsnp $(ROOT)/$(PKGROOT)/bin; \
-	)
+	cp $(SOURCE_DIR)/soapsnp $(ROOT)/$(PKGROOT)/bin/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

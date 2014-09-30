@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -62,29 +60,51 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = intel
+COMPILERNAME = intel
+
+CC = gcc
+CXX = g++
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+  CXX = icpc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+  CXX = pgCC
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 build: $(SRC_DIRS)
 	( \
-	   cd $(SOURCE_DIR)/c++; \
-           module load intel; \
-           export CC=icc; \
-           export CXX=icpc; \
-           ./configure --prefix=$(PKGROOT) --with-strip --without-debug --without-pcre --with-mt --with-flat-makefile --with-build-root-sfx=--Linux64-Centos-icc --with-ncbi-public --without-ccache --without-caution --without-makefile-auto-update --with-projects=scripts/projects/blast/project.lst --with-internal; \
-           make \
-        )
+	  $(COMPILERSETUP); \
+	  cd $(SOURCE_DIR)/c++; \
+	  export CC=$(CC); \
+	  export CXX=$(CXX); \
+	  ./configure --prefix=$(PKGROOT) \
+	    --with-strip --without-debug --without-pcre --with-mt \
+	    --with-flat-makefile --with-build-root-sfx=--Linux64-Centos-icc \
+	    --with-ncbi-public --without-ccache --without-caution \
+	    --without-makefile-auto-update --with-internal \
+	    --with-projects=scripts/projects/blast/project.lst; \
+	  make \
+	)
 	@echo "::: Package $(NAME) build complete :::"
-    
-	
+
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	mkdir -p $(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	-mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
-            cd $(SOURCE_DIR)/c++; \
-            make install \
-        )
+	  cd $(SOURCE_DIR)/c++; \
+	  make install \
+	)
 	umount $(PKGROOT)
+	-rmdir $(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf *.py *.txt
-	-umount $(PKGROOT)
+	rm -fr $(SOURCE_DIR)

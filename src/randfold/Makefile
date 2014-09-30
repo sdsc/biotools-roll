@@ -53,40 +53,31 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-
-ifndef PYPATH
-  PYPATH = python
-endif
-
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include pull.mk
 
+SQUID_CACHE = $(REDHAT.ROOT)/src/build-squid
+
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/randfold.c patch-files/randfold.c.patch
+	perl -pi -e "s!ROLLSQUID!/$(SQUID_CACHE)!g" $(SOURCE_DIR)/Makefile
 	( \
-          patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
-          patch $(SOURCE_DIR)/randfold.c patch-files/randfold.c.patch; \
-          perl -pi -e "s!ROLLSQUID!/$(REDHAT.ROOT)/src/build-squid!g" $(SOURCE_DIR)/Makefile; \
 	  cd $(SOURCE_DIR); \
-          make \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/tests
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	( \
-	  cd $(SOURCE_DIR); \
-          cp randfold $(ROOT)/$(PKGROOT)/bin;  \
-          cp let7.tfa $(ROOT)/$(PKGROOT)/tests  \
-	)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	cp $(SOURCE_DIR)/randfold $(ROOT)/$(PKGROOT)/bin/
+	cp $(SOURCE_DIR)/let7.tfa $(ROOT)/$(PKGROOT)/tests/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

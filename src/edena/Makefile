@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -62,23 +60,35 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = intel
+COMPILERNAME = intel
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/src/Makefile patch-files/Makefile.patch
 	( \
-           module load intel; \
-	   cd $(SOURCE_DIR); \
-           make \
-        )
+	  $(COMPILERSETUP); \
+	  cd $(SOURCE_DIR); \
+	  make \
+	)
 	@echo "::: Package $(NAME) build complete :::"
     
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	( \
-	   cd $(SOURCE_DIR)/bin; \
-           cp * $(ROOT)/$(PKGROOT)/bin \
-        )
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	cp $(SOURCE_DIR)/bin/* $(ROOT)/$(PKGROOT)/bin/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf *.py *.txt
+	rm -rf $(SOURCE_DIR)

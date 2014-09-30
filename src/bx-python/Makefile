@@ -53,36 +53,38 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-
-ifndef PYPATH
-  PYPATH = python
-endif
-
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include pull.mk
 
+ROLLPY = python
+
+PYSETUP = \
+  module load $(ROLLPY) || true; \
+  echo === python version ===; \
+  python -V
+
 build: $(SRC_DIRS)
 	( \
+	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	( \
+	  $(PYSETUP); \
+	  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
+	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  mkdir -p -m 755 $${PYDIR}; \
+	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
-	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	  module load intel scipy; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

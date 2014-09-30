@@ -53,43 +53,41 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-
-ifndef PYPATH
-  PYPATH = python
-endif
-
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include pull.mk
 
+ROLLPY = python
+
+PYSETUP = \
+  module load $(ROLLPY) || true; \
+  echo === python version ===; \
+  python -V
+
+PYSAM_CACHE = $(REDHAT.ROOT)/src/build-pysam
+
 build: $(SRC_DIRS)
 	( \
+	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
-          module load scipy; \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
-	mkdir -p $(REDHAT.ROOT)/src/build-pysam
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	( \
+	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
-	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-          module load scipy; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          cp -r $(ROOT)/$(PKGROOT)/* $(REDHAT.ROOT)/src/build-pysam; \
-          cd tests; \
-          mkdir $(ROOT)/$(PKGROOT)/tests; \
-          cp -r * $(ROOT)/$(PKGROOT)/tests \
+	  cp -r tests/* $(ROOT)/$(PKGROOT)/tests/ \
 	)
+	mkdir -p -m 755 $(PYSAM_CACHE)
+	cp -r $(ROOT)/$(PKGROOT)/* $(PYSAM_CACHE)/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

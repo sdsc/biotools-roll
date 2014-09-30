@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -67,19 +65,19 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin/x86_64
-	mkdir -p $(ROOT)/$(PKGROOT)/test
-	if [ ! -d $(PKGROOT) ]; then mkdir -p $(PKGROOT); fi
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin/x86_64
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
+	-mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
-		cd $(SOURCE_DIR); \
-		MACHTYPE=x86_64 BINDIR=$(PKGROOT)/bin/x86_64 make; \
-		cp blat/test/intron50k/*.fa blat/test/intron50k/expected/*.psl \
-		$(ROOT)/$(PKGROOT)/test/ \
+	  cd $(SOURCE_DIR); \
+	  MACHTYPE=x86_64 BINDIR=$(PKGROOT)/bin/x86_64 make; \
+	  cp blat/test/intron50k/*.fa blat/test/intron50k/expected/*.psl \
+	     $(ROOT)/$(PKGROOT)/test/ \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 	umount $(PKGROOT)
+	-rmdir -p $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE_DIR)
-	-umount $(PKGROOT)

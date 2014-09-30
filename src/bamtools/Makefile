@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -63,25 +61,45 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+CMAKESETUP = \
+  module load cmake || true; \
+  echo === cmake version ===; \
+  cmake --version
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 build: $(SRC_DIRS)
+	mkdir $(SOURCE_DIR)/build
 	( \
-          module load cmake; \
-          cd $(SOURCE_DIR); \
-          mkdir build; \
-          cd build; \
-          export CC=gcc; \
-          cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) .. \
+	  $(COMPILERSETUP); \
+	  $(CMAKESETUP); \
+	  cd $(SOURCE_DIR)/build; \
+	  export CC=$(CC); \
+	  cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) ..; \
+	  make \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/examples
 	( \
-          cd $(SOURCE_DIR)/build; \
-          make; \
-          make install; \
-          mkdir $(ROOT)/$(PKGROOT)/examples;  \
-          cp ../../tests/test.cc ../../tests/test.bam $(ROOT)/$(PKGROOT)/examples \
-        )
+	  cd $(SOURCE_DIR)/build; \
+	  make install \
+	)
+	cp tests/* $(ROOT)/$(PKGROOT)/examples/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

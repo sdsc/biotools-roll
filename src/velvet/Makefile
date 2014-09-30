@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -63,32 +61,42 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = intel
+COMPILERNAME = intel
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
-          module load intel; \
+	  $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \
-	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color; \
+	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	mkdir -p $(ROOT)/$(PKGROOT)/testdata
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/testdata
 	( \
 	  cd $(SOURCE_DIR); \
-	  cp velvetg velvetg_de velveth velveth_de  $(ROOT)/$(PKGROOT)/bin; \
+	  cp velvetg velvetg_de velveth velveth_de $(ROOT)/$(PKGROOT)/bin; \
 	  cp tests/* $(ROOT)/$(PKGROOT)/testdata; \
-	  cp ../run-tests.sh $(ROOT)/$(PKGROOT)/testdata; \
-	  perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $(ROOT)/$(PKGROOT)/testdata/run-tests.sh; \
-	  cp ../run-tests.functions $(ROOT)/$(PKGROOT)/testdata; \
-	  perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $(ROOT)/$(PKGROOT)/testdata/run-tests.functions; \
-	  cp ../*.t $(ROOT)/$(PKGROOT)/testdata; \
-	  files=`ls $(ROOT)/$(PKGROOT)/testdata/*.t`; \
-	  for file in $$files; do \
-	    perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' $$files ; \
-	  done; \
+	  cp ../run-tests.sh ../run-tests.functions ../*.t \
+	    $(ROOT)/$(PKGROOT)/testdata; \
+	  perl -pi -e 's!ROLLINSTALL!$(PKGROOT)!g' \
+	    $(ROOT)/$(PKGROOT)/testdata/*; \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

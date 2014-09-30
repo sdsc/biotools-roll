@@ -53,15 +53,8 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
-
-ifndef PYPATH
-  PYPATH = python
-endif
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -69,18 +62,14 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
-    
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-           module load intel; \
-           module load scipy; \
-           export PYTHONPATH=$(REDHAT.ROOT)/src/build-pysam/lib/python$(PYVERSION)/site-packages:/opt/python/lib/python$(PYVERSION)/site-packages:$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-           pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" $(SOURCE_PKG) \
-        )
+	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
+	      $(SOURCE_PKG) \
+	)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf *.py *.txt
+	rm -rf $(SOURCE_DIR)

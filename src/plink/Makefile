@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -62,16 +60,19 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
+MKLSETUP = \
+  module load mkl || true; \
+  echo === MKL_ROOT ===; \
+  echo $${MKL_ROOT}; \
+  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`
+
 build: $(SRC_DIRS)
-	tar zxvf $(SOURCE_DIR).tar.gz
+	cp patch-files/Makefile $(SOURCE_DIR)
+	cp patch-files/sets.cpp $(SOURCE_DIR)
+	cp patch-files/elf.cpp $(SOURCE_DIR)
+	cp patch-files/idhelp.cpp $(SOURCE_DIR)
 	( \
-	  cp patch-files/Makefile $(SOURCE_DIR); \
-	  cp patch-files/sets.cpp $(SOURCE_DIR); \
-	  cp patch-files/elf.cpp $(SOURCE_DIR); \
-	  cp patch-files/idhelp.cpp $(SOURCE_DIR); \
-	  module load intel; \
-	  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-	  module unload intel; \
+	  $(MKLSETUP); \
 	  perl -pi -e "s!ROOTMKL!$${MKLLIB}!g" $(SOURCE_DIR)/Makefile; \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) \
@@ -79,8 +80,8 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	mkdir $(ROOT)/$(PKGROOT)/examples
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/examples
 	cp $(SOURCE_DIR)/plink $(ROOT)/$(PKGROOT)/bin
 	cp patch-files/hapmap* $(ROOT)/$(PKGROOT)/examples
 	@echo "::: Package $(NAME) install complete :::"

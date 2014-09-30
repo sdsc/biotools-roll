@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -64,20 +62,20 @@ include pull.mk
 
 build: $(SRC_DIRS)
 	( \
-	   cd $(SOURCE_DIR); \
-           ./configure --prefix=$(ROOT)/$(PKGROOT); \
-           make \
-        )
+	  cd $(SOURCE_DIR); \
+	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
+	  $(MAKE) \
+	)
 	@echo "::: Package $(NAME) build complete :::"
     
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
-	   cd $(SOURCE_DIR)/bin; \
-           cp `ls -1|grep -v \.o$$ |grep -v Make` $(ROOT)/$(PKGROOT)/bin \
-        )
+	  cd $(SOURCE_DIR)/bin; \
+	  cp `ls -1|grep -v \.o$$ |grep -v Make` $(ROOT)/$(PKGROOT)/bin \
+	)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf *.py *.txt
+	rm -fr $(SOURCE_DIR)

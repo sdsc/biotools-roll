@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -87,6 +85,8 @@ EIGENSETUP = \
   echo === EIGENHOME ===; \
   echo $${EIGENHOME}
 
+SAMTOOLS_CACHE = $(REDHAT.ROOT)/src/build-samtools
+
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
@@ -94,7 +94,10 @@ build: $(SRC_DIRS)
 	  $(EIGENSETUP); \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
-	  ./configure -prefix=$(PKGROOT) --with-boost=$${BOOSTHOME} --with-bam-libdir=$(REDHAT.ROOT)/src/build-samtools/lib --with-bam=$(REDHAT.ROOT)/src/build-samtools --with-eigen=$${EIGENHOME}; \
+	  ./configure -prefix=$(PKGROOT) \
+	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
+	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
+	    --with-bam=$(SAMTOOLS_CACHE); \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"

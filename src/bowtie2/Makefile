@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -66,28 +64,20 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE); \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
-	mkdir -p $(ROOT)/$(PKGROOT)/reads
-	mkdir -p $(ROOT)/$(PKGROOT)/indexes
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  cd $(SOURCE_DIR); \
-	  cp bowtie2 $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-build $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-build-s $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-build-l $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-inspect $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-inspect-s $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-inspect-l $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-align-s $(ROOT)/$(PKGROOT)/bin/; \
-	  cp bowtie2-align-l $(ROOT)/$(PKGROOT)/bin/; \
-	  cp -r scripts $(ROOT)/$(PKGROOT)/; \
-	  cp -r example/reads/* $(ROOT)/$(PKGROOT)/reads; \
-	  cp -r example/index/* $(ROOT)/$(PKGROOT)/indexes; \
+	  cp bowtie2 bowtie2-build bowtie2-build-s bowtie2-build-l \
+             bowtie2-inspect bowtie2-inspect-s bowtie2-inspect-l \
+	     bowtie2-align-s bowtie2-align-l $(ROOT)/$(PKGROOT)/bin/; \
+	  cp -r example/reads scripts $(ROOT)/$(PKGROOT)/; \
+	  cp -r example/index $(ROOT)/$(PKGROOT)/indexes; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/{indexes,reads,scripts} \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

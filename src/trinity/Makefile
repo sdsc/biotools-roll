@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -62,24 +60,26 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
-ROLLBIOTOOLS=/opt/biotools
+ROLLBIOTOOLS = /opt/biotools
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
+	  patch-files/runMe.sh.patch
+	patch $(SOURCE_DIR)/Trinity.pl patch-files/Trinity.pl.patch
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
+	perl -pi -e "s!ROLLBIOTOOLS!$(ROLLBIOTOOLS)!g" $(SOURCE_DIR)/Trinity.pl
+	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" \
+	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-	  patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh patch-files/runMe.sh.patch; \
-	  patch $(SOURCE_DIR)/Trinity.pl patch-files/Trinity.pl.patch; \
-	  patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch; \
-	  perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile; \
-	  perl -pi -e "s!ROLLBIOTOOLS!$(ROLLBIOTOOLS)!g" $(SOURCE_DIR)/Trinity.pl; \
-	  perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh; \
 	  cd $(SOURCE_DIR); \
-          export FORCE_UNSAFE_CONFIGURE=1; \
+	  export FORCE_UNSAFE_CONFIGURE=1; \
 	  $(MAKE); \
-	  cp -r * $(ROOT)/$(PKGROOT) \
+	  cp -r * $(ROOT)/$(PKGROOT)/ \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 

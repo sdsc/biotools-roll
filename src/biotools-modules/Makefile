@@ -54,19 +54,11 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
-#
 
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-
-ifndef PYPATH
-  PYPATH = python
-endif
-PYVERSION = 2.7
 
 build:
 

@@ -53,8 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
@@ -66,22 +64,17 @@ include pull.mk
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE); \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
-		cd $(SOURCE_DIR); \
-		cp bowtie $(ROOT)/$(PKGROOT)/bin/; \
-		cp bowtie-build $(ROOT)/$(PKGROOT)/bin/; \
-		cp bowtie-inspect $(ROOT)/$(PKGROOT)/bin/; \
-		cp -r scripts $(ROOT)/$(PKGROOT)/; \
-		cp -r indexes reads $(ROOT)/$(PKGROOT)/; \
-		chmod -R a+rX $(ROOT)/$(PKGROOT)/scripts; \
-		chmod -R a+rX $(ROOT)/$(PKGROOT)/indexes; \
-		chmod -R a+rX $(ROOT)/$(PKGROOT)/reads \
+	  cd $(SOURCE_DIR); \
+	  cp bowtie bowtie-build bowtie-inspect $(ROOT)/$(PKGROOT)/bin/; \
+	  cp -r indexes reads scripts $(ROOT)/$(PKGROOT)/; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/{indexes,reads,scripts} \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 
