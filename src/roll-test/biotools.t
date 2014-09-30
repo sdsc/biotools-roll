@@ -158,7 +158,7 @@ print myInterval
 END
   close(OUT);
   $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/'std_dev': 9.310512767924612/, 'bx-python  works');
+  like($output, qr/'std_dev': 9.310512767924612/, 'bx-python works');
   `rm -rf $TESTFILE*`;
 }
 
@@ -313,7 +313,7 @@ python pysam_test.py
 END
   close(OUT);
   $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/OK/, 'pysam  works');
+  like($output, qr/OK/, 'pysam works');
   `rm -rf $TESTFILE*`;
 }
 
@@ -336,7 +336,7 @@ $packageHome = '/opt/biotools/randfold';
 SKIP: {
   skip 'randfold not installed', 1 if ! -d $packageHome;
   $output = `module load biotools; randfold -d $packageHome/tests/let7.tfa 999 2>&1`;
-  like($output, qr/cel-let-7\s+-42.90\s+0.001000/, 'randfold  works');
+  like($output, qr/cel-let-7\s+-42.90\s+0.001000/, 'randfold works');
 }
 
 $packageHome = '/opt/biotools/samtools';
@@ -428,7 +428,7 @@ $packageHome = '/opt/biotools/trimmomatic';
 SKIP: {
   skip 'trimmomatic not installed', 1 if ! -d $packageHome;
   $output = `module load biotools; java org.usadellab.trimmomatic.TrimmomaticPE 2>&1`;
-  like($output, qr/Usage: TrimmomaticPE/, 'trimmomatic  works');
+  like($output, qr/Usage: TrimmomaticPE/, 'trimmomatic works');
 }
 
 $packageHome = '/opt/biotools/trinity';
