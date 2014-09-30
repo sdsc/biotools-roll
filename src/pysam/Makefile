@@ -83,6 +83,10 @@ install::
 	( \
 	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
+	  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
+	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  mkdir -p -m 755 $${PYDIR}; \
+	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cp -r tests/* $(ROOT)/$(PKGROOT)/tests/ \
 	)

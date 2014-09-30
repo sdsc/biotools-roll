@@ -64,5 +64,4 @@ SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name cufflinks \
   -not -name miso \
   -not -name randfold \
-  -not -name tophat \
-  -not -name pysam` cufflinks randfold tophat
+  -not -name tophat` cufflinks randfold tophat
