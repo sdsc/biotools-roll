@@ -29,7 +29,8 @@ setenv BEDTOOLSHOME $packageHome
 
 set packageHome $biotoolsHome/biopython
 setenv BIOPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 
 set packageHome $biotoolsHome/bismark
 setenv BISMARKHOME $packageHome
@@ -59,7 +60,8 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/bx-python
 setenv BXPYTHONHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 
 set packageHome $biotoolsHome/cufflinks
 prepend-path PATH $packageHome/bin
@@ -68,7 +70,8 @@ setenv CUFFLINKSHOME $packageHome
 
 set packageHome $biotoolsHome/dendropy
 setenv DENDROPYHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 
 set packageHome $biotoolsHome/edena
 setenv EDENAHOME $packageHome
@@ -112,7 +115,8 @@ setenv MIRDEEP2HOME $packageHome
 set packageHome $biotoolsHome/miso
 setenv MISOHOME $packageHome
 prepend-path PATH $packageHome/bin
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/PYV/site-packages
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 
 set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
@@ -125,11 +129,13 @@ prepend-path PATH $packageHome/bin
 
 set packageHome $biotoolsHome/pysam
 setenv PYSAMHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/pythonPYV/site-packages:$packageHome/lib64/pythonPYV/site-packages
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 
 set packageHome /opt/biotools/qiime
 setenv QIIMEHOME $packageHome
-prepend-path PYTHONPATH $packageHome/lib/python2.7/site-packages:$packageHome/lib64/python2.7/site-packages
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 
 set packageHome $biotoolsHome/randfold
 prepend-path PATH $packageHome/bin
