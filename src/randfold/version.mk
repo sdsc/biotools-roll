@@ -1,6 +1,6 @@
 NAME           = randfold
 VERSION        = 2.0
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

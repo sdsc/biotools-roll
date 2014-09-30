@@ -1,6 +1,6 @@
 NAME           = ViennaRNA
 VERSION        = 2.1.7
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

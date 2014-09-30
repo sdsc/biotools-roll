@@ -1,6 +1,6 @@
 NAME           = bedtools
 VERSION        = 2.20.1
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

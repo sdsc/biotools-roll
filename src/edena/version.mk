@@ -1,6 +1,6 @@
 NAME           = edena
 VERSION        = 3.131028
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

@@ -1,6 +1,6 @@
 NAME             = GenomeAnalysisTK
 VERSION          = 2.8.1
-RELEASE          = 0
+RELEASE          = 15
 PKGROOT          = /opt/biotools/$(NAME)
 
 SRC_SUBDIR       = $(NAME)

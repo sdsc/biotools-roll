@@ -1,6 +1,6 @@
 NAME           = idba-ud
 VERSION        = 1.1.1
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

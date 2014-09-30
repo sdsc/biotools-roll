@@ -1,6 +1,6 @@
 NAME           = blast
 VERSION        = 2.2.29
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)
