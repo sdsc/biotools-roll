@@ -61,8 +61,8 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
-ROLLCOMPILER = icc
-COMPILERNAME = icc
+ROLLCOMPILER = intel
+COMPILERNAME = intel
 
 CC = gcc
 ifeq ("$(COMPILERNAME)", "intel")
