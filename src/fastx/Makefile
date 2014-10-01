@@ -61,11 +61,32 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+CXX = g++
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+  CXX = icpc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+  CXX = pgCC
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 GTEXTUTILS_CACHE = $(REDHAT.ROOT)/src/build-gtextutils
 
 build: $(SRC_DIRS)
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \
+	  $(COMPILERSETUP); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  ./configure --prefix=$(GTEXTUTILS_CACHE); \
 	  $(MAKE); \
 	  $(MAKE) install; \

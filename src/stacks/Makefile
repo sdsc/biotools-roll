@@ -57,12 +57,33 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+CXX = g++
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+  CXX = icpc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+  CXX = pgCC
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include pull.mk
 
 build: $(SRC_DIRS)
 	( \
+	  $(COMPILERSETUP); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
           ./configure --prefix=$(ROOT)/$(PKGROOT) --enable-bam --with-bam-include-path=$(REDHAT.ROOT)/src/build-samtools/include/bam  --with-bam-lib-path=$(REDHAT.ROOT)/src/build-samtools/lib; \
 	  $(MAKE) \

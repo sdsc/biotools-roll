@@ -81,6 +81,7 @@ SQUID_CACHE = $(REDHAT.ROOT)/src/build-squid
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
+          export CC=$(CC); \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
 	  $(MAKE) \

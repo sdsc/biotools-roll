@@ -61,21 +61,6 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
-
-CC = gcc
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
-
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	patch $(SOURCE_DIR)/sparsePregraph/Makefile \
@@ -91,7 +76,6 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sparsePregraph/pregraph_sparse.cpp \
 	  patch-files/pregraph_sparse.cpp.patch
 	( \
-	  $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) \
 	)

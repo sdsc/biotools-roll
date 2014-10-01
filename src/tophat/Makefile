@@ -64,10 +64,13 @@ ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
 CC = gcc
+CXX= g++
 ifeq ("$(COMPILERNAME)", "intel")
   CC = icc
+  CXX= icpc
 else ifeq ("$(COMPILERNAME)", "pgi")
   CC = pgcc
+  CXX= pgCC
 endif
 
 BOOSTSETUP = \
@@ -92,6 +95,8 @@ build: $(SRC_DIRS)
 	  $(COMPILERSETUP); \
 	  $(BOOSTSETUP); \
 	  $(EIGENSETUP); \
+          export CC=$(CC); \
+          export CC=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure -prefix=$(PKGROOT) \
