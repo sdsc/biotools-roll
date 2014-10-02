@@ -85,17 +85,20 @@ build: $(SRC_DIRS)
           export CC=$(CC); \
           export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
-          ./configure --prefix=$(ROOT)/$(PKGROOT) --enable-bam --with-bam-include-path=$(REDHAT.ROOT)/src/build-samtools/include/bam  --with-bam-lib-path=$(REDHAT.ROOT)/src/build-samtools/lib; \
+          ./configure --prefix=$(PKGROOT) --enable-bam --with-bam-include-path=$(REDHAT.ROOT)/src/build-samtools/include/bam  --with-bam-lib-path=$(REDHAT.ROOT)/src/build-samtools/lib; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(PKGROOT)
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
           make install \
 	)
+	-umount $(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
