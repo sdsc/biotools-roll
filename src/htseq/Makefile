@@ -83,6 +83,7 @@ install::
 	( \
 	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
+          export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
 	  python setup.py install \
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
 	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
