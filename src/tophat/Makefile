@@ -100,9 +100,7 @@ build: $(SRC_DIRS)
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure -prefix=$(PKGROOT) \
-	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
-	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
-	    --with-bam=$(SAMTOOLS_CACHE); \
+	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME}; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
