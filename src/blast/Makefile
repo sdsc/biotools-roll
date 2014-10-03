@@ -81,7 +81,6 @@ COMPILERSETUP =  \
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
-          module unload gnubase; \
 	  cd $(SOURCE_DIR)/c++; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \

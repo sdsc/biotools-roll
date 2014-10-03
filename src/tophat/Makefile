@@ -88,8 +88,6 @@ EIGENSETUP = \
   echo === EIGENHOME ===; \
   echo $${EIGENHOME}
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/src/build-samtools
-
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
