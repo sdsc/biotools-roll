@@ -1,6 +1,6 @@
 NAME           = SOAPsnp
 VERSION        = v1.03
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

@@ -57,11 +57,11 @@
 # cufflinks depends on samtools
 # miso depends on pysam
 # randfold depends on squid
-# tophat depends on samtools
+# stacks depends on samtools
 # pysam build is broken
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name build-* \
   -not -name cufflinks \
   -not -name miso \
   -not -name randfold \
-  -not -name tophat` cufflinks randfold tophat
+  -not -name tophat` cufflinks randfold stacks

@@ -65,10 +65,13 @@ ROLLCOMPILER = intel
 COMPILERNAME = intel
 
 CC = gcc
+CXX= g++
 ifeq ("$(COMPILERNAME)", "intel")
   CC = icc
+  CXX= icpc
 else ifeq ("$(COMPILERNAME)", "pgi")
   CC = pgcc
+  CXX= pgCC
 endif
 
 COMPILERSETUP =  \
@@ -80,6 +83,8 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
 	  $(COMPILERSETUP); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \
 	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color \

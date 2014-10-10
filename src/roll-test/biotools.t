@@ -15,7 +15,7 @@ my @packages = (
   'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq', 'idba-ud', 'matt',
   'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime', 'randfold',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'tophat',
-  'trimmomatic', 'trinity', 'velvet', 'ViennaRNA'
+  'trimmomatic', 'trinity', 'velvet', 'ViennaRNA','stacks'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -468,6 +468,13 @@ END
   }
   ok($count == 24, 'ViennaRNA works');
   `rm -rf $TESTFILE*`;
+}
+
+$packageHome = '/opt/biotools/stacks';
+SKIP: {
+  skip 'stacks not installed', 1 if ! -d $packageHome;
+  $output = `. /etc/profile.d/modules.sh; module load biotools;cstacks 2>&1`;
+  like($output, qr/cstacks 1.20/, 'stacks works');
 }
 
 SKIP: {

@@ -1,6 +1,6 @@
 NAME           = htseq
 VERSION        = 0.5.4p5
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

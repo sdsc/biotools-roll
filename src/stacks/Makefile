@@ -57,18 +57,17 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
 CC = gcc
+CXX = g++
 ifeq ("$(COMPILERNAME)", "intel")
   CC = icc
+  CXX = icpc
 else ifeq ("$(COMPILERNAME)", "pgi")
   CC = pgcc
+  CXX = pgCC
 endif
 
 COMPILERSETUP =  \
@@ -76,36 +75,30 @@ COMPILERSETUP =  \
   echo === Compiler and version ===; \
   $(CC) --version
 
-SQUID_CACHE = $(REDHAT.ROOT)/src/build-squid
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include pull.mk
 
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
           export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
-	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
+          ./configure --prefix=$(PKGROOT) --enable-bam --with-bam-include-path=$(REDHAT.ROOT)/src/build-samtools/include/bam  --with-bam-lib-path=$(REDHAT.ROOT)/src/build-samtools/lib; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(PKGROOT)
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
-	  make install; \
-	  make check; \
-	  patch Testsuite/x-base-afetch     ../patch-files/x-base-afetch.patch; \
-	  patch Testsuite/x-base-alistat    ../patch-files/x-base-alistat.patch; \
-	  patch Testsuite/x-base-seqstat    ../patch-files/x-base-seqstat.patch; \
-	  patch Testsuite/x-base-sfetch     ../patch-files/x-base-sfetch.patch; \
-	  patch Testsuite/x-base-shuffle    ../patch-files/x-base-shuffle.patch; \
-	  patch Testsuite/x-base-sindex     ../patch-files/x-base-sindex.patch; \
-	  patch Testsuite/x-base-sreformat  ../patch-files/x-base-sreformat.patch; \
-	  patch Testsuite/bug-1-sfetch-paths  ../patch-files/bug-1-sfetch-paths.patch; \
-	  cp -r Testsuite/* Formats/* $(ROOT)/$(PKGROOT)/tests \
+          make install \
 	)
-	mkdir -p -m 755 $(SQUID_CACHE)
-	cp -r $(ROOT)/$(PKGROOT)/* $(SQUID_CACHE)/
+	-umount $(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

@@ -63,22 +63,24 @@ include pull.mk
 ROLLCOMPILER = intel
 COMPILERNAME = intel
 
-CC = gcc
+CXX = g++
 ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
+  CXX = icpc
 else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
+  CXX = pgCC
 endif
 
 COMPILERSETUP =  \
   module load $(ROLLCOMPILER) || true; \
   echo === Compiler and version ===; \
-  $(CC) --version
+  $(CXX) --version
+
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/src/Makefile patch-files/Makefile.patch
 	( \
 	  $(COMPILERSETUP); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  make \
 	)

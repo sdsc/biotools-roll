@@ -65,10 +65,13 @@ ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
 CC = gcc
+CXX= g++
 ifeq ("$(COMPILERNAME)", "intel")
   CC = icc
+  CXX= icpc
 else ifeq ("$(COMPILERNAME)", "pgi")
   CC = pgcc
+  CXX = pgCC
 endif
 
 CMAKESETUP = \
@@ -88,6 +91,7 @@ build: $(SRC_DIRS)
 	  $(CMAKESETUP); \
 	  cd $(SOURCE_DIR)/build; \
 	  export CC=$(CC); \
+	  export CXX=$(CXX); \
 	  cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) ..; \
 	  make \
 	)

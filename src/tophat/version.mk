@@ -1,6 +1,6 @@
 NAME           = tophat
-VERSION        = 2.0.12
-RELEASE        = 0
+VERSION        = 2.0.13
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)
