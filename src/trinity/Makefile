@@ -60,16 +60,12 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
-ROLLBIOTOOLS = /opt/biotools
-
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
 	  patch-files/runMe.sh.patch
-	patch $(SOURCE_DIR)/Trinity.pl patch-files/Trinity.pl.patch
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
-	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
-	perl -pi -e "s!ROLLBIOTOOLS!$(ROLLBIOTOOLS)!g" $(SOURCE_DIR)/Trinity.pl
-	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" \
+	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
+	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" \
 	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
 	@echo "::: Package $(NAME) build complete :::"
 	
@@ -81,6 +77,9 @@ install::
 	  $(MAKE); \
 	  cp -r * $(ROOT)/$(PKGROOT)/ \
 	)
+        # Remove references to install dir from rpm text files
+	perl -pi -e "s#$(ROOT)##g" \
+	  `find $(ROOT)/$(PKGROOT)/ -type f -exec grep -Il . {} ';'`
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

@@ -1,20 +1,24 @@
---- trinityrnaseq_r20131110/sample_data/test_Trinity_Assembly/runMe.sh	2013-11-10 14:37:57.000000000 -0800
-+++ patch-files/runMe.sh	2014-02-25 21:08:02.000000000 -0800
-@@ -16,7 +16,7 @@
+--- runMe.sh	2014-10-11 07:45:57.917001114 -0700
++++ patch-files/runMe.sh	2014-10-11 07:47:53.143953809 -0700
+@@ -24,7 +24,7 @@
  #######################################################
  
  ## use jellyfish
--../../Trinity.pl --seqType fq --JM 2G --left reads.left.fq --right reads.right.fq --SS_lib_type RF --CPU 4 # --bowtie_comp
-+ROLLPREFIX/Trinity.pl --seqType fq --JM 2G --left reads.left.fq --right reads.right.fq --SS_lib_type RF --CPU 4 # --bowtie_comp
+-../../Trinity --seqType fq --JM 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4 --trimmomatic --normalize_reads --no_cleanup 
++ROLLPREFIX/Trinity --seqType fq --JM 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4 --trimmomatic --normalize_reads --no_cleanup 
  
  ##### Done Running Trinity #####
  
-@@ -34,7 +34,7 @@
- 
+@@ -43,10 +43,10 @@
  sleep 2
  
--../../util/RSEM_util/run_RSEM_align_n_estimate.pl  --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF 
-+ROLLPREFIX/util/RSEM_util/run_RSEM_align_n_estimate.pl  --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF 
+ # first try RSEM
+-../../util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method RSEM --aln_method bowtie --trinity_mode --prep_reference
++ROLLPREFIX/util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method RSEM --aln_method bowtie --trinity_mode --prep_reference
+ 
+ # try eXpress
+-../../util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method eXpress --aln_method bowtie2 --trinity_mode --prep_reference
++ROLLPREFIX/util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method eXpress --aln_method bowtie2 --trinity_mode --prep_reference
+ 
  
  ###### Done running RSEM ########
- 
