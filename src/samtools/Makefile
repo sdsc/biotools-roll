@@ -71,20 +71,23 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/include/bam
 	( \
 	  cd $(SOURCE_DIR); \
-	  cp samtools bcftools/bcftools bcftools/vcfutils.pl misc/*.pl \
-	     misc/maq2sam-long misc/maq2sam-short misc/md5fa misc/md5sum-lite \
-	     misc/wgsim misc/*.java $(ROOT)/$(PKGROOT)/bin/; \
-	  cp libbam.a $(ROOT)/$(PKGROOT)/lib/; \
+	  make prefix=$(ROOT)/$(PKGROOT) install; \
+	  cp bcftools/{bcftools,vcfutils.pl} misc/*.java \
+	     $(ROOT)/$(PKGROOT)/bin/; \
 	  cp -r examples $(ROOT)/$(PKGROOT); \
-	  cp *.h $(ROOT)/$(PKGROOT)/include/bam \
+	  cp libbam.a htslib*/libhts.a $(ROOT)/$(PKGROOT)/lib/; \
+	  cp -r *.h htslib*/htslib $(ROOT)/$(PKGROOT)/include/bam \
 	)
 	mkdir -p -m 755 $(SAMTOOLS_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(SAMTOOLS_CACHE)/
+	# cufflinks build requires this
+	ln -s $(SAMTOOLS_CACHE)/include/bam/version.h \
+	      $(SAMTOOLS_CACHE)/include/bam/version.hpp
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
