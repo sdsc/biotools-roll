@@ -34,6 +34,7 @@ soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
 squid http://selab.janelia.org/software.html
+stacks http://http://creskolab.uoregon.edu/stacks
 tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
@@ -78,6 +79,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>SOAPsnp</package>
 <package>spades</package>
 <package>squid</package>
+<package>stacks</package>
 <package>tophat</package>
 <package>trimmomatic</package>
 <package>trinity</package>

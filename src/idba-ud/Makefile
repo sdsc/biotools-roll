@@ -60,9 +60,30 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+CXX = g++
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+  CXX = icpc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+  CXX = pgCC
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
+	  $(COMPILERSETUP); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
 	  $(MAKE) \
 	)

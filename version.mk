@@ -1,5 +1,5 @@
 ROLLNAME = biotools
-RELEASE = 0
+RELEASE = 15
 COLOR    = orange
 RPM.EXTRAS = AutoReq:No
 REDHAT.ROOT = $(PWD)

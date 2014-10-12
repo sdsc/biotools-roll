@@ -65,6 +65,7 @@ ROLLPY = python
 
 PYSETUP = \
   module load $(ROLLPY) || true; \
+  module load intel scipy || true; \
   echo === python version ===; \
   python -V
 

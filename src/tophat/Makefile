@@ -64,10 +64,13 @@ ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
 CC = gcc
+CXX= g++
 ifeq ("$(COMPILERNAME)", "intel")
   CC = icc
+  CXX= icpc
 else ifeq ("$(COMPILERNAME)", "pgi")
   CC = pgcc
+  CXX= pgCC
 endif
 
 BOOSTSETUP = \
@@ -85,19 +88,17 @@ EIGENSETUP = \
   echo === EIGENHOME ===; \
   echo $${EIGENHOME}
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/src/build-samtools
-
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
 	  $(BOOSTSETUP); \
 	  $(EIGENSETUP); \
+          export CC=$(CC); \
+          export CC=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure -prefix=$(PKGROOT) \
-	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
-	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
-	    --with-bam=$(SAMTOOLS_CACHE); \
+	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME}; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"

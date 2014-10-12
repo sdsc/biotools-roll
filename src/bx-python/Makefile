@@ -62,6 +62,20 @@ include Rules.mk
 include pull.mk
 
 ROLLPY = python
+ROLLCOMPILER = gnu
+COMPILERNAME = gnu
+
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
 
 PYSETUP = \
   module load $(ROLLPY) || true; \
@@ -70,6 +84,7 @@ PYSETUP = \
 
 build: $(SRC_DIRS)
 	( \
+	  $(COMPILERSETUP); \
 	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
@@ -78,6 +93,7 @@ build: $(SRC_DIRS)
 	
 install::
 	( \
+	  $(COMPILERSETUP); \
 	  $(PYSETUP); \
 	  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
 	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \

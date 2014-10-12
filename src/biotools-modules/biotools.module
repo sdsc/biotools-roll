@@ -2,19 +2,21 @@
 
 set biotoolsHome /opt/biotools
 
-module-whatis "BIOTOOLS:"
-module-whatis ""
-module-whatis "bedtools         bamtools   biopython bismark     blast"
-module-whatis "blat             bowtie     bowtie2   bwa         bx-python"
-module-whatis "cufflinks        dendropy   edena     fastqc      fastx"
-module-whatis "GenomeAnalysisTK gmap_gsnap htseq     idba-ud     matt"
-module-whatis "miRDeep2         miso       picard    plink       pysam"
-module-whatis "qiime            randfold   samtools  soapdenovo  SOAPsnp"
-module-whatis "spades           squid      tophat    trimmomatic trinity"
-module-whatis "velvet           ViennaRNA"
-module-whatis ""
-module-whatis "Use 'rpm -q (package)' for versions"
-module-whatis ""
+module-whatis "                       biotools"
+module-whatis "bedtools 2.20.1        bamtools 2.3.0          biopython 1.62"
+module-whatis "bismark 0.10.1         blast 2.2.29            blat 35"
+module-whatis "bowtie 1.0.0           bowtie2 2.2.3           bwa 0.7.5a"
+module-whatis "bx-python 0.7.2        cufflinks 2.2.0         dendropy 3.12.0"
+module-whatis "edena 3.131028         fastqc 0.10.1           fastx 0.0.14"
+module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
+module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.5"
+module-whatis "miso 0.5.2             picard 1.108            plink 1.07"
+module-whatis "pysam 0.7.8pre         qiime 1.8.0             randfold 2.0"
+module-whatis "samtools 0.1.19        soapdenovo r240         SOAPsnp v1.03"
+module-whatis "spades 3.1.0           squid 1.9g              stacks 1.20"
+module-whatis "tophat 2.0.10          trimmomatic 0.32        trinity 20131110"
+module-whatis "velvet 1.2.10          ViennaRNA 2.1.7"
+
 
 set packageHome $biotoolsHome/bamtools
 setenv BAMTOOLSHOME $packageHome
@@ -182,5 +184,8 @@ prepend-path PATH $packageHome/bin
 prepend-path LD_LIBRARY_PATH $packageHome/lib
 prepend-path PERL5LIB $packageHome/lib64/perl5
 setenv VIENNARNAHOME $packageHome
+ 
+set packageHome $biotoolsHome/stacks
+prepend-path PATH $packageHome/bin
 
-module load gnu intel mkl ROLLPY
+module load intel gnu mkl python

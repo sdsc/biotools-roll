@@ -1,6 +1,6 @@
 NAME           = plink
 VERSION        = 1.07
-RELEASE        = 0
+RELEASE        = 15
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

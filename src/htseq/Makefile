@@ -64,6 +64,8 @@ ROLLPY = python
 
 PYSETUP = \
   module load $(ROLLPY) || true; \
+  module load intel || true; \
+  module load scipy || true; \
   echo === python version ===; \
   python -V
 
@@ -81,6 +83,7 @@ install::
 	( \
 	  $(PYSETUP); \
 	  cd $(SOURCE_DIR); \
+          export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
 	  python setup.py install \
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
 	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
