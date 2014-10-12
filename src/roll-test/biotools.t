@@ -52,7 +52,7 @@ SKIP: {
   foreach $exe(@exes) {
     `module load biotools; $exe >> $TESTFILE 2>&1`;
   }
-  ok(`grep -c "v2.20.1" $TESTFILE` == 36, 'all bedtools exes work');
+  ok(`grep -c "[vV]ersion:" $TESTFILE` == 36, 'all bedtools exes work');
   `rm -f $TESTFILE`;
 }
 
@@ -94,7 +94,7 @@ AAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATTTTTGCCGAACTTTT
 END
   close(OUT);
   open(OUT, ">$TESTFILE.sh");
-print OUT <<END;
+  print OUT <<END;
 module load biotools
 cd $TESTFILE.dir
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/drosoph.nt.gz
@@ -102,7 +102,7 @@ gunzip drosoph.nt.gz
 makeblastdb -dbtype nucl -in *.nt
 blastn -db *.nt  -query $TESTFILE.in -task blastn -out out
 END
-close(OUT);
+  close(OUT);
   `bash $TESTFILE.sh 2>&1`;
   $output = `cat $TESTFILE.dir/out`;
   like($output, qr/Score = 33.7 bits \(36\),  Expect = 4.5/, 'blast works');
@@ -121,8 +121,8 @@ SKIP: {
 $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools; bowtie $packageHome/indexes/e_coli $packageHome/reads/e_coli_1000.fq 2>&1`;
-  like($output, qr/Reported 699 alignments/, 'bowtie works');
+  $output = `module load biotools; cd $packageHome/bin; perl $packageHome/scripts/test/inspect.pl 2>&1`;
+  like($output, qr/PASSED/, 'bowtie works');
 }
 
 $packageHome = '/opt/biotools/bowtie2';
@@ -135,31 +135,8 @@ SKIP: {
 $packageHome = '/opt/biotools/bx-python';
 SKIP: {
   skip 'bx-python not installed', 1 if ! -d $packageHome;
-  `mkdir $TESTFILE.dir`;
-  open(OUT, ">$TESTFILE.sh");
-  print OUT <<END;
-module load biotools
-cd $TESTFILE.dir
-wget http://mirror.vcu.edu/vcu/encode/Bigwig/GSM595923_UW.Fetal_Brain.ChromatinAccessibility.H-23266.DS14718.bigWig > /dev/null 2>&1
-python in
-END
-  close(OUT);
-  open(OUT, ">$TESTFILE.dir/in");
-  print OUT <<END;
-from bx.intervals.io import GenomicIntervalReader
-from bx.bbi.bigwig_file import BigWigFile
-import numpy as np
-bw = BigWigFile(open('GSM595923_UW.Fetal_Brain.ChromatinAccessibility.H-23266.DS14718.bigWig'))
-mySummary = bw.query("chr1", 10000, 10500, 1)
-myInterval = bw.get("chr1", 10000, 10500)
-myArrayInterval = bw.get_as_array("chr1", 10000, 10500)
-print mySummary
-print myInterval
-END
-  close(OUT);
-  $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/'std_dev': 9.310512767924612/, 'bx-python works');
-  `rm -rf $TESTFILE*`;
+  $output=`module load biotools; python -c 'from bx import binned_array_tests; print binned_array_tests.setup()' 2>&1`;
+  like($output, qr/bx.binned_array.BinnedArray object/, 'bx-python works');
 }
 
 $packageHome = '/opt/biotools/bwa';
@@ -222,7 +199,7 @@ SKIP: {
 $packageHome = '/opt/biotools/GenomeAnalysisTK';
 SKIP: {
   skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads`;
+  $output = `module load biotools; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
   like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK works');
 }
 
@@ -303,18 +280,8 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  `mkdir $TESTFILE.dir`;
-  open(OUT, ">$TESTFILE.sh");
-  print OUT <<END;
-module load biotools
-cd $TESTFILE.dir
-cp -r $packageHome/tests/* .
-python pysam_test.py
-END
-  close(OUT);
-  $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/OK/, 'pysam works');
-  `rm -rf $TESTFILE*`;
+  $output = `module load samtools; perl -c 'import pysam; print pysam.SAMTOOLS_DISPATCH' 2>&1`;
+  like($output, qr/pad2unpad/, 'pysam works');
 }
 
 $packageHome = '/opt/biotools/qiime';
