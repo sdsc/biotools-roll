@@ -1,16 +1,16 @@
 NAME           = fastqc
-VERSION        = 0.10.1
+VERSION        = 0.11.2
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)
 
 SOURCE_NAME    = $(NAME)
-SOURCE_SUFFIX  = tar.gz
+SOURCE_SUFFIX  = zip
 SOURCE_VERSION = $(VERSION)
-SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
-SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
+SOURCE_PKG     = $(SOURCE_NAME)_v$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_DIR     = FastQC
 
-TAR_GZ_PKGS    = $(SOURCE_PKG)
+ZIP_PKGS       = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No

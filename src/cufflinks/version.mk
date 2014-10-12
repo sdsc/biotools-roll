@@ -1,5 +1,5 @@
 NAME           = cufflinks
-VERSION        = 2.2.0
+VERSION        = 2.2.1
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

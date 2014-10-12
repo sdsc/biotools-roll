@@ -1,5 +1,5 @@
 NAME           = picard
-VERSION        = 1.108
+VERSION        = 1.119
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

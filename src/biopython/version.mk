@@ -1,5 +1,5 @@
 NAME           = biopython
-VERSION        = 1.63
+VERSION        = 1.64
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

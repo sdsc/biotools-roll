@@ -1,5 +1,5 @@
 NAME           = htseq
-VERSION        = 0.5.4p5
+VERSION        = 0.6.1
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

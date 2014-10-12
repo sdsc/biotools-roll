@@ -1,5 +1,5 @@
 NAME           = bwa
-VERSION        = 0.7.5a
+VERSION        = 0.7.10
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

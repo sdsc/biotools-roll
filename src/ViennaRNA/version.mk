@@ -1,5 +1,5 @@
 NAME           = ViennaRNA
-VERSION        = 2.1.7
+VERSION        = 2.1.8
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

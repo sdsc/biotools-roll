@@ -1,5 +1,5 @@
 NAME           = samtools
-VERSION        = 0.1.19
+VERSION        = 1.1
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

@@ -1,5 +1,5 @@
 NAME           = spades
-VERSION        = 3.1.0
+VERSION        = 3.1.1
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 

@@ -1,5 +1,5 @@
 NAME           = tophat
-VERSION        = 2.0.12
+VERSION        = 2.0.13
 RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
