@@ -72,9 +72,9 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  cd $(SOURCE_DIR); \
-	  cp bowtie bowtie-build bowtie-inspect $(ROOT)/$(PKGROOT)/bin/; \
-	  cp -r indexes reads scripts $(ROOT)/$(PKGROOT)/; \
-	  chmod -R a+rX $(ROOT)/$(PKGROOT)/{indexes,reads,scripts} \
+	  cp bowtie bowtie-* $(ROOT)/$(PKGROOT)/bin/; \
+	  cp -r genomes indexes reads scripts $(ROOT)/$(PKGROOT)/; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/* \
 	)
 	@echo "::: Package $(NAME) install complete :::"
 
