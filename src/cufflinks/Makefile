@@ -103,7 +103,7 @@ build: $(SRC_DIRS)
 	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
 	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
 	    --with-bam=$(SAMTOOLS_CACHE); \
-	  $(MAKE) \
+	  $(MAKE) BAM_LIB='-lbam -lhts' \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 	
