@@ -60,8 +60,8 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
-ROLLCOMPILER = gnu
-COMPILERNAME = gnu
+ROLLCOMPILER = intel
+COMPILERNAME = intel
 
 CC = gcc
 CXX= g++
