@@ -68,43 +68,18 @@ mkl libraries  and modulefile - available from intel and mkl rolls
 
 ## Building
 
-To build the biotools-roll, execute these instructions on a Rocks development
+To build the biotools-roll, execute this on a Rocks development
 machine (e.g., a frontend or development appliance):
 
 ```shell
-% make default 2>&1 | tee build.log
-% grep "RPM build error" build.log
+% make 2>&1 | tee build.log
 ```
 
-If nothing is returned from the grep command then the roll should have been
-created as... `biotools-*.iso`. If you built the roll on a Rocks frontend then
-proceed to the installation step. If you built the roll on a Rocks development
-appliance you need to copy the roll to your Rocks frontend before continuing
+A successful build will create the file `biotools-*.disk1.iso`.  If you built the
+roll on a Rocks frontend, proceed to the installation step. If you built the
+roll on a Rocks development appliance, you need to copy the roll to your Rocks
+frontend before continuing with installation.
 with installation.
-
-This roll source supports building with different compilers and for different
-network fabrics and mpi flavors.  By default, it builds using the gnu compilers
-for openmpi ethernet.  To build for a different configuration, use the
-`ROLLCOMPILER`, `ROLLMPI` and `ROLLNETWORK` make variables, e.g.,
-
-```shell
-make ROLLCOMPILER=intel ROLLMPI=mvapich2 ROLLNETWORK=ib 
-```
-The build process currently supports one or more of the values "intel", "pgi",
-and "gnu" for the `ROLLCOMPILER` variable, defaulting to "gnu".  It supports
-`ROLLMPI` values "openmpi", "mpich2", and "mvapich2", defaulting to "openmpi".
-It uses any `ROLLNETWORK` variable value(s) to load appropriate mpi modules,
-assuming that there are modules named `$(ROLLMPI)_$(ROLLNETWORK)` available
-(e.g., `openmpi_ib`, `mpich2_mx`, etc.).
-
-If the `ROLLCOMPILER`, `ROLLNETWORK` and/or `ROLLMPI` variables are specified,
-their values are incorporated into the names of the produced roll and rpms, e.g.,
-
-```shell
-make ROLLCOMPILER=intel ROLLMPI=mvapich2 ROLLNETWORK=ib
-```
-produces a roll with a name that begins "`biotools_intel_mvapich2_ib`"; it
-contains and installs similarly-named rpms.
 
 
 ## Installation
@@ -123,14 +98,14 @@ In addition to the software itself, the roll installs biotools environment
 module files in:
 
 ```shell
-/opt/modulefiles/applications/.(compiler)/biotools.
+/opt/modulefiles/applications/biotools.
 ```
 
 
 ## Testing
 
 The biotools-roll includes a test script which can be run to verify proper
-installation of the biotools-roll documentation, binaries and module files. To
+installation of the roll documentation, binaries and module files. To
 run the test scripts execute the following command(s):
 
 ```shell
