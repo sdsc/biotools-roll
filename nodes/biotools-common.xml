@@ -29,6 +29,7 @@ picard - http://picard.sourceforge.net/
 pysam - https://github.com/pysam-developers
 qiime - http://qiime.org
 randfold - http://bioinformatics.psb.ugent.be/software/details/Randfold
+rseqc - http://rseqc.sourceforge.net
 samtools - http://samtools.sourceforge.net
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
@@ -74,6 +75,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>pysam</package>
 <package>qiime</package>
 <package>randfold</package>
+<package>rseqc</package>
 <package>samtools</package>
 <package>soapdenovo</package>
 <package>SOAPsnp</package>
