@@ -188,9 +188,10 @@ setenv VIENNARNAHOME $packageHome
 set packageHome $biotoolsHome/stacks
 prepend-path PATH $packageHome/bin
 
-set packageHome $biotoolsHome/rsqec
+set packageHome $biotoolsHome/rseqc
 setenv RSEQCHOME $packageHome
 set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
 prepend-path PYTHONPATH $lib
+prepend-path PATH $packageHome/bin
 
 module load intel gnu mkl python
