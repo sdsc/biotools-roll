@@ -2,11 +2,12 @@
 #
 # @Copyright@
 # 
-# 				Rocks(tm)
+# 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		        version 4.3 (Mars Hill)
+# 		         version 5.6 (Emerald Boa)
+# 		         version 6.1 (Emerald Boa)
 # 
-# Copyright (c) 2000 - 2011 The Regents of the University of California.
+# Copyright (c) 2000 - 2013 The Regents of the University of California.
 # All rights reserved.	
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -24,7 +25,7 @@
 # 3. All advertising and press materials, printed or electronic, mentioning
 # features or use of this software must display the following acknowledgement: 
 # 
-# 	"This product includes software developed by the Rocks(tm)
+# 	"This product includes software developed by the Rocks(r)
 # 	Cluster Group at the San Diego Supercomputer Center at the
 # 	University of California, San Diego and its contributors."
 # 
@@ -52,16 +53,44 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
 
-# cufflinks depends on samtools
-# randfold depends on squid
-# stacks depends on samtools
-# tophat depends on samtools
-SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
-  -not -name build-* \
-  -not -name cufflinks \
-  -not -name randfold \
-  -not -name stacks \
-  -not -name tophat` \
-  cufflinks randfold stacks tophat
+REDHAT.ROOT = $(CURDIR)/../../
+RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
+
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include pull.mk
+
+ROLLPY = python
+
+PYSETUP = \
+  module load $(ROLLPY) || true; \
+  module load intel scipy || true; \
+  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
+  echo === python version ===; \
+  python -V
+
+
+build: $(SRC_DIRS)
+	( \
+	  $(PYSETUP); \
+	  cd $(SOURCE_DIR); \
+	  python setup.py build \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+	
+install::
+	( \
+	  $(PYSETUP); \
+	  mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  cd $(SOURCE_DIR); \
+	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages:$${PYTHONPATH}; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  #cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests/ \
+	)
+	#cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests/
+	@echo "::: Package $(NAME) install complete :::"
+
+clean::
+	rm -rf $(SOURCE_DIR)
+

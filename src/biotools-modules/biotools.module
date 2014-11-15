@@ -12,10 +12,10 @@ module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
 module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.5"
 module-whatis "miso 0.5.2             picard 1.108            plink 1.07"
 module-whatis "pysam 0.7.8pre         qiime 1.8.0             randfold 2.0"
-module-whatis "samtools 0.1.19        soapdenovo r240         SOAPsnp v1.03"
-module-whatis "spades 3.1.0           squid 1.9g              stacks 1.20"
-module-whatis "tophat 2.0.10          trimmomatic 0.32        trinity 20131110"
-module-whatis "velvet 1.2.10          ViennaRNA 2.1.7"
+module-whatis "rsqec 2.4              samtools 0.1.19         soapdenovo r240"
+module-whatis "SOAPsnp v1.03          spades 3.1.0            squid 1.9g"
+module-whatis "stacks 1.20            tophat 2.0.10           trimmomatic 0.32"
+module-whatis "trinity 20131110       velvet 1.2.10           ViennaRNA 2.1.7"
 
 
 set packageHome $biotoolsHome/bamtools
@@ -186,6 +186,12 @@ prepend-path PERL5LIB $packageHome/lib64/perl5
 setenv VIENNARNAHOME $packageHome
  
 set packageHome $biotoolsHome/stacks
+prepend-path PATH $packageHome/bin
+
+set packageHome $biotoolsHome/rseqc
+setenv RSEQCHOME $packageHome
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+prepend-path PYTHONPATH $lib
 prepend-path PATH $packageHome/bin
 
 module load intel gnu mkl python

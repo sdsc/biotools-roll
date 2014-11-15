@@ -15,7 +15,7 @@ my @packages = (
   'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq', 'idba-ud', 'matt',
   'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime', 'randfold',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'tophat',
-  'trimmomatic', 'trinity', 'velvet', 'ViennaRNA','stacks'
+  'trimmomatic', 'trinity', 'velvet', 'ViennaRNA','stacks','rseqc'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -442,6 +442,13 @@ SKIP: {
   skip 'stacks not installed', 1 if ! -d $packageHome;
   $output = `module load biotools; cstacks 2>&1`;
   like($output, qr/cstacks 1.20/, 'stacks works');
+}
+
+$packageHome = '/opt/biotools/rseqc';
+SKIP: {
+  skip 'rseqc not installed', 1 if ! -d $packageHome;
+  $output = `module load biotools;clipping_profile.py 2>&1`;
+  like($output, qr/This program is used estimate clipping profile/, 'rseqc works');
 }
 
 SKIP: {
