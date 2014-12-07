@@ -89,12 +89,13 @@ EIGENSETUP = \
   echo $${EIGENHOME}
 
 build: $(SRC_DIRS)
+	perl -pi -e 's#(typedef.*__int)#//$1#' $(SOURCE_DIR)/src/SeqAn-1.3/seqan/platform/platform_gcc.h
 	( \
 	  $(COMPILERSETUP); \
 	  $(BOOSTSETUP); \
 	  $(EIGENSETUP); \
           export CC=$(CC); \
-          export CC=$(CXX); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure -prefix=$(PKGROOT) \
