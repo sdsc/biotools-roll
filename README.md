@@ -61,11 +61,22 @@ development machine.
 
 ## Dependencies
 
-cmake package and modulefile - available from cmake roll
-gnu and intel compilers and modulefiles
-python modules - available from python roll
-boost and eigen packages and modulefiles - available from math roll
-mkl libraries  and modulefile - available from intel and mkl rolls
+The sdsc-roll must be installed on the build machine, since the build process
+depends on make include files provided by that roll.
+
+The roll sources assume that modulefiles provided by SDSC compiler and python
+rolls are available, but it will build without them as long as the environment
+variables they provide are otherwise defined.
+
+The build process requires the BOOST, EIGEN, and MKL libraries and assumes that
+the modulefiles provided by the SDSC boost-roll, math-roll, and mkl-roll (or
+intel-roll) are available.  It will build without the modulefiles as long as
+the environment variables they provide are otherwise defined.
+
+The build process requires cmake and assumes that the cmake modulefile provided
+by the SDSC cmake-roll is available.  It will build without the modulefile as
+long as the environment variables it provides are otherwise defined.
+
 
 ## Building
 
