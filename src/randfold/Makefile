@@ -61,7 +61,7 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
-SQUID_CACHE = $(REDHAT.ROOT)/src/build-squid
+SQUID_CACHE = $(REDHAT.ROOT)/cache/build-squid
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch

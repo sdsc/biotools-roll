@@ -69,7 +69,7 @@ PYSETUP = \
   echo === python version ===; \
   python -V
 
-PYSAM_CACHE = $(REDHAT.ROOT)/src/build-pysam
+PYSAM_CACHE = $(REDHAT.ROOT)/cache/build-pysam
 
 build: $(SRC_DIRS)
 	( \

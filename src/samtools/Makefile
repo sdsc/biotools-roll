@@ -61,7 +61,7 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include pull.mk
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/src/build-samtools
+SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
 build: $(SRC_DIRS)
 	( \

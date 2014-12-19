@@ -88,7 +88,7 @@ EIGENSETUP = \
   echo === EIGENHOME ===; \
   echo $${EIGENHOME}
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/src/build-samtools
+SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
 build: $(SRC_DIRS)
 	( \

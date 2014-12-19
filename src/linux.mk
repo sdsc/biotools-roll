@@ -59,7 +59,6 @@
 # stacks depends on samtools
 # tophat depends on samtools
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
-  -not -name build-* \
   -not -name cufflinks \
   -not -name randfold \
   -not -name stacks \

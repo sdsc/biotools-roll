@@ -67,7 +67,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
           . /etc/profile.d/modules.sh; \
-          module load intel; \
+          module load intel python; \
 	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)

@@ -76,8 +76,9 @@ install::
 	mkdir -p $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
-                module load scipy; \
                 module load intel; \
+                module load scipy; \
+                module load python; \
                 pip install --install-option="--prefix=$(PKGROOT)" numpy==1.8.0; \
                 pip install --install-option="--prefix=$(PKGROOT)" qiime; \
                 mkdir  $(PKGROOT)/tests; \

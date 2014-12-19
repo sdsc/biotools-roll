@@ -79,7 +79,7 @@ COMPILERSETUP =  \
   echo === Compiler and version ===; \
   $(CC) --version
 
-GTEXTUTILS_CACHE = $(REDHAT.ROOT)/src/build-gtextutils
+GTEXTUTILS_CACHE = $(REDHAT.ROOT)/cache/build-gtextutils
 
 build: $(SRC_DIRS)
 	( \

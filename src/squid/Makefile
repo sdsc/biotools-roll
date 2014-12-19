@@ -76,7 +76,7 @@ COMPILERSETUP =  \
   echo === Compiler and version ===; \
   $(CC) --version
 
-SQUID_CACHE = $(REDHAT.ROOT)/src/build-squid
+SQUID_CACHE = $(REDHAT.ROOT)/cache/build-squid
 
 build: $(SRC_DIRS)
 	( \

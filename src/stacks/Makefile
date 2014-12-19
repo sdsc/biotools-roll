@@ -79,7 +79,7 @@ COMPILERSETUP =  \
   echo === Compiler and version ===; \
   $(CC) --version
 
-SAMTOOLS.CACHE = $(REDHAT.ROOT)/src/build-samtools
+SAMTOOLS.CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
 build: $(SRC_DIRS)
 	( \
