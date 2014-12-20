@@ -56,37 +56,24 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = intel
 COMPILERNAME = intel
 
-CXX = g++
-ifeq ("$(COMPILERNAME)", "intel")
-  CXX = icpc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CXX = pgCC
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CXX) --version
-
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/src/Makefile patch-files/Makefile.patch
 	( \
-	  $(COMPILERSETUP); \
-          export CXX=$(CXX); \
+	  $(MODULE_LOAD_CXX); \
+	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  make \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-    
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/bin/* $(ROOT)/$(PKGROOT)/bin/

@@ -1,6 +1,6 @@
 NAME           = fastqc
 VERSION        = 0.11.2
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

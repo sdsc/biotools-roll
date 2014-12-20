@@ -59,11 +59,12 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)/
@@ -72,4 +73,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

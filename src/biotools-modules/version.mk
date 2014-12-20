@@ -2,7 +2,7 @@ PACKAGE     = biotools
 CATEGORY    = applications
 
 NAME        = $(PACKAGE)-modules
-RELEASE     = 16
+RELEASE     = 17
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk

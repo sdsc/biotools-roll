@@ -1,6 +1,6 @@
 NAME           = velvet
 VERSION        = 1.2.10
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

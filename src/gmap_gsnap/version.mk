@@ -1,6 +1,6 @@
 NAME           = gmap_gsnap
 VERSION        = 2014_10_09
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

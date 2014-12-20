@@ -59,7 +59,8 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	( \
@@ -67,13 +68,13 @@ build: $(SRC_DIRS)
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  cd $(SOURCE_DIR); \
 	  cp bowtie2 bowtie2-build bowtie2-build-s bowtie2-build-l \
-             bowtie2-inspect bowtie2-inspect-s bowtie2-inspect-l \
+	     bowtie2-inspect bowtie2-inspect-s bowtie2-inspect-l \
 	     bowtie2-align-s bowtie2-align-l $(ROOT)/$(PKGROOT)/bin/; \
 	  cp -r example/reads scripts $(ROOT)/$(PKGROOT)/; \
 	  cp -r example/index $(ROOT)/$(PKGROOT)/indexes; \

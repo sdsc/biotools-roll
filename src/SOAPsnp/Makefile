@@ -58,7 +58,8 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	( \
@@ -66,7 +67,7 @@ build: $(SRC_DIRS)
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/soapsnp $(ROOT)/$(PKGROOT)/bin/
@@ -74,4 +75,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

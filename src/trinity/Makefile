@@ -58,7 +58,8 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
@@ -68,7 +69,7 @@ build: $(SRC_DIRS)
 	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" \
 	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
@@ -77,11 +78,10 @@ install::
 	  $(MAKE); \
 	  cp -r * $(ROOT)/$(PKGROOT)/ \
 	)
-        # Remove references to install dir from rpm text files
+	# Remove references to install dir from rpm text files
 	perl -pi -e "s#$(ROOT)##g" \
 	  `find $(ROOT)/$(PKGROOT)/ -type f -exec grep -Il . {} ';'`
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

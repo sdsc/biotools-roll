@@ -1,6 +1,6 @@
 NAME           = squid
 VERSION        = 1.9g
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

@@ -1,6 +1,6 @@
 NAME           = miRDeep2
 VERSION        = 0.0.5
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

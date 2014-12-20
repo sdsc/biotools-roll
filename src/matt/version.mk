@@ -1,6 +1,6 @@
 NAME           = matt
 VERSION        = 1.00
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

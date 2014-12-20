@@ -59,17 +59,18 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) \
+	  $(MAKE) LIBCURSES='-lcurses -ltinfo' \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
@@ -92,4 +93,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

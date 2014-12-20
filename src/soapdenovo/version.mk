@@ -1,6 +1,6 @@
 NAME           = soapdenovo
 VERSION        = r240
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

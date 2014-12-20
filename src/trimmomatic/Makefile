@@ -58,7 +58,8 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
@@ -66,8 +67,7 @@ build: $(SRC_DIRS)
 	  cd $(SOURCE_DIR); \
 	  ant \
 	)
-    
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	cp -r $(SOURCE_DIR)/adapters $(ROOT)/$(PKGROOT)/
@@ -77,4 +77,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

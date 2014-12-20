@@ -56,46 +56,22 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = intel
 COMPILERNAME = intel
 
-CC = gcc
-CXX= g++
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-  CXX= icpc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-  CXX= pgCC
-endif
-
-BOOSTSETUP = \
-  module load boost || true; \
-  echo === BOOSTHOME ===; \
-  echo $${BOOSTHOME}
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
-
-EIGENSETUP = \
-  module load eigen || true; \
-  echo === EIGENHOME ===; \
-  echo $${EIGENHOME}
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	perl -pi -e 's#(typedef.*__int)#//$1#' $(SOURCE_DIR)/src/SeqAn-1.3/seqan/platform/platform_gcc.h
 	( \
-	  $(COMPILERSETUP); \
-	  $(BOOSTSETUP); \
-	  $(EIGENSETUP); \
-          export CC=$(CC); \
-          export CXX=$(CXX); \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_BOOST); \
+	  $(MODULE_LOAD_EIGEN); \
+	  export CC=$(CC); \
+	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure -prefix=$(PKGROOT) \
@@ -103,17 +79,15 @@ build: $(SRC_DIRS)
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	-mkdir -p -m 755 $(PKGROOT)
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install \
 	)
-	umount $(PKGROOT)
-	-rmdir -p $(PKGROOT)
+	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

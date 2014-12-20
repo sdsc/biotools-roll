@@ -58,13 +58,8 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
-
-MKLSETUP = \
-  module load mkl || true; \
-  echo === MKL_ROOT ===; \
-  echo $${MKL_ROOT}; \
-  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	cp patch-files/Makefile $(SOURCE_DIR)
@@ -72,7 +67,8 @@ build: $(SRC_DIRS)
 	cp patch-files/elf.cpp $(SOURCE_DIR)
 	cp patch-files/idhelp.cpp $(SOURCE_DIR)
 	( \
-	  $(MKLSETUP); \
+	  $(MODULE_LOAD_MKL); \
+	  export MKLLIB=`find $${MKLHOME}/lib/* -maxdepth 0 | head -1`; \
 	  perl -pi -e "s!ROOTMKL!$${MKLLIB}!g" $(SOURCE_DIR)/Makefile; \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) \
