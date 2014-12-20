@@ -57,16 +57,13 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
+ROLLPY = python
+PYVERSION = 2.7
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
-
-ROLLPY = python
-
-PYSETUP = \
-  module load $(ROLLPY) || true; \
-  echo === python version ===; \
-  python -V
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py \
@@ -74,18 +71,17 @@ build: $(SRC_DIRS)
 	perl -pi -e "s!ROLLPATH!$(PKGROOT)!" \
 	     $(SOURCE_DIR)/dendropy/test/test_popgenstat.py
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
 	( \
-	  $(PYSETUP); \
-	  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
-	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  $(MODULE_LOAD_PYTHON); \
+	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${PYDIR}; \
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \

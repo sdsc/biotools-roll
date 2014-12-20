@@ -57,40 +57,26 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = intel
 COMPILERNAME = intel
 
-CC = gcc
-CXX= g++
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-  CXX= icpc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-  CXX= pgCC
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
-	  $(COMPILERSETUP); \
-          export CC=$(CC); \
-          export CXX=$(CXX); \
+	  $(MODULE_LOAD_CC); \
+	  export CC=$(CC); \
+	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \
 	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/testdata
@@ -107,4 +93,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

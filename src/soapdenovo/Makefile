@@ -57,24 +57,13 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = intel
 COMPILERNAME = intel
 
-CC = gcc
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
@@ -91,12 +80,12 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sparsePregraph/pregraph_sparse.cpp \
 	  patch-files/pregraph_sparse.cpp.patch
 	( \
-	  $(COMPILERSETUP); \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/*mer $(ROOT)/$(PKGROOT)/bin/
@@ -104,4 +93,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

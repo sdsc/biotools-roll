@@ -59,35 +59,33 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
+ROLLCOMPILER = intel
+COMPILERNAME = intel
+ROLLPY = python
+PYVERSION = 2.7
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
-
-ifndef PYPATH
-  PYPATH = python
-endif
-PYVERSION = $(shell $(PYPATH) -c "from __future__ import print_function;import sys;print(sys.version[:3])")
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
-	mkdir -p $(PKGROOT)
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
-                module load intel; \
-                module load scipy; \
-                module load python; \
-                pip install --install-option="--prefix=$(PKGROOT)" numpy==1.8.0; \
-                pip install --install-option="--prefix=$(PKGROOT)" qiime; \
-                mkdir  $(PKGROOT)/tests; \
-                cd $(SOURCE_DIR); \
-                cp -r *  $(PKGROOT)/tests \
-        )
-	umount $(PKGROOT)
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_PYTHON); \
+	  pip install --install-option="--prefix=$(PKGROOT)" numpy==1.8.0; \
+	  pip install --install-option="--prefix=$(PKGROOT)" qiime; \
+	  mkdir $(PKGROOT)/tests; \
+	  cd $(SOURCE_DIR); \
+	  cp -r *  $(PKGROOT)/tests \
+	)
+	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
 	rm -rf $(SOURCE_DIR) tests
-	-umount $(PKGROOT)

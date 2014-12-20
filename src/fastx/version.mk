@@ -1,6 +1,6 @@
 NAME                  = fastx
 VERSION               = 0.0.14
-RELEASE               = 15
+RELEASE               = 16
 PKGROOT               = /opt/biotools/$(NAME)
 
 SRC_SUBDIR            = $(NAME)

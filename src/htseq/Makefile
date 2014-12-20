@@ -56,34 +56,31 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
+ROLLCOMPILER = intel
+COMPILERNAME = intel
 ROLLPY = python
 
-PYSETUP = \
-  module load $(ROLLPY) || true; \
-  module load intel || true; \
-  module load scipy || true; \
-  echo === python version ===; \
-  python -V
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-    
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
-          export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
+	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
 	  python setup.py install \
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
 	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
@@ -91,4 +88,4 @@ install::
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf *.py *.txt
+	rm -rf $(SOURCE_DIR)

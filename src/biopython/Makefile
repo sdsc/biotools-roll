@@ -57,30 +57,25 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLPY = python
 
-PYSETUP = \
-  module load $(ROLLPY) || true; \
-  module load intel scipy || true; \
-  echo === python version ===; \
-  python -V
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/Tests
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
@@ -91,4 +86,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

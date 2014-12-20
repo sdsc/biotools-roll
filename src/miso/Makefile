@@ -56,18 +56,23 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
+ROLLCOMPILER = intel
+COMPILERNAME = intel
+ROLLPY = python
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-          . /etc/profile.d/modules.sh; \
-          module load intel python; \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_PYTHON); \
 	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)

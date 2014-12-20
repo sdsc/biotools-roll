@@ -57,40 +57,32 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
+ROLLPY = python
+PYVERSION = 2.7
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
-
-ROLLPY = python
-
-PYSETUP = \
-  module load $(ROLLPY) || true; \
-  module load intel scipy || true; \
-  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
-  echo === python version ===; \
-  python -V
-
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	( \
-	  $(PYSETUP); \
-	  mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  $(MODULE_LOAD_PYTHON); \
+	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+	  mkdir -p -m 755 $${sitepath}; \
+	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
-	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages:$${PYTHONPATH}; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  #cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests/ \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
 	)
-	#cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests/
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

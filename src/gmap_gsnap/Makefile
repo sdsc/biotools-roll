@@ -56,48 +56,34 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
-CC = gcc
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
-
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	( \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
-	  $(COMPILERSETUP); \
-          export CC=$(CC); \
+	  export CC=$(CC); \
 	  ./configure --prefix=$(PKGROOT) --enable-avx2=no; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
-	-mkdir -p -m 755 $(PKGROOT)
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(SOURCE_DIR); \
 	  make install; \
 	  cp tests/ss.chr17test  tests/ss.her2 $(PKGROOT)/tests \
 	)
-	umount $(PKGROOT)
-	-rmdir $(PKGROOT)
+	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

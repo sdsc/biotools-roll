@@ -1,6 +1,6 @@
 NAME           = bx-python
 VERSION        = 0.7.1
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

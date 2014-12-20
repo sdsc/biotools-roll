@@ -57,35 +57,30 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
+ROLLPY = python
+PYVERSION = 2.7
+
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
-
-ROLLPY = python
-
-PYSETUP = \
-  module load $(ROLLPY) || true; \
-  module load scipy || true; \
-  echo === python version ===; \
-  python -V
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 PYSAM_CACHE = $(REDHAT.ROOT)/cache/build-pysam
 
 build: $(SRC_DIRS)
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	( \
-	  $(PYSETUP); \
+	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
-	  PYVERSION=`python -V 2>&1 | grep -o '[0-9]\.[0-9]*'`; \
-	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${PYVERSION}/site-packages; \
+	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${PYDIR}; \
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
@@ -97,4 +92,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

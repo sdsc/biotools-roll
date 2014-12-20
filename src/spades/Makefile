@@ -57,37 +57,21 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
-CC = gcc
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-endif
-
-CMAKESETUP = \
-  module load cmake || true; \
-  echo === cmake version ===; \
-  cmake --version
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	( \
-	  $(COMPILERSETUP); \
-	  $(CMAKESETUP); \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_CMAKE); \
 	  cd $(SOURCE_DIR); \
 	  export CC=`which $(CC)`; \
 	  export PREFIX=$(ROOT)/$(PKGROOT); \
@@ -97,4 +81,3 @@ install::
 
 clean::
 	rm -rf $(SOURCE_DIR)
-

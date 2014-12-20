@@ -59,25 +59,24 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin/x86_64
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
-	-mkdir -p -m 755 $(PKGROOT)
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(SOURCE_DIR); \
 	  MACHTYPE=x86_64 BINDIR=$(PKGROOT)/bin/x86_64 make; \
 	  cp blat/test/intron50k/*.fa blat/test/intron50k/expected/*.psl \
 	     $(ROOT)/$(PKGROOT)/test/ \
 	)
+	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) install complete :::"
-	umount $(PKGROOT)
-	-rmdir -p $(PKGROOT)
 
 clean::
 	rm -rf $(SOURCE_DIR)

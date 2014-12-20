@@ -56,49 +56,25 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
-CC = gcc
-CXX = g++
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-  CXX = icpc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-  CXX = pgCC
-endif
-
-BOOSTSETUP = \
-  module load boost || true; \
-  echo === BOOSTHOME ===; \
-  echo $${BOOSTHOME}
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
-
-EIGENSETUP = \
-  module load eigen || true; \
-  echo === EIGENHOME ===; \
-  echo $${EIGENHOME}
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
 build: $(SRC_DIRS)
 	( \
-	  $(COMPILERSETUP); \
-	  $(BOOSTSETUP); \
-	  $(EIGENSETUP); \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_BOOST); \
+	  $(MODULE_LOAD_EIGEN); \
 	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
-          export CC=$(CC); \
-          export CXX=$(CXX); \
+	  export CC=$(CC); \
+	  export CXX=$(CXX); \
 	  ./configure -prefix=$(PKGROOT) \
 	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
 	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
@@ -106,17 +82,15 @@ build: $(SRC_DIRS)
 	  $(MAKE) BAM_LIB='-lbam -lhts' \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	-mkdir -p -m 755 $(PKGROOT)
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install \
 	)
-	umount $(PKGROOT)
-	-rmdir -p $(PKGROOT)
+	$(PKGROOT_BIND_UMOUNT)
 	cp -r patch-files/test_data.sam $(ROOT)/$(PKGROOT)/
 	@echo "::: Package $(NAME) install complete :::"
 

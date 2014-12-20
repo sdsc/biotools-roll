@@ -1,6 +1,6 @@
 NAME           = qiime
 VERSION        = 1.8.0
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

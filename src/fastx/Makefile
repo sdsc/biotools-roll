@@ -57,36 +57,22 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
--include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
-include pull.mk
-
 ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
-CC = gcc
-CXX = g++
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-  CXX = icpc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-  CXX = pgCC
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 GTEXTUTILS_CACHE = $(REDHAT.ROOT)/cache/build-gtextutils
 
 build: $(SRC_DIRS)
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \
-	  $(COMPILERSETUP); \
-          export CC=$(CC); \
-          export CXX=$(CXX); \
+	  $(MODULE_LOAD_CC); \
+	  export CC=$(CC); \
+	  export CXX=$(CXX); \
 	  ./configure --prefix=$(GTEXTUTILS_CACHE); \
 	  $(MAKE); \
 	  $(MAKE) install; \

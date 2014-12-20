@@ -1,6 +1,6 @@
 NAME           = miso
 VERSION        = 0.5.2
-RELEASE        = 15
+RELEASE        = 16
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)
