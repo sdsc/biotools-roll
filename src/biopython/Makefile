@@ -64,6 +64,19 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_PYTHON); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_PYTHON) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo biopython > $@
+
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
@@ -82,7 +95,8 @@ install::
 	  cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests/ \
 	)
 	cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests/
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

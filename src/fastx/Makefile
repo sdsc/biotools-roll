@@ -67,6 +67,19 @@ include $(SDSCDEVEL)/Rules.mk
 
 GTEXTUTILS_CACHE = $(REDHAT.ROOT)/cache/build-gtextutils
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo Affero GPL > $@
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \
@@ -92,7 +105,8 @@ install::
 	  $(MAKE) install; \
 	  cp src/seqalign_test/seqalign_test $(ROOT)/$(PKGROOT)/bin \
 	)
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SRC_DIRS)
+	rm -rf $(SRC_DIRS) DESCRIPTION LICENSE

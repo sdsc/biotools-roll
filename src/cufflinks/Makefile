@@ -66,6 +66,21 @@ include $(SDSCDEVEL)/Rules.mk
 
 SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC); \
+	  $(DESCRIBE_BOOST); \
+	  $(DESCRIBE_EIGEN) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo boost > $@
+
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
@@ -92,7 +107,8 @@ install::
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	cp -r patch-files/test_data.sam $(ROOT)/$(PKGROOT)/
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

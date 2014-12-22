@@ -64,6 +64,19 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CXX); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CXX) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPLv2+ > $@
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
@@ -81,7 +94,8 @@ install::
 	  cd $(SOURCE_DIR)/bin; \
 	  cp `ls -1|grep -v \.o$$ |grep -v Make` $(ROOT)/$(PKGROOT)/bin \
 	)
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -fr $(SOURCE_DIR)
+	rm -fr $(SOURCE_DIR) DESCRIPTION LICENSE
