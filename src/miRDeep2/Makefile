@@ -62,6 +62,17 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo unknown > $@
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(PDF_DIR); \
@@ -74,13 +85,17 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
-	  cd $(SOURCE_DIR); \
+	  cd $(PDF_DIR); \
 	  $(MAKE) install; \
+	  cd ../$(SOURCE_DIR); \
 	  cp *.pl $(ROOT)/$(PKGROOT)/bin; \
 	  cp -r tutorial_dir/* $(ROOT)/$(PKGROOT)/tests; \
 	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT)/bin \
 	)
+	# Remove $(ROOT) reference from rpm file
+	perl -pi -e 's#$(ROOT)##' $(ROOT)/$(PKGROOT)/lib64/perl5/perllocal.pod
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

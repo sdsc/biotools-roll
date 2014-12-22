@@ -64,6 +64,17 @@ include $(SDSCDEVEL)/Rules.mk
 
 SQUID_CACHE = $(REDHAT.ROOT)/cache/build-squid
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPLv2+ > $@
+
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	patch $(SOURCE_DIR)/randfold.c patch-files/randfold.c.patch
@@ -79,7 +90,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/randfold $(ROOT)/$(PKGROOT)/bin/
 	cp $(SOURCE_DIR)/let7.tfa $(ROOT)/$(PKGROOT)/tests/
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

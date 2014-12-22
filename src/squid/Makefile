@@ -67,6 +67,19 @@ include $(SDSCDEVEL)/Rules.mk
 
 SQUID_CACHE = $(REDHAT.ROOT)/cache/build-squid
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPL > $@
+
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
@@ -95,7 +108,8 @@ install::
 	)
 	mkdir -p -m 755 $(SQUID_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(SQUID_CACHE)/
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

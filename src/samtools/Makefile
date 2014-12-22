@@ -64,6 +64,17 @@ include $(SDSCDEVEL)/Rules.mk
 
 SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo Expat > $@
+
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
@@ -89,7 +100,8 @@ install::
 	# cufflinks build requires this
 	ln -s $(SAMTOOLS_CACHE)/include/bam/version.h \
 	      $(SAMTOOLS_CACHE)/include/bam/version.hpp
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

@@ -61,6 +61,17 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPL > $@
+
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	( \
@@ -73,7 +84,8 @@ install::
 	cp -r $(SOURCE_DIR)/adapters $(ROOT)/$(PKGROOT)/
 	cp $(SOURCE_DIR)/distSrc/LICENSE $(ROOT)/$(PKGROOT)/
 	cp $(SOURCE_DIR)/dist/jar/trimmomatic-0.32.jar $(ROOT)/$(PKGROOT)/
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

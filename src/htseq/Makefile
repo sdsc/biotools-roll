@@ -65,6 +65,22 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	$(MODULE_LOAD_PYTHON); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC); \
+	  $(DESCRIBE_PYTHON) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	# License files aren't included in the packaged source
+	# $(CHECK_LICENSE_FILES)
+	echo GPL > $@
+
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
@@ -85,7 +101,8 @@ install::
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
 	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
 	)
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

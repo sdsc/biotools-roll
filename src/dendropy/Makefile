@@ -65,6 +65,19 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_PYTHON); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_PYTHON) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo BSD > $@
+
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py \
 	      patch-files/test_popgenstat.py.patch
@@ -90,7 +103,8 @@ install::
 	     dendropy/test/data/chars/orti.nex \
 	     dendropy/test/test_popgenstat.py $(ROOT)/$(PKGROOT)/test/ \
 	)
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -fr $(SOURCE_DIR)
+	rm -fr $(SOURCE_DIR) DESCRIPTION LICENSE

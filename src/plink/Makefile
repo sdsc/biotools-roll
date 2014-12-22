@@ -61,6 +61,18 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_MKL) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPLv2 > $@
+
 build: $(SRC_DIRS)
 	cp patch-files/Makefile $(SOURCE_DIR)
 	cp patch-files/sets.cpp $(SOURCE_DIR)
@@ -80,7 +92,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/examples
 	cp $(SOURCE_DIR)/plink $(ROOT)/$(PKGROOT)/bin
 	cp patch-files/hapmap* $(ROOT)/$(PKGROOT)/examples
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

@@ -64,6 +64,19 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CXX); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CXX) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo Public Domain > $@
+
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CXX); \
@@ -88,7 +101,8 @@ install::
 	  make install \
 	)
 	$(PKGROOT_BIND_UMOUNT)
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -fr $(SOURCE_DIR)
+	rm -fr $(SOURCE_DIR) DESCRIPTION LICENSE

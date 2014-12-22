@@ -64,6 +64,21 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC); \
+	  $(DESCRIBE_BOOST); \
+	  $(DESCRIBE_EIGEN) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo OSI and boost > $@
+
 build: $(SRC_DIRS)
 	perl -pi -e 's#(typedef.*__int)#//$1#' $(SOURCE_DIR)/src/SeqAn-1.3/seqan/platform/platform_gcc.h
 	( \
@@ -88,7 +103,8 @@ install::
 	  $(MAKE) install \
 	)
 	$(PKGROOT_BIND_UMOUNT)
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

@@ -61,6 +61,17 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo BSD > $@
+
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
 	  patch-files/runMe.sh.patch
@@ -81,7 +92,8 @@ install::
 	# Remove references to install dir from rpm text files
 	perl -pi -e "s#$(ROOT)##g" \
 	  `find $(ROOT)/$(PKGROOT)/ -type f -exec grep -Il . {} ';'`
+	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE
