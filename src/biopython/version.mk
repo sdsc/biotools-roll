@@ -1,6 +1,6 @@
 NAME           = biopython
-VERSION        = 1.64
-RELEASE        = 1
+VERSION        = 1.65
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

@@ -1,15 +1,15 @@
 NAME           = miRDeep2
-VERSION        = 0.0.5
-RELEASE        = 16
+VERSION        = 0.0.7
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)
 
 SOURCE_NAME    = mirdeep2
 SOURCE_SUFFIX  = zip
-SOURCE_VERSION = 0_0_5
+SOURCE_VERSION = 0_0_7
 SOURCE_PKG     = $(SOURCE_NAME)_$(SOURCE_VERSION).$(SOURCE_SUFFIX)
-SOURCE_DIR     = mirdeep2
+SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 PDF_NAME       =  PDF-API2
 PDF_SUFFIX     =  tar.gz

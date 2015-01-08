@@ -249,7 +249,7 @@ cat miRNAs_expressed_all_samples_16_19.csv
 END
   close(OUT);
   $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/cel-miR-41\s+87.00\s+cel-mir-41\s+87.00\s+87.00\s+509.68/, 'miRDeep2 works');
+  like($output, qr/cel-miR-41\s+87.00/, 'miRDeep2 works');
  `rm -rf $TESTFILE*`;
 }
 
@@ -288,7 +288,7 @@ $packageHome = '/opt/biotools/qiime';
 SKIP: {
   skip 'qimme not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output = `module load biotools; cd $TESTFILE.dir; python $packageHome/tests/all_tests.py`;
+  $output = `module load biotools; cd $TESTFILE.dir; python $packageHome/tests/all_tests.py 2>&1`;
   $count = 0;
   foreach $line(split(/\n/, $output)) {
     $count++ if $line =~ / ok/;
@@ -441,7 +441,7 @@ $packageHome = '/opt/biotools/stacks';
 SKIP: {
   skip 'stacks not installed', 1 if ! -d $packageHome;
   $output = `module load biotools; cstacks 2>&1`;
-  like($output, qr/cstacks 1.20/, 'stacks works');
+  like($output, qr/Advanced options:/, 'stacks works');
 }
 
 $packageHome = '/opt/biotools/rseqc';

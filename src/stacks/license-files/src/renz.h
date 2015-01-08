@@ -26,60 +26,66 @@ using std::map;
 #include <string>
 using std::string;
 
-const char *sbfI[]    = {"TGCAGG",            // CCTGCA/GG, SbfI
-			 "CCTGCA"};
-const char *pstI[]    = {"TGCAG",             // CTGCA/G, PstI
-			 "CTGCA"};
-const char *ecoRI[]   = {"AATTC",             // G/AATTC, EcoRI
-			 "GAATT"};
-const char *sgrAI[]   = {"CCGGCG", "CCGGTG",  // CR/CCGGYG, SgrAI; R=A or G; Y=C or T
-			 "CGCCGG", "CACCGG"};
-const char *notI[]    = {"GGCCGC",            // GC/GGCCGC, NotI
-			 "GCGGCC"};
-// const char *haeIII[]  = {"GGCC",
-// 			 "GGCC"};
-// const char *aluI[]    = {"AGCT",
-// 			 "AGCT"};
-const char *mseI[]    = {"TAA",               // T/TAA, MseI
- 			 "TTA"};
 const char *apeKI[]   = {"CAGC", "CTGC",      // G/CWGC, ApeKI; W=A or T
  			 "GTCG", "GACG"};
-const char *hindIII[] = {"AGCTT",             // A/AGCTT, HindIII
-			 "TCGAA"};
-const char *dpnII[]   = {"GATC",              // GATC, DpnII
-			 "GATC"};
-const char *sphI[]    = {"CATGC",             // GCATG/C, SphI
-			 "GCATG"};
-const char *nlaIII[]  = {"CATG",              // CATG, NlaIII
-			 "CATG"};
-const char *mluCI[]   = {"AATT",              // AATT, MluCI
-			 "AATT"};
-const char *ecoT22I[] = {"TGCAT",             // A/TGCAT, EcoT22I
-			 "ATGCA"};
-const char *ndeI[]    = {"TA",                // CA/TATG, NdeI
-			 "TA"};
-const char *nsiI[]    = {"TGCAT",             // ATGCA/T, NsiI
-			 "ATGCA"};
-const char *mspI[]    = {"CGG",               // C/CGG, MspI
-			 "CCG"};
-const char *sexAI[]   = {"CCAGGT", "CCTGGT",  // A/CCWGGT, SexAI; W=A or T
-			 "ACCTGG", "ACCAGG"};
-const char *sau3AI[]  = {"GATC",              // GATC, Sau3AI
-			 "GATC"};
+const char *apoI[]    = {"AATTC", "AATTT",    // R/AATTY, ApoI  (also known as XapI)
+                         "GAATT", "AAATT"};
 const char *bamHI[]   = {"GATCC",             // G/GATCC, BamHI
 			 "GGATC"};
-const char *xbaI[]    = {"CTAGA",             // T/CTAGA, XbaI
-			 "TCTAG"};
-const char *eaeI[]    = {"GGCCA", "GGCCG",    // Y/GGCCR, EaeI
-			 "TGGCC", "CGGCC"};
-const char *taqI[]    = {"CGA",               // T/CGA, TaqI
-			 "TCG"};
+const char *bgIII[]   = {"GATCT",             // A/GATCT, BgIII
+			 "AGATC"};
+const char *bstYI[]   = {"GATCC", "GATCT",    // R/GATCY, BstYI (also known as PsuI)
+                         "GGATC", "AGATC"};
 const char *claI[]    = {"CGAT",              // AT/CGAT, ClaI
                          "ATCG"};
-const char *nheI[]    = {"CTAGC",              // G/CTAGC, NheI
+const char *dpnII[]   = {"GATC",              // GATC, DpnII
+			 "GATC"};
+const char *eaeI[]    = {"GGCCA", "GGCCG",    // Y/GGCCR, EaeI
+			 "TGGCC", "CGGCC"};
+const char *ecoRI[]   = {"AATTC",             // G/AATTC, EcoRI
+			 "GAATT"};
+const char *ecoT22I[] = {"TGCAT",             // A/TGCAT, EcoT22I
+			 "ATGCA"};
+const char *hindIII[] = {"AGCTT",             // A/AGCTT, HindIII
+			 "TCGAA"};
+const char *mluCI[]   = {"AATT",              // AATT, MluCI
+			 "AATT"};
+const char *mseI[]    = {"TAA",               // T/TAA, MseI
+ 			 "TTA"};
+const char *mspI[]    = {"CGG",               // C/CGG, MspI
+			 "CCG"};
+const char *ndeI[]    = {"TA",                // CA/TATG, NdeI
+			 "TA"};
+const char *nheI[]    = {"CTAGC",             // G/CTAGC, NheI
                          "GCTAG"};
-const char *speI[]    = {"CTAGT",              // A/CTAGT, SpeI
+const char *nlaIII[]  = {"CATG",              // CATG, NlaIII
+			 "CATG"};
+const char *notI[]    = {"GGCCGC",            // GC/GGCCGC, NotI
+			 "GCGGCC"};
+const char *nsiI[]    = {"TGCAT",             // ATGCA/T, NsiI
+			 "ATGCA"};
+const char *pstI[]    = {"TGCAG",             // CTGCA/G, PstI
+			 "CTGCA"};
+const char *sacI[]    = {"AGCTC",             // GAGCT/C, SacI
+			 "GAGCT"};
+const char *sau3AI[]  = {"GATC",              // GATC, Sau3AI
+			 "GATC"};
+const char *sbfI[]    = {"TGCAGG",            // CCTGCA/GG, SbfI
+			 "CCTGCA"};
+const char *sexAI[]   = {"CCAGGT", "CCTGGT",  // A/CCWGGT, SexAI; W=A or T
+			 "ACCTGG", "ACCAGG"};
+const char *sgrAI[]   = {"CCGGCG", "CCGGTG",  // CR/CCGGYG, SgrAI; R=A or G; Y=C or T
+			 "CGCCGG", "CACCGG"};
+const char *speI[]    = {"CTAGT",             // A/CTAGT, SpeI
                          "ACTAG"};
+const char *sphI[]    = {"CATGC",             // GCATG/C, SphI
+			 "GCATG"};
+const char *taqI[]    = {"CGA",               // T/CGA, TaqI
+			 "TCG"};
+const char *xbaI[]    = {"CTAGA",             // T/CTAGA, XbaI
+			 "TCTAG"};
+const char *xhoI[]    = {"TCGAG",              // C/TCGAG, XhoI
+                         "CTCGA"};
 
 void 
 initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, map<string, int> &renz_len) {
@@ -109,6 +115,11 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz["claI"]    = claI;    // AT/CGAT, ClaI
     renz["nheI"]    = nheI;    // G/CTAGC, NheI
     renz["speI"]    = speI;    // A/CTAGT, SpeI
+    renz["apoI"]    = apoI;    // R/AATTY, ApoI, XapI
+    renz["bstYI"]   = bstYI;   // R/GATCY, BstYI, PsuI
+    renz["xhoI"]    = xhoI;    // C/TCGAG, XhoI
+    renz["sacI"]    = sacI;    // GAGCT/C, SacI
+    renz["bgIII"]   = bgIII;   // A/GATCT, BgIII
 
     renz_cnt["sbfI"]    = 1;
     renz_cnt["pstI"]    = 1;
@@ -135,6 +146,11 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz_cnt["claI"]    = 1;
     renz_cnt["nheI"]    = 1;
     renz_cnt["speI"]    = 1;
+    renz_cnt["apoI"]    = 2;
+    renz_cnt["bstYI"]   = 2;
+    renz_cnt["xhoI"]    = 1;
+    renz_cnt["sacI"]    = 1;
+    renz_cnt["bgIII"]   = 1;
 
     renz_len["sbfI"]    = 6;
     renz_len["pstI"]    = 5;
@@ -161,6 +177,11 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz_len["claI"]    = 4;
     renz_len["nheI"]    = 5;
     renz_len["speI"]    = 5;
+    renz_len["apoI"]    = 5;
+    renz_len["bstYI"]   = 5;
+    renz_len["xhoI"]    = 5;
+    renz_len["sacI"]    = 5;
+    renz_len["bgIII"]   = 5;
 }
 
 #endif // __RENZ_H__

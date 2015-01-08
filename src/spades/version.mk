@@ -1,6 +1,6 @@
 NAME           = spades
-VERSION        = 3.1.1
-RELEASE        = 1
+VERSION        = 3.5.0
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

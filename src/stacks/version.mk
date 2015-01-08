@@ -1,6 +1,6 @@
 NAME           = stacks
-VERSION        = 1.20
-RELEASE        = 1
+VERSION        = 1.23
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

@@ -1,6 +1,6 @@
 NAME           = pysam
-VERSION        = 0.8.0
-RELEASE        = 16
+VERSION        = 0.8.1
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

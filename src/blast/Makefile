@@ -98,6 +98,7 @@ install::
 	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(SOURCE_DIR)/c++; \
+	  perl -pi -e 's#/usr/bin/basename#basename#' Makefile; \
 	  make install \
 	)
 	$(PKGROOT_BIND_UMOUNT)

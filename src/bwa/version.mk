@@ -1,6 +1,6 @@
 NAME           = bwa
-VERSION        = 0.7.10
-RELEASE        = 1
+VERSION        = 0.7.12
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

@@ -1,6 +1,6 @@
 NAME           = bowtie2
-VERSION        = 2.2.3
-RELEASE        = 16
+VERSION        = 2.2.4
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)

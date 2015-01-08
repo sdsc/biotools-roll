@@ -1,6 +1,6 @@
 NAME           = rseqc
-VERSION        = 2.4
-RELEASE        = 1
+VERSION        = 2.5
+RELEASE        = 0
 PKGROOT        = /opt/biotools/$(NAME)
 
 SRC_SUBDIR     = $(NAME)
