@@ -1,11 +1,11 @@
-NAME           = bwa
+NAME           = sdsc-bwa
 VERSION        = 0.7.12
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/bwa
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = bwa
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = bwa
 SOURCE_SUFFIX  = tar.bz2
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

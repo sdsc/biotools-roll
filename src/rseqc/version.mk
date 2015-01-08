@@ -1,9 +1,9 @@
-NAME           = rseqc
+NAME           = sdsc-rseqc
 VERSION        = 2.5
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/rseqc
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = rseqc
 
 SOURCE_NAME    = RSeQC
 SOURCE_SUFFIX  = tar.gz

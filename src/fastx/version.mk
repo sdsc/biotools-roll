@@ -1,9 +1,9 @@
-NAME                  = fastx
+NAME                  = sdsc-fastx
 VERSION               = 0.0.14
 RELEASE               = 17
-PKGROOT               = /opt/biotools/$(NAME)
+PKGROOT               = /opt/biotools/fastx
 
-SRC_SUBDIR            = $(NAME)
+SRC_SUBDIR            = fastx
 
 SOURCE_NAME           = fastx_toolkit
 SOURCE_SUFFIX         = tar.bz2

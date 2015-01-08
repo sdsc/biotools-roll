@@ -1,9 +1,9 @@
-NAME           = gmap_gsnap
+NAME           = sdsc-gmap_gsnap
 VERSION        = 2014_12_16.v2
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/gmap_gsnap
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = gmap_gsnap
 
 SOURCE_NAME    = gmap
 SOURCE_SUFFIX  = tar.gz

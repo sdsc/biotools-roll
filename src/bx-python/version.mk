@@ -1,11 +1,11 @@
-NAME           = bx-python
+NAME           = sdsc-bx-python
 VERSION        = 0.7.1
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/bx-python
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = bx-python
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = bx-python
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

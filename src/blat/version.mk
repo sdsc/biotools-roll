@@ -1,9 +1,9 @@
-NAME           = blat
+NAME           = sdsc-blat
 VERSION        = 35
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/blat
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = blat
 
 SOURCE_NAME    = blatSrc
 SOURCE_SUFFIX  = tar.gz

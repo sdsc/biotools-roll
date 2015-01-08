@@ -1,7 +1,7 @@
 PACKAGE     = biotools
 CATEGORY    = applications
 
-NAME        = $(PACKAGE)-modules
+NAME        = sdsc-$(PACKAGE)-modules
 RELEASE     = 17
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 

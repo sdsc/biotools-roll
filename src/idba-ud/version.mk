@@ -1,9 +1,9 @@
-NAME           = idba-ud
+NAME           = sdsc-idba-ud
 VERSION        = 1.1.1
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/idba-ud
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = idba-ud
 
 SOURCE_NAME    = idba
 SOURCE_SUFFIX  = tar.gz

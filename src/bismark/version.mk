@@ -1,11 +1,11 @@
-NAME           = bismark
+NAME           = sdsc-bismark
 VERSION        = 0.13.1
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/bismark
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = bismark
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = bismark
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)_v$(SOURCE_VERSION).$(SOURCE_SUFFIX)

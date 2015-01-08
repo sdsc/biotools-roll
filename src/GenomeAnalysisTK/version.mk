@@ -1,11 +1,11 @@
-NAME           = GenomeAnalysisTK
+NAME           = sdsc-GenomeAnalysisTK
 VERSION        = 3.3.0
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/GenomeAnalysisTK
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = GenomeAnalysisTK
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = GenomeAnalysisTK
 SOURCE_SUFFIX  = tar.bz2
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

@@ -1,11 +1,11 @@
-NAME           = bowtie2
+NAME           = sdsc-bowtie2
 VERSION        = 2.2.4
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/bowtie2
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = bowtie2
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = bowtie2
 SOURCE_SUFFIX  = zip
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION)-source.$(SOURCE_SUFFIX)

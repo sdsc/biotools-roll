@@ -1,11 +1,11 @@
-NAME           = plink
+NAME           = sdsc-plink
 VERSION        = 1.07
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/plink
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = plink
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = plink
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

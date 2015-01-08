@@ -1,9 +1,9 @@
-NAME           = miRDeep2
+NAME           = sdsc-miRDeep2
 VERSION        = 0.0.7
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/miRDeep2
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = miRDeep2
 
 SOURCE_NAME    = mirdeep2
 SOURCE_SUFFIX  = zip

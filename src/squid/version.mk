@@ -1,11 +1,11 @@
-NAME           = squid
+NAME           = sdsc-squid
 VERSION        = 1.9g
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/squid
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = squid
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = squid
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

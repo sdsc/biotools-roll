@@ -1,9 +1,9 @@
-NAME           = trinity
+NAME           = sdsc-trinity
 VERSION        = 20140717
 RELEASE        = 1
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/trinity
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = trinity
 
 SOURCE_NAME    = trinityrnaseq
 SOURCE_SUFFIX  = tar.gz

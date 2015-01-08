@@ -1,4 +1,4 @@
-NAME       = biotools-roll-test
+NAME       = sdsc-biotools-roll-test
 VERSION    = 2
 RELEASE    = 18
 PKGROOT    = /root/rolltests

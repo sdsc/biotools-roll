@@ -1,9 +1,9 @@
-NAME           = spades
+NAME           = sdsc-spades
 VERSION        = 3.5.0
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/spades
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = spades
 
 SOURCE_NAME    = SPAdes
 SOURCE_SUFFIX  = tar.gz

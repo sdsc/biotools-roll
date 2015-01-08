@@ -1,11 +1,11 @@
-NAME           = fastqc
+NAME           = sdsc-fastqc
 VERSION        = 0.11.2
 RELEASE        = 1
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/fastqc
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = fastqc
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = fastqc
 SOURCE_SUFFIX  = zip
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)_v$(SOURCE_VERSION).$(SOURCE_SUFFIX)

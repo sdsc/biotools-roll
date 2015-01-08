@@ -1,9 +1,9 @@
-NAME           = picard
+NAME           = sdsc-picard
 VERSION        = 1.119
 RELEASE        = 1
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/picard
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = picard
 
 SOURCE_NAME    = picard-tools
 SOURCE_SUFFIX  = zip

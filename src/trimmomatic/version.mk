@@ -1,11 +1,11 @@
-NAME           = trimmomatic
+NAME           = sdsc-trimmomatic
 VERSION        = 0.32
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/trimmomatic
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = trimmomatic
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = trimmomatic
 SOURCE_SUFFIX  = zip
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = Trimmomatic-Src-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

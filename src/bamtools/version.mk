@@ -1,11 +1,11 @@
-NAME           = bamtools
+NAME           = sdsc-bamtools
 VERSION        = 2.3.0
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/bamtools
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = bamtools
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = bamtools
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

@@ -1,11 +1,11 @@
-NAME           = bedtools
+NAME           = sdsc-bedtools
 VERSION        = 2.22.1
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/bedtools
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = bedtools
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = bedtools
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

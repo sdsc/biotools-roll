@@ -1,11 +1,11 @@
-NAME           = SOAPsnp
+NAME           = sdsc-SOAPsnp
 VERSION        = v1.03
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/SOAPsnp
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = SOAPsnp
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = SOAPsnp
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

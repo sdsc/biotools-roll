@@ -1,11 +1,11 @@
-NAME           = pysam
+NAME           = sdsc-pysam
 VERSION        = 0.8.1
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/pysam
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = pysam
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = pysam
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

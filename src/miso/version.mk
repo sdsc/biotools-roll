@@ -1,9 +1,9 @@
-NAME           = miso
+NAME           = sdsc-miso
 VERSION        = 0.5.2
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/miso
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = miso
 
 SOURCE_NAME    = misopy
 SOURCE_SUFFIX  = tar.gz

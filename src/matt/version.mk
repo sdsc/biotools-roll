@@ -1,9 +1,9 @@
-NAME           = matt
+NAME           = sdsc-matt
 VERSION        = 1.00
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/matt
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = matt
 
 SOURCE_NAME    = Matt
 SOURCE_SUFFIX  = tar.gz

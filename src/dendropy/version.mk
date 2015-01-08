@@ -1,9 +1,9 @@
-NAME           = dendropy
+NAME           = sdsc-dendropy
 VERSION        = 3.12.0
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/dendropy
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = dendropy
 
 SOURCE_NAME    = DendroPy
 SOURCE_SUFFIX  = tar.gz

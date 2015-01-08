@@ -1,9 +1,9 @@
-NAME           = edena
+NAME           = sdsc-edena
 VERSION        = 3.131028
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/edena
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = edena
 
 SOURCE_NAME    = Edena
 SOURCE_SUFFIX  = tar.gz

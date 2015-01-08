@@ -1,11 +1,11 @@
-NAME           = tophat
+NAME           = sdsc-tophat
 VERSION        = 2.0.13
 RELEASE        = 2
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/tophat
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = tophat
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = tophat
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

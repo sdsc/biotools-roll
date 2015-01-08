@@ -1,9 +1,9 @@
-NAME           = qiime
+NAME           = sdsc-qiime
 VERSION        = 1.8.0
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/qiime
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = qiime
 
 SOURCE_NAME    = qiime-tests
 SOURCE_SUFFIX  = tar.gz

@@ -1,11 +1,11 @@
-NAME           = samtools
+NAME           = sdsc-samtools
 VERSION        = 1.1
 RELEASE        = 1
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/samtools
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = samtools
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = samtools
 SOURCE_SUFFIX  = tar.bz2
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

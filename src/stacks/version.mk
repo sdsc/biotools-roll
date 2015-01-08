@@ -1,11 +1,11 @@
-NAME           = stacks
+NAME           = sdsc-stacks
 VERSION        = 1.23
 RELEASE        = 0
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/stacks
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = stacks
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = stacks
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)

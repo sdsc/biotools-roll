@@ -1,9 +1,9 @@
-NAME           = htseq
+NAME           = sdsc-htseq
 VERSION        = 0.6.1
 RELEASE        = 1
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/htseq
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = htseq
 
 SOURCE_NAME    = HTSeq
 SOURCE_SUFFIX  = tar.gz

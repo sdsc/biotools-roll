@@ -1,11 +1,11 @@
-NAME           = randfold
+NAME           = sdsc-randfold
 VERSION        = 2.0
 RELEASE        = 16
-PKGROOT        = /opt/biotools/$(NAME)
+PKGROOT        = /opt/biotools/randfold
 
-SRC_SUBDIR     = $(NAME)
+SRC_SUBDIR     = randfold
 
-SOURCE_NAME    = $(NAME)
+SOURCE_NAME    = randfold
 SOURCE_SUFFIX  = tar.gz
 SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
