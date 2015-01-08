@@ -182,11 +182,11 @@ SKIP: {
 
 $packageHome = '/opt/biotools/fastqc';
 SKIP: {
-  skip 'fastax not installed', 1 if ! -d $packageHome;
+  skip 'fastqc not installed', 1 if ! -d $packageHome;
   `/bin/ls $packageHome/fastqc 2>&1`;
   ok($? == 0, 'fastqc script installed');
   # TODO: test
-  skip 'no fastax test written', 1;
+  skip 'no fastqc test written', 1;
 }
 
 $packageHome = '/opt/biotools/fastx';
