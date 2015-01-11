@@ -1,6 +1,6 @@
 // -*-mode:c++; c-style:k&r; c-basic-offset:4;-*-
 //
-// Copyright 2011-2012, Julian Catchen <jcatchen@uoregon.edu>
+// Copyright 2011-2015, Julian Catchen <jcatchen@uoregon.edu>
 //
 // This file is part of Stacks.
 //
@@ -44,6 +44,8 @@ const char *eaeI[]    = {"GGCCA", "GGCCG",    // Y/GGCCR, EaeI
 			 "TGGCC", "CGGCC"};
 const char *ecoRI[]   = {"AATTC",             // G/AATTC, EcoRI
 			 "GAATT"};
+const char *ecoRV[]   = {"ATC",               // GAT/ATC, EcoRV
+			 "GAT"};
 const char *ecoT22I[] = {"TGCAT",             // A/TGCAT, EcoT22I
 			 "ATGCA"};
 const char *hindIII[] = {"AGCTT",             // A/AGCTT, HindIII
@@ -84,7 +86,7 @@ const char *taqI[]    = {"CGA",               // T/CGA, TaqI
 			 "TCG"};
 const char *xbaI[]    = {"CTAGA",             // T/CTAGA, XbaI
 			 "TCTAG"};
-const char *xhoI[]    = {"TCGAG",              // C/TCGAG, XhoI
+const char *xhoI[]    = {"TCGAG",             // C/TCGAG, XhoI
                          "CTCGA"};
 
 void 
@@ -120,6 +122,7 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz["xhoI"]    = xhoI;    // C/TCGAG, XhoI
     renz["sacI"]    = sacI;    // GAGCT/C, SacI
     renz["bgIII"]   = bgIII;   // A/GATCT, BgIII
+    renz["ecoRV"]   = ecoRV;   // GAT/ATC, EcoRV
 
     renz_cnt["sbfI"]    = 1;
     renz_cnt["pstI"]    = 1;
@@ -151,6 +154,7 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz_cnt["xhoI"]    = 1;
     renz_cnt["sacI"]    = 1;
     renz_cnt["bgIII"]   = 1;
+    renz_cnt["ecoRV"]   = 1;
 
     renz_len["sbfI"]    = 6;
     renz_len["pstI"]    = 5;
@@ -182,6 +186,7 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz_len["xhoI"]    = 5;
     renz_len["sacI"]    = 5;
     renz_len["bgIII"]   = 5;
+    renz_len["ecoRV"]   = 3;
 }
 
 #endif // __RENZ_H__

@@ -1,5 +1,5 @@
 NAME           = sdsc-stacks
-VERSION        = 1.23
+VERSION        = 1.24
 RELEASE        = 0
 PKGROOT        = /opt/biotools/stacks
 
