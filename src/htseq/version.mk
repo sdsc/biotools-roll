@@ -1,6 +1,6 @@
 NAME           = sdsc-htseq
-VERSION        = 0.6.1
-RELEASE        = 1
+VERSION        = 0.6.1p1
+RELEASE        = 0
 PKGROOT        = /opt/biotools/htseq
 
 SRC_SUBDIR     = htseq
