@@ -58,8 +58,10 @@
 # randfold depends on squid
 # stacks depends on samtools
 # tophat depends on samtools
+# qiime is broken
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name cufflinks \
+  -not -name qiime \
   -not -name randfold \
   -not -name stacks \
   -not -name tophat` \
