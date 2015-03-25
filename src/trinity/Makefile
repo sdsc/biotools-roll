@@ -76,6 +76,7 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
 	  patch-files/runMe.sh.patch
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/trinity-plugins//Makefile patch-files/Makefile.plugins.patch
 	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
 	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" \
 	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh

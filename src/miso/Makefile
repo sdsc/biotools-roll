@@ -89,7 +89,7 @@ install::
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_PYTHON); \
-	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
+	  pip install --exists-action i --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)
 	$(INSTALL_LICENSE_FILES)
