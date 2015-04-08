@@ -251,7 +251,7 @@ END
   close(OUT);
   $output = `bash $TESTFILE.sh 2>&1`;
   like($output, qr/cel-miR-41\s+87.00/, 'miRDeep2 works');
- `rm -rf $TESTFILE*`;
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/miso';
@@ -264,8 +264,28 @@ SKIP: {
 $packageHome = '/opt/biotools/picard';
 SKIP: {
   skip 'picard not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools; java -jar $packageHome/FastqToSam.jar --help 2>&1`;
-  like($output, qr/Extracts read sequences and qualities from the input fastq file/, 'picard works');
+  # toy.bam from samtools sources
+  open(OUT, ">$TESTFILE.sam");
+  print OUT <<'END';
+@SQ	SN:ref	LN:45
+@SQ	SN:ref2	LN:40
+r001	163	ref	7	30	8M4I4M1D3M	=	37	39	TTAGATAAAGAGGATACTG	*	XX:B:S,12561,2,20,112
+r002	0	ref	9	30	1S2I6M1P1I1P1I4M2I	*	0	0	AAAAGATAAGGGATAAA	*
+r003	0	ref	9	30	5H6M	*	0	0	AGCTAA	*
+r004	0	ref	16	30	6M14N1I5M	*	0	0	ATAGCTCTCAGC	*
+r003	16	ref	29	30	6H5M	*	0	0	TAGGC	*
+r001	83	ref	37	30	9M	=	7	-39	CAGCGCCAT	*
+x1	0	ref2	1	30	20M	*	0	0	aggttttataaaacaaataa	????????????????????
+x2	0	ref2	2	30	21M	*	0	0	ggttttataaaacaaataatt	?????????????????????
+x3	0	ref2	6	30	9M4I13M	*	0	0	ttataaaacAAATaattaagtctaca	??????????????????????????
+x4	0	ref2	10	30	25M	*	0	0	CaaaTaattaagtctacagagcaac	?????????????????????????
+x5	0	ref2	12	30	24M	*	0	0	aaTaattaagtctacagagcaact	????????????????????????
+x6	0	ref2	14	30	23M	*	0	0	Taattaagtctacagagcaacta	???????????????????????
+END
+  close(OUT);
+  $output = `module load biotools; java -jar $packageHome/picard.jar CollectAlignmentSummaryMetrics INPUT=$TESTFILE.sam OUTPUT=$TESTFILE.out 2>&1; cat $TESTFILE.out`;
+  like($output, qr/UNPAIRED\s+10/, 'picard works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/plink';

@@ -1,6 +1,6 @@
 NAME           = sdsc-picard
-VERSION        = 1.119
-RELEASE        = 1
+VERSION        = 1.130
+RELEASE        = 0
 PKGROOT        = /opt/biotools/picard
 
 SRC_SUBDIR     = picard
