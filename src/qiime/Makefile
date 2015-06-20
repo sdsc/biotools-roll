@@ -59,8 +59,6 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
 ROLLPY = python
 PYVERSION = 2.7
 

@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-qiime
 VERSION        = 1.8.0
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/qiime
 
 SRC_SUBDIR     = qiime

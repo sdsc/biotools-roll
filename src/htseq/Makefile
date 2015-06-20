@@ -56,8 +56,6 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
 ROLLPY = python
 
 -include $(ROCKSROOT)/etc/Rules.mk

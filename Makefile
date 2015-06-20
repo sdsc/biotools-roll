@@ -54,18 +54,20 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
-#
+
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
 
 -include $(ROLLSROOT)/etc/Rolls.mk
 include Rolls.mk
 
-default: roll
+default:
+	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" roll
 
 clean::
 	rm -f _arch bootstrap.py
 
-distclean: clean
+distclean:: clean
 	rm -fr RPMS SRPMS cache
 	-rm -f build.log
