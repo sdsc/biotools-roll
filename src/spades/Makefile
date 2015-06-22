@@ -57,7 +57,7 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
-ROLLCOMPILER = gnu
+override ROLLCOMPILER = gnu
 COMPILERNAME = gnu
 
 -include $(ROCKSROOT)/etc/Rules.mk
