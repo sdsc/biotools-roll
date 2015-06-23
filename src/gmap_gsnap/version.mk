@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-gmap_gsnap
 VERSION        = 2014_12_16.v2
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/gmap_gsnap
 
 SRC_SUBDIR     = gmap_gsnap

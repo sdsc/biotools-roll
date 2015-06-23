@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-idba-ud
 VERSION        = 1.1.1
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/idba-ud
 
 SRC_SUBDIR     = idba-ud

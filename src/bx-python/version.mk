@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-bx-python
 VERSION        = 0.7.1
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/bx-python
 
 SRC_SUBDIR     = bx-python

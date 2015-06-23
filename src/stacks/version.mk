@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-stacks
 VERSION        = 1.24
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/stacks
 
 SRC_SUBDIR     = stacks
