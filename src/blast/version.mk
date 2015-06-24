@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-blast
 VERSION        = 2.2.30
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/blast
 
 SRC_SUBDIR     = blast

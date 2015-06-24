@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-htseq
 VERSION        = 0.6.1p1
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/htseq
 
 SRC_SUBDIR     = htseq

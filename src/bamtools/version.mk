@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-bamtools
 VERSION        = 2.3.0
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/bamtools
 
 SRC_SUBDIR     = bamtools

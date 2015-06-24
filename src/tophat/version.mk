@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-tophat
 VERSION        = 2.0.13
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/tophat
 
 SRC_SUBDIR     = tophat

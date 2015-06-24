@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-edena
 VERSION        = 3.131028
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/edena
 
 SRC_SUBDIR     = edena

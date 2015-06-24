@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-miso
 VERSION        = 0.5.2
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/miso
 
 SRC_SUBDIR     = miso

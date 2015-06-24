@@ -56,18 +56,20 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
-
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+# NOTE: The SeqAN package bundled with tophat fails to compile with the 4.9.x
+# gnu compilers.  Until that's fixed, we take steps to use the system gnu.
+
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
-	$(MODULE_LOAD_CC); \
+	if test "$(COMPILERNAME)" != "gnu"; then \
+	  $(MODULE_LOAD_CC); \
+	fi; \
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CC); \
@@ -80,11 +82,16 @@ LICENSE: $(SRC_DIRS)
 	echo OSI and boost > $@
 
 build: $(SRC_DIRS)
-	perl -pi -e 's#(typedef.*__int)#//$1#' $(SOURCE_DIR)/src/SeqAn-1.3/seqan/platform/platform_gcc.h
+	if test "$(COMPILERNAME)" != "gnu"; then \
+	  perl -pi -e 's#(typedef.*__int)#//$1#' $(SOURCE_DIR)/src/SeqAn-1.3/seqan/platform/platform_gcc.h; \
+	fi
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_BOOST); \
 	  $(MODULE_LOAD_EIGEN); \
+	  if test "$(COMPILERNAME)" = "gnu"; then \
+	    export PATH=/usr/bin:${PATH}; \
+	  fi; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \

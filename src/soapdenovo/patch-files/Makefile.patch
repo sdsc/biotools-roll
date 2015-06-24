@@ -1,13 +1,36 @@
---- SOAPdenovo2-src-r240/Makefile	2013-07-08 21:00:24.000000000 -0700
-+++ patch-files/Makefile	2014-04-01 07:28:08.136477492 -0700
-@@ -1,8 +1,8 @@
+--- Makefile	2015-06-19 21:17:12.000000000 -0700
++++ patch-files/Makefile	2015-06-19 21:17:49.000000000 -0700
+@@ -1,4 +1,4 @@
 -CC = g++
-+CC = icc
++CXX = g++
  ifdef debug
  CFLAGS=         -O0 -g -fomit-frame-pointer
  else
--CFLAGS=         -O4 -fomit-frame-pointer
-+CFLAGS=         -O4 -fomit-frame-pointer
- endif
- 
- SUBDIRS = sparsePregraph standardPregraph
+@@ -51,11 +51,11 @@
+ SOAPdenovo-63mer:
+ 	@cd sparsePregraph;make 63mer=1 debug=1;cd ..;
+ 	@cd standardPregraph;make 63mer=1 debug=1;cd ..;
+-	@$(CC) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-63mer
++	@$(CXX) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-63mer
+ SOAPdenovo-127mer:
+ 	@cd sparsePregraph;make 127mer=1 debug=1;cd ..;
+ 	@cd standardPregraph;make 127mer=1 debug=1;cd ..;
+-	@$(CC) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-127mer
++	@$(CXX) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-127mer
+ clean:
+ 	@cd sparsePregraph;make clean;cd ..;
+ 	@cd standardPregraph;make clean;cd ..;
+@@ -64,11 +64,11 @@
+ SOAPdenovo-63mer:
+ 	@cd sparsePregraph;make 63mer=1;cd ..;
+ 	@cd standardPregraph;make 63mer=1;cd ..;
+-	@$(CC) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-63mer
++	@$(CXX) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-63mer
+ SOAPdenovo-127mer:
+ 	@cd sparsePregraph;make 127mer=1;cd ..;
+ 	@cd standardPregraph;make 127mer=1;cd ..;
+-	@$(CC) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-127mer
++	@$(CXX) sparsePregraph/*.o standardPregraph/*.o $(LIBPATH) $(LIBS) $(EXTRA_FLAGS) -o SOAPdenovo-127mer
+ clean:
+ 	@cd sparsePregraph;make clean;cd ..;
+ 	@cd standardPregraph;make clean;cd ..;

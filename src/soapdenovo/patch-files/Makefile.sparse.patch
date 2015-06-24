@@ -1,13 +1,26 @@
---- SOAPdenovo2-src-r240/sparsePregraph/Makefile	2013-07-08 21:00:40.000000000 -0700
-+++ patch-files/Makefile.sparse	2014-04-01 07:29:00.856785089 -0700
-@@ -1,8 +1,8 @@
+--- Makefile.sparse	2015-06-19 21:19:30.000000000 -0700
++++ patch-files/Makefile.sparse	2015-06-19 21:20:05.000000000 -0700
+@@ -1,4 +1,4 @@
 -CC=            g++ # /opt/blc/gcc-4.5.0/bin/gcc #gcc
-+CC=            icc # /opt/blc/gcc-4.5.0/bin/gcc #gcc
++CXX=            g++ # /opt/blc/gcc-4.5.0/bin/gcc #gcc
  ifdef debug
  CFLAGS=         -O0 -g -fomit-frame-pointer #-static #-mcrc32 -march=core2 -msse4.1 -msse4.2
  else
--CFLAGS=         -O4 -fomit-frame-pointer #-static #-mcrc32 -march=core2 -msse4.1 -msse4.2
-+CFLAGS=         -O3 -fomit-frame-pointer
- endif
+@@ -62,7 +62,7 @@
  
- DFLAGS=         
+ .cpp.o:
+ 		@printf "Compiling $<...                             \r"; \
+-		$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) $< || echo "Error in command: $(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) $<"
++		$(CXX) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) $< || echo "Error in command: $(CXX) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) $<"
+ 
+ all:		clean $(OBJS) 
+ #pregraph_sparse
+@@ -74,7 +74,7 @@
+ 
+ pregraph_sparse: clean	envTest $(OBJS)
+ 		@printf "Linking...                                                       \r"
+-		#@$(CC) $(CFLAGS)$(INCLUDES) -o $(PROG)  $(OBJS) $(LIBPATH) $(LIBS) $(ENTRAFLAGS)
++		#@$(CXX) $(CFLAGS)$(INCLUDES) -o $(PROG)  $(OBJS) $(LIBPATH) $(LIBS) $(ENTRAFLAGS)
+ 		@printf "$(PROG) compilation done.\n";
+ 
+ clean:

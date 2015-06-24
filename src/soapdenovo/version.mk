@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-soapdenovo
 VERSION        = r240
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/soapdenovo
 
 SRC_SUBDIR     = soapdenovo

@@ -1,6 +1,11 @@
+# Build of randfold (which depends on squid) fails if squid is compiled
+# w/anything but gnu.
+override ROLLCOMPILER = gnu
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-squid
 VERSION        = 1.9g
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/squid
 
 SRC_SUBDIR     = squid

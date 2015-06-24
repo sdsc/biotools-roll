@@ -1,6 +1,11 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-velvet
 VERSION        = 1.2.10
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/velvet
 
 SRC_SUBDIR     = velvet

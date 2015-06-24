@@ -57,9 +57,6 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
-
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
@@ -82,8 +79,6 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	patch $(SOURCE_DIR)/sparsePregraph/Makefile \
 	  patch-files/Makefile.sparse.patch
-	patch $(SOURCE_DIR)/standardPregraph/Makefile \
-	  patch-files/Makefile.standard.patch
 	patch $(SOURCE_DIR)/sparsePregraph/multi_threads.cpp \
 	  patch-files/multi_threads.cpp.patch
 	patch $(SOURCE_DIR)/sparsePregraph/build_preArc.cpp \
@@ -95,7 +90,7 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) \
+	  $(MAKE) CC=$(CC) CXX=$(CXX) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 

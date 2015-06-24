@@ -56,9 +56,6 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
-
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
@@ -78,12 +75,10 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv3 > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/src/Makefile patch-files/Makefile.patch
 	( \
 	  $(MODULE_LOAD_CXX); \
-	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
-	  make \
+	  make CCC=$(CXX) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 

@@ -57,9 +57,6 @@
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
-ROLLCOMPILER = intel
-COMPILERNAME = intel
-
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
@@ -79,14 +76,11 @@ LICENSE: $(SRC_DIRS)
 	echo GPL > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
 	  $(MODULE_LOAD_CC); \
-	  export CC=$(CC); \
-	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \
-	  $(MAKE) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color \
+	  $(MAKE) CC=$(CC) CXX=$(CXX) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1'; \
+	  $(MAKE) CC=$(CC) CXX=$(CXX) 'MAXKMERLENGTH=63' 'OPENMP=1' 'BIGASSEMBLY=1' 'LONGSEQUENCES=1' color \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
