@@ -3,6 +3,11 @@ ifndef ROLLCOMPILER
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
+ifndef ROLLMPI
+  ROLLMPI = rocks-openmpi
+endif
+MPINAME := $(firstword $(subst /, ,$(ROLLMPI)))
+
 NAME           = sdsc-gmap_gsnap
 VERSION        = 2014_12_16.v2
 RELEASE        = 1
