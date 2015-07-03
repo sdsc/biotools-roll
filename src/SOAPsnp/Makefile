@@ -64,8 +64,13 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
+	$(MODULE_LOAD_CXX); \
+	$(MODULE_LOAD_MPI); \
 	( \
-	  $(DESCRIBE_PKG) \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CXX); \
+	  $(DESCRIBE_MPI); \
+	  $(DESCRIBE_BOOST) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -75,7 +80,11 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) \
+	  $(MODULE_LOAD_CXX); \
+	  $(MODULE_LOAD_MPI); \
+	  $(MODULE_LOAD_BOOST); \
+	  perl -pi -e "s#(CXXFLAGS\s*=\s*)#\$$1 -I$${BOOSTHOME}/include #" makefile; \
+	  $(MAKE) CXX=$(CXX) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
