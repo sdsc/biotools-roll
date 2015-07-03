@@ -67,7 +67,8 @@ DESCRIPTION:
 	$(MODULE_LOAD_CC); \
 	( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_CC) \
+	  $(DESCRIBE_CC); \
+	  $(DESCRIBE_MPI) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -77,6 +78,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_MPI); \
 	  cd $(SOURCE_DIR); \
 	  export CC=$(CC); \
 	  ./configure --prefix=$(PKGROOT) --enable-avx2=no; \
