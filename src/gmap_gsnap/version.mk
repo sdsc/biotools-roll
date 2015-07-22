@@ -10,7 +10,7 @@ MPINAME := $(firstword $(subst /, ,$(ROLLMPI)))
 
 NAME           = sdsc-gmap_gsnap
 VERSION        = 2014_12_16.v2
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/gmap_gsnap
 
 SRC_SUBDIR     = gmap_gsnap

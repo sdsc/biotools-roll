@@ -91,6 +91,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	$(PKGROOT_BIND_MOUNT)
 	( \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_MPI); \
 	  cd $(SOURCE_DIR); \
 	  make install; \
 	  cp tests/ss.chr17test  tests/ss.her2 $(PKGROOT)/tests \
