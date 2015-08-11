@@ -55,58 +55,44 @@
 # @Copyright@
 
 REDHAT.ROOT = $(CURDIR)/../../
-RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
-
 $(NAME).spec: DESCRIPTION LICENSE
+ROLLCOMPILER=gnu
 
 DESCRIPTION:
 	( \
-	  $(DESCRIBE_PKG) \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_MKL) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
 	$(CHECK_LICENSE_FILES)
-	echo Expat > $@
+	echo GPLv3 > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/cpp/Makefile patch-files/Makefile.cpp.patch
 	( \
-	  cd $(SOURCE_DIR); \
-	  $(MAKE) LIBCURSES='-lcurses -ltinfo'; \
-          cd htslib-* ; \
-          make; \
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_MKL); \
+           export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
+           perl -pi -e "s!ROOTMKL!$${MKLLIB}!g" $(SOURCE_DIR)/cpp/Makefile; \
+           cd $(SOURCE_DIR); \
+	   $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/include/bam
-	( \
-	  cd $(SOURCE_DIR); \
-	  make prefix=$(ROOT)/$(PKGROOT) install; \
-          cp bcftools/{bcftools,vcfutils.pl} misc/*.java \
-             $(ROOT)/$(PKGROOT)/bin/; \
-          cp htslib-*/tabix $(ROOT)/$(PKGROOT)/bin; \
-          cp htslib-*/*.a $(ROOT)/$(PKGROOT)/lib; \
-          cp *.a $(ROOT)/$(PKGROOT)/lib; \
-	  cp misc/*.java misc/*.pl misc/ace2sam \
-	     $(ROOT)/$(PKGROOT)/bin/; \
-	  cp -r examples $(ROOT)/$(PKGROOT); \
-	  cp libbam.a htslib*/libhts.a $(ROOT)/$(PKGROOT)/lib/; \
-	  cp -r *.h htslib*/htslib $(ROOT)/$(PKGROOT)/include/bam \
-	)
-	mkdir -p -m 755 $(SAMTOOLS_CACHE)
-	cp -r $(ROOT)/$(PKGROOT)/* $(SAMTOOLS_CACHE)/
-	# cufflinks build requires this
-	ln -s $(SAMTOOLS_CACHE)/include/bam/version.h \
-	      $(SAMTOOLS_CACHE)/include/bam/version.hpp
+	cp -r $(SOURCE_DIR)/bin/*  $(ROOT)/$(PKGROOT)/bin
+	cp -r $(SOURCE_DIR)/lib/*  $(ROOT)/$(PKGROOT)/lib
+	cp -r $(SOURCE_DIR)/examples  $(ROOT)/$(PKGROOT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

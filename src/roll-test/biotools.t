@@ -15,7 +15,7 @@ my @packages = (
   'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq', 'idba-ud', 'matt',
   'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime', 'randfold',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'tophat',
-  'trimmomatic', 'trinity', 'velvet', 'ViennaRNA','stacks','rseqc'
+  'trimmomatic', 'trinity', 'vcftools','velvet', 'ViennaRNA','stacks','rseqc'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -293,8 +293,8 @@ SKIP: {
   skip 'plink not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
   `cp $packageHome/examples/* $TESTFILE.dir`;
-  $output = `module load biotools; cd $TESTFILE.dir; plink --file hapmap1 2>&1`;
-  like($output, qr/After frequency and genotyping pruning, there are 83534 SNPs/, 'plink works');
+  $output = `module load biotools; cd $TESTFILE.dir; plink --file hapmap1 2>&1;cat plink.log`;
+  like($output, qr/83534 variants, 89 people/, 'plink works');
   `rm -rf $TESTFILE.dir`;
 }
 
@@ -425,6 +425,15 @@ SKIP: {
   `mkdir $TESTFILE.dir`;
   $output = `module load biotools; cd $TESTFILE.dir; cp $packageHome/sample_data/test_Trinity_Assembly/*.gz .; $packageHome/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
   like($output, qr/All commands completed successfully. :-\)/, 'trinity works');
+  `rm -rf $TESTFILE.dir`;
+}
+
+$packageHome = '/opt/biotools/vcftools';
+SKIP: {
+  skip 'vcftools not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  $output = `module load biotools; cd $TESTFILE.dir; cp $packageHome/examples/* .;vcftools --vcf cmp-test-a.vcf --diff cmp-test-b.vcf 2>&1`;
+  like($output, qr/After filtering, kept 6 out of a possible 6 Sites/, 'vcftools works');
   `rm -rf $TESTFILE.dir`;
 }
 

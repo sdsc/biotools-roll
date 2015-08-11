@@ -1,6 +1,6 @@
 NAME           = sdsc-samtools
-VERSION        = 1.1
-RELEASE        = 1
+VERSION        = 1.2
+RELEASE        = 0
 PKGROOT        = /opt/biotools/samtools
 
 SRC_SUBDIR     = samtools

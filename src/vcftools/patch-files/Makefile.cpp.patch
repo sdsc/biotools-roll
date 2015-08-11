@@ -1,0 +1,19 @@
+--- vcftools_0.1.12b/cpp/Makefile	2014-08-01 12:11:22.000000000 -0700
++++ patch-files/Makefile	2015-06-04 23:27:23.539743825 -0700
+@@ -8,6 +8,7 @@
+ # Output executable
+ EXECUTABLE = vcftools
+ # Flag used to turn on compilation of PCA routines
++#define VCFTOOLS_PCA
+ ifndef VCFTOOLS_PCA
+ 	VCFTOOLS_PCA = 0
+ endif
+@@ -29,7 +30,7 @@
+ 	# Define flag for PCA routine compilation
+ 	CPPFLAGS += -DVCFTOOLS_PCA
+ 	# Add LAPACK library
+-	LIB += -llapack	
++	LIB += -LROOTMKL -lmkl_rt -lm
+ 	# Add PCA source code
+ 	OBJS+= dgeev.o
+ endif
