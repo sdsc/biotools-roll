@@ -1,8 +1,3 @@
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
-COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
-
 NAME           = sdsc-ViennaRNA
 VERSION        = 2.1.8
 RELEASE        = 2
