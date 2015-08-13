@@ -66,6 +66,8 @@ $(NAME).spec: DESCRIPTION LICENSE
 DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG); \
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_MKL); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -74,10 +76,16 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/plink_matrix.h patch-files/plink_matrix.h.patch
 	( \
           $(MODULE_LOAD_CC); \
-	  module load atlas; \
-	  perl -pi -e "s!ROLLATLAS!$${ATLASHOME}!g" $(SOURCE_DIR)/Makefile; \
+          $(MODULE_LOAD_MKL); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
+          export FC=$(FC); \
+          export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
+          perl -pi -e "s!MKLLIB!$${MKLLIB}!g" $(SOURCE_DIR)/Makefile; \
+          perl -pi -e "s!MKLROOT!$${MKL_ROOT}!g" $(SOURCE_DIR)/Makefile; \
           cd $(ZLIB_DIR); \
           ./configure --prefix=../$(SOURCE_DIR)/zlib-$(ZLIB_VERSION); \
           make; \

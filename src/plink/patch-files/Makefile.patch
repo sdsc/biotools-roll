@@ -1,27 +1,32 @@
 --- plink-1.9/Makefile	2015-02-07 15:37:14.000000000 -0800
-+++ patch-files/Makefile	2015-06-09 11:29:42.340014248 -0700
-@@ -19,10 +19,10 @@
++++ patch-files/Makefile	2015-08-13 12:17:18.474686215 -0700
+@@ -19,13 +19,13 @@
    endif
  endif
  
 -CFLAGS=-Wall -O2
 -BLASFLAGS=-L/usr/lib64/atlas -llapack -lcblas -latlas
-+CFLAGS=-Wall -O2 -IROLLATLAS/include
-+BLASFLAGS=-LROLLATLAS/lib -llapack -lcblas -lf77blas -latlas -lgfortran
++CFLAGS=-Wall -O2 -IMKLROOT/include
++BLASFLAGS=-LMKLLIB -lmkl_rt
  LINKFLAGS=-lm -lpthread -ldl
 -ZLIB=zlib-1.2.8/libz.so.1.2.8
 +ZLIB=zlib-1.2.8/lib/libz.a
  
  ifeq ($(SYS), MAC)
-   GCC_GTEQ_43 := $(shell expr `g++ -dumpversion | sed -e 's/\.\([0-9][0-9]\)/\1/g' -e 's/\.\([0-9]\)/0\1/g' -e 's/^[0-9]\{3,4\}$$/&00/'` \>= 40300)
+-  GCC_GTEQ_43 := $(shell expr `g++ -dumpversion | sed -e 's/\.\([0-9][0-9]\)/\1/g' -e 's/\.\([0-9]\)/0\1/g' -e 's/^[0-9]\{3,4\}$$/&00/'` \>= 40300)
++  GCC_GTEQ_43 := $(shell expr `${CXX} -dumpversion | sed -e 's/\.\([0-9][0-9]\)/\1/g' -e 's/\.\([0-9]\)/0\1/g' -e 's/^[0-9]\{3,4\}$$/&00/'` \>= 40300)
+   ifeq "$(GCC_GTEQ_43)" "1"
+     CFLAGS=-Wall -O2 -flax-vector-conversions
+   endif
 @@ -57,8 +57,8 @@
  # lead to minor problems when PLINK 2.0 is released.)
  
  plink: $(SRC)
 -	g++ $(CFLAGS) $(SRC) -o plink $(BLASFLAGS) $(LINKFLAGS) -L. $(ZLIB)
-+	g++ $(CFLAGS) $(SRC) -o plink $(BLASFLAGS) $(LINKFLAGS) $(ZLIB)
++	${CXX} $(CFLAGS) $(SRC) -o plink $(BLASFLAGS) $(LINKFLAGS) $(ZLIB)
  
  plinkw: $(SRC)
- 	g++ $(CFLAGS) $(SRC) -c
+-	g++ $(CFLAGS) $(SRC) -c
 -	gfortran -O2 $(OBJ) -o plink -Wl,-Bstatic $(BLASFLAGS) $(LINKFLAGS) -L. $(ZLIB)
-+	gfortran -O2 $(OBJ) -o plink -Wl,-Bstatic $(BLASFLAGS) $(LINKFLAGS) $(ZLIB)
++	${CXX} $(CFLAGS) $(SRC) -c
++	${FC} -O2 $(OBJ) -o plink -Wl,-Bstatic $(BLASFLAGS) $(LINKFLAGS) $(ZLIB)

@@ -1,3 +1,7 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-plink
 VERSION        = 1.9
 RELEASE        = 0
