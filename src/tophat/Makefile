@@ -89,15 +89,33 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_BOOST); \
 	  $(MODULE_LOAD_EIGEN); \
+          cd $(OLDSAM_DIR); \
+          make; \
+          mkdir -p build; \
+          mkdir -p build/lib; \
+          mkdir -p build/include/bam; \
+          cp samtools build/bin/; \
+          cp bcftools/bcftools build/bin; \
+          cp bcftools/vcfutils.pl build/bin/; \
+          cp misc/*.pl build/bin/; \
+          cp misc/maq2sam-long build/bin/; \
+          cp misc/maq2sam-short build/bin/; \
+          cp misc/md5fa build/bin/; \
+          cp misc/md5sum-lite build/bin/; \
+          cp misc/wgsim build/bin/; \
+          cp misc/*.java build/bin/; \
+          cp libbam.a build/lib/; \
+          cp *.h  build/include/bam; \
+          cd ../$(SOURCE_DIR); \
 	  if test "$(COMPILERNAME)" = "gnu"; then \
 	    export PATH=/usr/bin:${PATH}; \
 	  fi; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
-	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  ./configure -prefix=$(PKGROOT) \
-	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME}; \
+	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
+            --with-bam=$(REDHAT.ROOT)/src/tophat/$(OLDSAM_DIR)/build; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
