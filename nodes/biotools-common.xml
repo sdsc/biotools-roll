@@ -90,6 +90,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-velvet</package>
 <package>sdsc-ViennaRNA</package>
 <package>sdsc-biotools-modules</package>
+<package>sdsc-miso-modules</package>
 <package>sdsc-biotools-roll-test</package>
 
 </kickstart>

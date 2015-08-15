@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-velvet
 VERSION        = 1.2.10
-RELEASE        = 17
+RELEASE        = 18
 PKGROOT        = /opt/biotools/velvet
 
 SRC_SUBDIR     = velvet
