@@ -18,8 +18,7 @@ module-whatis "stacks 1.34            tophat 2.0.10           trimmomatic 0.32"
 module-whatis "trinity 20131110       velvet 1.2.10           vcftools 0.1.12b"
 module-whatis "ViennaRNA 2.1.7"
 
-module unload intel
-module load gnu intel mkl python scipy boost
+module load intel boost mkl python scipy
 
 set packageHome $biotoolsHome/bamtools
 setenv BAMTOOLSHOME $packageHome
@@ -197,3 +196,4 @@ append-path PYTHONPATH $lib
 append-path PATH $packageHome/bin
 
 puts stderr "for miso, do not load biotools, load the miso module"
+
