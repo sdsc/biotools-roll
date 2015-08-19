@@ -69,7 +69,8 @@ DESCRIPTION:
 	$(MODULE_LOAD_PYTHON); \
 	( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_PYTHON) \
+	  $(DESCRIBE_PYTHON); \
+          $(DESCRIBE_CC) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -84,6 +85,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
+          $(MODULE_LOAD_CC); \
+          module load scipy; \
 	  pip install --exists-action i --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)
