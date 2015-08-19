@@ -73,7 +73,8 @@ DESCRIPTION:
 	$(MODULE_LOAD_PYTHON); \
 	( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_PYTHON) \
+	  $(DESCRIBE_PYTHON); \
+          $(MODULE_LOAD_CC) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -92,6 +93,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	( \
 	  $(MODULE_LOAD_PYTHON); \
+          $(MODULE_LOAD_CC); \
+          module load scipy; \
 	  cd $(SOURCE_DIR); \
 	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${PYDIR}; \

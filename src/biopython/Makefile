@@ -80,6 +80,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
