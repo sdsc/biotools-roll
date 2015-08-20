@@ -95,12 +95,14 @@ install::
           cp htslib-*/*.a $(ROOT)/$(PKGROOT)/lib; \
           cp *.a $(ROOT)/$(PKGROOT)/lib; \
           cp htslib*/libhts.a $(ROOT)/$(PKGROOT)/lib/; \
+          cp -r *.h htslib*/htslib $(ROOT)/$(PKGROOT)/include/bam; \
           cp misc/*.java misc/*.pl misc/ace2sam \
               $(ROOT)/$(PKGROOT)/bin/; \
           cp -r examples $(ROOT)/$(PKGROOT); \
 	)
 	mkdir -p -m 755 $(SAMTOOLS_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(SAMTOOLS_CACHE)/
+	ln -s $(SAMTOOLS_CACHE)/include/bam/version.h $(SAMTOOLS_CACHE)/include/bam/version.hpp
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
