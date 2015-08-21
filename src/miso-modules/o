@@ -1,0 +1,19 @@
+21d20
+< 
+118a118,123
+> set packageHome $biotoolsHome/miso
+> setenv MISOHOME $packageHome
+> append-path PATH $packageHome/bin
+> set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+> append-path PYTHONPATH $lib
+> 
+165c170
+< append-path LD_LIBRARY_PATH /opt/boost/gnu/lib
+---
+> append-path LD_LIBRARY_PATH $env(BOOSTHOME)/lib
+200,204d204
+< set packageHome $biotoolsHome/miso
+< setenv MISOHOME $packageHome
+< append-path PATH $packageHome/bin
+< set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+< prepend-path PYTHONPATH $lib
