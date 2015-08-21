@@ -90,6 +90,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/Tests
 	( \
 	  $(MODULE_LOAD_PYTHON); \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
