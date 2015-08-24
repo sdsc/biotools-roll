@@ -66,8 +66,8 @@ $(NAME).spec: DESCRIPTION LICENSE
 DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG); \
-          $(MODULE_LOAD_CC); \
-          $(MODULE_LOAD_MKL); \
+          $(DESCRIBE_CC); \
+          $(DESCRIBE_MKL); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)

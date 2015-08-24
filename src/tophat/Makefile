@@ -60,7 +60,6 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
-OLDSAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-oldsamtools
 
 # NOTE: The SeqAN package bundled with tophat fails to compile with the 4.9.x
 # gnu compilers.  Until that's fixed, we take steps to use the system gnu.
@@ -75,7 +74,6 @@ DESCRIPTION:
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CC); \
 	  $(DESCRIBE_BOOST); \
-	  $(DESCRIBE_EIGEN) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -89,23 +87,15 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_BOOST); \
-	  $(MODULE_LOAD_EIGEN); \
-          cd $(OLDSAM_DIR); \
-          make; \
-          mkdir -p $(OLDSAMTOOLS_CACHE)/lib; \
-          mkdir -p $(OLDSAMTOOLS_CACHE)/include/bam; \
-          cp libbam.a $(OLDSAMTOOLS_CACHE)/lib; \
-          cp *.h  $(OLDSAMTOOLS_CACHE)/include/bam; \
-          cd ../$(SOURCE_DIR); \
+          cd $(SOURCE_DIR); \
 	  if test "$(COMPILERNAME)" = "gnu"; then \
 	    export PATH=/usr/bin:${PATH}; \
 	  fi; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
-	  ./configure -prefix=$(PKGROOT) \
-	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
-            --with-bam=$(OLDSAMTOOLS_CACHE); \
+          ./autogen.sh; \
+	  ./configure -prefix=$(PKGROOT) --with-boost=$${BOOSTHOME};  \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"

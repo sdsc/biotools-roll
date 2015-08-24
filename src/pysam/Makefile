@@ -74,7 +74,7 @@ DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_PYTHON); \
-          $(MODULE_LOAD_CC) \
+          $(DESCRIBE_CC) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
