@@ -15,3 +15,10 @@ append-path PYTHONPATH $lib
 set packageHome /opt/biotools/samtools
 setenv SAMTOOLSHOME $packageHome
 append-path PATH $packageHome/bin
+
+
+set packageHome /opt/biotools/pysam
+setenv PYSAMHOME $packageHome
+append-path PATH $packageHome/bin
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+append-path PYTHONPATH $lib
