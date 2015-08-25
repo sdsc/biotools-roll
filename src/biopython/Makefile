@@ -80,7 +80,6 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
-	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build \
 	)
@@ -90,7 +89,6 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/Tests
 	( \
 	  $(MODULE_LOAD_PYTHON); \
-	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
