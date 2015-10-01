@@ -1,0 +1,9 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "bismark VERSION"
+
+set packageHome $biotoolsHome/bismark
+setenv BISMARKHOME $packageHome
+append-path PATH $packageHome

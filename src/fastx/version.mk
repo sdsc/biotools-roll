@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME                  = sdsc-fastx
 VERSION               = 0.0.14
-RELEASE               = 18
+RELEASE               = 19
 PKGROOT               = /opt/biotools/fastx
 
 SRC_SUBDIR            = fastx

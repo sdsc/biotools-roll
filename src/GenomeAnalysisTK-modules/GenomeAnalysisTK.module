@@ -1,0 +1,10 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "GenomeAnalysisTK VERSION"
+
+set packageHome $biotoolsHome/GenomeAnalysisTK
+setenv GATKHOME $packageHome
+append-path CLASSPATH $packageHome
+

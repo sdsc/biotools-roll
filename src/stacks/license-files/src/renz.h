@@ -26,6 +26,8 @@ using std::map;
 #include <string>
 using std::string;
 
+const char *ageI[]    = {"CCGGT",             // A/CCGGT, AgeI
+                         "ACCGG"};
 const char *aluI[]    = {"CT",                // AG/CT, AluI
                          "AG"};
 const char *apeKI[]   = {"CAGC", "CTGC",      // G/CWGC, ApeKI; W=A or T
@@ -134,6 +136,7 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz["kpnI"]    = kpnI;    // C/CATGG, KpnI
     renz["ddeI"]    = ddeI;    // C/TNAG, DdeI
     renz["aluI"]    = aluI;    // AG/CT, AluI
+    renz["ageI"]    = ageI;    // A/CCGGT, AgeI
     renz["rsaI"]    = rsaI;    // GT/AC, RsaI
 
     renz_cnt["sbfI"]    = 1;
@@ -170,6 +173,7 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz_cnt["kpnI"]    = 1;
     renz_cnt["ddeI"]    = 4;
     renz_cnt["aluI"]    = 1;
+    renz_cnt["ageI"]    = 1;
     renz_cnt["rsaI"]    = 1;
 
     renz_len["sbfI"]    = 6;
@@ -206,6 +210,7 @@ initialize_renz(map<string, const char **> &renz, map<string, int> &renz_cnt, ma
     renz_len["kpnI"]    = 5;
     renz_len["ddeI"]    = 4;
     renz_len["aluI"]    = 2;
+    renz_len["ageI"]    = 5;
     renz_len["rsaI"]    = 2;
 }
 

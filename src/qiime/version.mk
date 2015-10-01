@@ -4,15 +4,15 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-qiime
-VERSION        = 1.8.0
-RELEASE        = 17
+VERSION        = 1.9.1
+RELEASE        = 0
 PKGROOT        = /opt/biotools/qiime
 
 SRC_SUBDIR     = qiime
 
 SOURCE_NAME    = qiime-tests
 SOURCE_SUFFIX  = tar.gz
-SOURCE_VERSION = 1.8.0
+SOURCE_VERSION = 1.9.1
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR     = tests
 

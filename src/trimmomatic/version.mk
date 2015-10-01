@@ -1,6 +1,6 @@
 NAME           = sdsc-trimmomatic
-VERSION        = 0.32
-RELEASE        = 16
+VERSION        = 0.33
+RELEASE        = 0
 PKGROOT        = /opt/biotools/trimmomatic
 
 SRC_SUBDIR     = trimmomatic

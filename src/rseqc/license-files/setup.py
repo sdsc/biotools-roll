@@ -51,7 +51,7 @@ except:
 
 def main():
 	setup(  name = "RSeQC",
-            version = "2.5",
+            version = "2.6.2",
             packages = find_packages( 'lib' ),
             package_dir = { '': 'lib' },
             package_data = { '': ['*.ps'] },

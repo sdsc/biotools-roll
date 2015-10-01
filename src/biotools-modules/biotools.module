@@ -3,22 +3,22 @@
 set biotoolsHome /opt/biotools
 
 module-whatis "                       biotools"
-module-whatis "bedtools 2.20.1        bamtools 2.3.0          biopython 1.62"
-module-whatis "bismark 0.10.1         blast 2.2.29            blat 35"
-module-whatis "bowtie 1.0.0           bowtie2 2.2.3           bwa 0.7.5a"
-module-whatis "bx-python 0.7.2        cufflinks 2.2.0         dendropy 3.12.0"
-module-whatis "edena 3.131028         fastqc 0.10.1           fastx 0.0.14"
-module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
-module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.5"
+module-whatis "bamtools 2.3.0         bedtools 2.22.1         biopython 1.65"
+module-whatis "bismark 0.13.1         blast 2.2.30            blat 35"
+module-whatis "bowtie 1.1.1           bowtie2 2.2.4           bwa 0.7.12"
+module-whatis "bx-python 0.7.3        cufflinks 2.2.1         dendropy 4.0.3"
+module-whatis "edena 3.131028         fastqc 0.11.3           fastx 0.0.14"
+module-whatis "GenomeAnalysisTK 3.4.0 gmap_gsnap 2015-09-10   htseq 0.6.1p1"
+module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.7"
 module-whatis "miso 0.5.3             picard 1.108            plink 1.9"
-module-whatis "pysam 0.7.8pre         qiime 1.8.0             randfold 2.0"
-module-whatis "rsqec 2.4              samtools 1.2            soapdenovo r240"
-module-whatis "SOAPsnp v1.03          spades 3.1.0            squid 1.9g"
-module-whatis "stacks 1.34            tophat 2.0.10           trimmomatic 0.32"
-module-whatis "trinity 20131110       velvet 1.2.10           vcftools 0.1.12b"
-module-whatis "ViennaRNA 2.1.7"
+module-whatis "pysam 0.8.3            qiime 1.9.1             randfold 2.0"
+module-whatis "rseqc 2.6.2            samtools 1.2            soapdenovo r240"
+module-whatis "SOAPsnp 1.03           spades 3.6.0            squid 1.9g"
+module-whatis "stacks 1.35            tophat 2.1.0            trimmomatic 0.33"
+module-whatis "trinity 2.0.6          vcftools 0.1.14-0       velvet 1.2.10"
+module-whatis "ViennaRNA 2.1.9"
 
-module load intel boost mkl python scipy
+module load ROLLCOMPILER boost mkl python
 
 set packageHome $biotoolsHome/bamtools
 setenv BAMTOOLSHOME $packageHome
@@ -67,7 +67,7 @@ append-path PYTHONPATH $lib
 
 set packageHome $biotoolsHome/cufflinks
 append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $env(BOOSTHOME)/lib
+append-path LD_LIBRARY_PATH BOOSTHOME/lib
 setenv CUFFLINKSHOME $packageHome
 
 set packageHome $biotoolsHome/dendropy
@@ -160,12 +160,12 @@ setenv SQUIDHOME $packageHome
 
 set packageHome $biotoolsHome/tophat
 append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $env(BOOSTHOME)/lib
+append-path LD_LIBRARY_PATH BOOSTHOME/lib
 setenv TOPHATHOME $packageHome
 
 set packageHome $biotoolsHome/trimmomatic
 setenv TRIMMOMATICHOME $packageHome
-append-path CLASSPATH $packageHome/trimmomatic-0.32.jar
+append-path CLASSPATH $packageHome/trimmomatic-0.33.jar
 
 set packageHome $biotoolsHome/trinity
 setenv TRINITYHOME $packageHome

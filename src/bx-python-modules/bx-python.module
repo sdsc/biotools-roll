@@ -1,0 +1,12 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "bx-python VERSION"
+
+module load ROLLCOMPILER python
+
+set packageHome $biotoolsHome/bx-python
+setenv BXPYTHONHOME $packageHome
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+append-path PYTHONPATH $lib

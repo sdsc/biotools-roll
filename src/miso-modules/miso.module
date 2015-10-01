@@ -2,9 +2,9 @@
 
 set biotoolsHome /opt/biotools
 
-module-whatis "miso 0.5.3"
+module-whatis "miso VERSION"
 
-module load gnu python scipy
+module load python
 
 set packageHome /opt/biotools/miso
 setenv MISOHOME $packageHome

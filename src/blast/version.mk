@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-blast
 VERSION        = 2.2.30
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/blast
 
 SRC_SUBDIR     = blast

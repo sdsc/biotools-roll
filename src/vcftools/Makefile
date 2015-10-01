@@ -75,24 +75,26 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv3 > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
-	patch $(SOURCE_DIR)/cpp/Makefile patch-files/Makefile.cpp.patch
+	patch $(SOURCE_DIR)/configure.ac patch-files/configure.ac.patch
 	( \
           $(MODULE_LOAD_CC); \
           $(MODULE_LOAD_MKL); \
-           export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-           perl -pi -e "s!ROOTMKL!$${MKLLIB}!g" $(SOURCE_DIR)/cpp/Makefile; \
            cd $(SOURCE_DIR); \
+           ./autogen.sh; \
+           export CC=$(CC); \
+           export CXX=$(CXX); \
+           export LDFLAGS=-lz; \
+           ./configure --prefix=$(ROOT)/$(PKGROOT); \
 	   $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
-	cp -r $(SOURCE_DIR)/bin/*  $(ROOT)/$(PKGROOT)/bin
-	cp -r $(SOURCE_DIR)/lib/*  $(ROOT)/$(PKGROOT)/lib
-	cp -r $(SOURCE_DIR)/examples  $(ROOT)/$(PKGROOT)
+	( \
+          cd $(SOURCE_DIR); \
+          make install; \
+          cp -r examples $(ROOT)/$(PKGROOT) \
+        )
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

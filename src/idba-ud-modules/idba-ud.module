@@ -1,0 +1,11 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "idba-ud VERSION"
+
+module load ROLLCOMPILER
+
+set packageHome $biotoolsHome/idba-ud
+setenv IDBAUDHOME $packageHome
+append-path PATH $packageHome/bin

@@ -10,6 +10,10 @@ $(VERSION_INC):
 build:
 
 install:: typical-modulefile-install
-
+	( \
+             $(MODULE_LOAD_CC); \
+             $(MODULE_LOAD_BOOST); \
+             perl -pi -e "s!BOOSTHOME!$${BOOSTHOME}!g" $(ROOT)/$(PKGROOT)/$(VERSION) \
+        )
 clean::
 	rm -f $(VERSION_INC)

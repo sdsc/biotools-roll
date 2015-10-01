@@ -1,0 +1,12 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "ViennaRNA VERSION"
+
+set packageHome $biotoolsHome/ViennaRNA
+append-path PATH $packageHome/bin
+append-path LD_LIBRARY_PATH $packageHome/lib
+append-path PERL5LIB $packageHome/lib64/perl5
+setenv VIENNARNAHOME $packageHome
+

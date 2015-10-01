@@ -1,0 +1,7 @@
+#%Module1.0
+
+module-whatis "samtools VERSION"
+
+set packageHome /opt/biotools/samtools
+setenv SAMTOOLSHOME $packageHome
+append-path PATH $packageHome/bin

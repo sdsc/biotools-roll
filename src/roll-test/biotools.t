@@ -25,8 +25,7 @@ my $TESTFILE = 'tmpbiotools';
 if($appliance =~ /$installedOnAppliancesPattern/) {
   ok($isInstalled, 'biotools installed');
   foreach my $package(@packages) {
-    # Remove if test when/if qiime is fixed.
-    ok(-d "/opt/biotools/$package", "$package installed") if $package ne "qiime";
+    ok(-d "/opt/biotools/$package", "$package installed")
   }
 } else {
   ok(! $isInstalled, 'biotools not installed');
@@ -37,7 +36,7 @@ SKIP: {
   skip 'bamtools not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
   `cp $packageHome/examples/* $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools; ./test test.bam 2>&1`;
+  $output = `module load bamtools >& /dev/null; cd $TESTFILE.dir; g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools; ./test test.bam 2>&1`;
   like($output, qr/Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
   `rm -rf $TESTFILE*`;
 }
@@ -47,11 +46,11 @@ SKIP: {
   skip 'bedtools not installed', 1 if ! -d $packageHome;
   my @exes = ('annotateBed','bedToBam','complementBed','genomeCoverageBed','mapBed','nucBed','slopBed','windowBed','bamToBed','bedToIgv','coverageBed','getOverlap','maskFastaFromBed','pairToBed','sortBed','windowMaker','bamToFastq','expandCols','groupBy','mergeBed','pairToPair','subtractBed','bed12ToBed6','closestBed','fastaFromBed','intersectBed','multiBamCov','randomBed','tagBam','bedpeToBam','clusterBed','flankBed','linksBed','shuffleBed');
   foreach $exe(@exes) {
-    `module load biotools >& /dev/null; $exe --help >> $TESTFILE 2>&1`;
+    `module load bedtools >& /dev/null; $exe --help >> $TESTFILE 2>&1`;
   }
   @exes = ('unionBedGraphs','multiIntersectBed');
   foreach $exe(@exes) {
-    `module load biotools >& /dev/null; $exe >> $TESTFILE 2>&1`;
+    `module load bedtools >& /dev/null; $exe >> $TESTFILE 2>&1`;
   }
   ok(`grep -c "[vV]ersion:" $TESTFILE` == 36, 'all bedtools exes work');
   `rm -f $TESTFILE`;
@@ -61,7 +60,7 @@ $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
   `cp -r $packageHome/Tests .`;
-  $output = `module load biotools >& /dev/null; python Tests/test.py 2>&1`;
+  $output = `module load biopython >& /dev/null; python Tests/test.py 2>&1`;
   $count = 0;
   foreach $line(split(/\n/, $output)) {
     $count++ if $line =~ / ok/;
@@ -73,7 +72,7 @@ SKIP: {
 $packageHome = '/opt/biotools/bismark';
 SKIP: {
   skip 'bismark not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; bismark 2>&1`;
+  $output = `module load bismark >& /dev/null; bismark 2>&1`;
   ok($output =~ /USAGE: bismark [options] <genome_folder> {-1 <mates1> -2 <mates2> | <singles>}/, 'bismark works');
 }
 
@@ -96,7 +95,7 @@ END
   close(OUT);
   open(OUT, ">$TESTFILE.sh");
   print OUT <<END;
-module load biotools >& /dev/null
+module load blast >& /dev/null
 cd $TESTFILE.dir
 wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/drosoph.nt.gz
 gunzip drosoph.nt.gz
@@ -113,7 +112,7 @@ END
 my $packageHome = '/opt/biotools/blat';
 SKIP: {
   skip 'blat not installed', 1 if ! -d $packageHome;
-  `module load biotools >& /dev/null; blat -verbose=0 $packageHome/test/target.fa $packageHome/test/query.fa blat.out -minScore=190 >/dev/null 2>&1`;
+  `module load blat >& /dev/null; blat -verbose=0 $packageHome/test/target.fa $packageHome/test/query.fa blat.out -minScore=190 >/dev/null 2>&1`;
   `/usr/bin/cmp $packageHome/test/test1.psl blat.out`;
   ok($? == 0, 'blat works');
   `/bin/rm -f blat.out`;
@@ -122,21 +121,21 @@ SKIP: {
 $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; cd $packageHome/bin; perl $packageHome/scripts/test/inspect.pl 2>&1`;
+  $output = `module load bowtie >& /dev/null; cd $packageHome/bin; perl $packageHome/scripts/test/inspect.pl 2>&1`;
   like($output, qr/PASSED/, 'bowtie works');
 }
 
 $packageHome = '/opt/biotools/bowtie2';
 SKIP: {
   skip 'bowtie2 not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; bowtie2 -p 8 -x $packageHome/indexes/lambda_virus $packageHome/reads/reads_1.fq 2>&1`;
+  $output = `module load bowtie2 >& /dev/null; bowtie2 -p 8 -x $packageHome/indexes/lambda_virus $packageHome/reads/reads_1.fq 2>&1`;
   like($output, qr/94.04% overall alignment rate/, 'bowtie2 works');
 }
 
 $packageHome = '/opt/biotools/bx-python';
 SKIP: {
   skip 'bx-python not installed', 1 if ! -d $packageHome;
-  $output=`module load biotools >& /dev/null; python -c 'from bx import binned_array_tests; print binned_array_tests.setup()' 2>&1`;
+  $output=`module load bx-python >& /dev/null; python -c 'from bx import binned_array_tests; print binned_array_tests.setup()' 2>&1`;
   like($output, qr/bx.binned_array.BinnedArray object/, 'bx-python works');
 }
 
@@ -152,7 +151,7 @@ EKIVGKNLVIRLIHGLENEIINLGNEIIFIRSAVNNKAFFNKRLEEINFRQNTDANIISI
 MRSNKTVVFPLGPNTEIQPGDIITAVCQQKSLNKYLNYINPKTKNKN
 END
   close(OUT);
-  `module load biotools >& /dev/null; bwa index -p mg323 -a is mg323.fa >/dev/null 2>&1`;
+  `module load bwa >& /dev/null; bwa index -p mg323 -a is mg323.fa >/dev/null 2>&1`;
   ok(-f 'mg323.amb' && -f 'mg323.ann' && -f 'mg323.bwt' && -f 'mg323.pac' &&
      -f 'mg323.sa', 'bwa index run works');
   `/bin/rm -f mg323.*`;
@@ -162,7 +161,7 @@ $packageHome = '/opt/biotools/cufflinks';
 SKIP: {
   skip 'cufflinks not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; cufflinks $packageHome/test_data.sam 2>&1`;
+  $output = `module load cufflinks >& /dev/null; cd $TESTFILE.dir; cufflinks $packageHome/test_data.sam 2>&1`;
   like($output, qr/Default Mean: 200/, 'cufflinks works');
   `rm -rf $TESTFILE.dir`;
 }
@@ -170,75 +169,74 @@ SKIP: {
 $packageHome = '/opt/biotools/dendropy';
 SKIP: {
   skip 'dendropy not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; python $packageHome/test/test_popgenstat.py 2>&1`;
+  $output = `module load dendropy >& /dev/null; python $packageHome/test/test_popgenstat.py 2>&1`;
   like($output, qr/OK/, 'dendropy works');
 }
 
 $packageHome = '/opt/biotools/edena';
 SKIP: {
   skip 'edena not installed', 1 if ! -d $packageHome;
-  # TODO: test
-  skip 'no edena test written', 1;
+  $output = `module load edena >& /dev/null; edena 2>&1`;
+  like($output, qr/Edena v3.131028/, 'edena works');
 }
 
 $packageHome = '/opt/biotools/fastqc';
 SKIP: {
   skip 'fastqc not installed', 1 if ! -d $packageHome;
-  `/bin/ls $packageHome/fastqc 2>&1`;
-  ok($? == 0, 'fastqc script installed');
-  # TODO: test
-  skip 'no fastqc test written', 1;
+  $output = `module load fastqc >& /dev/null; fastqc -help 2>&1`;
+  like($output, qr/FastQC - A high throughput sequence QC analysis tool/, 'fastqc works');
 }
 
 $packageHome = '/opt/biotools/fastx';
 SKIP: {
   skip 'fastx not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; seqalign_test 2>&1`;
+  $output = `module load fastx >& /dev/null; seqalign_test 2>&1`;
   like($output, qr/A(AGGTTT)CCC/, 'fastx works');
 }
 
 $packageHome = '/opt/biotools/GenomeAnalysisTK';
 SKIP: {
   skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
+  $output = `module load GenomeAnalysisTK >& /dev/null; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
   like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK works');
 }
 
 $packageHome = '/opt/biotools/gmap_gsnap';
 SKIP: {
   skip 'gmap_gsnap not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; gmap -A -g $packageHome/tests/ss.chr17test $packageHome/tests/ss.her2 2>&1`;
+  $output = `module load gmap_gsnap >& /dev/null; gmap -A -g $packageHome/tests/ss.chr17test $packageHome/tests/ss.her2 2>&1`;
   like($output, qr/Trimmed coverage: 100.0 \(trimmed length: 4624 bp, trimmed region: 1..4624\)/, 'gmap_gsnap works');
 }
 
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;
-  `module load biotools >& /dev/null; python -c "import HTSeq" > /dev/null 2>&1`;
+  `module load htseq >& /dev/null; python -c "import HTSeq" > /dev/null 2>&1`;
   ok($? eq 0, 'htseq works');
 }
 
 $packageHome = '/opt/biotools/idba-ud';
 SKIP: {
   skip 'idba-ud not installed', 1 if ! -d $packageHome;
-  # TODO: test
-  skip 'no idba-ud test written', 1;
+  $output = `module load idba_ud >& /dev/null; idba_ud 2>&1`;
+  like($output, qr/Iterative de Bruijn Graph Assembler/, 'idba-ud works');
 }
 
 $packageHome = '/opt/biotools/matt';
 SKIP: {
   skip 'matt not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; Matt 2>&1`;
+  $output = `module load matt >& /dev/null; Matt 2>&1`;
   like($output, qr/Matt version 1.00 Single Threaded build./, 'matt works');
 }
 
 $packageHome = '/opt/biotools/miRDeep2';
+set packageHome $biotoolsHome/miRDeep2
+append-path PERL5LIB $packageHome/share/perl5
+append-path PATH $packageHome/bin
+setenv MIRDEEP2HOME $packageHome
+
 SKIP: {
-  skip 'miRDeep2 not installed', 1 if ! -d $packageHome;
-  `mkdir $TESTFILE.dir`;
-  open(OUT, ">$TESTFILE.sh");
-  print OUT <<END;
-module load biotools >& /dev/null
+module load miRDeep2 >& /dev/null
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
 bowtie-build cel_cluster.fa cel_cluster
@@ -283,7 +281,7 @@ x5	0	ref2	12	30	24M	*	0	0	aaTaattaagtctacagagcaact	????????????????????????
 x6	0	ref2	14	30	23M	*	0	0	Taattaagtctacagagcaacta	???????????????????????
 END
   close(OUT);
-  $output = `module load biotools >& /dev/null; java -jar $packageHome/picard.jar CollectAlignmentSummaryMetrics INPUT=$TESTFILE.sam OUTPUT=$TESTFILE.out 2>&1; cat $TESTFILE.out`;
+  $output = `module load picard >& /dev/null; java -jar $packageHome/picard.jar CollectAlignmentSummaryMetrics INPUT=$TESTFILE.sam OUTPUT=$TESTFILE.out 2>&1; cat $TESTFILE.out`;
   like($output, qr/UNPAIRED\s+10/, 'picard works');
   `rm -rf $TESTFILE*`;
 }
@@ -293,7 +291,7 @@ SKIP: {
   skip 'plink not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
   `cp $packageHome/examples/* $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; plink --file hapmap1 2>&1;cat plink.log`;
+  $output = `module load plink >& /dev/null; cd $TESTFILE.dir; plink --file hapmap1 2>&1;cat plink.log`;
   like($output, qr/83534 variants, 89 people/, 'plink works');
   `rm -rf $TESTFILE.dir`;
 }
@@ -301,36 +299,29 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; python -c 'import pysam; print pysam.SAMTOOLS_DISPATCH' 2>&1`;
+  $output = `module load pysam >& /dev/null; python -c 'import pysam; print pysam.SAMTOOLS_DISPATCH' 2>&1`;
   like($output, qr/pad2unpad/, 'pysam works');
 }
 
 $packageHome = '/opt/biotools/qiime';
 SKIP: {
   skip 'qimme not installed', 1 if ! -d $packageHome;
-  `mkdir $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; python $packageHome/tests/all_tests.py 2>&1`;
-  $count = 0;
-  foreach $line(split(/\n/, $output)) {
-    $count++ if $line =~ / ok/;
-    $count++ if $line =~ /^OK/;
-    $count++ if $line =~ /^ok/;
+  $output = `module load qiime >& /dev/null; ; print_qiime_config.py -t 2>&1`;
   }
-  ok($count >= 676, 'qiime works');
-  `rm -rf $TESTFILE*`;
+  like($output, qr/OK/, 'qiime works');
 }
 
 $packageHome = '/opt/biotools/randfold';
 SKIP: {
   skip 'randfold not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; randfold -d $packageHome/tests/let7.tfa 999 2>&1`;
+  $output = `module load randfold >& /dev/null; randfold -d $packageHome/tests/let7.tfa 999 2>&1`;
   like($output, qr/cel-let-7\s+-42.90\s+0.001000/, 'randfold works');
 }
 
 $packageHome = '/opt/biotools/samtools';
 SKIP: {
   skip 'samtools not installed', 1 if ! -d $packageHome;
-  `module load biotools >& /dev/null; cd $packageHome/examples; samtools faidx ex1.fa`;
+  `module load samtools >& /dev/null; cd $packageHome/examples; samtools faidx ex1.fa`;
   $output = `cat $packageHome/examples/ex1.fa.fai`;
   like($output, qr/seq2/, 'samtools index run works');
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
@@ -339,7 +330,7 @@ SKIP: {
 $packageHome = '/opt/biotools/SOAPsnp';
 SKIP: {
   skip 'SOAPsnp not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; soapsnp 2>&1`;
+  $output = `module load soapsnp >& /dev/null; soapsnp 2>&1`;
   like($output, qr/Compulsory Parameters:/, 'SOAPsnp executable works');
 }
 
@@ -364,7 +355,7 @@ q1=./SRR000046_1.fastq
 q2=./SRR000046_2.fastq
 END
   close(OUT);
-  `module load biotools >& /dev/null; SOAPdenovo-63mer pregraph -K 31 -s SRR000046.config -o SRR000046 2>&1`;
+  `module load soapdenovo >& /dev/null; SOAPdenovo-63mer pregraph -K 31 -s SRR000046.config -o SRR000046 2>&1`;
   ok(-f './SRR000046.preArc', 'soapdenovo pregraph works');
   `/bin/rm SRR000046*`;
 }
@@ -372,7 +363,7 @@ END
 $packageHome = '/opt/biotools/spades';
 SKIP: {
   skip 'spades not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; python $packageHome/bin/spades.py --test 2>&1`;
+  $output = `module load spades >& /dev/null; python $packageHome/bin/spades.py --test 2>&1`;
   like($output, qr/TEST PASSED CORRECTLY./, 'spades executable works');
   `rm -rf spades_test`;
 }
@@ -383,7 +374,7 @@ SKIP: {
   `mkdir $TESTFILE.dir`;
   open(OUT, ">$TESTFILE.sh");
   print OUT <<END;
-module load biotools >& /dev/null
+module load squid >& /dev/null
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
 XBASE='x-base-afetch x-base-alistat x-base-seqstat x-base-sfetch x-base-shuffle x-base-sindex x-base-sreformat'
@@ -408,14 +399,14 @@ END
 $packageHome = '/opt/biotools/tophat';
 SKIP: {
   skip 'tophat not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; tophat --help 2>&1`;
+  $output = `module load tophat >& /dev/null; tophat --help 2>&1`;
   like($output, qr/TopHat maps short sequences from spliced transcripts to whole genomes./, 'tophat executable works');
 }
 
 $packageHome = '/opt/biotools/trimmomatic';
 SKIP: {
   skip 'trimmomatic not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; java org.usadellab.trimmomatic.TrimmomaticPE 2>&1`;
+  $output = `module load trimmomatic >& /dev/null; java org.usadellab.trimmomatic.TrimmomaticPE 2>&1`;
   like($output, qr/Usage: TrimmomaticPE/, 'trimmomatic works');
 }
 
@@ -423,7 +414,7 @@ $packageHome = '/opt/biotools/trinity';
 SKIP: {
   skip 'trinity not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; cp $packageHome/sample_data/test_Trinity_Assembly/*.gz .; $packageHome/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
+  $output = `module load trinity >& /dev/null; cd $TESTFILE.dir; cp $packageHome/sample_data/test_Trinity_Assembly/*.gz .; $packageHome/sample_data/test_Trinity_Assembly/runMe.sh 2>&1`;
   like($output, qr/All commands completed successfully. :-\)/, 'trinity works');
   `rm -rf $TESTFILE.dir`;
 }
@@ -432,7 +423,7 @@ $packageHome = '/opt/biotools/vcftools';
 SKIP: {
   skip 'vcftools not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; cp $packageHome/examples/* .;vcftools --vcf cmp-test-a.vcf --diff cmp-test-b.vcf 2>&1`;
+  $output = `module load vcftools >& /dev/null; cd $TESTFILE.dir; cp $packageHome/examples/* .;vcftools --vcf cmp-test-a.vcf --diff cmp-test-b.vcf 2>&1`;
   like($output, qr/After filtering, kept 6 out of a possible 6 Sites/, 'vcftools works');
   `rm -rf $TESTFILE.dir`;
 }
@@ -441,7 +432,7 @@ $packageHome = '/opt/biotools/velvet';
 SKIP: {
   skip 'velvet not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output = `module load biotools >& /dev/null; cd $TESTFILE.dir; $packageHome/testdata/run-tests.sh 2>&1`;
+  $output = `module load velvet >& /dev/null; cd $TESTFILE.dir; $packageHome/testdata/run-tests.sh 2>&1`;
   like($output, qr/passed all 5 tests/, 'velvet works');
   `rm -rf $TESTFILE.dir`;
 }
@@ -452,7 +443,7 @@ SKIP: {
   `mkdir $TESTFILE.dir`;
   open(OUT, ">$TESTFILE.sh");
   print OUT <<END;
-module load biotools >& /dev/null
+module load ViennaRNA >& /dev/null
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
 perl test.pl
@@ -470,14 +461,14 @@ END
 $packageHome = '/opt/biotools/stacks';
 SKIP: {
   skip 'stacks not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null; cstacks 2>&1`;
+  $output = `module load stacks >& /dev/null; cstacks 2>&1`;
   like($output, qr/Advanced options:/, 'stacks works');
 }
 
 $packageHome = '/opt/biotools/rseqc';
 SKIP: {
   skip 'rseqc not installed', 1 if ! -d $packageHome;
-  $output = `module load biotools >& /dev/null;clipping_profile.py 2>&1`;
+  $output = `module load rseqc >& /dev/null;clipping_profile.py 2>&1`;
   like($output, qr/This program is used estimate clipping profile/, 'rseqc works');
 }
 

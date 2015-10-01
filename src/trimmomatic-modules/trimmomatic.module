@@ -1,0 +1,9 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "trimmomatic VERSION"
+
+set packageHome $biotoolsHome/trimmomatic
+setenv TRIMMOMATICHOME $packageHome
+append-path CLASSPATH $packageHome/trimmomatic-VERSION.jar

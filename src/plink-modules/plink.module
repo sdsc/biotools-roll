@@ -1,0 +1,11 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "plink VERSION"
+
+module load ROLLCOMPILER
+
+set packageHome $biotoolsHome/plink
+setenv PLINKHOME $packageHome
+append-path PATH $packageHome/bin

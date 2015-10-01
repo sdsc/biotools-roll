@@ -3,14 +3,9 @@
 override  ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
-ifndef ROLLMPI
-  ROLLMPI = rocks-openmpi
-endif
-MPINAME := $(firstword $(subst /, ,$(ROLLMPI)))
-
 NAME           = sdsc-SOAPsnp
 VERSION        = v1.03
-RELEASE        = 17
+RELEASE        = 18
 PKGROOT        = /opt/biotools/SOAPsnp
 
 SRC_SUBDIR     = SOAPsnp
