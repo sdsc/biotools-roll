@@ -9,7 +9,7 @@ endif
 MPINAME := $(firstword $(subst /, ,$(ROLLMPI)))
 
 NAME           = sdsc-gmap_gsnap
-VERSION        = 2015-09-10
+VERSION        = $(shell date -d "$(SOURCE_VERSION)" +%Y%m%d)
 RELEASE        = 0
 PKGROOT        = /opt/biotools/gmap_gsnap
 
