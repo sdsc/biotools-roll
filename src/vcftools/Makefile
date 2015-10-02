@@ -65,9 +65,10 @@ $(NAME).spec: DESCRIPTION LICENSE
 ROLLCOMPILER=gnu
 
 DESCRIPTION:
-	( \
+	$(MODULE_LOAD_CC); \
+        ( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_MKL) \
+	  $(DESCRIBE_CC) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -78,7 +79,6 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/configure.ac patch-files/configure.ac.patch
 	( \
           $(MODULE_LOAD_CC); \
-          $(MODULE_LOAD_MKL); \
            cd $(SOURCE_DIR); \
            ./autogen.sh; \
            export CC=$(CC); \

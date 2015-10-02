@@ -65,6 +65,7 @@ $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	( \
+          $(DESCRIBE_CC); \
 	  $(DESCRIBE_PKG) \
 	) > $@
 
