@@ -130,6 +130,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-trinity-modules</package>
 <package>sdsc-velvet-modules</package>
 <package>sdsc-ViennaRNA-modules</package>
-<package>sdsc-biotools-roll-test-modules</package>
+<package>sdsc-biotools-roll-test</package>
 
 -modules</kickstart>
