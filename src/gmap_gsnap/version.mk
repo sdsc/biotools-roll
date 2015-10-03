@@ -3,11 +3,6 @@ ifndef ROLLCOMPILER
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
-ifndef ROLLMPI
-  ROLLMPI = rocks-openmpi
-endif
-MPINAME := $(firstword $(subst /, ,$(ROLLMPI)))
-
 NAME           = sdsc-gmap_gsnap
 VERSION        = $(shell date -d "$(SOURCE_VERSION)" +%Y%m%d)
 RELEASE        = 0

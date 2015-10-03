@@ -105,7 +105,7 @@ make ROLLCOMPILER=intel 2>&1 | tee build.log
 ```
 
 The build process recognizes "gnu", "intel" or "pgi" as the value for the
-`ROLLCOMPILER` variable; The default values are "gnu" and "rocks-openmpi".
+`ROLLCOMPILER` variable
 
 
 ## Installation
