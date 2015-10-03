@@ -3,7 +3,7 @@ ifndef ROLLCOMPILER
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-vcftools
-VERSION        = 0.1.14-0
+VERSION        = 0.1.14
 RELEASE        = 0
 PKGROOT        = /opt/biotools/vcftools
 
