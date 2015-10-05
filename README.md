@@ -69,8 +69,8 @@ rolls are available, but it will build without them as long as the environment
 variables they provide are otherwise defined.
 
 The build process requires the BOOST, EIGEN, and MKL libraries and assumes that
-the modulefiles provided by the SDSC boost-roll, math-roll, and mkl-roll (or
-intel-roll) are available.  It will build without the modulefiles as long as
+the modulefiles provided by the SDSC boost-roll, math-roll, and intel-roll
+are available.  It will build without the modulefiles as long as
 the environment variables they provide are otherwise defined.
 
 The build process requires cmake and assumes that the cmake modulefile provided
