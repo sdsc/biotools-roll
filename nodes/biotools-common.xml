@@ -28,7 +28,6 @@ miso - http://genes.mit.edu/burgelab/miso/software.html
 picard - http://picard.sourceforge.net/
 plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
-qiime - http://qiime.org
 randfold - http://bioinformatics.psb.ugent.be/software/details/Randfold
 rseqc - http://rseqc.sourceforge.net
 samtools - http://samtools.sourceforge.net
@@ -75,7 +74,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-picard</package>
 <package>sdsc-plink</package>
 <package>sdsc-pysam</package>
-<package>sdsc-qiime</package>
 <package>sdsc-randfold</package>
 <package>sdsc-rseqc</package>
 <package>sdsc-samtools</package>
@@ -115,7 +113,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-picard-modules</package>
 <package>sdsc-plink-modules</package>
 <package>sdsc-pysam-modules</package>
-<package>sdsc-qiime-modules</package>
 <package>sdsc-randfold-modules</package>
 <package>sdsc-rseqc-modules</package>
 <package>sdsc-samtools-modules</package>

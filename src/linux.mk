@@ -62,5 +62,7 @@ SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name cufflinks \
   -not -name randfold \
   -not -name stacks \
-  -not -name tophat` \
+  -not -name tophat \
+  -not -name qiime \
+  -not -name qiime-modules` \
   cufflinks randfold stacks tophat

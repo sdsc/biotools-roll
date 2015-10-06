@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roll bundles a collection of Biology packages: bamtools bedtools biopython bismark blast blat bowtie bowtie2 bwa bx-python cufflinks dendropy edena fastqc fastx GenomeAnalysisTK gmap_gsnap htseq idba-ud matt miRDeep2 miso picard plink pysam qiime randfold samtools soapdenovo SOAPsnp spades squid tophat trimmomatic trinity velvet ViennaRNA
+This roll bundles a collection of Biology packages: bamtools bedtools biopython bismark blast blat bowtie bowtie2 bwa bx-python cufflinks dendropy edena fastqc fastx GenomeAnalysisTK gmap_gsnap htseq idba-ud matt miRDeep2 miso picard plink pysam randfold samtools soapdenovo SOAPsnp spades squid tophat trimmomatic trinity velvet ViennaRNA
 
 For more information about the various biology packages included in the biotools
 roll please visit their official web pages:
@@ -32,7 +32,6 @@ ing reads to long reference sequences
 - <a href="http://http://picard.sourceforge.net" target="_blank">picard</a> comprises Java-based command-line utilities that manipulate SAM files, and a Java API (HTSJDK) for creating new programs that read and write SAM files
 - <a href="https://www.cog-genomics.org/plink2/dev="_blank">plink</a>  is a toolset for genome-wide association studies (GWAS) and research in population genetics
 - <a href="https://github.com/pysam-developers" target="_blank">pysam</a> is a python module for reading and manipulating Samfiles
-- <a href="http://qiime.org" target="_blank">qiime</a> . QIIME ( Quantitative Insights Into Microbial Ecology ) is a package for comparison and analysis of microbial communities, primarily based on high-throughput amplicon sequencing data (such as SSU rRNA) generated on a variety of platforms, but also supporting analysis of other types of data (such as shotgun metagenomic data)
 - <a href="http://bioinformatics.psb.ugent.be/software/details/Randfold" target="_blank">randfold</a> computes the probability that, for a given RNA sequence, the Minimum Free Energy (MFE) of the secondary structure is different from a distribution of MFE computed with random sequences
 - <a href="http://rseqc.sourceforge.net" target="_blank">rseqc</a> provides a number of useful modules that can comprehensively evaluate high throughput sequence data especially RNA-seq data
 - <a href="http://samtools.sourceforge.net" target="_blank">samtools</a> provide various utilities for manipulating alignments in the SAM format, including sorting, merging, indexing and generating alignments in a per-position format
