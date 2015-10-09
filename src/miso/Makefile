@@ -84,7 +84,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
-	  pip install --exists-action i --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
+          module load scipy; \
+	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)
 	$(INSTALL_LICENSE_FILES)
