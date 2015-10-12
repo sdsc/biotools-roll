@@ -79,12 +79,6 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-          if test $(COMPILERNAME) == "intel"; then \
-              minor=`gcc -v 2>&1 |grep version|awk '{print $$3}'|sed 's/[0-9]*\.//'|sed 's/\.[0-9]*//'`; \
-              if test $${minor} -ge 8; then \
-                module unload gnutools; \
-              fi; \
-          fi; \
 	  $(MODULE_LOAD_CC); \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
