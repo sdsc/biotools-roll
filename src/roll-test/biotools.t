@@ -25,7 +25,7 @@ my $TESTFILE = 'tmpbiotools';
 if($appliance =~ /$installedOnAppliancesPattern/) {
   ok($isInstalled, 'biotools installed');
   foreach my $package(@packages) {
-    ok(-d "/opt/biotools/$package", "$package installed")
+    ok(-d "/opt/biotools/$package", "$package installed");
   }
 } else {
   ok(! $isInstalled, 'biotools not installed');
@@ -177,7 +177,7 @@ $packageHome = '/opt/biotools/edena';
 SKIP: {
   skip 'edena not installed', 1 if ! -d $packageHome;
   $output = `module load edena; edena 2>&1`;
-  like($output, qr/Edena v3.131028/, 'edena works');
+  like($output, qr/Edena v/, 'edena works');
 }
 
 $packageHome = '/opt/biotools/fastqc';

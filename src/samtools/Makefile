@@ -102,7 +102,6 @@ install::
 	)
 	mkdir -p -m 755 $(SAMTOOLS_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(SAMTOOLS_CACHE)/
-	ln -s $(SAMTOOLS_CACHE)/include/bam/version.h $(SAMTOOLS_CACHE)/include/bam/version.hpp
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
