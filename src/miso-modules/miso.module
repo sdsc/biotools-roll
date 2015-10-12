@@ -4,7 +4,7 @@ set biotoolsHome /opt/biotools
 
 module-whatis "miso VERSION"
 
-module load python
+module load python scipy
 
 set packageHome /opt/biotools/miso
 setenv MISOHOME $packageHome

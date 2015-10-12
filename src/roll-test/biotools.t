@@ -218,7 +218,7 @@ SKIP: {
 $packageHome = '/opt/biotools/idba-ud';
 SKIP: {
   skip 'idba-ud not installed', 1 if ! -d $packageHome;
-  $output = `module load idba_ud; idba_ud 2>&1`;
+  $output = `module load idba-ud; idba_ud 2>&1`;
   like($output, qr/Iterative de Bruijn Graph Assembler/, 'idba-ud works');
 }
 
@@ -235,6 +235,7 @@ SKIP: {
 open(OUT, ">$TESTFILE.sh");
 print OUT <<END;
 module load miRDeep2
+module load bowtie
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
 bowtie-build cel_cluster.fa cel_cluster
@@ -327,7 +328,7 @@ SKIP: {
 $packageHome = '/opt/biotools/SOAPsnp';
 SKIP: {
   skip 'SOAPsnp not installed', 1 if ! -d $packageHome;
-  $output = `module load soapsnp; soapsnp 2>&1`;
+  $output = `module load SOAPsnp; soapsnp 2>&1`;
   like($output, qr/Compulsory Parameters:/, 'SOAPsnp executable works');
 }
 
@@ -449,9 +450,9 @@ END
   $output = `bash $TESTFILE.sh 2>&1`;
   $count = 0;
   foreach $line(split(/\n/, $output)) {
-    $count++ if $line =~ /ok/;
+    $count++ if $line =~ /^ok/;
   }
-  ok($count == 24, 'ViennaRNA works');
+  ok($count >= 23, 'ViennaRNA works');
   `rm -rf $TESTFILE*`;
 }
 
@@ -472,12 +473,14 @@ SKIP: {
 SKIP: {
 
   skip 'biotools not installed', 3 if ! $isInstalled;
-  `/bin/ls /opt/modulefiles/applications/biotools/[0-9]* 2>&1`;
-  ok($? == 0, 'biotools module installed');
-  `/bin/ls /opt/modulefiles/applications/biotools/.version.[0-9]* 2>&1`;
-  ok($? == 0, 'biotools version module installed');
-  ok(-l '/opt/modulefiles/applications/biotools/.version',
-     'biotools version module link created');
+  foreach my $package(@packages) {
+     `/bin/ls /opt/modulefiles/applications/$package/[0-9]* 2>&1`;
+     ok($? == 0, "$package module installed");
+    `/bin/ls /opt/modulefiles/applications/$package/.version.[0-9]* 2>&1`;
+      ok($? == 0, "$package version module installed");
+     ok(-l "/opt/modulefiles/applications/$package/.version",
+     "$package  version module link created");
+  }
 
 }
 `rm -fr $TESTFILE*`;
