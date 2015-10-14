@@ -483,4 +483,14 @@ SKIP: {
   }
 
 }
+SKIP: {
+
+  skip 'biotools not installed', 3 if ! $isInstalled;
+  `/bin/ls /opt/modulefiles/applications/biotools/[0-9]* 2>&1`;
+  ok($? == 0, 'biotools module installed');
+  `/bin/ls /opt/modulefiles/applications/biotools/.version.[0-9]* 2>&1`;
+  ok($? == 0, 'biotools version module installed');
+  ok(-l '/opt/modulefiles/applications/biotools/.version',
+     'biotools version module link created');
+}
 `rm -fr $TESTFILE*`;

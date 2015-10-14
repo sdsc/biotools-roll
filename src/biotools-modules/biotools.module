@@ -1,0 +1,59 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "                       biotools"
+module-whatis "bamtools 2.3.0         bedtools 2.22.1         biopython 1.65"
+module-whatis "bismark 0.13.1         blast 2.2.30            blat 35"
+module-whatis "bowtie 1.1.1           bowtie2 2.2.4           bwa 0.7.12"
+module-whatis "bx-python 0.7.3        cufflinks 2.2.1         dendropy 4.0.3"
+module-whatis "edena 3.131028         fastqc 0.11.3           fastx 0.0.14"
+module-whatis "GenomeAnalysisTK 3.4.0 gmap_gsnap 2015-09-10   htseq 0.6.1p1"
+module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.7"
+module-whatis "miso 0.5.3             picard 1.108            plink 1.9"
+module-whatis "pysam 0.8.3            qiime 1.9.1             randfold 2.0"
+module-whatis "rseqc 2.6.2            samtools 1.2            soapdenovo r240"
+module-whatis "SOAPsnp 1.03           spades 3.6.0            squid 1.9g"
+module-whatis "stacks 1.35            tophat 2.1.0            trimmomatic 0.33"
+module-whatis "trinity 2.0.6          vcftools 0.1.14-0       velvet 1.2.10"
+module-whatis "ViennaRNA 2.1.9"
+
+module load bamtools
+module load bedtools
+module load biopython
+module load bismark
+module load blast
+module load blat
+module load bowtie
+module load bowtie2
+module load bwa
+module load bx-python
+module load cufflinks
+module load dendropy
+module load edena
+module load fastqc
+module load fastx
+module load GenomeAnalysisTK
+module load gmap_gsnap
+module load htseq
+module load idba-ud
+module load matt
+module load miRDeep2
+module load picard
+module load plink
+module load pysam
+module load qiime
+module load randfold
+module load samtools
+module load soapdenovo
+module load SOAPsnp
+module load spades
+module load squid
+module load tophat
+module load trimmomatic
+module load trinity
+module load vcftools
+module load velvet
+module load ViennaRNA
+module load stacks
+module load rseqc
