@@ -62,7 +62,6 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 $(NAME).spec: DESCRIPTION LICENSE
-ROLLCOMPILER=gnu
 
 DESCRIPTION:
 	$(MODULE_LOAD_CC); \

@@ -1,6 +1,4 @@
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
+override ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-vcftools
 VERSION        = 0.1.14
