@@ -4,6 +4,8 @@ set biotoolsHome /opt/biotools
 
 module-whatis "miRDeep2 VERSION"
 
+module load bowtie
+
 set packageHome $biotoolsHome/miRDeep2
 append-path PERL5LIB $packageHome/share/perl5
 append-path PATH $packageHome/bin
