@@ -235,7 +235,6 @@ SKIP: {
 open(OUT, ">$TESTFILE.sh");
 print OUT <<END;
 module load miRDeep2
-module load bowtie
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
 bowtie-build cel_cluster.fa cel_cluster
@@ -305,8 +304,19 @@ SKIP: {
 $packageHome = '/opt/biotools/qiime';
 SKIP: {
   skip 'qimme not installed', 1 if ! -d $packageHome;
-  $output = `module load qiime; print_qiime_config.py -t 2>&1`;
-  like($output, qr/OK/, 'qiime works');
+  `mkdir $TESTFILE.dir`;
+  `cp -r $packageHome/tests/* $TESTFILE.dir`;
+  `cd $TESTFILE.dir; module load qiime; python all_tests.py >& out`;
+   $out=`cat $TESTFILE.dir/out`;
+   @output = split(/\n/,$out);
+   $count = 0;
+   for $line (@output) {
+     if ( $line =~ / ok$/) {
+        $count +=1;
+     }
+   }
+   ok($count >= 1178,'qiime works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/randfold';
