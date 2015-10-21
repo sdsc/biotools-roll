@@ -76,7 +76,10 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/spades_compile.sh patch-files/spades_compile.sh.patch
-	perl -pi -e "s!ROLLPATHCC!`which $(CC)`!g" $(SOURCE_DIR)/spades_compile.sh
+	( \
+            $(MODULE_LOAD_CC); \
+            perl -pi -e "s!ROLLPATHCC!`which $(CC)`!g" $(SOURCE_DIR)/spades_compile.sh \
+         )
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
