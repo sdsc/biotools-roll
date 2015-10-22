@@ -4,7 +4,7 @@ set biotoolsHome /opt/biotools
 
 module-whatis "plink VERSION"
 
-module load ROLLCOMPILER
+module load ROLLCOMPILER mkl
 
 set packageHome $biotoolsHome/plink
 setenv PLINKHOME $packageHome
