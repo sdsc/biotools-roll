@@ -20,7 +20,7 @@ my @packages = (
 my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
-rm -rf $TESTFILE*;
+`rm -rf $TESTFILE*`;
 
 # biotools-common.xml
 if($appliance =~ /$installedOnAppliancesPattern/) {
