@@ -1,3 +1,5 @@
+override ROLLCOMPILER = gnu
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 PACKAGE     = vcftools
 CATEGORY    = applications
 
