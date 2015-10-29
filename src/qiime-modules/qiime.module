@@ -1,0 +1,14 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "qiime VERSION"
+
+module load ROLLCOMPILER python scipy
+
+set packageHome /opt/biotools/qiime
+setenv QIIMEHOME $packageHome
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+append-path PYTHONPATH $lib
+append-path PATH  $packageHome/bin
+

@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-bx-python
-VERSION        = 0.7.1
-RELEASE        = 17
+VERSION        = 0.7.3
+RELEASE        = 0
 PKGROOT        = /opt/biotools/bx-python
 
 SRC_SUBDIR     = bx-python

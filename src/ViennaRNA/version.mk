@@ -1,11 +1,6 @@
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
-COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
-
 NAME           = sdsc-ViennaRNA
-VERSION        = 2.1.8
-RELEASE        = 2
+VERSION        = 2.1.9
+RELEASE        = 0
 PKGROOT        = /opt/biotools/ViennaRNA
 
 SRC_SUBDIR     = ViennaRNA

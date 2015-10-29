@@ -1,0 +1,10 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "bowtie VERSION"
+
+set packageHome $biotoolsHome/bowtie
+setenv BOWTIEHOME $packageHome
+append-path PATH $packageHome/bin
+append-path PATH $packageHome/scripts

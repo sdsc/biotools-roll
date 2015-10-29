@@ -1,0 +1,11 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "trinity VERSION"
+
+module load bowtie samtools 
+set packageHome $biotoolsHome/trinity
+setenv TRINITYHOME $packageHome
+append-path PATH $packageHome/bin:$packageHome
+prepend-path PATH /usr/java/jdk1.7.0_51/bin

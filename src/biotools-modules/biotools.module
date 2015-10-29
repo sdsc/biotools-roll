@@ -2,196 +2,43 @@
 
 set biotoolsHome /opt/biotools
 
-module-whatis "                       biotools"
-module-whatis "bedtools 2.20.1        bamtools 2.3.0          biopython 1.62"
-module-whatis "bismark 0.10.1         blast 2.2.29            blat 35"
-module-whatis "bowtie 1.0.0           bowtie2 2.2.3           bwa 0.7.5a"
-module-whatis "bx-python 0.7.2        cufflinks 2.2.0         dendropy 3.12.0"
-module-whatis "edena 3.131028         fastqc 0.10.1           fastx 0.0.14"
-module-whatis "GenomeAnalysisTK 2.8.1 gmap_gsnap 2014_02_20   htseq 0.5.4p5"
-module-whatis "idba-ud 1.1.1          matt 1.00               miRDeep2 0.0.5"
-module-whatis "miso 0.5.2             picard 1.108            plink 1.07"
-module-whatis "pysam 0.7.8pre         qiime 1.8.0             randfold 2.0"
-module-whatis "rsqec 2.4              samtools 0.1.19         soapdenovo r240"
-module-whatis "SOAPsnp v1.03          spades 3.1.0            squid 1.9g"
-module-whatis "stacks 1.20            tophat 2.0.10           trimmomatic 0.32"
-module-whatis "trinity 20131110       velvet 1.2.10           ViennaRNA 2.1.7"
-
-
-set packageHome $biotoolsHome/bamtools
-setenv BAMTOOLSHOME $packageHome
-append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $packageHome/lib/bamtools
-
-set packageHome $biotoolsHome/bedtools
-append-path PATH $packageHome/bin
-setenv BEDTOOLSHOME $packageHome
-
-set packageHome $biotoolsHome/biopython
-setenv BIOPYTHONHOME $packageHome
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-
-set packageHome $biotoolsHome/bismark
-setenv BISMARKHOME $packageHome
-append-path PATH $packageHome
-
-set packageHome $biotoolsHome/blast
-setenv BLASTHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/blat
-setenv BLATHOME $packageHome
-append-path PATH $packageHome/bin/x86_64
-
-set packageHome $biotoolsHome/bowtie
-setenv BOWTIEHOME $packageHome
-append-path PATH $packageHome/bin
-append-path PATH $packageHome/scripts
-
-set packageHome $biotoolsHome/bowtie2
-setenv BOWTIE2HOME $packageHome
-append-path PATH $packageHome/bin
-append-path PATH $packageHome/scripts
-
-set packageHome $biotoolsHome/bwa
-setenv BWAHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/bx-python
-setenv BXPYTHONHOME $packageHome
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-
-set packageHome $biotoolsHome/cufflinks
-append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH /opt/boost/gnu/lib
-setenv CUFFLINKSHOME $packageHome
-
-set packageHome $biotoolsHome/dendropy
-setenv DENDROPYHOME $packageHome
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-
-set packageHome $biotoolsHome/edena
-setenv EDENAHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/fastqc
-setenv FASTQCHOME $packageHome
-append-path PATH $packageHome
-
-set packageHome $biotoolsHome/fastx
-setenv FASTXHOME $packageHome
-append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $packageHome/lib
-
-set packageHome $biotoolsHome/GenomeAnalysisTK
-setenv GATKHOME $packageHome
-append-path CLASSPATH $packageHome
-
-set packageHome $biotoolsHome/gmap_gsnap
-append-path PATH $packageHome/bin
-setenv GMAP_GSNAPHOME $packageHome
-
-set packageHome $biotoolsHome/htseq
-setenv HTSEQHOME $packageHome
-append-path PYTHONPATH $packageHome/lib
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/idba-ud
-setenv IDBAUDHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/matt
-append-path PATH $packageHome/bin
-setenv MATTHOME $packageHome
-
-set packageHome $biotoolsHome/miRDeep2
-append-path PERL5LIB $packageHome/share/perl5
-append-path PATH $packageHome/bin
-setenv MIRDEEP2HOME $packageHome
-
-set packageHome $biotoolsHome/miso
-setenv MISOHOME $packageHome
-append-path PATH $packageHome/bin
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-
-set packageHome $biotoolsHome/picard
-setenv PICARDHOME $packageHome
-append-path CLASSPATH $packageHome
-append-path CLASSPATH $packageHome/picard-tools
-
-set packageHome $biotoolsHome/plink
-setenv PLINKHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/pysam
-setenv PYSAMHOME $packageHome
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-
-set packageHome /opt/biotools/qiime
-setenv QIIMEHOME $packageHome
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-
-set packageHome $biotoolsHome/randfold
-append-path PATH $packageHome/bin
-setenv RANDFOLDHOME $packageHome
-
-set packageHome $biotoolsHome/samtools
-setenv SAMTOOLSHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/soapdenovo
-append-path PATH $packageHome/bin
-setenv SOAPDENOVOHOME $packageHome
-
-set packageHome $biotoolsHome/SOAPsnp
-setenv SOAPSNPHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/spades
-setenv SPADESHOME $packageHome
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/squid
-append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $packageHome/lib
-setenv SQUIDHOME $packageHome
-
-set packageHome $biotoolsHome/tophat
-append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH /opt/boost/gnu/lib
-setenv TOPHATHOME $packageHome
-
-set packageHome $biotoolsHome/trimmomatic
-setenv TRIMMOMATICHOME $packageHome
-append-path CLASSPATH $packageHome/trimmomatic-0.32.jar
-
-set packageHome $biotoolsHome/trinity
-setenv TRINITYHOME $packageHome
-append-path PATH $packageHome/bin:$packageHome
-
-set packageHome $biotoolsHome/velvet
-append-path PATH $packageHome/bin
-setenv VELVETHOME $packageHome
-
-set packageHome $biotoolsHome/ViennaRNA
-append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $packageHome/lib
-append-path PERL5LIB $packageHome/lib64/perl5
-setenv VIENNARNAHOME $packageHome
- 
-set packageHome $biotoolsHome/stacks
-append-path PATH $packageHome/bin
-
-set packageHome $biotoolsHome/rseqc
-setenv RSEQCHOME $packageHome
-set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
-append-path PYTHONPATH $lib
-append-path PATH $packageHome/bin
-
-module load gnu ROLLCOMPILER mkl python boost
+module load bamtools
+module load bedtools
+module load biopython
+module load bismark
+module load blast
+module load blat
+module load bowtie
+module load bowtie2
+module load bwa
+module load bx-python
+module load cufflinks
+module load dendropy
+module load edena
+module load fastqc
+module load fastx
+module load GenomeAnalysisTK
+module load gmap_gsnap
+module load htseq
+module load idba-ud
+module load matt
+module load miRDeep2
+module load miso
+module load picard
+module load plink
+module load pysam
+module load qiime
+module load randfold
+module load rseqc
+module load samtools
+module load soapdenovo
+module load SOAPsnp
+module load spades
+module load squid
+module load stacks
+module load tophat
+module load trimmomatic
+module load trinity
+module load vcftools
+module load velvet
+module load ViennaRNA

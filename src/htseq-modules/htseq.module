@@ -1,0 +1,11 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "htseq VERSION"
+
+module load python ROLLCOMPILER
+
+set packageHome $biotoolsHome/htseq
+setenv HTSEQHOME $packageHome
+append-path PYTHONPATH $packageHome/lib

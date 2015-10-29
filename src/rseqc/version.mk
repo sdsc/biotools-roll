@@ -1,5 +1,5 @@
 NAME           = sdsc-rseqc
-VERSION        = 2.5
+VERSION        = 2.6.2
 RELEASE        = 0
 PKGROOT        = /opt/biotools/rseqc
 

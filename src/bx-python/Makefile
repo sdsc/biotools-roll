@@ -82,23 +82,25 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-	  $(MODULE_LOAD_CC); \
-	  $(MODULE_LOAD_PYTHON); \
-	  cd $(SOURCE_DIR); \
-	  python setup.py build \
-	)
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_PYTHON); \
+          export CC=$(CC); \
+          cd $(SOURCE_DIR); \
+          python setup.py build \
+          )
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	( \
-	  $(MODULE_LOAD_CC); \
-	  $(MODULE_LOAD_PYTHON); \
-	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
-	  mkdir -p -m 755 $${PYDIR}; \
-	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
-	  cd $(SOURCE_DIR); \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
-	)
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_PYTHON); \
+          export CC=$(CC); \
+          PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+          mkdir -p -m 755 $${PYDIR}; \
+          export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
+          cd $(SOURCE_DIR); \
+          python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
+        )
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

@@ -65,11 +65,9 @@ $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	$(MODULE_LOAD_CXX); \
-	$(MODULE_LOAD_MPI); \
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CXX); \
-	  $(DESCRIBE_MPI); \
 	  $(DESCRIBE_BOOST) \
 	) > $@
 
@@ -81,7 +79,6 @@ build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MODULE_LOAD_CXX); \
-	  $(MODULE_LOAD_MPI); \
 	  $(MODULE_LOAD_BOOST); \
 	  perl -pi -e "s#(CXXFLAGS\s*=\s*)#\$$1 -I$${BOOSTHOME}/include #" makefile; \
 	  $(MAKE) CXX=$(CXX) \

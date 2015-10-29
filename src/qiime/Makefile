@@ -91,7 +91,7 @@ install::
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_PYTHON); \
-	  pip install --install-option="--prefix=$(PKGROOT)" numpy==1.8.0; \
+          module load scipy; \
 	  pip install --install-option="--prefix=$(PKGROOT)" qiime; \
 	  mkdir $(PKGROOT)/tests; \
 	  cd $(SOURCE_DIR); \

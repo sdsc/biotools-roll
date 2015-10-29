@@ -1,0 +1,13 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "squid VERSION"
+
+module load gnu 
+
+set packageHome $biotoolsHome/squid
+append-path PATH $packageHome/bin
+append-path LD_LIBRARY_PATH $packageHome/lib
+setenv SQUIDHOME $packageHome
+

@@ -1,15 +1,15 @@
---- runMe.sh	2014-10-11 07:45:57.917001114 -0700
-+++ patch-files/runMe.sh	2014-10-11 07:47:53.143953809 -0700
-@@ -24,7 +24,7 @@
+--- trinityrnaseq-2.0.6/sample_data/test_Trinity_Assembly/runMe.sh	2015-03-02 10:08:04.000000000 -0800
++++ patch-files/runMe.sh	2015-09-27 18:21:10.284967876 -0700
+@@ -23,7 +23,7 @@
+ ##  Run Trinity to Generate Transcriptome Assemblies ##
  #######################################################
  
- ## use jellyfish
--../../Trinity --seqType fq --JM 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4 --trimmomatic --normalize_reads --no_cleanup 
-+ROLLPREFIX/Trinity --seqType fq --JM 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4 --trimmomatic --normalize_reads --no_cleanup 
+-../../Trinity --seqType fq --max_memory 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4
++ROLLPREFIX/Trinity --seqType fq --max_memory 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4
  
  ##### Done Running Trinity #####
  
-@@ -43,10 +43,10 @@
+@@ -42,10 +42,10 @@
  sleep 2
  
  # first try RSEM

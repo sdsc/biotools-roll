@@ -83,7 +83,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	cp -r $(SOURCE_DIR)/adapters $(ROOT)/$(PKGROOT)/
 	cp $(SOURCE_DIR)/distSrc/LICENSE $(ROOT)/$(PKGROOT)/
-	cp $(SOURCE_DIR)/dist/jar/trimmomatic-0.32.jar $(ROOT)/$(PKGROOT)/
+	cp $(SOURCE_DIR)/dist/jar/trimmomatic-$(VERSION).jar $(ROOT)/$(PKGROOT)/
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

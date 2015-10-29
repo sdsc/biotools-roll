@@ -1,0 +1,9 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "fastqc VERSION"
+
+set packageHome $biotoolsHome/fastqc
+setenv FASTQCHOME $packageHome
+append-path PATH $packageHome

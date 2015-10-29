@@ -1,10 +1,8 @@
-# NOTE: The velvet configure script only accepts gnu.
 override ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
-
 NAME           = sdsc-spades
-VERSION        = 3.5.0
-RELEASE        = 1
+VERSION        = 3.6.0
+RELEASE        = 0
 PKGROOT        = /opt/biotools/spades
 
 SRC_SUBDIR     = spades

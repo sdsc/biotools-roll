@@ -65,7 +65,6 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
-	$(MODULE_LOAD_CC); \
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CC) \
@@ -76,6 +75,11 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv2 > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/spades_compile.sh patch-files/spades_compile.sh.patch
+	( \
+            $(MODULE_LOAD_CC); \
+            perl -pi -e "s!ROLLPATHCC!`which $(CC)`!g" $(SOURCE_DIR)/spades_compile.sh \
+         )
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
@@ -83,7 +87,6 @@ install::
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_CMAKE); \
 	  cd $(SOURCE_DIR); \
-	  export CC=`which $(CC)`; \
 	  export PREFIX=$(ROOT)/$(PKGROOT); \
 	  ./spades_compile.sh \
 	)

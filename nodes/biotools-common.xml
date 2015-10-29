@@ -26,6 +26,7 @@ matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
 miso - http://genes.mit.edu/burgelab/miso/software.html
 picard - http://picard.sourceforge.net/
+plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
 qiime - http://qiime.org
 randfold - http://bioinformatics.psb.ugent.be/software/details/Randfold
@@ -38,7 +39,8 @@ squid http://selab.janelia.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
 tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
-trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
+trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.github.io
+vcftools - http://vcftools.github.io/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
 viennaRNA - http://www.tbi.univie.ac.at/~ronny/RNA/index.html
 </description>
@@ -87,7 +89,47 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-trinity</package>
 <package>sdsc-velvet</package>
 <package>sdsc-ViennaRNA</package>
-<package>sdsc-biotools-modules</package>
+<package>sdsc-miso-modules</package>
+<package>sdsc-bamtools-modules</package>
+<package>sdsc-bedtools-modules</package>
+<package>sdsc-biopython-modules</package>
+<package>sdsc-bismark-modules</package>
+<package>sdsc-blast-modules</package>
+<package>sdsc-blat-modules</package>
+<package>sdsc-bowtie-modules</package>
+<package>sdsc-bowtie2-modules</package>
+<package>sdsc-bwa-modules</package>
+<package>sdsc-bx-python-modules</package>
+<package>sdsc-cufflinks-modules</package>
+<package>sdsc-dendropy-modules</package>
+<package>sdsc-edena-modules</package>
+<package>sdsc-fastqc-modules</package>
+<package>sdsc-fastx-modules</package>
+<package>sdsc-GenomeAnalysisTK-modules</package>
+<package>sdsc-gmap_gsnap-modules</package>
+<package>sdsc-htseq-modules</package>
+<package>sdsc-idba-ud-modules</package>
+<package>sdsc-matt-modules</package>
+<package>sdsc-miRDeep2-modules</package>
+<package>sdsc-miso-modules</package>
+<package>sdsc-picard-modules</package>
+<package>sdsc-plink-modules</package>
+<package>sdsc-pysam-modules</package>
+<package>sdsc-qiime-modules</package>
+<package>sdsc-randfold-modules</package>
+<package>sdsc-rseqc-modules</package>
+<package>sdsc-samtools-modules</package>
+<package>sdsc-soapdenovo-modules</package>
+<package>sdsc-SOAPsnp-modules</package>
+<package>sdsc-spades-modules</package>
+<package>sdsc-squid-modules</package>
+<package>sdsc-stacks-modules</package>
+<package>sdsc-tophat-modules</package>
+<package>sdsc-trimmomatic-modules</package>
+<package>sdsc-trinity-modules</package>
+<package>sdsc-velvet-modules</package>
+<package>sdsc-ViennaRNA-modules</package>
 <package>sdsc-biotools-roll-test</package>
+<package>sdsc-biotools-modules</package>
 
 </kickstart>

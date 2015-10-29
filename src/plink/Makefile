@@ -66,7 +66,8 @@ $(NAME).spec: DESCRIPTION LICENSE
 DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_MKL) \
+          $(DESCRIBE_CC); \
+          $(DESCRIBE_MKL); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -74,15 +75,24 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv2 > $@
 
 build: $(SRC_DIRS)
-	cp patch-files/Makefile $(SOURCE_DIR)
-	cp patch-files/sets.cpp $(SOURCE_DIR)
-	cp patch-files/elf.cpp $(SOURCE_DIR)
-	cp patch-files/idhelp.cpp $(SOURCE_DIR)
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/plink_matrix.h patch-files/plink_matrix.h.patch
 	( \
-	  $(MODULE_LOAD_MKL); \
-	  export MKLLIB=`find $${MKLHOME}/lib/* -maxdepth 0 | head -1`; \
-	  perl -pi -e "s!ROOTMKL!$${MKLLIB}!g" $(SOURCE_DIR)/Makefile; \
-	  cd $(SOURCE_DIR); \
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_MKL); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
+          export FC=$(FC); \
+          export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
+          perl -pi -e "s!MKLLIB!$${MKLLIB}!g" $(SOURCE_DIR)/Makefile; \
+          perl -pi -e "s!MKLROOT!$${MKL_ROOT}!g" $(SOURCE_DIR)/Makefile; \
+          cd $(ZLIB_DIR); \
+          ./configure --prefix=../$(SOURCE_DIR)/zlib-$(ZLIB_VERSION); \
+          make; \
+          make install; \
+          cd ../$(SOURCE_DIR)/zlib-$(ZLIB_VERSION); \
+          cp -r include/* .; \
+          cd ..; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
@@ -91,7 +101,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/examples
 	cp $(SOURCE_DIR)/plink $(ROOT)/$(PKGROOT)/bin
-	cp patch-files/hapmap* $(ROOT)/$(PKGROOT)/examples
+	cp hapmap* $(ROOT)/$(PKGROOT)/examples
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

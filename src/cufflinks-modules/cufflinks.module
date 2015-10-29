@@ -1,0 +1,13 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "cufflinks VERSION"
+
+module load ROLLCOMPILER
+module load boost
+
+set packageHome $biotoolsHome/cufflinks
+append-path PATH $packageHome/bin
+setenv CUFFLINKSHOME $packageHome
+

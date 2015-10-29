@@ -1,0 +1,11 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "blast VERSION"
+
+module load ROLLCOMPILER
+
+set packageHome $biotoolsHome/blast
+setenv BLASTHOME $packageHome
+append-path PATH $packageHome/bin

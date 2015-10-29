@@ -74,7 +74,6 @@ DESCRIPTION:
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CC); \
 	  $(DESCRIBE_BOOST); \
-	  $(DESCRIBE_EIGEN) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -88,16 +87,15 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_BOOST); \
-	  $(MODULE_LOAD_EIGEN); \
+          cd $(SOURCE_DIR); \
 	  if test "$(COMPILERNAME)" = "gnu"; then \
 	    export PATH=/usr/bin:${PATH}; \
 	  fi; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
-	  cd $(SOURCE_DIR); \
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
-	  ./configure -prefix=$(PKGROOT) \
-	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME}; \
+          ./autogen.sh; \
+	  ./configure -prefix=$(PKGROOT) --with-boost=$${BOOSTHOME};  \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"

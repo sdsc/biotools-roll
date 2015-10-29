@@ -1,87 +1,135 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: DendroPy
-Version: 3.12.0
+Version: 4.0.3
 Summary: A Python library for phylogenetics and phylogenetic computing: reading, writing, simulation, processing and manipulation of phylogenetic trees (phylogenies) and characters.
 Home-page: http://packages.python.org/DendroPy/
 Author: Jeet Sukumaran and Mark T. Holder
-Author-email: jeet@ku.edu and mtholder@ku.edu
+Author-email: jeetsukumaran@gmail.com and mtholder@ku.edu
 License: BSD
-Description: Introduction
-        ============
+Description: .. image:: https://raw.githubusercontent.com/jeetsukumaran/DendroPy/DendroPy4/doc/source/_static/dendropy_logo.png
+           :align: right
+           :alt: DendroPy
         
         DendroPy is a Python library for phylogenetic computing.
-        It provides classes and functions for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats, such as NEXUS, NEWICK, NeXML, Phylip, FASTA, etc.
-        Application scripts for performing some useful phylogenetic operations, such as data conversion and tree posterior distribution summarization, are also distributed and installed as part of the libary.
-        DendroPy can thus function as a stand-alone library for phylogenetics, a component of more complex multi-library phyloinformatic pipelines, or as a scripting "glue" that assembles and drives such pipelines.
+        It provides classes and functions for the simulation, processing, and
+        manipulation of phylogenetic trees and character matrices, and supports the
+        reading and writing of phylogenetic data in a range of formats, such as NEXUS,
+        NEWICK, NeXML, Phylip, FASTA, etc.  Application scripts for performing some
+        useful phylogenetic operations, such as data conversion and tree posterior
+        distribution summarization, are also distributed and installed as part of the
+        libary.  DendroPy can thus function as a stand-alone library for phylogenetics,
+        a component of more complex multi-library phyloinformatic pipelines, or as a
+        scripting "glue" that assembles and drives such pipelines.
         
         The primary home page for DendroPy, with detailed tutorials and documentation, is at:
+        
+            http://dendropy.org/
+        
+        DendroPy is also hosted in the official Python repository:
         
             http://packages.python.org/DendroPy/
         
         Requirements and Installation
         =============================
         
-        DendroPy runs under any version of Python 2 from 2.4 upwards (i.e., Python 2.4, 2.5, 2.6, 2.7, etc.). At present, it does not run under Python 3.
+        DendroPy 4.x runs under Python 3 (all versions > 3.1) and Python 2 (Python 2.7 only).
         
-        If you have `setuptools <http://pypi.python.org/pypi/setuptools>`_ installed, you can install the latest public release of DendroPy directly from the `Python Package Index <http://pypi.python.org/pypi/DendroPy/>`_ by running::
-        
-            $ sudo easy_install -U dendropy
-        
-        Alternatively, if you have `pip <http://pypi.python.org/pypi/pip>`_ installed, you can run::
+        You can install DendroPy by running::
         
             $ sudo pip install dendropy
         
-        If you `download the source code archive <http://pypi.python.org/packages/source/D/DendroPy/DendroPy-3.12.0.tar.gz>`_ from the `Python Package Index <http://pypi.python.org/pypi/DendroPy/>`_, you can unarchive it and install it from the local source by running::
+        More information is available here:
         
-            $ tar -xvzf DendroPy-3.12.0.tar.gz
-            $ cd DendroPy-3.12.0
-            $ sudo python setup.py install
+            http://dendropy.org/downloading.html
         
         Documentation
         =============
         
-        A detailed example-rich "cookbook"-style tutorial on using DendroPy can be found here:
+        Full documentation is available here:
         
-            http://packages.python.org/DendroPy/tutorial/index.html
+            http://dendropy.org/
         
-        While the API reference can be found here:
+        This includes:
         
-            http://packages.python.org/DendroPy/library/index.html
+            -   `A comprehensive "getting started" primer <http://dendropy.org/primer/index.html>`_ .
+            -   `API documentation <http://dendropy.org/library/index.html>`_ .
+            -   `Descriptions of data formats supported for reading/writing <http://dendropy.org/schemas/index.html>`_ .
         
-        Source Code Repository
-        ======================
+        and more.
         
-        The DendroPy source code is version-controlled using `Git <http://git-scm.com/>`_, and the `DendroPy Git repository <http://github.com/jeetsukumaran/DendroPy>`_ can be cloned by running::
+        Testing
+        =======
         
-            $ git clone git://github.com/jeetsukumaran/DendroPy.git
+        .. note::
         
-        Change History
-        ==============
+            Note that some tests rely on PAUP* being available on your system.
+            You will need to set the environmental variable ``DENDROPY_PAUP_EXECUTABLE_PATH`` to the path
+            of the PAUP* executable for these tests to be run, e.g.::
         
-        The major changes (new features and bug fixes) in the development history of DendroPy can be found here:
+                DENDROPY_PAUP_EXECUTABLE_PATH=/usr/local/bin/paup python setup.py test
         
-            http://packages.python.org/DendroPy/changes.html
+            or::
         
-        More Information
-        =================
-        More information, including tutorials, library API references, citation, license, etc. can be found on the `DendroPy documentation website <http://packages.python.org/DendroPy/>`_:
+                DENDROPY_PAUP_EXECUTABLE_PATH=/usr/local/bin/paup python -m unittest
         
-            http://packages.python.org/DendroPy/
+            If this variable is not set or set to "NONE", then any tests that rely on
+            PAUP* will NOT be run.
         
+        Tests can be run by typing::
+        
+            $ python -m dendropy.test
+        
+        By default, all tests are run. You can run specific by providing the
+        fully-qualified name of the modules, test cases, or specific test methods to
+        run, e.g.::
+        
+            $ python -m dendropy.test test_tokenizer
+            $ python -m dendropy.test test_tokenizer.TestCase
+            $ python -m dendropy.test test_tokenizer.TestCase.test1
+            $ python -m dendropy.test test_tokenizer test_datamodel_taxon
+        
+        Or special pre-defined sub-groups of tests, e.g.::
+        
+            $ python -m dendropy.test @datamodel
+            $ python -m dendropy.test @dataio
+            $ python -m dendropy.test @datamodel @newick
+        
+        A list of all available sub-groups can be seen by::
+        
+            $ python -m dendropy.test --help-testgroups
+        
+        For any tests run, you can set the level at which the test progress is logged
+        by::
+        
+            $ python -m dendropy.test -l DEBUG all
+        
+        For all options, type::
+        
+            $ python -m dendropy.test --help
+        
+        License and Warranty
+        ====================
+        
+        Please see the file "LICENSE.rst" for details.
         
         Current Release
         ===============
         
-        The current release of DendroPy is version 3.12.0 (revision: 91b552d, None).
+        The current release of DendroPy is version 4.0.3 (development-master-55d1251, 2015-07-29 01:05:56).
         
         
 Keywords: phylogenetics phylogeny phylogenies phylogeography evolution evolutionary biology systematics coalescent population genetics phyloinformatics bioinformatics
 Platform: UNKNOWN
-Classifier: Environment :: Console
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Science/Research
 Classifier: License :: OSI Approved :: BSD License
 Classifier: Natural Language :: English
 Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
 Classifier: Programming Language :: Python
 Classifier: Topic :: Scientific/Engineering :: Bio-Informatics

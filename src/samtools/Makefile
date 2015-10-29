@@ -78,7 +78,9 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) LIBCURSES='-lcurses -ltinfo' \
+	  $(MAKE) LIBCURSES='-lcurses -ltinfo'; \
+          cd htslib-* ; \
+          make; \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
@@ -89,17 +91,17 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  make prefix=$(ROOT)/$(PKGROOT) install; \
-	  cp bcftools/{bcftools,vcfutils.pl} misc/*.java \
-	     $(ROOT)/$(PKGROOT)/bin/; \
-	  cp -r examples $(ROOT)/$(PKGROOT); \
-	  cp libbam.a htslib*/libhts.a $(ROOT)/$(PKGROOT)/lib/; \
-	  cp -r *.h htslib*/htslib $(ROOT)/$(PKGROOT)/include/bam \
+          cp htslib-*/tabix $(ROOT)/$(PKGROOT)/bin; \
+          cp htslib-*/*.a $(ROOT)/$(PKGROOT)/lib; \
+          cp *.a $(ROOT)/$(PKGROOT)/lib; \
+          cp htslib*/libhts.a $(ROOT)/$(PKGROOT)/lib/; \
+          cp -r *.h htslib*/htslib $(ROOT)/$(PKGROOT)/include/bam; \
+          cp misc/*.java misc/*.pl misc/ace2sam \
+              $(ROOT)/$(PKGROOT)/bin/; \
+          cp -r examples $(ROOT)/$(PKGROOT); \
 	)
 	mkdir -p -m 755 $(SAMTOOLS_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(SAMTOOLS_CACHE)/
-	# cufflinks build requires this
-	ln -s $(SAMTOOLS_CACHE)/include/bam/version.h \
-	      $(SAMTOOLS_CACHE)/include/bam/version.hpp
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

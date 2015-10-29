@@ -9,7 +9,7 @@ import re
 from sys import exit
 from qiime.util import (parse_command_line_parameters, get_options_lookup,
                         load_qiime_config, qiime_system_call, get_qiime_scripts_dir,
-                        make_option, get_qiime_project_dir)
+                        make_option, get_qiime_project_dir, get_qiime_temp_dir)
 from qiime.test import run_script_usage_tests
 
 __author__ = "Rob Knight"
@@ -17,7 +17,7 @@ __copyright__ = "Copyright 2011, The QIIME Project"  # consider project name
 __credits__ = ["Rob Knight", "Greg Caporaso", "Jai Ram Rideout",
                "Yoshiki Vazquez Baeza"]  # remember to add yourself if you make changes
 __license__ = "GPL"
-__version__ = "1.8.0-dev"
+__version__ = "1.9.1"
 __maintainer__ = "Greg Caporaso"
 __email__ = "gregcaporaso@gmail.com"
 
@@ -38,7 +38,7 @@ script_info['optional_options'] = [
                 action='store_true',
                 help='suppress script usage tests [default: %default]',
                 default=False),
-    make_option('--unittest_glob',
+    make_option('--unit_test_glob',
                 help='wildcard pattern to match tests to run [default: run all]',
                 default=None),
     make_option('--script_usage_tests',
@@ -71,13 +71,13 @@ def main():
     # fail unit tests.
     if not opts.suppress_unit_tests:
         unittest_names = []
-        if not opts.unittest_glob:
+        if not opts.unit_test_glob:
             for root, dirs, files in walk(test_dir):
                 for name in files:
                     if name.startswith('test_') and name.endswith('.py'):
                         unittest_names.append(join(root, name))
         else:
-            for fp in glob(opts.unittest_glob):
+            for fp in glob(opts.unit_test_glob):
                 fn = split(fp)[1]
                 if fn.startswith('test_') and fn.endswith('.py'):
                     unittest_names.append(abspath(fp))
@@ -108,11 +108,11 @@ def main():
             run_script_usage_tests(
                 test_data_dir=qiime_test_data_dir,
                 scripts_dir=get_qiime_scripts_dir(),
-                working_dir=qiime_config['temp_dir'],
+                working_dir=get_qiime_temp_dir(),
                 verbose=True,
                 tests=script_usage_tests,
                 force_overwrite=True,
-                timeout=240)
+                timeout=400)
 
     print "==============\nResult summary\n=============="
 

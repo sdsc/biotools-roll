@@ -1,0 +1,9 @@
+#%Module1.0
+
+
+module-whatis "stacks VERSION"
+
+module load ROLLCOMPILER
+
+set packageHome /opt/biotools/stacks
+append-path PATH $packageHome/bin

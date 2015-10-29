@@ -65,9 +65,8 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
-	$(MODULE_LOAD_CC); \
 	( \
-	  $(DESCRIBE_CC) \
+	  $(DESCRIBE_PKG) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -86,9 +85,6 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	$(PKGROOT_BIND_MOUNT)
 	( \
-	  $(MODULE_LOAD_CC); \
-	  export CC=$(CC); \
-	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  make install; \
 	  cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \

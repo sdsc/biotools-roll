@@ -38,7 +38,8 @@ squid http://selab.janelia.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
 tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
-trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.sourceforge.net/
+trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.github.io
+vcftools - http://vcftools.github.io/
 velvet - http://www.ebi.ac.uk/~zerbino/velvet
 viennaRNA - http://www.tbi.univie.ac.at/~ronny/RNA/index.html
 </description>
