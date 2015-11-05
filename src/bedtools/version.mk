@@ -1,6 +1,6 @@
 NAME           = sdsc-bedtools
 VERSION        = 2.22.1
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/bedtools
 
 SRC_SUBDIR     = bedtools

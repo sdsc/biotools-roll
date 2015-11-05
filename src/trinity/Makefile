@@ -86,6 +86,7 @@ install::
 	  cd $(SOURCE_DIR); \
 	  export FORCE_UNSAFE_CONFIGURE=1; \
 	  $(MAKE); \
+	  $(MAKE) plugins; \
 	  cp -r * $(ROOT)/$(PKGROOT)/ \
 	)
 	# Remove references to install dir from rpm text files
