@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-htseq
 VERSION        = 0.6.1p1
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/htseq
 
 SRC_SUBDIR     = htseq

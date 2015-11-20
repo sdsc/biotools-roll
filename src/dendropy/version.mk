@@ -1,6 +1,6 @@
 NAME           = sdsc-dendropy
 VERSION        = 4.0.3
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/dendropy
 
 SRC_SUBDIR     = dendropy
