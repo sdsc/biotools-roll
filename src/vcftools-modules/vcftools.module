@@ -8,6 +8,6 @@ module load ROLLCOMPILER
 
 set packageHome $biotoolsHome/vcftools
 append-path PATH $packageHome/bin
-prepend-path PERL5LIB /opt/biotools/vcftools/lib/perl5/site_perl
+prepend-path PERL5LIB /opt/biotools/vcftools/share/perl5
 setenv VCFTOOLSHOME $packageHome
 
