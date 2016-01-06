@@ -6,8 +6,8 @@ module-whatis "bcftools VERSION"
 
 module load ROLLCOMPILER gsl
 
-set packageHome $biotoolsHome/vcftools
-a pend-path PATH $packageHome/bin
-prepend-path PERL5LIB /opt/biotools/vcftools/share/perl5
-setenv VCFTOOLSHOME $packageHome
+set packageHome $biotoolsHome/bcftools
+prepend-path PATH $packageHome/bin
+prepend-path PATH /opt/biotools/trinity/trinity-plugins/htslib
+setenv BCFTOOLSHOME $packageHome
 
