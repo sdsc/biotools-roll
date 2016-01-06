@@ -1,4 +1,6 @@
-PACKAGE     = biotools
+override ROLLCOMPILER = gnu
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+PACKAGE     = bcftools
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules

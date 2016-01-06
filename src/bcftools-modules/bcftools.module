@@ -1,0 +1,13 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "bcftools VERSION"
+
+module load ROLLCOMPILER gsl
+
+set packageHome $biotoolsHome/vcftools
+a pend-path PATH $packageHome/bin
+prepend-path PERL5LIB /opt/biotools/vcftools/share/perl5
+setenv VCFTOOLSHOME $packageHome
+

@@ -3,6 +3,7 @@
 set biotoolsHome /opt/biotools
 
 module load bamtools
+module load bcftools
 module load bedtools
 module load biopython
 module load bismark
