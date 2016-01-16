@@ -4,9 +4,6 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include $(SDSCDEVEL)/Rules.mk
 
-$(VERSION_INC):
-	/bin/echo "VERSION = 2" > $@
- 
 build:
 
 install:: typical-modulefile-install
