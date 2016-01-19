@@ -76,6 +76,7 @@ LICENSE: $(SRC_DIRS)
 	echo Expat > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) LIBCURSES='-lcurses -ltinfo'; \
