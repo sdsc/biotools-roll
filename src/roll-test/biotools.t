@@ -46,7 +46,7 @@ $packageHome = '/opt/biotools/bcftools';
 SKIP: {
   skip 'bcftools not installed', 1 if ! -d $packageHome;
   $output = `module load bcftools; $packageHome/test/test.pl 2>&1`;
-  like($output, qr/passed  .. 388/, 'bcftools works');
+  like($output, qr/failed\s*\.\.\s*0/, 'bcftools works');
   `rm -rf $TESTFILE.dir`;
 }
 
