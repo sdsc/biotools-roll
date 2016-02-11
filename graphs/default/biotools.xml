@@ -5,6 +5,7 @@
 <description>
 bamtools - https://github.com/pezmaster31/bamtools
 bedtools - https://github.com/arq5x/bedtools2
+bcftools - https://samtools.github.io/bcftools
 biopython - http://biopython.org
 bismark - http://www.bioinformatics.babraham.ac.uk/projects/bismark/
 blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
@@ -26,6 +27,7 @@ matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
 miso - http://genes.mit.edu/burgelab/miso/software.html
 picard - http://picard.sourceforge.net/
+plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
 qiime - http://qiime.org
 randfold - http://bioinformatics.psb.ugent.be/software/details/Randfold

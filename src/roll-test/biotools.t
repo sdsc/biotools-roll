@@ -15,7 +15,7 @@ my @packages = (
   'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq', 'idba-ud', 'matt',
   'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime', 'randfold',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'tophat',
-  'trimmomatic', 'trinity', 'vcftools','velvet', 'ViennaRNA','stacks','rseqc'
+  'trimmomatic', 'trinity', 'vcftools','velvet', 'ViennaRNA','stacks','rseqc','bcftools'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -40,6 +40,14 @@ SKIP: {
   $output = `module load bamtools; cd $TESTFILE.dir; g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools; ./test test.bam 2>&1`;
   like($output, qr/Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
   `rm -rf $TESTFILE*`;
+}
+
+$packageHome = '/opt/biotools/bcftools';
+SKIP: {
+  skip 'bcftools not installed', 1 if ! -d $packageHome;
+  $output = `module load bcftools; $packageHome/test/test.pl 2>&1`;
+  like($output, qr/failed\s*\.\.\s*0/, 'bcftools works');
+  `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/bedtools';

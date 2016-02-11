@@ -2,11 +2,12 @@
 #
 # @Copyright@
 # 
-# 				Rocks(tm)
+# 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		        version 4.3 (Mars Hill)
+# 		         version 5.6 (Emerald Boa)
+# 		         version 6.1 (Emerald Boa)
 # 
-# Copyright (c) 2000 - 2011 The Regents of the University of California.
+# Copyright (c) 2000 - 2013 The Regents of the University of California.
 # All rights reserved.	
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -24,7 +25,7 @@
 # 3. All advertising and press materials, printed or electronic, mentioning
 # features or use of this software must display the following acknowledgement: 
 # 
-# 	"This product includes software developed by the Rocks(tm)
+# 	"This product includes software developed by the Rocks(r)
 # 	Cluster Group at the San Diego Supercomputer Center at the
 # 	University of California, San Diego and its contributors."
 # 
@@ -52,17 +53,50 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
 
-# cufflinks depends on samtools
-# randfold depends on squid
-# stacks depends on samtools
-# tophat depends on samtools
-# bcftools depends on samtools
-SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
-  -not -name cufflinks \
-  -not -name randfold \
-  -not -name stacks \
-  -not -name tophat \
-  -not -name bcftools` \
-  cufflinks randfold stacks tophat bcftools
+REDHAT.ROOT = $(CURDIR)/../../
+RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
+
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
+
+SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
+
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo Expat > $@
+
+build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/test/test.pl patch-files/test.pl.patch
+	( \
+	  cd $(SOURCE_DIR); \
+          make clean; \
+          export GSLHOME=/opt/gsl/$(COMPILERNAME); \
+          make USE_GPL=1 ; \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+
+install::
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
+	( \
+	  cd $(SOURCE_DIR); \
+	  make prefix=$(PKGROOT) install; \
+          cp -r test $(PKGROOT) \
+	)
+	$(PKGROOT_BIND_UMOUNT)
+	$(INSTALL_LICENSE_FILES)
+	@echo "::: Package $(NAME) install complete :::"
+
+clean::
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE
