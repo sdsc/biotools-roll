@@ -9,7 +9,7 @@ roll please visit their official web pages:
 
 - <a href="https://github.com/pezmaster31/bamtools" target="_blank">bamtools</a> provides both a programmer's API and an end-user's toolkit for handling BAM files
 - <a href="https://github.com/arq5x/bedtools2" target="_blank">bedtools</a> is a toolset for genome arithmetic
-- <a href="https://https://samtools.github.io/bcftools" target="_blank">bcftools</a> is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.
+- <a href="https://https://www.htslib.org" target="_blank">bcftools</a> is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.
 - <a href="http://biopython.org" target="_blank">biopython</a> is a set tools for biological computation.
 - <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">blast</a> finds regions of similarity between biological sequences.
 - <a href="https://pypi.python.org/pypi/bx-python" target="_blank">bx-python</a> consists of tools for manipulating biological data, particularly multiple sequence alignments
@@ -30,7 +30,7 @@ ing reads to long reference sequences
 - <a href="https://http://matt.cs.tufts.edu/" target="_blank">matt</a> is a multiple protein structure alignment program
 - <a href="https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep" target="_blank">miRDeep2</a> is a tool which discovers microRNA genes by analyzing sequenced RNAs
 - <a href="https://http://genes.mit.edu/burgelab/miso/software.html" target="_blank">miso</a>uses a statistical model to estimate the expression of alternatively spliced exons and isoforms and to assesses confidence in these estimates. 
-- <a href="http://http://picard.sourceforge.net" target="_blank">picard</a> comprises Java-based command-line utilities that manipulate SAM files, and a Java API (HTSJDK) for creating new programs that read and write SAM files
+- <a href="http://http://http://broadinstitute.github.io/picard" target="_blank">picard</a> comprises Java-based command-line utilities that manipulate SAM files, and a Java API (HTSJDK) for creating new programs that read and write SAM files
 - <a href="https://www.cog-genomics.org/plink2/dev="_blank">plink</a>  is a toolset for genome-wide association studies (GWAS) and research in population genetics
 - <a href="https://github.com/pysam-developers" target="_blank">pysam</a> is a python module for reading and manipulating Samfiles
 - <a href="http://qiime.org" target="_blank">qiime</a> . QIIME ( Quantitative Insights Into Microbial Ecology ) is a package for comparison and analysis of microbial communities, primarily based on high-throughput amplicon sequencing data (such as SSU rRNA) generated on a variety of platforms, but also supporting analysis of other types of data (such as shotgun metagenomic data)

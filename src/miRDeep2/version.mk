@@ -13,7 +13,7 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 PDF_NAME       =  PDF-API2
 PDF_SUFFIX     =  tar.gz
-PDF_VERSION    =  2.021
+PDF_VERSION    =  2.025
 PDF_PKG        =  $(PDF_NAME)-$(PDF_VERSION).$(PDF_SUFFIX)
 PDF_DIR        =  $(PDF_PKG:%.$(PDF_SUFFIX)=%)
 

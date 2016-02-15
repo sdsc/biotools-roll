@@ -1,5 +1,5 @@
 NAME           = sdsc-GenomeAnalysisTK
-VERSION        = 3.4.0
+VERSION        = 3.5
 RELEASE        = 0
 PKGROOT        = /opt/biotools/GenomeAnalysisTK
 

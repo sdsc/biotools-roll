@@ -74,11 +74,18 @@ LICENSE: $(SRC_DIRS)
 	echo unknown > $@
 
 build: $(SRC_DIRS)
+	$(PKGROOT_BIND_MOUNT)
 	( \
-	  cd $(SOURCE_DIR); \
+	  cd $(EXTUTILS_DIR); \
+	  perl Makefile.PL PREFIX=$(PKGROOT); \
+	  $(MAKE); \
+	  $(MAKE) install; \
+          export PERL5LIB=$(PKGROOT)/share/perl5:$${PERL5LIB}; \
+	  cd ../$(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT); \
 	  $(MAKE) \
 	)
+	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
