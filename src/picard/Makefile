@@ -77,7 +77,6 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/build.xml patch-files/build.xml.patch
 	( \
-          export JAVA_HOME=/usr/java/jdk1.8.0_60; \
           cd $(SOURCE_DIR); \
           ant clone-htsjdk; \
           ant; \
