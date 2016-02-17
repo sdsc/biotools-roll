@@ -74,6 +74,7 @@ LICENSE: $(SRC_DIRS)
 	echo unknown > $@
 
 build: $(SRC_DIRS)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(EXTUTILS_DIR); \
@@ -94,7 +95,7 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  make install; \
-	  cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \
+	  cp -r interfaces/Perl/* $(PKGROOT)/tests \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
