@@ -70,14 +70,14 @@ DESCRIPTION:
 	) > $@
 
 LICENSE: $(SRC_DIRS)
-	$(CHECK_LICENSE_FILES)
-	echo GATK > $@
-
-build: $(SRC_DIRS)
 	( \
            cd $(SOURCE_DIR); \
            jar xvf $(SOURCE_NAME).jar license \
         )
+	$(CHECK_LICENSE_FILES)
+	echo GATK > $@
+
+build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
