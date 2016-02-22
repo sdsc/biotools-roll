@@ -68,14 +68,8 @@ SKIP: {
 $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
-  `cp -r $packageHome/Tests .`;
-  $output = `module load biopython; python Tests/test.py 2>&1`;
-  $count = 0;
-  foreach $line(split(/\n/, $output)) {
-    $count++ if $line =~ / ok/;
-  }
-  ok($count >= 181, 'biopython works');
-  `rm -rf Tests`;
+  $output = `module load biopython; python $packageHome/Tests/test_lowess.py 2>&1`;
+  like($output, qr/OK/, 'biopython works');
 }
 
 $packageHome = '/opt/biotools/bismark';
@@ -313,19 +307,8 @@ SKIP: {
 $packageHome = '/opt/biotools/qiime';
 SKIP: {
   skip 'qimme not installed', 1 if ! -d $packageHome;
-  `mkdir $TESTFILE.dir`;
-  `cp -r $packageHome/tests/* $TESTFILE.dir`;
-  `cd $TESTFILE.dir; module load qiime; python all_tests.py >& out`;
-   $out=`cat $TESTFILE.dir/out`;
-   @output = split(/\n/,$out);
-   $count = 0;
-   for $line (@output) {
-     if ( $line =~ / ok$/) {
-        $count +=1;
-     }
-   }
-   ok($count >= 1178,'qiime works');
-  `rm -rf $TESTFILE*`;
+  $output = `module load qiime; python $packageHome/tests/test_filter_alignment.py 2>&1`;
+  like($output, qr/OK/, 'qiime works');
 }
 
 $packageHome = '/opt/biotools/randfold';
