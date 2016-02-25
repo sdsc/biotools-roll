@@ -62,13 +62,19 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+# NOTE: build w/gsl v2 fails due to api changes
+DESCRIBE_GSL = echo built with gsl $(call GET_MODULE_VERSION, gsl/1.16)
+MODULE_LOAD_GSL = $(call MODULE_LOAD_PACKAGE, gsl/1.16, GSLHOME)
 SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
 
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
+	$(MODULE_LOAD_CC); \
 	( \
-	  $(DESCRIBE_PKG) \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC); \
+	  $(DESCRIBE_GSL) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -79,10 +85,11 @@ build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	patch $(SOURCE_DIR)/test/test.pl patch-files/test.pl.patch
 	( \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_GSL); \
 	  cd $(SOURCE_DIR); \
-          make clean; \
-          export GSLHOME=/opt/gsl/$(COMPILERNAME); \
-          make USE_GPL=1 ; \
+	  make clean; \
+	  make USE_GPL=1 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
@@ -92,7 +99,7 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  make prefix=$(PKGROOT) install; \
-          cp -r test $(PKGROOT) \
+	  cp -r test $(PKGROOT) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
