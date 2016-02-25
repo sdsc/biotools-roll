@@ -75,11 +75,17 @@ LICENSE: $(SRC_DIRS)
 	echo MIT and Apache > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/build.xml patch-files/build.xml.patch
+	( \
+          cd $(SOURCE_DIR); \
+          ant clone-htsjdk; \
+          ant; \
+        )
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/*.jar $(ROOT)/$(PKGROOT)/
+	cp -r $(SOURCE_DIR)/dist/* $(ROOT)/$(PKGROOT) 
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

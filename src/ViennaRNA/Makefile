@@ -74,11 +74,19 @@ LICENSE: $(SRC_DIRS)
 	echo unknown > $@
 
 build: $(SRC_DIRS)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
-	  cd $(SOURCE_DIR); \
+	  cd $(EXTUTILS_DIR); \
+	  perl Makefile.PL PREFIX=$(PKGROOT); \
+	  $(MAKE); \
+	  $(MAKE) install; \
+          export PERL5LIB=$(PKGROOT)/share/perl5:$${PERL5LIB}; \
+	  cd ../$(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT); \
 	  $(MAKE) \
 	)
+	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
@@ -87,7 +95,7 @@ install::
 	( \
 	  cd $(SOURCE_DIR); \
 	  make install; \
-	  cp -r interfaces/Perl/* $(ROOT)/$(PKGROOT)/tests \
+	  cp -r interfaces/Perl/* $(PKGROOT)/tests \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)

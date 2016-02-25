@@ -6,5 +6,6 @@ module-whatis "picard VERSION"
 
 set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
+append-path PATH /usr/java/jdk1.8.0_60
 append-path CLASSPATH $packageHome
 append-path CLASSPATH $packageHome/picard-tools

@@ -1,5 +1,5 @@
 NAME           = sdsc-bowtie2
-VERSION        = 2.2.4
+VERSION        = 2.2.6
 RELEASE        = 0
 PKGROOT        = /opt/biotools/bowtie2
 

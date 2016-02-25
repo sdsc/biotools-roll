@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-bamtools
-VERSION        = 2.3.0
-RELEASE        = 17
+VERSION        = 2.4.0
+RELEASE        = 0
 PKGROOT        = /opt/biotools/bamtools
 
 SRC_SUBDIR     = bamtools

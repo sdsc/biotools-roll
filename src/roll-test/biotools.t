@@ -124,7 +124,7 @@ SKIP: {
 $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
-  $output = `module load bowtie; cd $packageHome/bin; perl $packageHome/scripts/test/inspect.pl 2>&1`;
+  $output = `module load bowtie;export BOWTIE_INDEXES=$packageHome/indexes;perl bowtie e_coli $packageHome/reads/e_coli_1000.fq 2>&1`;
   like($output, qr/PASSED/, 'bowtie works');
 }
 
@@ -321,10 +321,12 @@ SKIP: {
 $packageHome = '/opt/biotools/samtools';
 SKIP: {
   skip 'samtools not installed', 1 if ! -d $packageHome;
-  `module load samtools; cd $packageHome/examples; samtools faidx ex1.fa`;
-  $output = `cat $packageHome/examples/ex1.fa.fai`;
+  `mkdir $TESTFILE.dir`;
+  `module load samtools; cd $TESTFILE.dir; cp -r $packageHome/examples/* .; samtools faidx ex1.fa`;
+  $output = `cat $TESTFILE.dir/ex1.fa.fai`;
   like($output, qr/seq2/, 'samtools index run works');
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
+  `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/SOAPsnp';

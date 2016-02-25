@@ -1,5 +1,5 @@
 NAME           = sdsc-fastqc
-VERSION        = 0.11.3
+VERSION        = 0.11.4
 RELEASE        = 0
 PKGROOT        = /opt/biotools/fastqc
 

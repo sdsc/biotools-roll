@@ -70,8 +70,11 @@ DESCRIPTION:
 	) > $@
 
 LICENSE: $(SRC_DIRS)
-	# License files aren't bundled w/package file
-	# $(CHECK_LICENSE_FILES)
+	( \
+           cd $(SOURCE_DIR); \
+           jar xvf $(SOURCE_NAME).jar license \
+        )
+	$(CHECK_LICENSE_FILES)
 	echo GATK > $@
 
 build: $(SRC_DIRS)
