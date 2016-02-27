@@ -40,7 +40,7 @@ ing reads to long reference sequences
 - <a href="http://soap.genomics.org.cn/soapdenovo.html" target="_blank">soapdenovo</a> is a novel short-read assembly method that can build a de novo draft assembly for the human-sized genomes
 - <a href="http://soap.genomics.org.cn/soapsnp.html" target="_blank">soapsnp</a> is a resequencing utility that can assemble consensus sequence for the genome of a newly sequenced individual based on the alignment of the raw sequencing reads on the known reference
 - <a href="http://bioinf.spbau.ru/en/spades" target="_blank">spades</a> St. Petersburg genome assembler is intended for both standard isolates and single-cell MDA bacteria assemblies
-- <a href="squid http://selab.janelia.org/software.html" target="_blank">squid</a> is a library of C functions and utility programs for sequence analysis
+- <a href="squid http://eddylab.org/software.html" target="_blank">squid</a> is a library of C functions and utility programs for sequence analysis
 - <a href="stacks http://http://creskolab.uoregon.edu/stacks" target="_blank">stacks</a> is aoftware pipeline for building loci from short-read sequences, such as those generated on the Illumina platform.
 - <a href="http://ccb.jhu.edu/software/tophat/index.shtml" target="_blank">tophat</a> is a fast splice junction mapper for RNA-Seq reads
 - <a href="http://www.usadellab.org/cms/?page=trimmomatic" target="_blank">trimmomatic</a> is used to quality trim and adapter clip NGS data

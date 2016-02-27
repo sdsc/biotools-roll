@@ -1,5 +1,5 @@
 NAME           = sdsc-ViennaRNA
-VERSION        = 2.2.3
+VERSION        = 2.2.4
 RELEASE        = 0
 PKGROOT        = /opt/biotools/ViennaRNA
 

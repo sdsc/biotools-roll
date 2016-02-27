@@ -80,6 +80,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
+          module unload gnutools; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
