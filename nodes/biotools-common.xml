@@ -110,6 +110,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-rseqc</package>
 <package>sdsc-rseqc-modules</package>
 <package>sdsc-samtools</package>
+<package>sdsc-samtools-1.2</package>
 <package>sdsc-samtools-modules</package>
 <package>sdsc-soapdenovo</package>
 <package>sdsc-soapdenovo-modules</package>

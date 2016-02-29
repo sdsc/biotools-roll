@@ -124,8 +124,8 @@ SKIP: {
 $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
-  $output = `module load bowtie;export BOWTIE_INDEXES=$packageHome/indexes;perl bowtie e_coli $packageHome/reads/e_coli_1000.fq 2>&1`;
-  like($output, qr/PASSED/, 'bowtie works');
+  $output = `module load bowtie;export BOWTIE_INDEXES=$packageHome/indexes;bowtie e_coli $packageHome/reads/e_coli_1000.fq 2>&1`;
+  like($output, qr/Reported 699 alignments to 1 output stream\(s\)/, 'bowtie works');
 }
 
 $packageHome = '/opt/biotools/bowtie2';
