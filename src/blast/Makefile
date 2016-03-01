@@ -77,7 +77,6 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CXX); \
-          module unload gnutools; \
 	  cd $(SOURCE_DIR)/c++; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \

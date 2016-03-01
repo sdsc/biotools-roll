@@ -81,7 +81,6 @@ build: $(SRC_DIRS)
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \
 	  $(MODULE_LOAD_CC); \
-          module unload gnutools; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  ./configure --prefix=$(GTEXTUTILS_CACHE); \

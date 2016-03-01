@@ -89,7 +89,6 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/include/bam
 	( \
-          module unload gnutools; \
 	  cd $(SOURCE_DIR); \
 	  make prefix=$(ROOT)/$(PKGROOT) install; \
           cp htslib-*/tabix $(ROOT)/$(PKGROOT)/bin; \
