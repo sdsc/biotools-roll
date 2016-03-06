@@ -62,11 +62,16 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+DESCRIBE_JAVA = echo built with javac $(call GET_EXE_VERSION, javac)
+
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
+	export JAVA_HOME=$(JAVA_HOME); \
+	export PATH=$${JAVA_HOME}/bin:$${PATH}; \
 	( \
-	  $(DESCRIBE_PKG) \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_JAVA) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -77,9 +82,11 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/build.xml patch-files/build.xml.patch
 	( \
-          cd $(SOURCE_DIR); \
-          ant clone-htsjdk; \
-          ant; \
+	  export JAVA_HOME=$(JAVA_HOME); \
+	  export PATH=$${JAVA_HOME}/bin:$${PATH}; \
+	  cd $(SOURCE_DIR); \
+	  ant clone-htsjdk; \
+	  ant \
         )
 	@echo "::: Package $(NAME) build complete :::"
 
