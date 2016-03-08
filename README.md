@@ -108,6 +108,15 @@ make ROLLCOMPILER=intel 2>&1 | tee build.log
 The build process recognizes "gnu", "intel" or "pgi" as the value for the
 `ROLLCOMPILER` variable
 
+Building the picard application requires use of the Java 1.8 javac.  The
+build process assumes that the JAVA_HOME environment variable refers to
+a Java 1.8 installation; if this is not the case, you can use specify
+a java8home path in the ROLLOPTS make variable, e.g.,
+
+```shell
+make ROLLOPTS='java8home=/usr/local/jvm/1.8.0' 2>&1 | tee build.log
+```
+
 
 ## Installation
 
