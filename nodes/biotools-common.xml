@@ -5,7 +5,7 @@
 <description>
 bamtools - https://github.com/pezmaster31/bamtools
 bedtools - https://github.com/arq5x/bedtools2
-bcftools - https://samtools.github.io/bcftools
+bcftools - https://www.htslib.org
 biopython - http://biopython.org
 bismark - http://www.bioinformatics.babraham.ac.uk/projects/bismark/
 blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
@@ -26,17 +26,17 @@ idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
 miso - http://genes.mit.edu/burgelab/miso/software.html
-picard - http://picard.sourceforge.net/
+picard - http://http://broadinstitute.github.io/picard
 plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
 qiime - http://qiime.org
 randfold - http://bioinformatics.psb.ugent.be/software/details/Randfold
 rseqc - http://rseqc.sourceforge.net
-samtools - http://samtools.sourceforge.net
+samtools - http://ww.htslib.org
 soapdenovo - http://soap.genomics.org.cn/soapdenovo.html
 SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
-squid http://selab.janelia.org/software.html
+squid http://eddylab.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
 tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
@@ -110,6 +110,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-rseqc</package>
 <package>sdsc-rseqc-modules</package>
 <package>sdsc-samtools</package>
+<package>sdsc-samtools-1.2</package>
 <package>sdsc-samtools-modules</package>
 <package>sdsc-soapdenovo</package>
 <package>sdsc-soapdenovo-modules</package>

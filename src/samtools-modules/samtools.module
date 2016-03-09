@@ -2,6 +2,6 @@
 
 module-whatis "samtools VERSION"
 
-set packageHome /opt/biotools/samtools
+set packageHome /opt/biotools/samtools/VERSION
 setenv SAMTOOLSHOME $packageHome
 append-path PATH $packageHome/bin

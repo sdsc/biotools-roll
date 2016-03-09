@@ -91,6 +91,7 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/examples
 	( \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR)/build; \
 	  make install \
 	)

@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-tophat
-VERSION        = 2.1.0
-RELEASE        = 2
+VERSION        = 2.1.1
+RELEASE        = 0
 PKGROOT        = /opt/biotools/tophat
 
 SRC_SUBDIR     = tophat

@@ -1,0 +1,19 @@
+--- broadinstitute-picard-2.1.0/build.xml	2016-02-06 08:35:46.000000000 -0800
++++ patch-files/build.xml	2016-02-11 18:17:50.041822994 -0800
+@@ -39,7 +39,7 @@
+     <property name="reports" value="dist/test"/>
+     <property name="test.output" value="dist/test"/>
+     <property name="htsjdk_lib_dir" value="${dist}/htsjdk_lib_dir"/>
+-    <property name="htsjdk_git_url" value="git@github.com:samtools/htsjdk.git"/>
++    <property name="htsjdk_git_url" value="https://github.com/samtools/htsjdk.git"/>
+     <!-- TODO: get this from the build.xml in htsjdk -->
+     <property name="htsjdk-classes" value="htsjdk/classes"/>
+ 
+@@ -136,7 +136,6 @@
+         <exec executable="git" failonerror="true">
+             <arg value="clone"/>
+             <arg value="${htsjdk_git_url}"/>
+-            <arg value="${htsjdk}"/>
+         </exec>
+     </target>
+ 

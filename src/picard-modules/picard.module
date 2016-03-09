@@ -6,5 +6,6 @@ module-whatis "picard VERSION"
 
 set packageHome $biotoolsHome/picard
 setenv PICARDHOME $packageHome
+prepend-path PATH JAVA_HOME/bin
 append-path CLASSPATH $packageHome
 append-path CLASSPATH $packageHome/picard-tools

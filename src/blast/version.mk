@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-blast
-VERSION        = 2.2.30
-RELEASE        = 2
+VERSION        = 2.3.0
+RELEASE        = 0
 PKGROOT        = /opt/biotools/blast
 
 SRC_SUBDIR     = blast

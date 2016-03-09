@@ -1,5 +1,5 @@
 NAME           = sdsc-bwa
-VERSION        = 0.7.12
+VERSION        = 0.7.13
 RELEASE        = 0
 PKGROOT        = /opt/biotools/bwa
 

@@ -1,5 +1,5 @@
 NAME           = sdsc-bismark
-VERSION        = 0.13.1
+VERSION        = 0.15.0
 RELEASE        = 0
 PKGROOT        = /opt/biotools/bismark
 

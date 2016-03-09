@@ -4,7 +4,7 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-stacks
-VERSION        = 1.35
+VERSION        = 1.37
 RELEASE        = 0
 PKGROOT        = /opt/biotools/stacks
 

@@ -1,5 +1,5 @@
 NAME           = sdsc-trimmomatic
-VERSION        = 0.33
+VERSION        = 0.35
 RELEASE        = 0
 PKGROOT        = /opt/biotools/trimmomatic
 
