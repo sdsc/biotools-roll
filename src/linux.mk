@@ -54,12 +54,12 @@
 # @Copyright@
 #
 
+# bcftools depends on samtools
 # cufflinks depends on samtools
+# miso depends on samtools 1.2
 # randfold depends on squid
 # stacks depends on samtools
 # tophat depends on samtools
-# bcftools depends on samtools
-# miso depends on samtools 1.2
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name cufflinks \
   -not -name miso \
@@ -67,4 +67,4 @@ SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name stacks \
   -not -name tophat \
   -not -name bcftools` \
-  miso cufflinks randfold stacks tophat bcftools
+  bcftools cufflinks randfold stacks tophat
