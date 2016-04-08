@@ -62,7 +62,7 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
+SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools-1.2
 
 $(NAME).spec: DESCRIPTION LICENSE
 
