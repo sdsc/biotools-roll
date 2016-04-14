@@ -62,6 +62,8 @@ ROLLPY = python
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
+PYSAM_CACHE = $(REDHAT.ROOT)/cache/build-pysam
+PYVERSION = 2.7
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -85,6 +87,7 @@ install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
           module load scipy; \
+          export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)

@@ -62,9 +62,9 @@
 # tophat depends on samtools
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name cufflinks \
-  -not -name miso \
   -not -name randfold \
   -not -name stacks \
   -not -name tophat \
-  -not -name bcftools` \
-  bcftools cufflinks randfold stacks tophat
+  -not -name bcftools \
+  -not -name miso` \
+  miso bcftools cufflinks randfold stacks tophat

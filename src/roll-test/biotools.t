@@ -324,7 +324,18 @@ SKIP: {
   `mkdir $TESTFILE.dir`;
   `module load samtools; cd $TESTFILE.dir; cp -r $packageHome/examples/* .; samtools faidx ex1.fa`;
   $output = `cat $TESTFILE.dir/ex1.fa.fai`;
-  like($output, qr/seq2/, 'samtools index run works');
+  like($output, qr/seq2/, 'samtools 1.3 index run works');
+  `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
+  `rm -rf $TESTFILE.dir`;
+}
+
+$packageHome = '/opt/biotools/samtools/1.2';
+SKIP: {
+  skip 'samtools not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  `module load samtools/1.2; cd $TESTFILE.dir; cp -r $packageHome/examples/* .; samtools faidx ex1.fa`;
+  $output = `cat $TESTFILE.dir/ex1.fa.fai`;
+  like($output, qr/seq2/, 'samtools 1.2 index run works');
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
   `rm -rf $TESTFILE.dir`;
 }

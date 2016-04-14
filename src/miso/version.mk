@@ -1,6 +1,6 @@
 NAME           = sdsc-miso
 VERSION        = 0.5.3
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/miso
 
 SRC_SUBDIR     = miso

@@ -62,7 +62,7 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
-SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools
+SAMTOOLS_CACHE = $(REDHAT.ROOT)/cache/build-samtools-1.2
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -89,7 +89,6 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/include/bam
 	( \
-          module unload gnutools; \
 	  cd $(SOURCE_DIR); \
 	  make prefix=$(ROOT)/$(PKGROOT) install; \
           cp htslib-*/tabix $(ROOT)/$(PKGROOT)/bin; \

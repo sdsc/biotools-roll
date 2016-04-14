@@ -78,7 +78,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  cd $(SOURCE_DIR); \
-	  $(MAKE) LIBCURSES='-lcurses -ltinfo'; \
+	  $(MAKE) LDFLAGS='-ltinfo'; \
           cd htslib-* ; \
           make; \
 	)
