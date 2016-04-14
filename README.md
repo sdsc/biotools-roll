@@ -20,6 +20,7 @@ ing reads to long reference sequences
 - <a href="http://bio-bwa.sourceforge.net" target="_blank">bwa</a> as a software package for mapping low-divergent sequences against a large reference genome
 - <a href="http://cufflinks.cbcb.umd.edu" target="_blank">cufflinks</a> assembles transcripts, estimates their abundances, and tests for differential expression and regulation in RNA-Seq samples
 - <a href="http://pythonhosted.org/DendroPy" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats
+- <a href="https://github.com/bbuchfink/diamond" target="_blank">diamond</a> is a BLAST-compatible local aligner for mapping protein and translated DNA query sequences against a protein reference database
 - <a href="http://www.genomic.ch/edena.php" target="_blank">edena</a> is a de novo short reads assembler
 - <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc" target="_blank">fastqc</a> is a quality control tool for high throughput sequence data
 - <a href="http://hannonlab.cshl.edu/fastx_toolkit" target="_blank">fastx</a> is a collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing

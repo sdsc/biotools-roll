@@ -16,6 +16,7 @@ bwa - http://bio-bwa.sourceforge.net
 bx-python - https://pypi.python.org/pypi/bx-python
 Cufflinks - http://cufflinks.cbcb.umd.edu/
 dendropy - http://pythonhosted.org/DendroPy/
+diamond - https://github.com/bbuchfink/diamond
 edena - http://www.genomic.ch/edena.php
 fastqc - http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 fastx - http://hannonlab.cshl.edu/fastx_toolkit
@@ -77,6 +78,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-cufflinks-modules</package>
 <package>sdsc-dendropy</package>
 <package>sdsc-dendropy-modules</package>
+<package>sdsc-diamond</package>
+<package>sdsc-diamond-modules</package>
 <package>sdsc-edena</package>
 <package>sdsc-edena-modules</package>
 <package>sdsc-fastqc</package>
