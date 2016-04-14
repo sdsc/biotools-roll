@@ -10,12 +10,12 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $installedOnAppliancesPattern = '.';
 my @packages = (
-  'bamtools', 'bedtools', 'biopython', 'bismark', 'blast', 'blat', 'bowtie',
-  'bowtie2', 'bwa', 'bx-python', 'cufflinks', 'dendropy', 'edena', 'fastqc',
-  'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq', 'idba-ud', 'matt',
-  'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime', 'randfold',
-  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'tophat',
-  'trimmomatic', 'trinity', 'vcftools','velvet', 'ViennaRNA','stacks','rseqc','bcftools'
+  'bamtools', 'bcftools', 'bedtools', 'biopython', 'bismark', 'blast', 'blat',
+  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'cufflinks', 'dendropy', 'diamond',
+  'edena', 'fastqc', 'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq',
+  'idba-ud', 'matt', 'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime',
+  'randfold', 'rseqc', 'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid',
+  'stacks', 'tophat', 'trimmomatic', 'trinity', 'vcftools','velvet', 'ViennaRNA'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -174,6 +174,13 @@ SKIP: {
   skip 'dendropy not installed', 1 if ! -d $packageHome;
   $output = `module load dendropy; python $packageHome/test/test_popgenstat.py 2>&1`;
   like($output, qr/OK/, 'dendropy works');
+}
+
+$packageHome = '/opt/biotools/diamond';
+SKIP: {
+  skip 'diamond not installed', 1 if ! -d $packageHome;
+  $output = `module load diamond; diamond -h 2>&1`;
+  like($output, qr/blastp/, 'diamond works');
 }
 
 $packageHome = '/opt/biotools/edena';

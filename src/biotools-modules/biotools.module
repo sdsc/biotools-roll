@@ -15,6 +15,7 @@ module load bwa
 module load bx-python
 module load cufflinks
 module load dendropy
+module load diamond
 module load edena
 module load fastqc
 module load fastx
