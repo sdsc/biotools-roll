@@ -5,6 +5,6 @@ set biotoolsHome /opt/biotools
 module-whatis "diamond VERSION"
 
 set packageHome $biotoolsHome/diamond
-setenv DENDROPYHOME $packageHome
+setenv DIAMONDHOME $packageHome
 append-path PATH $packageHome/bin
 module load ROLLCOMPILER boost
