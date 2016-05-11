@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-diamond
 VERSION        = 0.7.12
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/diamond
 
 SRC_SUBDIR     = diamond
