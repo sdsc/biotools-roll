@@ -66,7 +66,7 @@ $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	( \
-	  $(DESCRIBE_GSL); \
+	  $(DESCRIBE_PKG); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
