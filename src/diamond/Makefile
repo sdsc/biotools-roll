@@ -65,7 +65,7 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
-	$(MODULE_LOAD_CC); \
+	$(MODULE_LOAD_CXX); \
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CXX); \
@@ -78,7 +78,7 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_CXX); \
 	  $(MODULE_LOAD_CMAKE); \
 	  $(MODULE_LOAD_BOOST); \
 	  cd $(SOURCE_DIR); \
@@ -92,7 +92,7 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_CXX); \
 	  cd $(SOURCE_DIR)/build; \
 	  $(MAKE) install \
 	)

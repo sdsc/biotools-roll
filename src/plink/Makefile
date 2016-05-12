@@ -64,6 +64,7 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
+	$(MODULE_LOAD_CC); \
 	( \
 	  $(DESCRIBE_PKG); \
           $(DESCRIBE_CC); \
