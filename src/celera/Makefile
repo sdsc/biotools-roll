@@ -63,13 +63,10 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 $(NAME).spec: DESCRIPTION LICENSE
-DESCRIBE_GSL = echo built with gsl $(call GET_MODULE_VERSION, gsl)
-MODULE_LOAD_GSL = $(call MODULE_LOAD_PACKAGE, gsl, GSLHOME)
 
 DESCRIPTION:
 	( \
-	  $(DESCRIBE_PKG); \
-	  fi \
+	  $(DESCRIBE_GSL); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
