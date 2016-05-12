@@ -1,4 +1,3 @@
-#
 # $Id$
 #
 # @Copyright@
@@ -55,23 +54,68 @@
 # 
 # @Copyright@
 
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
+REDHAT.ROOT = $(CURDIR)/../../
+RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
-ifndef ROLLMPI
-  ROLLMPI = rocks-openmpi
-endif
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
--include $(ROLLSROOT)/etc/Rolls.mk
-include Rolls.mk
+$(NAME).spec: DESCRIPTION LICENSE
+DESCRIBE_GSL = echo built with gsl $(call GET_MODULE_VERSION, gsl)
+MODULE_LOAD_GSL = $(call MODULE_LOAD_PACKAGE, gsl, GSLHOME)
 
-default:
-	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" ROLLMPI="$(ROLLMPI)" roll
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG); \
+	  fi \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPL > $@
+
+build: $(SRC_DIRS)
+	( \
+          cd $(SOURCE_DIR)/kmer; \
+          make; \
+          make install; \
+          cd ../src; \
+          make \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+
+install::
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
+	( \
+          cp -r $(SAMPLE_DIR)/* $(ROOT)/$(PKGROOT)/test; \
+	  mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib; \
+          cd $(STATISTICS_DIR); \
+          perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+          make; \
+          make install; \
+          cd ../$(LIST_DIR); \
+          perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+          make; \
+          make install; \
+          cd ../$(EXPORTER_DIR); \
+          perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+          make; \
+          make install; \
+	  cd ../$(SOURCE_DIR); \
+          cp -r Linux-amd64 $(ROOT)/$(PKGROOT) \
+        )
+	$(INSTALL_LICENSE_FILES)
+	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -f _arch bootstrap.py
+	rm -rf $(SOURCE_DIR) $(STATISTICS_DIR) $(SAMPLE_DIR) $(LIST_DIR) \
+               $(EXPORTER_DIR) DESCRIPTION LICENSE
 
-distclean:: clean
-	rm -fr RPMS SRPMS cache
-	-rm -f build.log
+#cp build_utest generic_fwdback_utest generic_fwdback_chk_utest \
+#   generic_msv_utest generic_stotrace_utest generic_viterbi_utest \
+#   hmmer_utest logsum_utest modelconfig_utest seqmodel_utest \
+#   p7_alidisplay_utest p7_bg_utest p7_gmx_utest p7_gmxchk_utest \
+#   p7_hmm_utest p7_hmmfile_utest p7_profile_utest p7_tophits_utest \
+#   p7_trace_utest p7_scoredata_utest hmmpgmd2msa_utest $(ROOT)/$(PKGROOT)/bin \

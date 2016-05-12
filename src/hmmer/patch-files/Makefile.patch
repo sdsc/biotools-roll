@@ -1,0 +1,16 @@
+--- hmmer-3.1b2/testsuite/Makefile	2016-05-07 14:27:49.473306105 -0700
++++ patch-files/Makefile	2016-05-05 23:03:19.409699483 -0700
+@@ -37,11 +37,11 @@
+ 	@echo 
+ 	@echo Running HMMER test suite...
+ 	@echo
+-	@${srcdir}/../${ESLDIR}/devkit/sqc ${SQCLEVEL} ${srcdir}/testsuite.sqc .. ${srcdir}/..
++	sqc -v ${SQCLEVEL} ${srcdir}/testsuite.sqc .. ..
+ 
+ hmms:
+ 	for ali in ${ALIS}; do\
+-	   ../src/hmmbuild $$ali.hmm $$ali.sto;\
++	   hmmbuild $$ali.hmm $$ali.sto;\
+ 	done
+ 
+ clean:

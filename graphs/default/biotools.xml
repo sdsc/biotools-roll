@@ -14,14 +14,17 @@ bowtie - http://bowtie-bio.sourceforge.net
 bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
 bx-python - https://pypi.python.org/pypi/bx-python
+celera - http://wgs-assembler.sourceforge.net/
 Cufflinks - http://cufflinks.cbcb.umd.edu/
 dendropy - http://pythonhosted.org/DendroPy/
 diamond - https://github.com/bbuchfink/diamond
 edena - http://www.genomic.ch/edena.php
+emboss - http://emboss.sourceforge.net
 fastqc - http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 fastx - http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program) - http://research-pub.gene.com/gmap/
+hmmer - http://hmmer.org
 htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu

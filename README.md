@@ -18,14 +18,17 @@ roll please visit their official web pages:
 ing reads to long reference sequences 
 - <a href="http://bowtie-bio.sourceforge.net/bowtie2" target="_blank">bowtie2</a> is a tool for aligning sequencing reads to long reference sequences and has more features then bowtie 1.
 - <a href="http://bio-bwa.sourceforge.net" target="_blank">bwa</a> as a software package for mapping low-divergent sequences against a large reference genome
+- <a href="http://wgs-assembler.sourceforge.net/" target="_blank">celera</a> is a de novo whole-genome shotgun (WGS) DNA sequence assembler.
 - <a href="http://cufflinks.cbcb.umd.edu" target="_blank">cufflinks</a> assembles transcripts, estimates their abundances, and tests for differential expression and regulation in RNA-Seq samples
 - <a href="http://pythonhosted.org/DendroPy" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats
 - <a href="https://github.com/bbuchfink/diamond" target="_blank">diamond</a> is a BLAST-compatible local aligner for mapping protein and translated DNA query sequences against a protein reference database
 - <a href="http://www.genomic.ch/edena.php" target="_blank">edena</a> is a de novo short reads assembler
+- <a href="http://emboss.sourceforge.net/" target="_blank">emboss</a> is the European Molecular Biology Open Software Suite. 
 - <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc" target="_blank">fastqc</a> is a quality control tool for high throughput sequence data
 - <a href="http://hannonlab.cshl.edu/fastx_toolkit" target="_blank">fastx</a> is a collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing
 - <a href="http://www.broadinstitute.org/gatk" target="_blank">GenomeAnalysisTK</a> s a software package developed to analyse next-generation resequencing data
 - <a href="http://research-pub.gene.com/gmap" target="_blank">gmap_gsnap</a> gmap is a genomic mapping and alignment program for mRNA and EST Sequences, and GSNAP: Genomic Short-read Nucleotide Alignment Program
+- <a href="http://hmmer.org" target="_blank">hmmer</a> is used for searching sequence databases for sequence homologs, and for making sequence alignments. It implements methods using probabilistic models called profile hidden Markov models (profile HMMs).
 - <a href="http://www-huber.embl.de/users/anders/HTSeq" target="_blank">htseq</a> is a Python package that provides infrastructure to process data from high-throughput sequencing assays
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a> s a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth
 - <a href="https://http://matt.cs.tufts.edu/" target="_blank">matt</a> is a multiple protein structure alignment program
@@ -68,13 +71,13 @@ development machine.
 The sdsc-roll must be installed on the build machine, since the build process
 depends on make include files provided by that roll.
 
-The roll sources assume that modulefiles provided by SDSC compiler and python
-rolls are available, but it will build without them as long as the environment
-variables they provide are otherwise defined.
+The roll sources assume that modulefiles provided by SDSC compiler,mpi,math
+and python rolls are available, but it will build without them as long as
+the environment variables they provide are otherwise defined.
 
-The build process requires the BOOST, EIGEN, and MKL and python NUMPY and 
-SCIPY libraries  libraries and assumes that the modulefiles provided by the SDSC 
-boost-roll, math-roll, and mkl-roll (or intel-roll), python-roll and scipy-roll  are available. 
+The build process requires the BOOST, EIGEN, GSL, and MKL and python NUMPY and 
+SCIPY libraries  libraries and assumes that the modulefiles provided by the
+SDSC boost-roll, math-roll, and mkl-roll (or intel-roll), python-roll and scipy-roll  are available. 
 It will build without the modulefiles as long as the environment variables they providet:w
 
 The build process requires cmake and assumes that the cmake modulefile provided
@@ -97,17 +100,19 @@ roll on a Rocks development appliance, you need to copy the roll to your Rocks
 frontend before continuing with installation.
 with installation.
 L
-This roll source supports building with different compilers.
-The `ROLLCOMPILER` make variable can be used to
-specify the names of the compiler modulefile to use for building the
+
+This roll source supports building with different compilers and for different
+MPI flavors.  The `ROLLCOMPILER` and `ROLLMPI` make variables can be used to
+specify the names of compiler and MPI modulefiles to use for building the
 software, e.g.,
 
 ```shell
-make ROLLCOMPILER=intel 2>&1 | tee build.log
+make ROLLCOMPILER=intel ROLLMPI=mvapich2_ib 2>&1 | tee build.log
 ```
 
 The build process recognizes "gnu", "intel" or "pgi" as the value for the
-`ROLLCOMPILER` variable
+`ROLLCOMPILER` variable; any MPI modulefile name may be used as the value of
+the `ROLLMPI` variable.  The default values are "gnu" and "rocks-openmpi".
 
 Building the picard application requires use of the Java 1.8 javac.  The
 build process assumes that the JAVA_HOME environment variable refers to

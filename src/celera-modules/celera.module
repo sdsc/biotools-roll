@@ -1,0 +1,8 @@
+#%Module1.0
+
+module-whatis "celera VERSION"
+
+set packageHome /opt/biotools/celera
+setenv CELERAHOME $packageHome
+prepend-path PATH $packageHome/Linux-amd64/bin
+prepend-path PERL5LIB $packageHome/share/perl5:$packageHome/lib64/perl5
