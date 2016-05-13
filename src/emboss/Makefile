@@ -79,20 +79,22 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_CC); \
 	  export CC=$(CC); \
           cd $(SOURCE_DIR); \
-	  ./configure --prefix=$(ROOT)/$(PKGROOT) --with-gnu-ld; \
+	  ./configure --prefix=$(PKGROOT) --with-gnu-ld; \
 	  make \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
+	$(PKGROOT_BIND_MOUNT)
 	( \
-          cp tembl:x65923 $(ROOT)/$(PKGROOT)/test; \
+          cp tembl:x65923 $(PKGROOT)/test; \
 	  $(MODULE_LOAD_CC); \
 	  export CC=$(CC); \
 	  cd $(SOURCE_DIR); \
 	  make install; \
         )
+	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
