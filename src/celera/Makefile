@@ -85,7 +85,7 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
-	$(PACKAGE_BIND_MOUNT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
           cp -r $(SAMPLE_DIR)/* $(PKGROOT)/test; \
 	  mkdir -p -m 755 $(PKGROOT)/lib; \
@@ -104,7 +104,7 @@ install::
 	  cd ../$(SOURCE_DIR); \
           cp -r Linux-amd64 $(PKGROOT) \
         )
-	$(PACKAGE_BIND_UMOUNT)
+	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
