@@ -73,7 +73,6 @@ DESCRIPTION:
 	  $(DESCRIBE_CC); \
 	  $(DESCRIBE_MPI); \
           $(DESCRIBE_GSL);  \
-	  fi \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
