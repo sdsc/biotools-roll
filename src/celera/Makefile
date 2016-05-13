@@ -85,24 +85,26 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
+	$(PACKAGE_BIND_MOUNT)
 	( \
-          cp -r $(SAMPLE_DIR)/* $(ROOT)/$(PKGROOT)/test; \
-	  mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib; \
+          cp -r $(SAMPLE_DIR)/* $(PKGROOT)/test; \
+	  mkdir -p -m 755 $(PKGROOT)/lib; \
           cd $(STATISTICS_DIR); \
-          perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+          perl Makefile.PL PREFIX=$(PKGROOT); \
           make; \
           make install; \
           cd ../$(LIST_DIR); \
-          perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+          perl Makefile.PL PREFIX=$(PKGROOT); \
           make; \
           make install; \
           cd ../$(EXPORTER_DIR); \
-          perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+          perl Makefile.PL PREFIX=$(PKGROOT); \
           make; \
           make install; \
 	  cd ../$(SOURCE_DIR); \
-          cp -r Linux-amd64 $(ROOT)/$(PKGROOT) \
+          cp -r Linux-amd64 $(PKGROOT) \
         )
+	$(PACKAGE_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
