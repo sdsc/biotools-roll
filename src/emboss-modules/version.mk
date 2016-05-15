@@ -1,4 +1,4 @@
-PACKAGE     = blast
+PACKAGE     = emboss
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules

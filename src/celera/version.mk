@@ -37,4 +37,4 @@ EXPORTER_DIR     = $(EXPORTER_PKG:%.$(EXPORTER_SUFFIX)=%)
 TAR_BZ2_PKGS   = $(SOURCE_PKG)
 TAR_GZ_PKGS    = $(SAMPLE_PKG) $(STATISTICS_PKG) $(LIST_PKG) $(EXPORTER_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\n%global __os_install_post %{nil}

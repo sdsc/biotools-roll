@@ -1,4 +1,4 @@
-PACKAGE     = hmmer
+PACKAGE     = celera
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules

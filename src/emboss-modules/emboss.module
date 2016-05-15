@@ -6,6 +6,6 @@ module-whatis "emboss VERSION"
 
 module load ROLLCOMPILER
 
-set packageHome $biotoolsHome/blast
+set packageHome $biotoolsHome/emboss
 setenv EMBOSSHOME $packageHome
 append-path PATH $packageHome/bin

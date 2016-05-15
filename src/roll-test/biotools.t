@@ -165,12 +165,17 @@ $packageHome = '/opt/biotools/celera';
 SKIP: {
   skip 'celera not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  `cd $TESTFILE.dir`;
-  `cp -r $packageHome/test/* .`;
-   `java -jar convertFastaAndQualToFastq.jar pacbio.filtered_subreads.fasta > pacbio.filtered_subreads.fastq`;
-  $output = `module load celera; PBcR -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000 2>&1`;
+open(OUT, ">$TESTFILE.sh");
+print OUT <<END;
+  cd $TESTFILE.dir
+  cp -r $packageHome/test/* .
+  java -jar convertFastaAndQualToFastq.jar pacbio.filtered_subreads.fasta > pacbio.filtered_subreads.fastq
+  module load celera
+  PBcR -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000
+END
+  $output = `bash $TESTFILE.sh 2>&1`;
   like($output, qr/Contig_SurrBaseLength           1226549/, 'celera works');
-  `rm -rf $TESTFILE.dir`;
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/dendropy';
@@ -198,11 +203,10 @@ $packageHome = '/opt/biotools/emboss';
 SKIP: {
   skip 'emboss not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  `cd $TESTFILE.dir`;
-  `module load emboss; extractseq $packageHome/test/tembl:x65923 result.seq -regions "10-20" >& /dev/null`;
-  $output=`cat result.seq`;
-  like($output, qr/^ctcgactccat$/, 'emboss works');
-  `rm -rf $TESTFILE.dir`;
+  `cd $TESTFILE.dir;module load emboss; extractseq $packageHome/test/tembl:x65923 result.seq -regions "10-20" >& /dev/null`;
+  $output=`cat $TESTFILE.dir/result.seq`;
+  like($output, qr/ctcgactccat/, 'emboss works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/fastqc';
@@ -239,11 +243,10 @@ SKIP: {
   `mkdir $TESTFILE.dir`;
   `cp -r $packageHome/testsuite $TESTFILE.dir`;
   `cd $TESTFILE.dir/testsuite;ln -s $packageHome/bin ../bin`;
-  $output=`module load hmmer; cd $TESTFILE.dir/testsuite make check > /dev/null 2>&1`;
+  $output=`module load hmmer; cd $TESTFILE.dir/testsuite; make check 2>&1`;
   like($output, qr/All 260 exercises at level <= 2 passed./, 'hmmer works');
-  `rm -rf $TESTFILE.dir`;
+  `rm -rf $TESTFILE*`;
 }
-
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;

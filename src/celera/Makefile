@@ -111,10 +111,3 @@ install::
 clean::
 	rm -rf $(SOURCE_DIR) $(STATISTICS_DIR) $(SAMPLE_DIR) $(LIST_DIR) \
                $(EXPORTER_DIR) DESCRIPTION LICENSE
-
-#cp build_utest generic_fwdback_utest generic_fwdback_chk_utest \
-#   generic_msv_utest generic_stotrace_utest generic_viterbi_utest \
-#   hmmer_utest logsum_utest modelconfig_utest seqmodel_utest \
-#   p7_alidisplay_utest p7_bg_utest p7_gmx_utest p7_gmxchk_utest \
-#   p7_hmm_utest p7_hmmfile_utest p7_profile_utest p7_tophits_utest \
-#   p7_trace_utest p7_scoredata_utest hmmpgmd2msa_utest $(ROOT)/$(PKGROOT)/bin \
