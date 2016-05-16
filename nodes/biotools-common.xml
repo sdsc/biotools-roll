@@ -77,6 +77,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-bwa-modules</package>
 <package>sdsc-bx-python</package>
 <package>sdsc-bx-python-modules</package>
+<package>sdsc-celera</package>
+<package>sdsc-celera-modules</package>
 <package>sdsc-cufflinks</package>
 <package>sdsc-cufflinks-modules</package>
 <package>sdsc-dendropy</package>
@@ -85,6 +87,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-diamond-modules</package>
 <package>sdsc-edena</package>
 <package>sdsc-edena-modules</package>
+<package>sdsc-emboss</package>
+<package>sdsc-emboss-modules</package>
 <package>sdsc-fastqc</package>
 <package>sdsc-fastqc-modules</package>
 <package>sdsc-fastx</package>
