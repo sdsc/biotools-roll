@@ -79,7 +79,6 @@ LICENSE: $(SRC_DIRS)
 	echo MIT and Apache > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/build.xml patch-files/build.xml.patch
 	( \
 	  export JAVA_HOME=$(JAVA_HOME); \
 	  export PATH=$${JAVA_HOME}/bin:$${PATH}; \
