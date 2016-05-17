@@ -56,24 +56,24 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </copyright>
 
 <edge from="compute">
-    <to>intel-compilers-common</to>
+    <to>biotools-common</to>
 </edge>
 <order head="compute">
-    <tail>intel-compilers-common</tail>
+    <tail>biotools-common</tail>
 </order>
 
 <edge from="login">
-    <to>intel-compilers-common</to>
+    <to>biotools-common</to>
 </edge>
 <order head="login">
-    <tail>intel-compilers-common</tail>
+    <tail>biotools-common</tail>
 </order>
 
 <edge from="devel">
-    <to>intel-compilers-common</to>
+    <to>biotools-common</to>
 </edge>
 <order head="devel">
-    <tail>intel-compilers-common</tail>
+    <tail>biotools-common</tail>
 </order>
 
 </graph>
