@@ -1,0 +1,17 @@
+--- hmmer-3.1b2/testsuite/i4-zerolength-seqs.sh	2015-02-26 04:46:05.000000000 -0800
++++ patch-files/i4-zerolength-seqs.sh	2016-05-06 23:29:40.629481539 -0700
+@@ -24,10 +24,10 @@
+ hmmfile=$3;
+ tmppfx=$4;
+ 
+-hmmscan=$builddir/src/hmmscan;     if test ! -x $hmmscan;   then echo "FAIL: $hmmscan not executable";   exit 1; fi
+-hmmsearch=$builddir/src/hmmsearch; if test ! -x $hmmsearch; then echo "FAIL: $hmmsearch not executable"; exit 1; fi
+-phmmer=$builddir/src/phmmer;       if test ! -x $phmmer;    then echo "FAIL: $phmmer not executable";    exit 1; fi
+-jackhmmer=$builddir/src/jackhmmer; if test ! -x $jackhmmer; then echo "FAIL: $jackhmmer not executable"; exit 1; fi
++hmmscan=$builddir/hmmscan;     if test ! -x $hmmscan;   then echo "FAIL: $hmmscan not executable";   exit 1; fi
++hmmsearch=$builddir/hmmsearch; if test ! -x $hmmsearch; then echo "FAIL: $hmmsearch not executable"; exit 1; fi
++phmmer=$builddir/phmmer;       if test ! -x $phmmer;    then echo "FAIL: $phmmer not executable";    exit 1; fi
++jackhmmer=$builddir/jackhmmer; if test ! -x $jackhmmer; then echo "FAIL: $jackhmmer not executable"; exit 1; fi
+                                    if test ! -r $hmmfile;   then echo "FAIL: $hmmfile not readable";     exit 1; fi
+ 
+ fafile=$tmppfx.fa

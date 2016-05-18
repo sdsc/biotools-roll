@@ -1,0 +1,20 @@
+--- hmmer-3.1b2/testsuite/i16-build-allins.pl	2015-02-26 04:46:05.000000000 -0800
++++ patch-files/i16-build-allins.pl	2016-05-05 22:37:43.673369143 -0700
+@@ -15,7 +15,7 @@
+ }
+ 
+ # Verify that we have all the executables we need for the test.
+-if (! -x "$builddir/src/hmmbuild") { die "FAIL: didn't find hmmconvert binary in $builddir/src\n";  }
++if (! -x "$builddir/hmmbuild") { die "FAIL: didn't find hmmconvert binary in $builddir/\n";  }
+ 
+ # Create the test file
+ open(MSA, ">$tmppfx.sto") || die "FAIL: couldn't create $tmppfx.sto"; 
+@@ -31,7 +31,7 @@
+ EOF
+ close MSA;
+ 
+-$output = `$builddir/src/hmmbuild -O $tmppfx.sto2 --hand $tmppfx.hmm $tmppfx.sto`;
++$output = `$builddir/hmmbuild -O $tmppfx.sto2 --hand $tmppfx.hmm $tmppfx.sto`;
+ if ($? != 0) { die "FAIL: hmmbuild failed unexpectedly\n"; }
+ 
+ $output = `grep "^seqx" $tmppfx.sto2`;

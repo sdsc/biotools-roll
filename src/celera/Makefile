@@ -1,4 +1,3 @@
-#
 # $Id$
 #
 # @Copyright@
@@ -55,23 +54,60 @@
 # 
 # @Copyright@
 
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
+REDHAT.ROOT = $(CURDIR)/../../
+RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
-ifndef ROLLMPI
-  ROLLMPI = rocks-openmpi
-endif
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
--include $(ROLLSROOT)/etc/Rolls.mk
-include Rolls.mk
+$(NAME).spec: DESCRIPTION LICENSE
 
-default:
-	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" ROLLMPI="$(ROLLMPI)" roll
+DESCRIPTION:
+	( \
+	  $(DESCRIBE_PKG); \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPL > $@
+
+build: $(SRC_DIRS)
+	( \
+          cd $(SOURCE_DIR)/kmer; \
+          make; \
+          make install; \
+          cd ../src; \
+          make \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+
+install::
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
+	$(PKGROOT_BIND_MOUNT)
+	( \
+          cp -r $(SAMPLE_DIR)/* $(PKGROOT)/test; \
+	  mkdir -p -m 755 $(PKGROOT)/lib; \
+          cd $(STATISTICS_DIR); \
+          perl Makefile.PL PREFIX=$(PKGROOT); \
+          make; \
+          make install; \
+          cd ../$(LIST_DIR); \
+          perl Makefile.PL PREFIX=$(PKGROOT); \
+          make; \
+          make install; \
+          cd ../$(EXPORTER_DIR); \
+          perl Makefile.PL PREFIX=$(PKGROOT); \
+          make; \
+          make install; \
+	  cd ../$(SOURCE_DIR); \
+          cp -r Linux-amd64 $(PKGROOT) \
+        )
+	$(PKGROOT_BIND_UMOUNT)
+	$(INSTALL_LICENSE_FILES)
+	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -f _arch bootstrap.py
-
-distclean:: clean
-	rm -fr RPMS SRPMS cache
-	-rm -f build.log
+	rm -rf $(SOURCE_DIR) $(STATISTICS_DIR) $(SAMPLE_DIR) $(LIST_DIR) \
+               $(EXPORTER_DIR) DESCRIPTION LICENSE

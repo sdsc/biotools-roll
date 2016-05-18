@@ -11,11 +11,12 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bismark', 'blast', 'blat',
-  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'cufflinks', 'dendropy', 'diamond',
-  'edena', 'fastqc', 'fastx', 'GenomeAnalysisTK', 'gmap_gsnap', 'htseq',
-  'idba-ud', 'matt', 'miRDeep2', 'miso', 'picard', 'plink', 'pysam', 'qiime',
-  'randfold', 'rseqc', 'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid',
-  'stacks', 'tophat', 'trimmomatic', 'trinity', 'vcftools','velvet', 'ViennaRNA'
+  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
+  'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
+  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
+  'picard', 'plink', 'pysam', 'qiime', 'randfold', 'rseqc', 'samtools',
+  'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
+  'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
 my $isInstalled = -d '/opt/biotools';
 my $output;
@@ -160,13 +161,21 @@ END
   `/bin/rm -f mg323.*`;
 }
 
-$packageHome = '/opt/biotools/cufflinks';
+$packageHome = '/opt/biotools/celera';
 SKIP: {
-  skip 'cufflinks not installed', 1 if ! -d $packageHome;
+  skip 'celera not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output = `module load cufflinks; cd $TESTFILE.dir; cufflinks $packageHome/test_data.sam 2>&1`;
-  like($output, qr/Default Mean: 200/, 'cufflinks works');
-  `rm -rf $TESTFILE.dir`;
+open(OUT, ">$TESTFILE.sh");
+print OUT <<END;
+  cd $TESTFILE.dir
+  cp -r $packageHome/test/* .
+  java -jar convertFastaAndQualToFastq.jar pacbio.filtered_subreads.fasta > pacbio.filtered_subreads.fastq
+  module load celera
+  PBcR -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000
+END
+  $output = `bash $TESTFILE.sh 2>&1`;
+  like($output, qr/Contig_SurrBaseLength           1226549/, 'celera works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/dendropy';
@@ -188,6 +197,16 @@ SKIP: {
   skip 'edena not installed', 1 if ! -d $packageHome;
   $output = `module load edena; edena 2>&1`;
   like($output, qr/Edena v/, 'edena works');
+}
+
+$packageHome = '/opt/biotools/emboss';
+SKIP: {
+  skip 'emboss not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  `cd $TESTFILE.dir;module load emboss; extractseq $packageHome/test/tembl:x65923 result.seq -regions "10-20" >& /dev/null`;
+  $output=`cat $TESTFILE.dir/result.seq`;
+  like($output, qr/ctcgactccat/, 'emboss works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/fastqc';
@@ -218,6 +237,16 @@ SKIP: {
   like($output, qr/Trimmed coverage: 100.0 \(trimmed length: 4624 bp, trimmed region: 1..4624\)/, 'gmap_gsnap works');
 }
 
+$packageHome = '/opt/biotools/hmmer';
+SKIP: {
+  skip 'hmmer not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  `cp -r $packageHome/testsuite $TESTFILE.dir`;
+  `cd $TESTFILE.dir/testsuite;ln -s $packageHome/bin ../bin`;
+  $output=`module load hmmer; cd $TESTFILE.dir/testsuite; make check 2>&1`;
+  like($output, qr/All 260 exercises at level <= 2 passed./, 'hmmer works');
+  `rm -rf $TESTFILE*`;
+}
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;

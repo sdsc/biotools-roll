@@ -13,14 +13,17 @@ module load bowtie
 module load bowtie2
 module load bwa
 module load bx-python
+module load celera
 module load cufflinks
 module load dendropy
 module load diamond
 module load edena
+module load emboss
 module load fastqc
 module load fastx
 module load GenomeAnalysisTK
 module load gmap_gsnap
+module load hmmer
 module load htseq
 module load idba-ud
 module load matt

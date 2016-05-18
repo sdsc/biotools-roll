@@ -14,14 +14,17 @@ bowtie - http://bowtie-bio.sourceforge.net
 bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
 bx-python - https://pypi.python.org/pypi/bx-python
+celera - http://wgs-assembler.sourceforge.net/
 Cufflinks - http://cufflinks.cbcb.umd.edu/
 dendropy - http://pythonhosted.org/DendroPy/
 diamond - https://github.com/bbuchfink/diamond
 edena - http://www.genomic.ch/edena.php
+emboss - http://emboss.sourceforge.net
 fastqc - http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 fastx - http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program) - http://research-pub.gene.com/gmap/
+hmmer - http://hmmer.org
 htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
@@ -74,6 +77,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-bwa-modules</package>
 <package>sdsc-bx-python</package>
 <package>sdsc-bx-python-modules</package>
+<package>sdsc-celera</package>
+<package>sdsc-celera-modules</package>
 <package>sdsc-cufflinks</package>
 <package>sdsc-cufflinks-modules</package>
 <package>sdsc-dendropy</package>
@@ -82,6 +87,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-diamond-modules</package>
 <package>sdsc-edena</package>
 <package>sdsc-edena-modules</package>
+<package>sdsc-emboss</package>
+<package>sdsc-emboss-modules</package>
 <package>sdsc-fastqc</package>
 <package>sdsc-fastqc-modules</package>
 <package>sdsc-fastx</package>
@@ -90,6 +97,8 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-GenomeAnalysisTK-modules</package>
 <package>sdsc-gmap_gsnap</package>
 <package>sdsc-gmap_gsnap-modules</package>
+<package>sdsc-hmmer</package>
+<package>sdsc-hmmer-modules</package>
 <package>sdsc-htseq</package>
 <package>sdsc-htseq-modules</package>
 <package>sdsc-idba-ud</package>

@@ -1,0 +1,8 @@
+#%Module1.0
+
+module-whatis "hmmer VERSION"
+
+set packageHome /opt/biotools/hmmer
+setenv HMMERHOME $packageHome
+append-path PATH $packageHome/bin
+module load ROLLCOMPILER ROLLMPI gsl

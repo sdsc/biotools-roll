@@ -81,6 +81,7 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_CXX); \
 	  $(MODULE_LOAD_CMAKE); \
 	  $(MODULE_LOAD_BOOST); \
+          export LDFLAGS=-lpthread; \
 	  cd $(SOURCE_DIR); \
 	  mkdir build; \
 	  cd build; \

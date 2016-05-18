@@ -68,7 +68,6 @@ $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	export JAVA_HOME=$(JAVA_HOME); \
-	export PATH=$${JAVA_HOME}/bin:$${PATH}; \
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_JAVA) \
@@ -80,12 +79,11 @@ LICENSE: $(SRC_DIRS)
 	echo MIT and Apache > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/build.xml patch-files/build.xml.patch
 	( \
 	  export JAVA_HOME=$(JAVA_HOME); \
 	  export PATH=$${JAVA_HOME}/bin:$${PATH}; \
+          mv $(HTSJDK_SOURCE_DIR) $(SOURCE_DIR); \
 	  cd $(SOURCE_DIR); \
-	  ant clone-htsjdk; \
 	  ant \
         )
 	@echo "::: Package $(NAME) build complete :::"

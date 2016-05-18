@@ -1,4 +1,3 @@
-#
 # $Id$
 #
 # @Copyright@
@@ -55,23 +54,49 @@
 # 
 # @Copyright@
 
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
+REDHAT.ROOT = $(CURDIR)/../../
 
-ifndef ROLLMPI
-  ROLLMPI = rocks-openmpi
-endif
+-include $(ROCKSROOT)/etc/Rules.mk
+include Rules.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
--include $(ROLLSROOT)/etc/Rolls.mk
-include Rolls.mk
+$(NAME).spec: DESCRIPTION LICENSE
 
-default:
-	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" ROLLMPI="$(ROLLMPI)" roll
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo GPL > $@
+
+build: $(SRC_DIRS)
+	( \
+	  $(MODULE_LOAD_CC); \
+	  export CC=$(CC); \
+          cd $(SOURCE_DIR); \
+	  ./configure --prefix=$(PKGROOT) --with-gnu-ld; \
+	  make \
+	)
+	@echo "::: Package $(NAME) build complete :::"
+
+install::
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
+	$(PKGROOT_BIND_MOUNT)
+	( \
+          cp tembl:x65923 $(PKGROOT)/test; \
+	  $(MODULE_LOAD_CC); \
+	  export CC=$(CC); \
+	  cd $(SOURCE_DIR); \
+	  make install; \
+        )
+	$(PKGROOT_BIND_UMOUNT)
+	$(INSTALL_LICENSE_FILES)
+	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -f _arch bootstrap.py
-
-distclean:: clean
-	rm -fr RPMS SRPMS cache
-	-rm -f build.log
+	rm -fr $(SOURCE_DIR) DESCRIPTION LICENSE
