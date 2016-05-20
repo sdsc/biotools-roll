@@ -171,7 +171,7 @@ print OUT <<END;
   cp -r $packageHome/test/* .
   java -jar convertFastaAndQualToFastq.jar pacbio.filtered_subreads.fasta > pacbio.filtered_subreads.fastq
   module load celera
-  PBcR -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000
+  PBcR -threads 4 -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000
 END
   $output = `bash $TESTFILE.sh 2>&1`;
   like($output, qr/Contig_SurrBaseLength           1226549/, 'celera works');
