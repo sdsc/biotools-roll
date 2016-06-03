@@ -88,7 +88,7 @@ install::
 	$(PKGROOT_BIND_MOUNT)
 	( \
           cp -r $(SAMPLE_DIR)/* $(PKGROOT)/test; \
-          chmod 0644 $(PKGROOT)/test; \
+          chmod 0644 $(PKGROOT)/test/*; \
 	  mkdir -p -m 755 $(PKGROOT)/lib; \
           cd $(STATISTICS_DIR); \
           perl Makefile.PL PREFIX=$(PKGROOT); \
