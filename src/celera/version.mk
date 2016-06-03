@@ -1,6 +1,6 @@
 NAME           = sdsc-celera
 VERSION        = 8.3rc2
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/celera
 
 SRC_SUBDIR     = celera
