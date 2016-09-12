@@ -93,6 +93,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <package>sdsc-fastqc-modules</package>
 <package>sdsc-fastx</package>
 <package>sdsc-fastx-modules</package>
+<package>sdsc-GenomeAnalysisTK-3.5</package>
 <package>sdsc-GenomeAnalysisTK</package>
 <package>sdsc-GenomeAnalysisTK-modules</package>
 <package>sdsc-gmap_gsnap</package>
