@@ -1,11 +1,11 @@
---- SPAdes-3.6.0/spades_compile.sh	2015-08-17 14:11:25.000000000 -0700
-+++ patch-files/spades_compile.sh	2015-09-25 22:33:38.811591087 -0700
+--- SPAdes-3.9.0/spades_compile.sh	2016-07-24 03:16:55.000000000 -0700
++++ patch-files/spades_compile.sh	2016-09-12 14:45:24.909035812 -0700
 @@ -19,7 +19,7 @@
- mkdir -p $BASEDIR/$BUILD_DIR
+ mkdir -p "$BASEDIR/$BUILD_DIR"
  set -e
- cd $BASEDIR/$BUILD_DIR
--cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$PREFIX $BASEDIR/src $*
-+cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=ROLLPATHCC -DCMAKE_INSTALL_PREFIX=$PREFIX $BASEDIR/src $*
+ cd "$BASEDIR/$BUILD_DIR"
+-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$PREFIX" "$BASEDIR/src" $*
++cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=ROLLPATHCC -DBoost_NO_BOOST_CMAKE=ON -DCMAKE_INSTALL_PREFIX=$PREFIX $BASEDIR/src $*
  make -j 8
  make install
  cd $PREFIX
