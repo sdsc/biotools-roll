@@ -233,7 +233,7 @@ $packageHome = '/opt/biotools/GenomeAnalysisTK/3.6';
 SKIP: {
   skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
   $output = `module load GenomeAnalysisTK; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
-  like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.6 orks');
+  like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.6 works');
 }
 
 $packageHome = '/opt/biotools/gmap_gsnap';
