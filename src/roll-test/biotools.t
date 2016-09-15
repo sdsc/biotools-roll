@@ -223,11 +223,17 @@ SKIP: {
   like($output, qr/A(AGGTTT)CCC/, 'fastx works');
 }
 
-$packageHome = '/opt/biotools/GenomeAnalysisTK';
+$packageHome = '/opt/biotools/GenomeAnalysisTK/3.5';
+SKIP: {
+  skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
+  $output = `module load GenomeAnalysisTK/3.5; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
+  like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.5 works');
+}
+$packageHome = '/opt/biotools/GenomeAnalysisTK/3.6';
 SKIP: {
   skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
   $output = `module load GenomeAnalysisTK; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
-  like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK works');
+  like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.6 works');
 }
 
 $packageHome = '/opt/biotools/gmap_gsnap';
