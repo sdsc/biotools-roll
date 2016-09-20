@@ -75,6 +75,8 @@ LICENSE: $(SRC_DIRS)
 	echo GPL > $@
 
 build: $(SRC_DIRS)
+	# Disable updates check--site no longer exists.
+	perl -pi -e 's/embInit/if (1) return 0; embInit/' $(SOURCE_DIR)/emboss/embossupdate.c
 	( \
 	  $(MODULE_LOAD_CC); \
 	  export CC=$(CC); \
