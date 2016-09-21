@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-emboss
 VERSION        = 6.5.7
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/emboss
 
 SRC_SUBDIR     = emboss
