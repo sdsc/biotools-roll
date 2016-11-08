@@ -78,6 +78,7 @@ LICENSE: $(SRC_DIRS)
 	echo Affero GPL > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/src/fasta_nucleotide_changer/fasta_nucleotide_changer.c patch-files/fasta_nucleotide_changer.c.patch
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \
 	  $(MODULE_LOAD_CC); \
