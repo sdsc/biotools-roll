@@ -1,0 +1,13 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "NucleoATAC VERSION"
+
+module load python scipy samtools/1.2 pysam
+
+set packageHome /opt/biotools/NucleoATAC
+setenv NUCLEOATACHOME $packageHome
+append-path PATH $packageHome/bin
+set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
+append-path PYTHONPATH $lib
