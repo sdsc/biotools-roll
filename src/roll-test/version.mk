@@ -1,6 +1,6 @@
 NAME       = sdsc-biotools-roll-test
-VERSION    = 4
-RELEASE    = 3
+VERSION    = 5
+RELEASE    = 0
 PKGROOT    = /root/rolltests
 
 RPM.EXTRAS = AutoReq:No

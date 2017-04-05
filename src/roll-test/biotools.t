@@ -14,8 +14,8 @@ my @packages = (
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
-  'picard', 'plink', 'pysam', 'qiime', 'randfold', 'rseqc', 'samtools',
-  'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
+  'NucleoATAC', 'picard', 'plink', 'pysam', 'qiime', 'randfold', 'rseqc',
+  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
 my $isInstalled = -d '/opt/biotools';
@@ -300,6 +300,13 @@ SKIP: {
   skip 'miso not installed', 1 if ! -d $packageHome;
   $output = `module load miso; python $packageHome/lib/python2.7/site-packages/misopy/test_miso.py 2>&1`;
   like($output, qr/OK/, 'miso works');
+}
+
+$packageHome = '/opt/biotools/NucleoATAC';
+SKIP: {
+  skip 'NucleoATAC not installed', 1 if ! -d $packageHome;
+  $output = `module load NucleoATAC; nucleoatac run --help 2>&1`;
+  like($output, qr/start run at:/, 'NucleoATAC works');
 }
 
 $packageHome = '/opt/biotools/picard';
