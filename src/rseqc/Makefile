@@ -56,6 +56,7 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
+PYSAM_CACHE = $(REDHAT.ROOT)/cache/build-pysam
 
 ROLLPY = python
 PYVERSION = 2.7
@@ -92,6 +93,7 @@ install::
 	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${sitepath}; \
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
+          export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
 	)
