@@ -80,11 +80,6 @@ LICENSE: $(SRC_DIRS)
 	echo MIT > $@
 
 build: $(SRC_DIRS)
-	( \
-	  $(MODULE_LOAD_PYTHON); \
-	  cd $(SOURCE_DIR); \
-	  python setup.py build \
-	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
@@ -92,9 +87,11 @@ install::
 	  $(MODULE_LOAD_PYTHON); \
 	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${sitepath}; \
+	  pip install $(BX_PYTHON_PKG) --prefix=$(ROOT)/$(PKGROOT); \
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
           export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
+	  python setup.py build \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
 	)
 	$(INSTALL_LICENSE_FILES)

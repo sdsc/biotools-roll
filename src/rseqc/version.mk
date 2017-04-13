@@ -1,6 +1,6 @@
 NAME           = sdsc-rseqc
 VERSION        = 2.6.4
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/rseqc
 
 SRC_SUBDIR     = rseqc
@@ -11,6 +11,11 @@ SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
-TAR_GZ_PKGS    = $(SOURCE_PKG)
+BX_PYTHON_NAME    = bx-python
+BX_PYTHON_SUFFIX  = tar.gz
+BX_PYTHON_VERSION = 0.7.3
+BX_PYTHON_PKG     = $(BX_PYTHON_NAME)-$(BX_PYTHON_VERSION).$(BX_PYTHON_SUFFIX)
+
+TAR_GZ_PKGS    = $(SOURCE_PKG) $(BX_PYTHON_PKG)
 
 RPM.EXTRAS     = AutoReq:No
