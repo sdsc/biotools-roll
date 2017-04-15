@@ -91,7 +91,7 @@ install::
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
           export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
-	  python setup.py build \
+	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
 	)
 	$(INSTALL_LICENSE_FILES)
