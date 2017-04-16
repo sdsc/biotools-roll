@@ -59,7 +59,7 @@
 # miso depends on samtools 1.2
 # NucleoATAC depends on pysam
 # randfold depends on squid
-# rseqc depends on pysam
+# rseqc depends on bx-python and pysam
 # stacks depends on samtools
 # tophat depends on samtools
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
