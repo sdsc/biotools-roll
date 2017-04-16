@@ -65,6 +65,8 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+BX_PYTHON_CACHE = $(REDHAT.ROOT)/cache/build-bx-python
+
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
@@ -82,12 +84,12 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-          $(MODULE_LOAD_CC); \
-          $(MODULE_LOAD_PYTHON); \
-          export CC=$(CC); \
-          cd $(SOURCE_DIR); \
-          python setup.py build \
-          )
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_PYTHON); \
+	  export CC=$(CC); \
+	  cd $(SOURCE_DIR); \
+	  python setup.py build \
+	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
@@ -101,6 +103,8 @@ install::
           cd $(SOURCE_DIR); \
           python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
         )
+	mkdir -p -m 755 $(BX_PYTHON_CACHE)
+	cp -r $(ROOT)/$(PKGROOT)/* $(BX_PYTHON_CACHE)/
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

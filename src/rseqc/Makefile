@@ -56,7 +56,6 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
-PYSAM_CACHE = $(REDHAT.ROOT)/cache/build-pysam
 
 ROLLPY = python
 PYVERSION = 2.7
@@ -65,6 +64,9 @@ PYVERSION = 2.7
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
+
+BX_PYTHON_CACHE = $(REDHAT.ROOT)/cache/build-bx-python
+PYSAM_CACHE = $(REDHAT.ROOT)/cache/build-pysam
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -87,9 +89,8 @@ install::
 	  $(MODULE_LOAD_PYTHON); \
 	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${sitepath}; \
-	  pip install $(BX_PYTHON_PKG) --prefix=$(ROOT)/$(PKGROOT); \
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
-          export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+          export PYTHONPATH=$(BX_PYTHON_CACHE)/lib/python$(PYVERSION)/site-packages:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
