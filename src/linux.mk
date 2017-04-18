@@ -57,15 +57,18 @@
 # bcftools depends on samtools
 # cufflinks depends on samtools
 # miso depends on samtools 1.2
+# NucleoATAC depends on pysam
 # randfold depends on squid
+# rseqc depends on bx-python and pysam
 # stacks depends on samtools
 # tophat depends on samtools
 SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
-  -not -name cufflinks \
-  -not -name randfold \
-  -not -name stacks \
-  -not -name tophat \
   -not -name bcftools \
+  -not -name cufflinks \
   -not -name miso \
-  -not -name rseqc` \
-  rseqc miso bcftools cufflinks randfold stacks tophat
+  -not -name NucleoATAC \
+  -not -name randfold \
+  -not -name rseqc \
+  -not -name stacks \
+  -not -name tophat` \
+  bcftools cufflinks miso NucleoATAC randfold rseqc stacks tophat
