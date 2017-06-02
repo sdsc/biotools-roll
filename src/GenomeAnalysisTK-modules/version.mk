@@ -1,8 +1,12 @@
+ifneq ("$(ROLLOPTS)", "$(subst java8home=,,$(ROLLOPTS))")
+  override JAVA_HOME = $(subst java8home=,,$(filter java8home=%,$(ROLLOPTS)))
+endif
+
 PACKAGE     = GenomeAnalysisTK
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules
-RELEASE     = 1
+RELEASE     = 2
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk

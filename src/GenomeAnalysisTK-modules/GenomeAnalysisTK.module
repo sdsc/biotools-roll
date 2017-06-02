@@ -6,5 +6,6 @@ module-whatis "GenomeAnalysisTK VERSION"
 
 set packageHome $biotoolsHome/GenomeAnalysisTK/VERSION
 setenv GATKHOME $packageHome
+prepend-path PATH JAVA_HOME/bin
 append-path CLASSPATH $packageHome/GenomeAnalysisTK.jar
 
