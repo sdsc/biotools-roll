@@ -1,6 +1,6 @@
 NAME           = sdsc-NucleoATAC
 VERSION        = 0.3.1
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/NucleoATAC
 
 SRC_SUBDIR     = NucleoATAC

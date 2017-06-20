@@ -72,6 +72,7 @@ DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_PYTHON); \
+	  $(DESCRIBE_SCIPY) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -86,7 +87,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
-          module load scipy; \
+	  $(MODULE_LOAD_SCIPY); \
           export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
