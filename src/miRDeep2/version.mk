@@ -1,6 +1,6 @@
 NAME           = sdsc-miRDeep2
 VERSION        = 0.0.7
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/miRDeep2
 
 SRC_SUBDIR     = miRDeep2

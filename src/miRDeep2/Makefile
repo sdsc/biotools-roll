@@ -90,7 +90,8 @@ install::
 	  cd ../$(SOURCE_DIR); \
 	  cp *.pl $(ROOT)/$(PKGROOT)/bin; \
 	  cp -r tutorial_dir/* $(ROOT)/$(PKGROOT)/tests; \
-	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT)/bin \
+	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT)/bin; \
+	  chmod 755 $(ROOT)/$(PKGROOT)/bin/*.pl \
 	)
 	# Remove $(ROOT) reference from rpm file
 	perl -pi -e 's#$(ROOT)##' $(ROOT)/$(PKGROOT)/lib64/perl5/perllocal.pod
