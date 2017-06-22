@@ -75,7 +75,8 @@ DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CC); \
-	  $(DESCRIBE_PYTHON) \
+	  $(DESCRIBE_PYTHON); \
+	  $(DESCRIBE_SCIPY) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -91,7 +92,7 @@ install::
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_PYTHON); \
-          module load scipy; \
+	  $(MODULE_LOAD_SCIPY); \
 	  pip install --install-option="--prefix=$(PKGROOT)" qiime; \
 	  mkdir $(PKGROOT)/tests; \
 	  cd $(SOURCE_DIR); \
