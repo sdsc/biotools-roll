@@ -80,6 +80,7 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_CXX); \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
+	  export CXXFLAGS='-std=c++98'; \
 	  ./configure --prefix=$(ROOT)/$(PKGROOT); \
 	  $(MAKE) \
 	)

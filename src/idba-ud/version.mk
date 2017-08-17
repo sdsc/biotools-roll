@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-idba-ud
 VERSION        = 1.1.1
-RELEASE        = 17
+RELEASE        = 18
 PKGROOT        = /opt/biotools/idba-ud
 
 SRC_SUBDIR     = idba-ud
