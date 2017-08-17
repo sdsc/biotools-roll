@@ -87,6 +87,7 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_GSL); \
+	  export CXXFLAGS='-std=c++98'; \
 	  cd $(SOURCE_DIR); \
 	  make clean; \
 	  make USE_GPL=1 \
