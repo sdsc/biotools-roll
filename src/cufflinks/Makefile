@@ -79,6 +79,8 @@ LICENSE: $(SRC_DIRS)
 	echo boost > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/src/GHash.hh patch-files/GHash.hh.patch
+	patch $(SOURCE_DIR)/src/lemon/error.h patch-files/error.h.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_BOOST); \
@@ -87,6 +89,7 @@ build: $(SRC_DIRS)
 	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
+	  export CXXFLAGS='-std=c++98'; \
 	  ./configure -prefix=$(PKGROOT) \
 	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
 	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
