@@ -1,0 +1,10 @@
+--- text_line_reader.cpp	2017-08-15 15:29:21.000000000 -0700
++++ patch-files/text_line_reader.cpp	2017-08-15 18:56:26.000000000 -0700
+@@ -44,6 +44,6 @@
+ 	if (input_stream.eof())
+ 		return false;
+ 
+-	return input_stream ;
++	return (bool)input_stream ;
+ }
+ 

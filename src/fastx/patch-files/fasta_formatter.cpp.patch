@@ -1,0 +1,12 @@
+--- fasta_formatter.cpp	2017-08-15 15:32:03.000000000 -0700
++++ patch-files/fasta_formatter.cpp	2017-08-15 15:33:03.000000000 -0700
+@@ -103,7 +103,8 @@
+ 		switch(opt) {
+ 		case 'h':
+ 			usage();
+-		
++			break;
++
+ 		case 'i':
+ 			input_filename = optarg;
+ 			break;
