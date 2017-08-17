@@ -1,0 +1,13 @@
+--- plink_common.h	2017-08-15 21:43:04.000000000 -0700
++++ patch-files/plink_common.h	2017-08-15 21:57:47.000000000 -0700
+@@ -58,8 +58,8 @@
+   typedef unsigned long long uint64_t;
+   typedef long long int64_t;
+ #else
+-  #define uint64_t unsigned long long
+-  #define int64_t long long
++//  #define uint64_t unsigned long long
++//  #define int64_t long long
+ #endif
+ 
+ #ifdef _WIN64
