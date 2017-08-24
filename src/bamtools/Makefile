@@ -83,6 +83,7 @@ build: $(SRC_DIRS)
 	  cd $(SOURCE_DIR)/build; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
+	  export CXXFLAGS='-std=c++98'; \
 	  cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) ..; \
 	  make \
 	)

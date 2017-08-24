@@ -61,15 +61,10 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
-# NOTE: The SeqAN package bundled with tophat fails to compile with the 4.9.x
-# gnu compilers.  Until that's fixed, we take steps to use the system gnu.
-
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
-	if test "$(COMPILERNAME)" != "gnu"; then \
-	  $(MODULE_LOAD_CC); \
-	fi; \
+	$(MODULE_LOAD_CC); \
 	( \
 	  $(DESCRIBE_PKG); \
 	  $(DESCRIBE_CC); \
@@ -81,6 +76,7 @@ LICENSE: $(SRC_DIRS)
 	echo OSI and boost > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/src/tophat_reports.cpp patch-files/tophat_reports.cpp.patch
 	if test "$(COMPILERNAME)" != "gnu"; then \
 	  perl -pi -e 's#(typedef.*__int)#//$1#' $(SOURCE_DIR)/src/SeqAn-1.3/seqan/platform/platform_gcc.h; \
 	fi
@@ -88,13 +84,8 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_BOOST); \
           cd $(SOURCE_DIR); \
-	  if test "$(COMPILERNAME)" = "gnu"; then \
-	    export PATH=/usr/bin:${PATH}; \
-	  fi; \
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
-	  export LD_LIBRARY_PATH=$${BOOSTHOME}/lib:$${LD_LIBRARY_PATH}; \
-          ./autogen.sh; \
 	  ./configure -prefix=$(PKGROOT) --with-boost=$${BOOSTHOME};  \
 	  $(MAKE) \
 	)

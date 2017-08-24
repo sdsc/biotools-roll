@@ -78,6 +78,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/Makefile patch-files/Makefile.patch
 	patch $(SOURCE_DIR)/plink_matrix.h patch-files/plink_matrix.h.patch
+	patch $(SOURCE_DIR)/plink_common.h patch-files/plink_common.h.patch
 	( \
           $(MODULE_LOAD_CC); \
           $(MODULE_LOAD_MKL); \

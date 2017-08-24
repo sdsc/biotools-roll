@@ -2,7 +2,7 @@ override ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-spades
 VERSION        = 3.9.0
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/spades
 
 SRC_SUBDIR     = spades

@@ -78,6 +78,8 @@ LICENSE: $(SRC_DIRS)
 	echo Affero GPL > $@
 
 build: $(SRC_DIRS)
+	patch $(LIBGTEXTUTILS_DIR)/src/gtextutils/text_line_reader.cpp patch-files/text_line_reader.cpp.patch
+	patch $(SOURCE_DIR)/src/fasta_formatter/fasta_formatter.cpp patch-files/fasta_formatter.cpp.patch
 	patch $(SOURCE_DIR)/src/fasta_nucleotide_changer/fasta_nucleotide_changer.c patch-files/fasta_nucleotide_changer.c.patch
 	( \
 	  cd $(LIBGTEXTUTILS_DIR); \

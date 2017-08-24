@@ -1,0 +1,8 @@
+70c70
+<       if (ptr.get() == 0) return;
+---
+>       if (ptr.get() == 0) return copy;
+72c72
+< 	if (!copy.valid()) return;
+---
+> 	if (!copy.valid()) return copy;
