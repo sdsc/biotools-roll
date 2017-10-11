@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-squid
 VERSION        = 1.9g
-RELEASE        = 17
+RELEASE        = 18
 PKGROOT        = /opt/biotools/squid
 
 SRC_SUBDIR     = squid
@@ -19,3 +19,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

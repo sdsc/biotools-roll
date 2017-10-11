@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-cufflinks
 VERSION        = 2.2.1
-RELEASE        = 3
+RELEASE        = 4
 PKGROOT        = /opt/biotools/cufflinks
 
 SRC_SUBDIR     = cufflinks
@@ -19,3 +19,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

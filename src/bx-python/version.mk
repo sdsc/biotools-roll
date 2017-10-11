@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-bx-python
 VERSION        = 0.7.3
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/bx-python
 
 SRC_SUBDIR     = bx-python
@@ -19,3 +19,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

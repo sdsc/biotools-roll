@@ -1,6 +1,6 @@
 NAME           = sdsc-bwa
 VERSION        = 0.7.13
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/bwa
 
 SRC_SUBDIR     = bwa
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_BZ2_PKGS   = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

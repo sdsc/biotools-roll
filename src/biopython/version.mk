@@ -1,6 +1,6 @@
 NAME           = sdsc-biopython
 VERSION        = 1.66
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/biopython
 
 SRC_SUBDIR     = biopython
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)
