@@ -1,3 +1,6 @@
+# See note in blast/version.mk
+override ROLLCOMPILER = gnu
+
 PACKAGE     = blast
 CATEGORY    = applications
 

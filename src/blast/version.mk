@@ -1,6 +1,6 @@
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
+# Intel 2018 compile fails with
+# ncbitype.h(71): error: #error directive: "Unsupported size of char(must be 1 byte)"
+override ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-blast
