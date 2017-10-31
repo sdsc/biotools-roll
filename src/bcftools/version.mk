@@ -2,7 +2,7 @@ override ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-bcftools
 VERSION        = 1.3
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/bcftools
 
 SRC_SUBDIR     = bcftools
@@ -16,3 +16,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_BZ2_PKGS   = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

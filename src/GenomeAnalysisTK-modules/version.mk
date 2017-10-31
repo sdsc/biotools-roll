@@ -6,7 +6,7 @@ PACKAGE     = GenomeAnalysisTK
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules
-RELEASE     = 2
+RELEASE     = 3
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk
@@ -16,3 +16,4 @@ include $(VERSION_INC)
 EXTRA_MODULE_VERSIONS = 3.5
 
 RPM.EXTRAS  = AutoReq:No
+RPM.PREFIX  = $(PKGROOT)

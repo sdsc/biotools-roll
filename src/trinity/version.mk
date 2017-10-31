@@ -1,6 +1,6 @@
 NAME           = sdsc-trinity
 VERSION        = 2.1.1
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/trinity
 
 SRC_SUBDIR     = trinity
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

@@ -1,6 +1,6 @@
 NAME           = sdsc-bedtools
 VERSION        = 2.25.0
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/bedtools
 
 SRC_SUBDIR     = bedtools
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_NAME)2
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

@@ -1,6 +1,6 @@
 NAME           = sdsc-NucleoATAC
 VERSION        = 0.3.1
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/NucleoATAC
 
 SRC_SUBDIR     = NucleoATAC
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

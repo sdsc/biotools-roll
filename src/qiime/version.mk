@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-qiime
 VERSION        = 1.9.1
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/qiime
 
 SRC_SUBDIR     = qiime
@@ -19,3 +19,4 @@ SOURCE_DIR     = tests
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

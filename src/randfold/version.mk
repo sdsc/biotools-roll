@@ -1,6 +1,6 @@
 NAME           = sdsc-randfold
 VERSION        = 2.0
-RELEASE        = 16
+RELEASE        = 17
 PKGROOT        = /opt/biotools/randfold
 
 SRC_SUBDIR     = randfold
@@ -14,3 +14,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
 RPM.EXTRAS     = AutoReq:No
+RPM.PREFIX     = $(PKGROOT)

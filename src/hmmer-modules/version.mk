@@ -2,7 +2,7 @@ PACKAGE     = hmmer
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules
-RELEASE     = 0
+RELEASE     = 1
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk
@@ -11,3 +11,4 @@ include $(VERSION_INC)
 
 
 RPM.EXTRAS  = AutoReq:No
+RPM.PREFIX   = $(PKGROOT)
