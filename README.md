@@ -150,7 +150,7 @@ your frontend, run this command after adding the biotools-roll to your distro:
 
 where NAME is the DNS name of a compute or login node in your cluster.
 
-In addition to the software itself, the roll installs individual module files
+In addition to the software itself, the roll installs individual modulefiles
 for each package in:
 
 ```shell
@@ -161,7 +161,7 @@ for each package in:
 ## Testing
 
 The biotools-roll includes a test script which can be run to verify proper
-installation of the roll documentation, binaries, and module files. To
+installation of the roll documentation, binaries, and modulefiles. To
 run the test scripts execute the following command(s):
 
 ```shell
