@@ -4,8 +4,8 @@
 
 <description>
 bamtools - https://github.com/pezmaster31/bamtools
-bedtools - https://github.com/arq5x/bedtools2
 bcftools - https://www.htslib.org
+bedtools - https://github.com/arq5x/bedtools2
 biopython - http://biopython.org
 bismark - http://www.bioinformatics.babraham.ac.uk/projects/bismark/
 blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
