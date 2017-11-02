@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roll bundles a collection of Biology packages: bamtools bedtools biopython bismark blast blat bowtie bowtie2 bwa bx-python cufflinks dendropy edena fastqc fastx GenomeAnalysisTK gmap_gsnap htseq idba-ud matt miRDeep2 miso picard plink pysam qiime randfold samtools soapdenovo SOAPsnp spades squid tophat trimmomatic trinity vcftools velvet ViennaRNA
+This roll bundles a collection of Biology packages:
 
 For more information about the various biology packages included in the biotools
 roll please visit their official web pages:
