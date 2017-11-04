@@ -1,8 +1,11 @@
-override ROLLCOMPILER = gnu
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-bcftools
 VERSION        = 1.3
-RELEASE        = 3
+RELEASE        = 4
 PKGROOT        = /opt/biotools/bcftools
 
 SRC_SUBDIR     = bcftools
