@@ -1,5 +1,4 @@
-# Build of randfold (which depends on squid) fails if squid is compiled
-# w/anything but gnu.
+# randfold builds only w/gnu, and links w/squid only if it also is gnu-compiled
 override ROLLCOMPILER = gnu
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
