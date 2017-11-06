@@ -1,10 +1,13 @@
-override ROLLCOMPILER = gnu
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 PACKAGE     = bcftools
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules
-RELEASE     = 2
+RELEASE     = 3
 PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk

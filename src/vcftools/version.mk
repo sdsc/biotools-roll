@@ -1,8 +1,11 @@
-override ROLLCOMPILER = gnu
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-vcftools
 VERSION        = 0.1.14
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/vcftools
 
 SRC_SUBDIR     = vcftools
