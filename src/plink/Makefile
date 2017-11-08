@@ -86,9 +86,9 @@ build: $(SRC_DIRS)
           export CC=$(CC); \
           export CXX=$(CXX); \
           export FC=$(FC); \
-          export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
+          export MKLLIB=$${MKLHOME}/lib/intel64; \
           perl -pi -e "s!MKLLIB!$${MKLLIB}!g" $(SOURCE_DIR)/Makefile; \
-          perl -pi -e "s!MKLROOT!$${MKL_ROOT}!g" $(SOURCE_DIR)/Makefile; \
+          perl -pi -e "s!MKLROOT!$${MKLHOME}!g" $(SOURCE_DIR)/Makefile; \
           cd $(ZLIB_DIR); \
           ./configure --prefix=../$(SOURCE_DIR)/zlib-$(ZLIB_VERSION); \
           make; \

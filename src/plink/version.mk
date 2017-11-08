@@ -4,7 +4,7 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-plink
 VERSION        = 1.9
-RELEASE        = 3
+RELEASE        = 4
 PKGROOT        = /opt/biotools/plink
 
 SRC_SUBDIR     = plink
