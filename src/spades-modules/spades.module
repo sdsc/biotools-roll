@@ -4,9 +4,11 @@ set biotoolsHome /opt/biotools
 
 module-whatis "spades VERSION"
 
-module load gnu
-
 set packageHome $biotoolsHome/spades
 setenv SPADESHOME $packageHome
 append-path PATH $packageHome/bin
 
+module load ROLLCOMPILER
+if {"ROLLCOMPILER" == "intel"} {
+  module load gnu
+}
