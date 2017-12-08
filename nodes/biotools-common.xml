@@ -112,6 +112,7 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-miso</package>
 <package>sdsc-miso-modules</package>
 <package>sdsc-NucleoATAC</package>
+<package>sdsc-NucleoATAC-modules</package>
 <package>sdsc-picard</package>
 <package>sdsc-picard-modules</package>
 <package>sdsc-plink</package>
