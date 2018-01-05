@@ -1,0 +1,11 @@
+--- biascorrection.h	2018-01-05 10:02:59.361950613 -0800
++++ patch-files/biascorrection.h	2018-01-05 10:03:15.906951121 -0800
+@@ -15,7 +15,7 @@
+ #include <vector>
+ #include <list>
+ #include <string>
+-#include <boost/tr1/unordered_map.hpp>
++#include <boost/unordered_map.hpp>
+ #include <boost/thread.hpp>
+ #include "common.h"
+ 
