@@ -80,6 +80,7 @@ LICENSE: $(SRC_DIRS)
 	echo boost > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/src/biascorrection.h patch-files/biascorrection.h.patch
 	patch $(SOURCE_DIR)/src/GHash.hh patch-files/GHash.hh.patch
 	patch $(SOURCE_DIR)/src/lemon/error.h patch-files/error.h.patch
 	( \
