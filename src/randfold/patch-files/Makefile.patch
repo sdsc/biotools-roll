@@ -1,11 +1,36 @@
 --- randfold-2.0/Makefile	2005-04-06 00:59:02.000000000 -0700
-+++ patch-files/Makefile	2014-05-06 19:13:15.401926477 -0700
-@@ -1,6 +1,6 @@
++++ patch-files/Makefile	2018-04-23 14:50:44.123197065 -0700
+@@ -1,25 +1,25 @@
  CC=gcc
 -LIBS=-lm -lsquid 
 -INCLUDE=-I. 
+-CFLAGS=-O3
 +LIBS=-LROLLSQUID/lib -lm -lsquid 
 +INCLUDE=-I. -IROLLSQUID/include
- CFLAGS=-O3
++CFLAGS=-O3 -std=gnu89
  
  randfold: energy_par.o params.o fold.o fold_vars.o utils.o randfold.c
+ 	$(CC) $(CFLAGS) $(INCLUDE) -o randfold params.o energy_par.o fold.o fold_vars.o utils.o randfold.c $(LIBS)
+ 
+ energy_par.o: energy_par.c
+-	$(CC) -c energy_par.c
++	$(CC) $(CFLAGS) -c energy_par.c
+ 
+ fold.o: fold.c
+-	$(CC) -c fold.c
++	$(CC) $(CFLAGS) -c fold.c
+ 
+ fold_vars.o: fold_vars.c
+-	$(CC) -c fold_vars.c
++	$(CC) $(CFLAGS) -c fold_vars.c
+ 
+ utils.o: utils.c
+-	$(CC) -c utils.c
++	$(CC) $(CFLAGS) -c utils.c
+ 
+ params.o: params.c
+-	$(CC) -c params.c
++	$(CC) $(CFLAGS) -c params.c
+ 
+ clean:
+ 	rm -f *.o randfold

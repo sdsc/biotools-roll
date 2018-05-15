@@ -14,7 +14,7 @@ my @packages = (
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
-  'NucleoATAC', 'picard', 'plink', 'pysam', 'qiime', 'randfold', 'rseqc',
+  'NucleoATAC', 'picard', 'plink', 'pysam', 'randfold', 'rseqc',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
@@ -357,13 +357,6 @@ SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
   $output = `module load pysam; python -c 'import pysam; print pysam.SAMTOOLS_DISPATCH' 2>&1`;
   like($output, qr/pad2unpad/, 'pysam works');
-}
-
-$packageHome = '/opt/biotools/qiime';
-SKIP: {
-  skip 'qimme not installed', 1 if ! -d $packageHome;
-  $output = `module load qiime; python $packageHome/tests/test_filter_alignment.py 2>&1`;
-  like($output, qr/OK/, 'qiime works');
 }
 
 $packageHome = '/opt/biotools/randfold';
