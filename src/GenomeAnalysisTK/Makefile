@@ -73,17 +73,18 @@ DESCRIPTION:
 LICENSE: $(SRC_DIRS)
 	( \
            cd $(SOURCE_DIR); \
-           jar xvf $(SOURCE_NAME).jar license \
+           jar xvf gatk-package-$(VERSION)-local.jar license \
         )
 	$(CHECK_LICENSE_FILES)
-	echo GATK > $@
+	echo BSD > $@
 
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)/
+	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)
+	cp -r resources $(ROOT)/$(PKGROOT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
