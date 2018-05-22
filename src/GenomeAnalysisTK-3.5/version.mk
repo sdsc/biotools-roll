@@ -1,6 +1,6 @@
 VERSION        = 3.5
 NAME           = sdsc-GenomeAnalysisTK-$(VERSION)
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/GenomeAnalysisTK/$(VERSION)
 
 SRC_SUBDIR     = GenomeAnalysisTK
@@ -13,5 +13,5 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 TAR_BZ2_PKGS   = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

@@ -1,6 +1,6 @@
 NAME           = sdsc-bowtie
 VERSION        = 1.1.2
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/bowtie
 
 SRC_SUBDIR     = bowtie
@@ -13,5 +13,5 @@ SOURCE_DIR     = $(SOURCE_NAME)-$(SOURCE_VERSION)
 
 ZIP_PKGS       = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

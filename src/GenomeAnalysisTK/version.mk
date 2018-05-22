@@ -13,5 +13,5 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 ZIP_PKGS       = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No\n%define __jar_repack 0
+RPM.EXTRAS     = AutoReq:No\n%define __jar_repack 0\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

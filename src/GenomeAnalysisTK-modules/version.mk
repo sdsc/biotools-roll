@@ -15,5 +15,5 @@ include $(VERSION_INC)
 
 EXTRA_MODULE_VERSIONS = 3.5
 
-RPM.EXTRAS  = AutoReq:No
+RPM.EXTRAS  = AutoReq:No\nAutoProv:No
 RPM.PREFIX  = $(PKGROOT)

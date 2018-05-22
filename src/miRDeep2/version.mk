@@ -1,6 +1,6 @@
 NAME           = sdsc-miRDeep2
 VERSION        = 0.0.7
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/miRDeep2
 
 SRC_SUBDIR     = miRDeep2
@@ -20,5 +20,5 @@ PDF_DIR        =  $(PDF_PKG:%.$(PDF_SUFFIX)=%)
 ZIP_PKGS       = $(SOURCE_PKG)
 TAR_GZ_PKGS    = $(PDF_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)
