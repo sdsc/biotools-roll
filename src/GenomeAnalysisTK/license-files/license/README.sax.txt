@@ -1,4 +1,4 @@
-xml-commons/java/external/README.sax.txt $Id: README.sax.txt,v 1.1 2002/01/31 23:26:48 curcuru Exp $
+xml-commons/java/external/README.sax.txt $Id: README.sax.txt 225954 2002-01-31 23:26:48Z curcuru $
 
 
 HEAR YE, HEAR YE!

@@ -235,11 +235,11 @@ SKIP: {
   $output = `module load GenomeAnalysisTK/3.5; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
   like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.5 works');
 }
-$packageHome = '/opt/biotools/GenomeAnalysisTK/3.6';
+$packageHome = '/opt/biotools/GenomeAnalysisTK/4.0.4.0';
 SKIP: {
   skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
-  $output = `module load GenomeAnalysisTK; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
-  like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.6 works');
+  $output = `module load GenomeAnalysisTK; gatk CountReads -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam 2>&1`;
+  like($output, qr/ProgressMeter - Traversal complete. Processed 33 total reads/, 'GenomeAnalysisTK 4.0.4.0 works');
 }
 
 $packageHome = '/opt/biotools/gmap_gsnap';

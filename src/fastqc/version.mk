@@ -1,6 +1,6 @@
 NAME           = sdsc-fastqc
 VERSION        = 0.11.4
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/fastqc
 
 SRC_SUBDIR     = fastqc
@@ -13,5 +13,5 @@ SOURCE_DIR     = FastQC
 
 ZIP_PKGS       = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

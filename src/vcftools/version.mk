@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-vcftools
 VERSION        = 0.1.14
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/vcftools
 
 SRC_SUBDIR     = vcftools
@@ -19,5 +19,5 @@ SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_NAME)-v$(VERSION)-0-g$(SOURCE_HASH).$(S
 
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

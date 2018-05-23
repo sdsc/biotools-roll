@@ -4,7 +4,7 @@ endif
 
 NAME                  = sdsc-picard
 VERSION               = 2.3.0
-RELEASE               = 1
+RELEASE               = 2
 PKGROOT               = /opt/biotools/picard
 
 SRC_SUBDIR            = picard
@@ -23,5 +23,5 @@ HTSJDK_SOURCE_DIR     = htsjdk
 
 TAR_GZ_PKGS           = $(SOURCE_PKG) $(HTSJDK_SOURCE_PKG)
 
-RPM.EXTRAS            = AutoReq:No
+RPM.EXTRAS            = AutoReq:No\nAutoProv:No
 RPM.PREFIX            = $(PKGROOT)

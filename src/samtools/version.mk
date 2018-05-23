@@ -1,6 +1,6 @@
 NAME           = sdsc-samtools
 VERSION        = 1.3
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/samtools/$(VERSION)
 
 SRC_SUBDIR     = samtools
@@ -13,5 +13,5 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 TAR_BZ2_PKGS   = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

@@ -4,7 +4,7 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME           = sdsc-plink
 VERSION        = 1.9
-RELEASE        = 4
+RELEASE        = 5
 PKGROOT        = /opt/biotools/plink
 
 SRC_SUBDIR     = plink
@@ -23,5 +23,5 @@ ZLIB_DIR       = $(ZLIB_PKG:%.$(ZLIB_SUFFIX)=%)
 
 TAR_GZ_PKGS    = $(SOURCE_PKG) $(ZLIB_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

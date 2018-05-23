@@ -1,6 +1,6 @@
 NAME                = sdsc-ViennaRNA
 VERSION             = 2.2.4
-RELEASE             = 1
+RELEASE             = 2
 PKGROOT             = /opt/biotools/ViennaRNA
 
 SRC_SUBDIR          = ViennaRNA
@@ -19,5 +19,5 @@ EXTUTILS_DIR        =  $(EXTUTILS_PKG:%.$(EXTUTILS_SUFFIX)=%)
 
 TAR_GZ_PKGS         = $(SOURCE_PKG) $(EXTUTILS_PKG)
 
-RPM.EXTRAS          = AutoReq:No
+RPM.EXTRAS          = AutoReq:No\nAutoProv:No
 RPM.PREFIX          = $(PKGROOT)

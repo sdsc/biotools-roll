@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME                  = sdsc-fastx
 VERSION               = 0.0.14
-RELEASE               = 22
+RELEASE               = 23
 PKGROOT               = /opt/biotools/fastx
 
 SRC_SUBDIR            = fastx
@@ -25,5 +25,5 @@ LIBGTEXTUTILS_DIR     = $(LIBGTEXTUTILS_PKG:%.$(LIBGTEXTUTILS_SUFFIX)=%)
 TAR_BZ2_PKGS          = $(SOURCE_PKG)
 TAR_GZ_PKGS           = $(LIBGTEXTUTILS_PKG)
 
-RPM.EXTRAS            = AutoReq:No
+RPM.EXTRAS            = AutoReq:No\nAutoProv:No
 RPM.PREFIX            = $(PKGROOT)

@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-gmap_gsnap
 VERSION        = $(shell date -d "$(SOURCE_VERSION)" +%Y%m%d)
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/biotools/gmap_gsnap
 
 SRC_SUBDIR     = gmap_gsnap
@@ -18,5 +18,5 @@ SOURCE_DIR     = $(SOURCE_NAME)-$(SOURCE_VERSION:%.v2=%)
 
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No
 RPM.PREFIX     = $(PKGROOT)

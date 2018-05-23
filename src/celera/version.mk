@@ -1,6 +1,6 @@
 NAME               = sdsc-celera
 VERSION            = 8.3rc2
-RELEASE            = 2
+RELEASE            = 3
 PKGROOT            = /opt/biotools/celera
 
 SRC_SUBDIR         = celera
@@ -37,5 +37,5 @@ EXPORTER_DIR       = $(EXPORTER_PKG:%.$(EXPORTER_SUFFIX)=%)
 TAR_BZ2_PKGS       = $(SOURCE_PKG)
 TAR_GZ_PKGS        = $(SAMPLE_PKG) $(STATISTICS_PKG) $(LIST_PKG) $(EXPORTER_PKG)
 
-RPM.EXTRAS         = AutoReq:No\n%global __os_install_post %{nil}
+RPM.EXTRAS         = AutoReq:No\n%global __os_install_post %{nil}\nAutoProv:No
 RPM.PREFIX         = $(PKGROOT)
