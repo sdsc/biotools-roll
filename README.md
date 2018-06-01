@@ -10,6 +10,7 @@ roll please visit their official web pages:
 - <a href="https://github.com/pezmaster31/bamtools" target="_blank">bamtools</a> provides both a programmer's API and an end-user's toolkit for handling BAM files.
 - <a href="https://https://www.htslib.org" target="_blank">bcftools</a> is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.
 - <a href="https://github.com/arq5x/bedtools2" target="_blank">bedtools</a> is a toolset for genome arithmetic.
+- <a href="https://bioperl.org" target="_blank">bioperl</a> is open source Perl tools for bioinformatics, genomics and life science.
 - <a href="http://biopython.org" target="_blank">biopython</a> is a set tools for biological computation.
 - <a href="http://www.bioinformatics.babraham.ac.uk/projects/bismark/">bismark</a> is a tool to map bisulfite converted sequence reads and determine cytosine methylation states.
 - <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">blast</a> finds regions of similarity between biological sequences.

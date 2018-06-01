@@ -6,6 +6,7 @@
 bamtools - https://github.com/pezmaster31/bamtools
 bcftools - https://www.htslib.org
 bedtools - https://github.com/arq5x/bedtools2
+bioperl - https://bioperl.org
 biopython - http://biopython.org
 bismark - http://www.bioinformatics.babraham.ac.uk/projects/bismark/
 blast - http://blast.ncbi.nlm.nih.gov/Blast.cgi
@@ -65,6 +66,8 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-biopython-modules</package>
 <package>sdsc-bismark</package>
 <package>sdsc-bismark-modules</package>
+<package>sdsc-bioperl</package>
+<package>sdsc-bioperl-modules</package>
 <package>sdsc-blast</package>
 <package>sdsc-blast-modules</package>
 <package>sdsc-blat</package>

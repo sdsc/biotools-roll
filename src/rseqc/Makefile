@@ -91,7 +91,10 @@ install::
 	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
 	  mkdir -p -m 755 $${sitepath}; \
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
-          export PYTHONPATH=$(BX_PYTHON_CACHE)/lib/python$(PYVERSION)/site-packages:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+          bx_python_path=`dirname $(PKGROOT)`/bx-python; \
+          mkdir -p $${bx_python_path}; \
+          cp -r $(BX_PYTHON_CACHE)/* $${bx-python-path}; \
+          export PYTHONPATH=$${bx-python-path}:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \

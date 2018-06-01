@@ -1,0 +1,10 @@
+#%Module1.0
+
+set biotoolsHome /opt/biotools
+
+module-whatis "bioperl VERSION"
+
+set packageHome $biotoolsHome/bioperl
+setenv BIOPERLHOME $packageHome
+append-path PATH $packageHome/bin
+append-path PERL5LIB $packageHome/share/perl5:$packageHome/lib64/perl5
