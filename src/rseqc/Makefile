@@ -94,10 +94,11 @@ install::
           bx_python_path=`dirname $(PKGROOT)`/bx-python; \
           mkdir -p $${bx_python_path}; \
           cp -r $(BX_PYTHON_CACHE)/* $${bx-python-path}; \
-          export PYTHONPATH=$${bx-python-path}:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+          export PYTHONPATH=$${bx-python-path}/lib/python$(PYVERSION)/site-packages:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          rm -rf $${bx-python-path} \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
