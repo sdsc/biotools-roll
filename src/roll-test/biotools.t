@@ -66,6 +66,20 @@ SKIP: {
   `rm -f $TESTFILE`;
 }
 
+
+$packageHome = '/opt/biotools/bioperl';
+SKIP: {
+  skip 'bioperl not installed', 1 if ! -d $packageHome;
+  @bioperltests=`ls $packageHome/tests/Phenotype/*.t`;
+  `rm -f out.$$`;
+  foreach my $bioperltest(@bioperltests) {
+     chomp($bioperltest);
+     `module load bioperl;perl $bioperltest >> out.$$`;
+   }
+   ok(`grep -c ok out.$$` == 548, 'bioperl works');
+   `rm -f out.$$`;
+}
+
 $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
@@ -87,7 +101,7 @@ SKIP: {
   if(-e 'drosoph.nt.gz') {
     `cp drosoph.nt.gz $TESTFILE.dir/`;
   } else {
-    `cd $TESTFILE.dir; wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/drosoph.nt.gz`;
+    `cd $TESTFILE.dir; wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/drosoph.nt.gz 2>&1 /dev/null`;
   }
   skip 'unable to retrieve blast test data', 1
     if ! -e "$TESTFILE.dir/drosoph.nt.gz";

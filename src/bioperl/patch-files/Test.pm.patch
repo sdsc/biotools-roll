@@ -1,0 +1,11 @@
+--- BioPerl-1.007002/Bio/Root/Test.pm	2017-09-11 14:14:56.000000000 -0700
++++ patch-files/Test.pm	2018-05-30 17:15:19.137491525 -0700
+@@ -341,7 +341,7 @@
+ =cut
+ 
+ sub test_input_file {
+-    return File::Spec->catfile( 't', 'data', @_ );
++    return File::Spec->catfile( 'BIOPERLROOT/tests/data', @_ );
+ }
+ 
+ =head2 test_network
