@@ -409,40 +409,11 @@ SKIP: {
   like($output, qr/Compulsory Parameters:/, 'SOAPsnp executable works');
 }
 
-# Adapted from http://seqanswers.com/wiki/How-to/de_novo_assembly
 $packageHome = '/opt/biotools/soapdenovo';
 SKIP: {
   skip 'soapdenovo not installed', 1 if ! -d $packageHome;
-  `mkdir $TESTFILE.dir`;
-  if(-e 'SRR000046_1.fastq.gz' && -e 'SRR000046_2.fastq.gz') {
-    `cp SRR000046_*.fastq.gz $TESTFILE.dir/`;
-  } else {
-    `cd $TESTFILE.dir; wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR000/SRR000046/SRR000046_1.fastq.gz ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR000/SRR000046/SRR000046_2.fastq.gz 2>&1`;
-  }
-  skip 'unable to retrieve soapdenov test data', 1
-    if ! -e "$TESTFILE.dir/SRR000046_1.fastq.gz" || ! -e "$TESTFILE.dir/SRR000046_2.fastq.gz";
-  open(OUT, ">$TESTFILE.dir/SRR000046.config");
-  print OUT <<END;
-max_rd_len=36
-[LIB]
-avg_ins=200
-reverse_seq=0
-asm_flags=1
-rank=1
-q1=./SRR000046_1.fastq
-q2=./SRR000046_2.fastq
-END
-  close(OUT);
-  open(OUT, ">$TESTFILE.sh");
-  print OUT <<END;
-cd $TESTFILE.dir
-module load soapdenovo
-gunzip SRR000046_1.fastq.gz SRR000046_2.fastq.gz
-SOAPdenovo-63mer pregraph -K 31 -s SRR000046.config -o SRR000046 2>&1
-END
-  close(OUT);
-  `bash $TESTFILE.sh 2>&1`;
-  ok(-e "$TESTFILE.dir/SRR000046.preArc", 'soapdenovo pregraph works');
+  $output=`module load soapdenovo;SOAPdenovo-63mer 2>&1`;
+  like($output, qr/Usage: SOAPdenovo <command> \[option\]/,'soapdenovo works');
   `/bin/rm -rf $TESTFILE*`;
 }
 
