@@ -1,11 +1,12 @@
 Metadata-Version: 1.1
 Name: bx-python
-Version: 0.7.3
+Version: 0.8.1
 Summary: Tools for manipulating biological data, particularly multiple sequence alignments
 Home-page: http://bitbucket.org/james_taylor/bx-python/wiki/Home
 Author: James Taylor, Bob Harris, David King, Brent Pedersen, Kanwei Li, and others
 Author-email: james@jamestaylor.org
 License: MIT
+Description-Content-Type: UNKNOWN
 Description: UNKNOWN
 Platform: UNKNOWN
 Classifier: Development Status :: 5 - Production/Stable
@@ -14,5 +15,11 @@ Classifier: Intended Audience :: Science/Research
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: POSIX
 Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
 Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
