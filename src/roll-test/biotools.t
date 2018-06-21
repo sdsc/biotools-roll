@@ -10,7 +10,7 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $installedOnAppliancesPattern = '.';
 my @packages = (
-  'bamtools', 'bcftools', 'bedtools', 'biopython', 'bismark', 'blast', 'blat',
+  'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',

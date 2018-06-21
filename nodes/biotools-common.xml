@@ -151,6 +151,5 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-vcftools</package>
 <package>sdsc-vcftools-modules</package>
 <package>sdsc-biotools-roll-test</package>
-<package>sdsc-biotools-modules</package>
 
 </kickstart>
