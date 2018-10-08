@@ -38,7 +38,7 @@ SKIP: {
   skip 'bamtools not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
   `cp $packageHome/examples/* $TESTFILE.dir`;
-  $output = `module load bamtools; cd $TESTFILE.dir; g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools; ./test test.bam 2>&1`;
+  $output = `module load bamtools; cd $TESTFILE.dir; g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib64/bamtools -lbamtools -lz; ./test test.bam 2>&1`;
   like($output, qr/Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
   `rm -rf $TESTFILE*`;
 }
