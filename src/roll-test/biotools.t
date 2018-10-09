@@ -21,7 +21,7 @@ my @packages = (
 my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
-my COMPILER='ROLLCOMPILER';
+my $COMPILER='ROLLCOMPILER';
 my %CXX = ('gnu' => 'g++', 'intel' => 'icpc', 'pgi' => 'pgc++');
 `rm -rf $TESTFILE*`;
 
