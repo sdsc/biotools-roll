@@ -3,7 +3,7 @@ CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules
 RELEASE     = 3
-PKGROOT     = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
+PKGROOT     = /home/jpg/opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)/version.mk
 VERSION_INC = version.inc
