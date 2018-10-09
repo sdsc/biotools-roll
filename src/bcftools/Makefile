@@ -88,10 +88,9 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_GSL); \
-	  export CXXFLAGS='-std=c++98'; \
 	  cd $(SOURCE_DIR); \
 	  make clean; \
-	  make USE_GPL=1 \
+	  make CC=$(CC) CFLAGS="-Wall -Wc++-compat -O2 -I$${GSLHOME}/include" USE_GPL=1 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 

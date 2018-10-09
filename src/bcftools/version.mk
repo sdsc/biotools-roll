@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-bcftools
-VERSION        = 1.3
-RELEASE        = 5
+VERSION        = 1.9
+RELEASE        = 0
 PKGROOT        = /opt/biotools/bcftools
 
 SRC_SUBDIR     = bcftools
