@@ -9,4 +9,4 @@ module load ROLLCOMPILER
 set packageHome $biotoolsHome/bamtools
 setenv BAMTOOLSHOME $packageHome
 append-path PATH $packageHome/bin
-append-path LD_LIBRARY_PATH $packageHome/lib64/bamtools
+append-path LD_LIBRARY_PATH $packageHome/lib64
