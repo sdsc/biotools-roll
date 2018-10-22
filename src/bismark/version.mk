@@ -1,6 +1,6 @@
 NAME           = sdsc-bismark
-VERSION        = 0.15.0
-RELEASE        = 2
+VERSION        = 0.20.0
+RELEASE        = 0
 PKGROOT        = /opt/biotools/bismark
 
 SRC_SUBDIR     = bismark
