@@ -1,17 +1,17 @@
-NAME           = sdsc-bowtie
-VERSION        = 1.2.2
-RELEASE        = 0
-PKGROOT        = /opt/biotools/bowtie
+NAME                  = sdsc-bowtie
+VERSION               = 1.2.2
+RELEASE               = 0
+PKGROOT               = /home/jpg/opt/biotools/bowtie
 
-SRC_SUBDIR     = bowtie
+SRC_SUBDIR            = bowtie
 
-SOURCE_NAME    = bowtie
-SOURCE_SUFFIX  = zip
-SOURCE_VERSION = $(VERSION)
-SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION)-src.$(SOURCE_SUFFIX)
-SOURCE_DIR     = $(SOURCE_NAME)-$(SOURCE_VERSION)
+SOURCE_NAME           = bowtie
+SOURCE_SUFFIX         = zip
+SOURCE_VERSION        = $(VERSION)
+SOURCE_PKG            = $(SOURCE_NAME)-$(SOURCE_VERSION)-src.$(SOURCE_SUFFIX)
+SOURCE_DIR            = $(SOURCE_NAME)-$(SOURCE_VERSION)
 
-ZIP_PKGS       = $(SOURCE_PKG)
+ZIP_PKGS              = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No\nAutoProv:No
-RPM.PREFIX     = $(PKGROOT)
+RPM.EXTRAS            = AutoReq:No\nAutoProv:No
+RPM.PREFIX            = $(PKGROOT)

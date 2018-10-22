@@ -63,10 +63,13 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+ROLLCOMPILER = intel
+
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	( \
+          $(DESCRIBE_MKL); \
 	  $(DESCRIBE_PKG) \
 	) > $@
 
@@ -76,7 +79,10 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-	  cd $(SOURCE_DIR); \
+          $(MODULE_LOAD_CC); \
+          cd $(SOURCE_DIR); \
+          module unload gnu; \
+          module unload gnutools; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
