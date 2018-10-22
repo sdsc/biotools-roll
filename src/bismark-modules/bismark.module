@@ -7,3 +7,4 @@ module-whatis "bismark VERSION"
 set packageHome $biotoolsHome/bismark
 setenv BISMARKHOME $packageHome
 append-path PATH $packageHome
+append-path PATH $biotoolsHome/bowtie2/bin
