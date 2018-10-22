@@ -1,6 +1,6 @@
 NAME           = sdsc-bowtie
-VERSION        = 1.1.2
-RELEASE        = 2
+VERSION        = 1.2.2
+RELEASE        = 0
 PKGROOT        = /opt/biotools/bowtie
 
 SRC_SUBDIR     = bowtie
