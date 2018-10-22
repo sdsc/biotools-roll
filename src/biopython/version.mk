@@ -1,6 +1,6 @@
 NAME           = sdsc-biopython
-VERSION        = 1.66
-RELEASE        = 2
+VERSION        = 1.72
+RELEASE        = 0
 PKGROOT        = /opt/biotools/biopython
 
 SRC_SUBDIR     = biopython
