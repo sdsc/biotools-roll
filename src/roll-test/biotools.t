@@ -129,7 +129,7 @@ END
   close(OUT);
   `bash $TESTFILE.sh 2>&1`;
   $output = `cat $TESTFILE.dir/out`;
-  like($output, qr/Score = 33.7 bits \(36\),  Expect = 4.5/, 'blast works');
+  like($output, qr/Score = 33.7 bits \(36\),  Expect = 3.9/, 'blast works');
   `rm -rf $TESTFILE*`;
 }
 
