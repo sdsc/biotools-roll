@@ -87,7 +87,7 @@ build: $(SRC_DIRS)
 	    --with-ncbi-public --without-ccache --without-caution \
 	    --without-makefile-auto-update --with-internal \
 	    --with-projects=scripts/projects/blast/project.lst; \
-	  make \
+	  make -j 16 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
