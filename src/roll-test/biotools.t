@@ -208,7 +208,7 @@ SKIP: {
 $packageHome = '/opt/biotools/diamond';
 SKIP: {
   skip 'diamond not installed', 1 if ! -d $packageHome;
-  $output = `module load diamond; diamond -h 2>&1`;
+  $output = `module load diamond; diamond help 2>&1`;
   like($output, qr/blastp/, 'diamond works');
 }
 
