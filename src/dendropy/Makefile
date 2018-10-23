@@ -80,10 +80,6 @@ LICENSE: $(SRC_DIRS)
 	echo BSD > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/dendropy/test/test_popgenstat.py \
-	      patch-files/test_popgenstat.py.patch
-	perl -pi -e "s!ROLLPATH!$(PKGROOT)!" \
-	     $(SOURCE_DIR)/dendropy/test/test_popgenstat.py
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
@@ -100,9 +96,8 @@ install::
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cp dendropy/test/data/chars/COII_Apes.nex \
-	     dendropy/test/data/chars/orti.nex \
-	     dendropy/test/test_popgenstat.py $(ROOT)/$(PKGROOT)/test/ \
+          cp applications/sumtrees/sumtrees.py $(ROOT)/$(PKGROOT)/test; \
+          cp tests/data/trees/primates.beast.mcct.meanh.tre $(ROOT)/$(PKGROOT)/test \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

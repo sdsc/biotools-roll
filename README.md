@@ -21,7 +21,7 @@ roll please visit their official web pages:
 - <a href="https://pypi.python.org/pypi/bx-python" target="_blank">bx-python</a> consists of tools for manipulating biological data, particularly multiple sequence alignments.
 - <a href="http://wgs-assembler.sourceforge.net/" target="_blank">celera</a> is a de novo whole-genome shotgun (WGS) DNA sequence assembler.
 - <a href="http://cufflinks.cbcb.umd.edu" target="_blank">cufflinks</a> assembles transcripts, estimates their abundances, and tests for differential expression and regulation in RNA-Seq samples.
-- <a href="http://pythonhosted.org/DendroPy" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats.
+- <a href="https://dendropy.org/" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats.
 - <a href="https://github.com/bbuchfink/diamond" target="_blank">diamond</a> is a BLAST-compatible local aligner for mapping protein and translated DNA query sequences against a protein reference database.
 - <a href="http://www.genomic.ch/edena.php" target="_blank">edena</a> is a de novo short reads assembler.
 - <a href="http://emboss.sourceforge.net/" target="_blank">emboss</a> is the European Molecular Biology Open Software Suite. 
