@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-gmap_gsnap
 VERSION        = $(shell date -d "$(SOURCE_VERSION)" +%Y%m%d)
-RELEASE        = 2
+RELEASE        = 0
 PKGROOT        = /opt/biotools/gmap_gsnap
 
 SRC_SUBDIR     = gmap_gsnap
