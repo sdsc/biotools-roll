@@ -111,7 +111,7 @@ install::
 	patch $(SOURCE_DIR)/testsuite/i18-nhmmer-generic.pl patch-files/i18-nhmmer-generic.pl.patch
 	patch $(SOURCE_DIR)/testsuite/i19-hmmpgmd-ga.pl patch-files/i19-hmmpgmd-ga.pl.patch
 	patch $(SOURCE_DIR)/testsuite/i20-fmindex-core.pl patch-files/i20-fmindex-core.pl.patch
-	patch $(SOURCE_DIR)/testsuite/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/testsuite/Makefile.in patch-files/Makefile.in.patch
 	patch $(SOURCE_DIR)/testsuite/testsuite.sqc  patch-files/testsuite.sqc.patch
 	( \
 	  cd $(SOURCE_DIR); \

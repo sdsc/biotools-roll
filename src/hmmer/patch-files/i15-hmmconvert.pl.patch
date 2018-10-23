@@ -1,11 +1,11 @@
---- hmmer-3.1b2/testsuite/i15-hmmconvert.pl	2015-02-26 04:46:05.000000000 -0800
-+++ patch-files/i15-hmmconvert.pl	2016-05-05 22:37:43.673369143 -0700
-@@ -15,16 +15,16 @@
+--- hmmer-3.2.1/testsuite/i15-hmmconvert.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i15-hmmconvert.pl	2018-10-23 16:16:23.930055449 -0700
+@@ -14,16 +14,16 @@
  }
  
  # Verify that we have all the executables we need for the test.
 -if (! -x "$builddir/src/hmmconvert") { die "FAIL: didn't find hmmconvert binary in $builddir/src\n";  }
-+if (! -x "$builddir/hmmconvert") { die "FAIL: didn't find hmmconvert binary in $builddir/\n";  }
++if (! -x "$builddir/hmmconvert") { die "FAIL: didn't find hmmconvert binary in $builddir\n";  }
  
  # Create our test files (data embedded in script as functions: see end of file
  &h2_nt_file("$tmppfx.nt.hmm");

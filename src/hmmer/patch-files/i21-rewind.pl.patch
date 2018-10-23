@@ -1,0 +1,56 @@
+--- hmmer-3.2.1/testsuite/i21-rewind.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i21-rewind.pl	2018-10-23 16:16:59.832764146 -0700
+@@ -24,7 +24,7 @@
+ 
+ # Verify that we have all the executables we need for the test.
+ @h3progs =  ( "hmmsearch", "phmmer", "nhmmer");
+-foreach $h3prog  (@h3progs)  { if (! -x "$builddir/src/$h3prog")          { die "FAIL: didn't find $h3prog executable in $builddir/src\n";              } }
++foreach $h3prog  (@h3progs)  { if (! -x "$builddir/$h3prog")          { die "FAIL: didn't find $h3prog executable in $builddir\n";              } }
+ 
+ @easel_progs =  ( "esl-reformat");
+ foreach $easel_prog  (@easel_progs)  { if (! -x "$builddir/easel/miniapps/$easel_progs")   { die "FAIL: didn't find $easel_prog executable in $builddir/easel/miniapps\n";              } }
+@@ -43,7 +43,7 @@
+    $fmt = $formats[$i];
+    $ext = $exts[$i];
+ 
+-   $cmd = "$builddir/src/hmmsearch --tformat $fmt $tmppfx.hmm $srcdir/testsuite/20aa-alitest$ext 2>&1";
++   $cmd = "$builddir/hmmsearch --tformat $fmt $tmppfx.hmm $srcdir/testsuite/20aa-alitest$ext 2>&1";
+    $output = do_cmd($cmd);
+ 
+    my ($first)  = ( $output =~ /Domain search space  \(domZ\):\s+(\d+)/g);
+@@ -58,7 +58,7 @@
+ # Test phmmer.  Make a query with two copies of a sequence. 
+ # Should get the same number of hits with both searches
+ unlink ("$tmppfx.fa");
+-$cmd = "$builddir/src/hmmemit --seed 10 $srcdir/testsuite/20aa.hmm >> $tmppfx.fa";
++$cmd = "$builddir/hmmemit --seed 10 $srcdir/testsuite/20aa.hmm >> $tmppfx.fa";
+ do_cmd($cmd);
+ do_cmd($cmd);  # yes, twice
+ 
+@@ -66,7 +66,7 @@
+    $fmt = $formats[$i];
+    $ext = $exts[$i];
+ 
+-   $cmd = "$builddir/src/phmmer --tformat $fmt $tmppfx.fa $srcdir/testsuite/20aa-alitest$ext 2>&1";
++   $cmd = "$builddir/phmmer --tformat $fmt $tmppfx.fa $srcdir/testsuite/20aa-alitest$ext 2>&1";
+    $output = do_cmd($cmd);
+ 
+    my ($first)  = ( $output =~ /Domain search space  \(domZ\):\s+(\d+)/g);
+@@ -86,7 +86,7 @@
+ # the 3box-alitest.fa test was created with:
+ #$database   = "$tmppfx.fa";
+ #do_cmd ( "$builddir/easel/miniapps/esl-shuffle --seed 1 --dna -G -N 1 -L 10000 -o $tmppfx.A" );
+-#do_cmd ( "$builddir/src/hmmemit -N 1 --seed 3 $tmppfx.hmm >  $tmppfx.B " );  #makes two sequences
++#do_cmd ( "$builddir/hmmemit -N 1 --seed 3 $tmppfx.hmm >  $tmppfx.B " );  #makes two sequences
+ #do_cmd ( "head -n 70 $tmppfx.A > $database" );
+ #do_cmd ( "head -n 2 $tmppfx.B | tail -n 1 >> $database" );
+ #do_cmd ( "tail -n +97 $tmppfx.A | head -n 50 >> $database");
+@@ -100,7 +100,7 @@
+    $fmt = $formats[$i];
+    $ext = $exts[$i];
+ 
+-   $cmd = "$builddir/src/nhmmer --tformat $fmt $tmppfx.hmm $srcdir/testsuite/3box-alitest$ext 2>&1";
++   $cmd = "$builddir/nhmmer --tformat $fmt $tmppfx.hmm $srcdir/testsuite/3box-alitest$ext 2>&1";
+    $output = do_cmd($cmd);
+ 
+    my ($first)  = ( $output =~ /Total number of hits:\s+(\d+)/g);

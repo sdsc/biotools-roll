@@ -1,6 +1,6 @@
---- hmmer-3.1b2/testsuite/i19-hmmpgmd-ga.pl	2015-02-26 04:46:05.000000000 -0800
-+++ patch-files/i19-hmmpgmd-ga.pl	2016-05-05 22:37:43.673369143 -0700
-@@ -27,14 +27,14 @@
+--- hmmer-3.2.1/testsuite/i19-hmmpgmd-ga.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i19-hmmpgmd-ga.pl	2018-10-23 16:16:47.651862977 -0700
+@@ -46,14 +46,14 @@
  
  # Verify that we have all the executables and datafiles we need for the test.
  @h3progs = ("hmmpgmd", "hmmc2", "hmmpress");
@@ -10,14 +10,14 @@
  # Verify that threads are enabled in p7_config.h
  # by looking for "#define HMMER_THREADS"
  # if not found, threads are not enabled and this
- # test would fail, but we return ok status because
+ # test would fail, but we return ok status 0 because
  # we don't want the full testsuite to fail.
 -$have_threads = `cat $builddir/src/p7_config.h | grep "^#define HMMER_THREADS"`;
 +$have_threads = `cat $builddir/p7_config.h | grep "^#define HMMER_THREADS"`;
  if($have_threads eq "") { 
      printf("HMMER_THREADS not defined in p7_config.h\n"); 
      exit 0;
-@@ -49,20 +49,20 @@
+@@ -75,20 +75,20 @@
  # create the files needed for the test
  &create_test_hmmdb("$tmppfx.hmm");
  &create_test_script("$tmppfx.in");
@@ -42,12 +42,12 @@
  # Currently, hmmc2 returns nonzero exit code even upon clean !shutdown command... don't check $?
  $daemon_active = 0;
  
-@@ -111,7 +111,7 @@
+@@ -138,7 +138,7 @@
  
          # the old way
          #&create_kill_script("$tmppfx.in");
 -        #`cat $tmppfx.in | $builddir/src/hmmc2 -i $host -p $cport -S 2>&1`;
 +        #`cat $tmppfx.in | $builddir/hmmc2 -i $host -p $cport -S 2>&1`;
      }
+     close($lock);
      unlink <$tmppfx.hmm*>;
-     unlink "$tmppfx.in";

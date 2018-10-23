@@ -1,17 +1,17 @@
---- hmmer-3.1b2/testsuite/i12-delete-corruption.pl	2015-02-26 04:46:05.000000000 -0800
-+++ patch-files/i12-delete-corruption.pl	2016-05-05 22:37:43.673369143 -0700
-@@ -21,8 +21,8 @@
+--- hmmer-3.2.1/testsuite/i12-delete-corruption.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i12-delete-corruption.pl	2018-10-23 16:15:27.004517324 -0700
+@@ -20,8 +20,8 @@
  }
  
  # Verify that we have all the executables we need for the test.
 -if (! -x "$builddir/src/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in $builddir/src\n";  }
 -if (! -x "$builddir/src/hmmalign")   { die "FAIL: didn't find hmmalign binary in $builddir/src\n";  }
-+if (! -x "$builddir/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in $builddir/src\n";  }
-+if (! -x "$builddir/hmmalign")   { die "FAIL: didn't find hmmalign binary in $builddir/src\n";  }
++if (! -x "$builddir/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in $builddir\n";  }
++if (! -x "$builddir/hmmalign")   { die "FAIL: didn't find hmmalign binary in $builddir\n";  }
  
  # Create our test files.
  # The test seqs are missing one column, K, in an unambiguous small alignment.
-@@ -47,16 +47,16 @@
+@@ -46,16 +46,16 @@
  close ALI1;
  close SEQ1;
  
