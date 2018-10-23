@@ -82,7 +82,7 @@ build: $(SRC_DIRS)
 	  cd $(SOURCE_DIR); \
 	  export CC=$(CC); \
 	  ./configure --prefix=$(PKGROOT) --enable-avx2=no; \
-	  $(MAKE) \
+	  $(MAKE) -j 16 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
