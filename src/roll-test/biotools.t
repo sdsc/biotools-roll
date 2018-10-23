@@ -201,8 +201,8 @@ END
 $packageHome = '/opt/biotools/dendropy';
 SKIP: {
   skip 'dendropy not installed', 1 if ! -d $packageHome;
-  $output = `module load dendropy; python $packageHome/test/test_popgenstat.py 2>&1`;
-  like($output, qr/OK/, 'dendropy works');
+  $output = `module load dendropy; python $packageHome/test/sumtrees.py $packageHome/test/primates.beast.mcct.meanh.tre 2>&1`;
+  like($output, qr/23 unique splits out of a total of 23 splits/, 'dendropy works');
 }
 
 $packageHome = '/opt/biotools/diamond';
