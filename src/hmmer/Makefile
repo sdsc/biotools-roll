@@ -121,6 +121,7 @@ install::
           cp easel/formats/BLOSUM62 $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/*.hmm $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/*.sto $(ROOT)/$(PKGROOT)/testsuite; \
+          cp tutorial/*.fa $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/HBB_HUMAN $(ROOT)/$(PKGROOT)/testsuite; \
           cd src; \
           cp hmmpress.itest.pl itest_brute alimask hmmalign hmmbuild  \
