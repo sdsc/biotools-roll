@@ -67,8 +67,10 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
+	$(MODULE_LOAD_CXX); \
 	( \
 	  $(DESCRIBE_PKG) \
+	  $(MODULE_LOAD_CXX); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -79,6 +81,9 @@ build: $(SRC_DIRS)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
+          $(MODULE_LOAD_CXX); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(EXTUTILS_DIR); \
 	  perl Makefile.PL PREFIX=$(PKGROOT); \
 	  $(MAKE); \
