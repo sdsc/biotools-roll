@@ -57,6 +57,7 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
+VIENNARNA_CACHE = $(REDHAT.ROOT)/cache/build-viennarna
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -92,11 +93,14 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p $(VIENNARNA_CACHE)
 	$(PKGROOT_BIND_MOUNT)
 	( \
 	  cd $(SOURCE_DIR); \
 	  make install; \
 	  cp -r interfaces/Perl/* $(PKGROOT)/tests \
+          cp -r $(PKGROOT)/* $(VIENNARNA_CACHE) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
