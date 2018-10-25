@@ -86,13 +86,12 @@ build: $(SRC_DIRS)
           export PERL5LIB=$(PKGROOT)/share/perl5:$${PERL5LIB}; \
 	  cd ../$(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT); \
-	  $(MAKE) \
+	  $(MAKE) -j 16 \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p $(VIENNARNA_CACHE)
 	$(PKGROOT_BIND_MOUNT)
