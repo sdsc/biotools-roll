@@ -1,22 +1,22 @@
 --- hmmer-3.2.1/testsuite/i15-hmmconvert.pl	2018-06-13 07:39:03.000000000 -0700
-+++ patch-files/i15-hmmconvert.pl	2018-10-23 16:16:23.930055449 -0700
++++ patch-files/i15-hmmconvert.pl	2018-10-24 17:04:13.916512902 -0700
 @@ -14,16 +14,16 @@
  }
  
  # Verify that we have all the executables we need for the test.
 -if (! -x "$builddir/src/hmmconvert") { die "FAIL: didn't find hmmconvert binary in $builddir/src\n";  }
-+if (! -x "$builddir/hmmconvert") { die "FAIL: didn't find hmmconvert binary in $builddir\n";  }
++if (! -x "../bin/hmmconvert") { die "FAIL: didn't find hmmconvert binary in $builddir\n";  }
  
  # Create our test files (data embedded in script as functions: see end of file
  &h2_nt_file("$tmppfx.nt.hmm");
  &h2_aa_file("$tmppfx.aa.hmm");
  
 -@output = `$builddir/src/hmmconvert $tmppfx.nt.hmm 2>&1`;
-+@output = `$builddir/hmmconvert $tmppfx.nt.hmm 2>&1`;
++@output = `hmmconvert $tmppfx.nt.hmm 2>&1`;
  if ($? != 0) { die "FAIL: hmmconvert of H2 nucleic model failed\n"; }
  
 -@output = `$builddir/src/hmmconvert $tmppfx.aa.hmm 2>&1`;
-+@output = `$builddir/hmmconvert $tmppfx.aa.hmm 2>&1`;
++@output = `hmmconvert $tmppfx.aa.hmm 2>&1`;
  if ($? != 0) { die "FAIL: hmmconvert of H2 protein model failed\n"; }
  
  

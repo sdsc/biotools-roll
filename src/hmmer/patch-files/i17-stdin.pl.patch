@@ -1,60 +1,85 @@
 --- hmmer-3.2.1/testsuite/i17-stdin.pl	2018-06-13 07:39:03.000000000 -0700
-+++ patch-files/i17-stdin.pl	2018-10-23 16:16:37.487945444 -0700
-@@ -49,7 +49,7 @@
++++ patch-files/i17-stdin.pl	2018-10-24 17:04:13.931512777 -0700
+@@ -49,39 +49,39 @@
  @eslprogs = ("esl-shuffle");
  
  # Verify that we have all the executables and datafiles we need for the test.
 -foreach $h3prog  (@h3progs) { if (! -x "$builddir/src/$h3prog")             { die "FAIL: didn't find $h3prog executable in $builddir/src\n";              } }
-+foreach $h3prog  (@h3progs) { if (! -x "$builddir/$h3prog")             { die "FAIL: didn't find $h3prog executable in $builddir\n";              } }
- foreach $eslprog (@eslrogs) { if (! -x "$builddir/easel/miniapps/$eslprog") { die "FAIL: didn't find $eslprog executable in $builddir/easel/miniapps\n";  } }
+-foreach $eslprog (@eslrogs) { if (! -x "$builddir/easel/miniapps/$eslprog") { die "FAIL: didn't find $eslprog executable in $builddir/easel/miniapps\n";  } }
++foreach $h3prog  (@h3progs) { if (! -x "../bin/$h3prog")             { die "FAIL: didn't find $h3prog executable in $builddir\n";              } }
++foreach $eslprog (@eslrogs) { if (! -x "../bin/eslprog") { die "FAIL: didn't find $eslprog executable in $builddir/easel/miniapps\n";  } }
  
- if (! -r "$srcdir/testsuite/$model1.hmm")  { die "FAIL: can't read profile $model1.hmm in $srcdir/testsuite\n"; }
-@@ -65,22 +65,22 @@
+-if (! -r "$srcdir/testsuite/$model1.hmm")  { die "FAIL: can't read profile $model1.hmm in $srcdir/testsuite\n"; }
+-if (! -r "$srcdir/testsuite/$model2.hmm")  { die "FAIL: can't read profile $model2.hmm in $srcdir/testsuite\n"; }
+-if (! -r "$srcdir/testsuite/$nmodel1.hmm") { die "FAIL: can't read profile $nmodel1.hmm in $srcdir/testsuite\n"; }
+-if (! -r "$srcdir/testsuite/$nmodel2.hmm") { die "FAIL: can't read profile $nmodel2.hmm in $srcdir/testsuite\n"; }
++if (! -r "$model1.hmm")  { die "FAIL: can't read profile $model1.hmm in $srcdir/testsuite\n"; }
++if (! -r "$model2.hmm")  { die "FAIL: can't read profile $model2.hmm in $srcdir/testsuite\n"; }
++if (! -r "$nmodel1.hmm") { die "FAIL: can't read profile $nmodel1.hmm in $srcdir/testsuite\n"; }
++if (! -r "$nmodel2.hmm") { die "FAIL: can't read profile $nmodel2.hmm in $srcdir/testsuite\n"; }
  
- `cat $srcdir/testsuite/$model1.hmm  $srcdir/testsuite/$model2.hmm  > $tmppfx.hmm`;  if ($?) { die "FAIL: cat\n"; }
- `cat $srcdir/testsuite/$nmodel1.hmm $srcdir/testsuite/$nmodel2.hmm > $tmppfx.nhmm`; if ($?) { die "FAIL: cat\n"; }
+-if (! -r "$srcdir/testsuite/$model1.sto")  { die "FAIL: can't read msa $model1.sto in $srcdir/testsuite\n"; }
+-if (! -r "$srcdir/testsuite/$model2.sto")  { die "FAIL: can't read msa $model2.sto in $srcdir/testsuite\n"; }
+-if (! -r "$srcdir/testsuite/$nmodel1.sto") { die "FAIL: can't read msa $nmodel1.sto in $srcdir/testsuite\n"; }
+-if (! -r "$srcdir/testsuite/$nmodel2.sto") { die "FAIL: can't read msa $nmodel2.sto in $srcdir/testsuite\n"; }
++if (! -r "$model1.sto")  { die "FAIL: can't read msa $model1.sto in $srcdir/testsuite\n"; }
++if (! -r "$model2.sto")  { die "FAIL: can't read msa $model2.sto in $srcdir/testsuite\n"; }
++if (! -r "$nmodel1.sto") { die "FAIL: can't read msa $nmodel1.sto in $srcdir/testsuite\n"; }
++if (! -r "$nmodel2.sto") { die "FAIL: can't read msa $nmodel2.sto in $srcdir/testsuite\n"; }
+ 
+ 
+-`cat $srcdir/testsuite/$model1.hmm  $srcdir/testsuite/$model2.hmm  > $tmppfx.hmm`;  if ($?) { die "FAIL: cat\n"; }
+-`cat $srcdir/testsuite/$nmodel1.hmm $srcdir/testsuite/$nmodel2.hmm > $tmppfx.nhmm`; if ($?) { die "FAIL: cat\n"; }
 -`$builddir/src/hmmpress $tmppfx.hmm`;                                               if ($?) { die "FAIL: hmmpress\n"; }
-+`$builddir/hmmpress $tmppfx.hmm`;                                               if ($?) { die "FAIL: hmmpress\n"; }
++`cat $model1.hmm  $model2.hmm  > $tmppfx.hmm`;  if ($?) { die "FAIL: cat\n"; }
++`cat $nmodel1.hmm $nmodel2.hmm > $tmppfx.nhmm`; if ($?) { die "FAIL: cat\n"; }
++`hmmpress $tmppfx.hmm`;                                               if ($?) { die "FAIL: hmmpress\n"; }
  
- `cat $srcdir/testsuite/$model1.sto $srcdir/testsuite/$model2.sto > $tmppfx.sto`;    if ($?) { die "FAIL: cat\n"; }
+-`cat $srcdir/testsuite/$model1.sto $srcdir/testsuite/$model2.sto > $tmppfx.sto`;    if ($?) { die "FAIL: cat\n"; }
++`cat $model1.sto $model2.sto > $tmppfx.sto`;    if ($?) { die "FAIL: cat\n"; }
  
 -`$builddir/src/hmmemit -c $srcdir/testsuite/$model1.hmm > $tmppfx.fa1`;             if ($?) { die "FAIL: hmmemit -c\n"; }
-+`$builddir/hmmemit -c $srcdir/testsuite/$model1.hmm > $tmppfx.fa1`;             if ($?) { die "FAIL: hmmemit -c\n"; }
++`hmmemit -c $model1.hmm > $tmppfx.fa1`;             if ($?) { die "FAIL: hmmemit -c\n"; }
  `cat $tmppfx.fa1 > $tmppfx.fa2`;                                                    if ($?) { die "FAIL: cat\n"; } 
 -`$builddir/src/hmmemit -c $srcdir/testsuite/$model2.hmm >> $tmppfx.fa2`;            if ($?) { die "FAIL: hmmemit -c\n"; } 
-+`$builddir/hmmemit -c $srcdir/testsuite/$model2.hmm >> $tmppfx.fa2`;            if ($?) { die "FAIL: hmmemit -c\n"; } 
++`hmmemit -c $model2.hmm >> $tmppfx.fa2`;            if ($?) { die "FAIL: hmmemit -c\n"; } 
  
 -`$builddir/src/hmmemit -N10 $srcdir/testsuite/$model1.hmm > $tmppfx.fa10`;          if ($?) { die "FAIL: hmmemit\n"; }
-+`$builddir/hmmemit -N10 $srcdir/testsuite/$model1.hmm > $tmppfx.fa10`;          if ($?) { die "FAIL: hmmemit\n"; }
++`hmmemit -N10 $model1.hmm > $tmppfx.fa10`;          if ($?) { die "FAIL: hmmemit\n"; }
  
 -`$builddir/src/hmmemit -p -N10 $srcdir/testsuite/$model1.hmm > $tmppfx.db`;         if ($?) { die "FAIL: hmmemit\n"; }
 -`$builddir/src/hmmemit -p -N10 $srcdir/testsuite/$model2.hmm >> $tmppfx.db`;        if ($?) { die "FAIL: hmmemit\n"; }
-+`$builddir/hmmemit -p -N10 $srcdir/testsuite/$model1.hmm > $tmppfx.db`;         if ($?) { die "FAIL: hmmemit\n"; }
-+`$builddir/hmmemit -p -N10 $srcdir/testsuite/$model2.hmm >> $tmppfx.db`;        if ($?) { die "FAIL: hmmemit\n"; }
- `$builddir/easel/miniapps/esl-shuffle -G -N100 -L 400 --amino >> $tmppfx.db`;       if ($?) { die "FAIL: esl-shuffle\n"; }
+-`$builddir/easel/miniapps/esl-shuffle -G -N100 -L 400 --amino >> $tmppfx.db`;       if ($?) { die "FAIL: esl-shuffle\n"; }
++`hmmemit -p -N10 $model1.hmm > $tmppfx.db`;         if ($?) { die "FAIL: hmmemit\n"; }
++`hmmemit -p -N10 $model2.hmm >> $tmppfx.db`;        if ($?) { die "FAIL: hmmemit\n"; }
++`esl-shuffle -G -N100 -L 400 --amino >> $tmppfx.db`;       if ($?) { die "FAIL: esl-shuffle\n"; }
  
 -`$builddir/src/hmmemit -p -N2 -L2000 --glocal $srcdir/testsuite/$nmodel1.hmm >  $tmppfx.ndb`; if ($?) { die "FAIL: hmmemit\n"; }
 -`$builddir/src/hmmemit -p -N2 -L2000 --glocal $srcdir/testsuite/$nmodel2.hmm >> $tmppfx.ndb`; if ($?) { die "FAIL: hmmemit\n"; }
-+`$builddir/hmmemit -p -N2 -L2000 --glocal $srcdir/testsuite/$nmodel1.hmm >  $tmppfx.ndb`; if ($?) { die "FAIL: hmmemit\n"; }
-+`$builddir/hmmemit -p -N2 -L2000 --glocal $srcdir/testsuite/$nmodel2.hmm >> $tmppfx.ndb`; if ($?) { die "FAIL: hmmemit\n"; }
- `$builddir/easel/miniapps/esl-shuffle -G -N6 -L 2000 --dna                   >> $tmppfx.ndb`; if ($?) { die "FAIL: esl-shuffle\n"; }
+-`$builddir/easel/miniapps/esl-shuffle -G -N6 -L 2000 --dna                   >> $tmppfx.ndb`; if ($?) { die "FAIL: esl-shuffle\n"; }
++`hmmemit -p -N2 -L2000 --glocal $nmodel1.hmm >  $tmppfx.ndb`; if ($?) { die "FAIL: hmmemit\n"; }
++`hmmemit -p -N2 -L2000 --glocal $nmodel2.hmm >> $tmppfx.ndb`; if ($?) { die "FAIL: hmmemit\n"; }
++`esl-shuffle -G -N6 -L 2000 --dna                   >> $tmppfx.ndb`; if ($?) { die "FAIL: esl-shuffle\n"; }
  
  `echo $model1    > $tmppfx.key`;                                                    if ($?) { die "FAIL: cat\n"; }
-@@ -92,7 +92,7 @@
+ `echo $model2   >> $tmppfx.key`;                                                    if ($?) { die "FAIL: cat\n"; }
+@@ -92,8 +92,8 @@
  #   reject - - case
  ################################################################
  
 -$tag  = "hmmalign";    $prog = "$builddir/src/$tag";      
-+$tag  = "hmmalign";    $prog = "$builddir/$tag";      
- $tag1 = "<hmmfile>";   $arg1 = "$srcdir/testsuite/$model1.hmm"; 
+-$tag1 = "<hmmfile>";   $arg1 = "$srcdir/testsuite/$model1.hmm"; 
++$tag  = "hmmalign";    $prog = "$tag";      
++$tag1 = "<hmmfile>";   $arg1 = "$model1.hmm"; 
  $tag2 = "<seqfile>";   $arg2 = "$tmppfx.fa10"; 
  if ($verbose) { print "$tag...\n"; }
+ 
 @@ -115,7 +115,7 @@
  #    reject - for <hmmfile>: can't send it to stdout.
  ################################################################
  
 -$tag  = "hmmbuild";       $prog = "$builddir/src/$tag";      
-+$tag  = "hmmbuild";       $prog = "$builddir/$tag";      
++$tag  = "hmmbuild";       $prog = "$tag";      
  $tag1 = "<msafile>";      $arg1 = "$tmppfx.sto";    
  if ($verbose) { print "$tag...\n"; }
  
@@ -63,7 +88,7 @@
  ################################################################
  
 -$tag  = "hmmconvert";     $prog = "$builddir/src/$tag";    
-+$tag  = "hmmconvert";     $prog = "$builddir/$tag";    
++$tag  = "hmmconvert";     $prog = "$tag";    
  $tag1 = "<hmmfile>";      $arg1 = "$tmppfx.hmm";    
  if ($verbose) { print "$tag...\n"; }
  
@@ -72,7 +97,7 @@
  ################################################################
  
 -$tag  = "hmmemit";      $prog = "$builddir/src/$tag";   
-+$tag  = "hmmemit";      $prog = "$builddir/$tag";   
++$tag  = "hmmemit";      $prog = "$tag";   
  $tag1 = "<hmmfile>";    $arg1 = "$tmppfx.hmm";             
  if ($verbose) { print "$tag...\n"; }
  
@@ -81,7 +106,7 @@
  ################################################################
  
 -$tag  = "hmmfetch";    $prog = "$builddir/src/$tag";   
-+$tag  = "hmmfetch";    $prog = "$builddir/$tag";   
++$tag  = "hmmfetch";    $prog = "$tag";   
  $tag1 = "<hmmfile>";   $arg1 = "$tmppfx.hmm";              
  $tag2 = "<keyfile>";   $arg2 = "$tmppfx.key";              
  if ($verbose) { print "$tag...\n"; }
@@ -90,7 +115,7 @@
  ################################################################
  
 -$tag  = "hmmpress";         $prog = "$builddir/src/$tag";   
-+$tag  = "hmmpress";         $prog = "$builddir/$tag";   
++$tag  = "hmmpress";         $prog = "$tag";   
  $tag1 = "<hmmfile>";        $arg1 = "$tmppfx.hmm";      
  if ($verbose) { print "$tag...\n"; }
  
@@ -99,25 +124,27 @@
  #################################################################
  
 -$tag  = "hmmscan";         $prog = "$builddir/src/$tag";   
-+$tag  = "hmmscan";         $prog = "$builddir/$tag";   
++$tag  = "hmmscan";         $prog = "$tag";   
  $tag1 = "<hmmdb>";         $arg1 = "$tmppfx.hmm";      
  $tag2 = "<seqfile>";       $arg2 = "$tmppfx.fa2";      
  if ($verbose) { print "$tag...\n"; }
-@@ -230,7 +230,7 @@
+@@ -230,8 +230,8 @@
  # note that the grep -v "^#" removes lines that would make diffs fail,
  # like query name and cpu time.
  
 -$tag  = "hmmsearch";         $prog = "$builddir/src/$tag";   
-+$tag  = "hmmsearch";         $prog = "$builddir/$tag";   
- $tag1 = "<hmmfile>";         $arg1 = "$srcdir/testsuite/$model1.hmm";   $arg1b = "$tmppfx.hmm";   
+-$tag1 = "<hmmfile>";         $arg1 = "$srcdir/testsuite/$model1.hmm";   $arg1b = "$tmppfx.hmm";   
++$tag  = "hmmsearch";         $prog = "$tag";   
++$tag1 = "<hmmfile>";         $arg1 = "$model1.hmm";   $arg1b = "$tmppfx.hmm";   
  $tag2 = "<seqdb>";           $arg2 = "$tmppfx.db";      
  if ($verbose) { print "$tag...\n"; }
+ 
 @@ -252,7 +252,7 @@
  # hmmstat
  ################################################################
  
 -$tag  = "hmmstat";        $prog = "$builddir/src/$tag";    
-+$tag  = "hmmstat";        $prog = "$builddir/$tag";    
++$tag  = "hmmstat";        $prog = "$tag";    
  $tag1 = "<hmmfile>";      $arg1 = "$tmppfx.hmm";    
  if ($verbose) { print "$tag...\n"; }
  
@@ -126,25 +153,27 @@
  ################################################################
  
 -$tag  = "jackhmmer";         $prog = "$builddir/src/$tag --enone -N2";   
-+$tag  = "jackhmmer";         $prog = "$builddir/$tag --enone -N2";   
++$tag  = "jackhmmer";         $prog = "$tag --enone -N2";   
  $tag1 = "<seqfile>";         $arg1 = "$tmppfx.fa1";      
  $tag2 = "<seqdb>";           $arg2 = "$tmppfx.db";      
  if ($verbose) { print "$tag...\n"; }
-@@ -287,7 +287,7 @@
+@@ -287,8 +287,8 @@
  #      reject <seqdb> as - on multiquery
  #################################################################
  
 -$tag  = "nhmmer";            $prog = "$builddir/src/$tag";   
-+$tag  = "nhmmer";            $prog = "$builddir/$tag";   
- $tag1 = "<hmmfile>";         $arg1 = "$srcdir/testsuite/$nmodel1.hmm";   $arg1b = "$tmppfx.nhmm";   
+-$tag1 = "<hmmfile>";         $arg1 = "$srcdir/testsuite/$nmodel1.hmm";   $arg1b = "$tmppfx.nhmm";   
++$tag  = "nhmmer";            $prog = "$tag";   
++$tag1 = "<hmmfile>";         $arg1 = "$nmodel1.hmm";   $arg1b = "$tmppfx.nhmm";   
  $tag2 = "<seqdb>";           $arg2 = "$tmppfx.ndb";      
  if ($verbose) { print "$tag...\n"; }
+ 
 @@ -309,7 +309,7 @@
  # first: single query.
  ################################################################
  
 -$tag  = "phmmer";            $prog = "$builddir/src/$tag";   
-+$tag  = "phmmer";            $prog = "$builddir/$tag";   
++$tag  = "phmmer";            $prog = "$tag";   
  $tag1 = "<seqfile>";         $arg1 = "$tmppfx.fa1";         $arg1b = "$tmppfx.fa2";
  $tag2 = "<seqdb>";           $arg2 = "$tmppfx.db";      
  if ($verbose) { print "$tag...\n"; }

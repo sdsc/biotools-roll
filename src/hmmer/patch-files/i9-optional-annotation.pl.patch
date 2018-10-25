@@ -1,5 +1,5 @@
 --- hmmer-3.2.1/testsuite/i9-optional-annotation.pl	2018-06-13 07:39:03.000000000 -0700
-+++ patch-files/i9-optional-annotation.pl	2018-10-23 16:36:38.570202028 -0700
++++ patch-files/i9-optional-annotation.pl	2018-10-24 17:04:13.999512212 -0700
 @@ -14,14 +14,14 @@
      $srcdir    = shift;
      $tmppfx    = shift;
@@ -13,10 +13,10 @@
 -if (! -x "$builddir/src/hmmpress")   { die "FAIL: didn't find hmmpress binary in $builddir/src\n";  }
 -if (! -x "$builddir/src/hmmsearch")  { die "FAIL: didn't find hmmsearch binary in $builddir/src\n"; }
 -if (! -x "$builddir/src/hmmscan")    { die "FAIL: didn't find hmmscan binary in $builddir/src\n";   }
-+if (! -x "$builddir/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in $builddir\n";  }
-+if (! -x "$builddir/hmmpress")   { die "FAIL: didn't find hmmpress binary in $builddir\n";  }
-+if (! -x "$builddir/hmmsearch")  { die "FAIL: didn't find hmmsearch binary in $builddir\n"; }
-+if (! -x "$builddir/hmmscan")    { die "FAIL: didn't find hmmscan binary in $builddir\n";   }
++if (! -x "../bin/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in .\n";  }
++if (! -x "../bin/hmmpress")   { die "FAIL: didn't find hmmpress binary in .\n";  }
++if (! -x "../bin/$hmmsearch")  { die "FAIL: didn't find hmmsearch binary in .\n"; }
++if (! -x "../bin/$hmmscan")    { die "FAIL: didn't find hmmscan binary in .\n";   }
  
  
  # Create our test files.
@@ -25,14 +25,14 @@
  close SEQ1;
  
 -@output = `$builddir/src/hmmbuild $tmppfx.hmm $tmppfx.sto 2>&1`;
-+@output = `$builddir/hmmbuild $tmppfx.hmm $tmppfx.sto 2>&1`;
++@output = `hmmbuild $tmppfx.hmm $tmppfx.sto 2>&1`;
  if ($? != 0) { die "FAIL: hmmbuild failed\n"; }
 -@output = `$builddir/src/hmmpress $tmppfx.hmm             2>&1`;
-+@output = `$builddir/hmmpress $tmppfx.hmm             2>&1`;
++@output = `hmmpress $tmppfx.hmm             2>&1`;
  if ($? != 0) { die "FAIL: hmmpress failed\n"; }
  
 -@output = `$builddir/src/hmmscan --tblout $tmppfx.tbl1 --domtblout $tmppfx.dtbl1 $tmppfx.hmm $tmppfx.seq  2>&1`;
-+@output = `$builddir/hmmscan --tblout $tmppfx.tbl1 --domtblout $tmppfx.dtbl1 $tmppfx.hmm $tmppfx.seq  2>&1`;
++@output = `hmmscan --tblout $tmppfx.tbl1 --domtblout $tmppfx.dtbl1 $tmppfx.hmm $tmppfx.seq  2>&1`;
  if ($? != 0) { die "FAIL: hmmscan failed\n"; }
  
  
@@ -41,7 +41,7 @@
  if ($h3::qacc[2]    ne "-")                  { die "FAIL: on line 2 query accession, dtbl1\n";  }
  
 -@output = `$builddir/src/hmmsearch --tblout $tmppfx.tbl2 --domtblout $tmppfx.dtbl2 $tmppfx.hmm $tmppfx.seq 2>&1`;
-+@output = `$builddir/hmmsearch --tblout $tmppfx.tbl2 --domtblout $tmppfx.dtbl2 $tmppfx.hmm $tmppfx.seq 2>&1`;
++@output = `hmmsearch --tblout $tmppfx.tbl2 --domtblout $tmppfx.dtbl2 $tmppfx.hmm $tmppfx.seq 2>&1`;
  if ($? != 0) { die "FAIL: hmmsearch failed\n"; }
  
  &h3::ParseDomTbl("$tmppfx.dtbl2");

@@ -1,14 +1,16 @@
 --- hmmer-3.2.1/testsuite/i8-nonresidues.pl	2018-06-13 07:39:03.000000000 -0700
-+++ patch-files/i8-nonresidues.pl	2018-10-23 16:18:58.080804719 -0700
-@@ -21,7 +21,7 @@
++++ patch-files/i8-nonresidues.pl	2018-10-24 17:04:13.992512270 -0700
+@@ -21,8 +21,8 @@
  use lib "$srcdir/testsuite";
  use h3;
  
 -$hmmsearch = "$builddir/src/hmmsearch";
-+$hmmsearch = "$builddir/hmmsearch";
- $hmm20aa   = "$srcdir/testsuite/20aa.hmm";
+-$hmm20aa   = "$srcdir/testsuite/20aa.hmm";
++$hmmsearch = "hmmsearch";
++$hmm20aa   = "20aa.hmm";
  
  # Two test sequences, to be aligned to 20aa.hmm
+ # First one will get parsed into two domains (consensus L replaced by '*')
 @@ -43,6 +43,7 @@
  ACDEFGHIKL*MNPQRSTVWY
  EOF

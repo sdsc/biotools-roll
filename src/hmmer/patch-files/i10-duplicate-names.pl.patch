@@ -1,5 +1,5 @@
 --- hmmer-3.2.1/testsuite/i10-duplicate-names.pl	2018-06-13 07:39:03.000000000 -0700
-+++ patch-files/i10-duplicate-names.pl	2018-10-23 16:14:06.334171857 -0700
++++ patch-files/i10-duplicate-names.pl	2018-10-24 17:04:13.881513193 -0700
 @@ -21,12 +21,12 @@
  
  
@@ -10,12 +10,12 @@
 -if (! -x "$builddir/src/hmmscan")    { die "FAIL: didn't find hmmscan binary in $builddir/src\n";   }
 -if (! -x "$builddir/src/phmmer")     { die "FAIL: didn't find phmmer binary in $builddir/src\n"; }
 -if (! -x "$builddir/src/jackhmmer")  { die "FAIL: didn't find jackhmmer binary in $builddir/src\n";   }
-+if (! -x "$builddir/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in $builddir\n";  }
-+if (! -x "$builddir/hmmpress")   { die "FAIL: didn't find hmmpress binary in $builddir\n";  }
-+if (! -x "$builddir/hmmsearch")  { die "FAIL: didn't find hmmsearch binary in $builddir\n"; }
-+if (! -x "$builddir/hmmscan")    { die "FAIL: didn't find hmmscan binary in $builddir\n";   }
-+if (! -x "$builddir/phmmer")     { die "FAIL: didn't find phmmer binary in $builddir\n"; }
-+if (! -x "$builddir/jackhmmer")  { die "FAIL: didn't find jackhmmer binary in $builddir\n";   }
++if (! -x "../bin/hmmbuild")   { die "FAIL: didn't find hmmbuild binary in $builddir\n";  }
++if (! -x "../bin/hmmpress")   { die "FAIL: didn't find hmmpress binary in $builddir\n";  }
++if (! -x "../bin//hmmsearch")  { die "FAIL: didn't find hmmsearch binary in $builddir\n"; }
++if (! -x "../bin/hmmscan")    { die "FAIL: didn't find hmmscan binary in $builddir\n";   }
++if (! -x "../bin/phmmer")     { die "FAIL: didn't find phmmer binary in $builddir\n"; }
++if (! -x "../bin//jackhmmer")  { die "FAIL: didn't find jackhmmer binary in $builddir\n";   }
  
  # Create our test files
  if (! open(ALI1, ">$tmppfx.sto")) { print "FAIL: couldn't open $tmppfx.sto for write";  exit 1; }
@@ -24,19 +24,19 @@
  
  # Build profiles from the test alignments
 -@output = `$builddir/src/hmmbuild $tmppfx.hmm $tmppfx.sto 2>&1`;
-+@output = `$builddir/hmmbuild $tmppfx.hmm $tmppfx.sto 2>&1`;
++@output = `hmmbuild $tmppfx.hmm $tmppfx.sto 2>&1`;
  if ($? != 0) { die "FAIL: hmmbuild failed\n"; }
  
  # You can't hmmpress a file with duplicate HMM names; SSI indexing will reject it.
 -@output = `$builddir/src/hmmpress $tmppfx.hmm             2>&1`;
-+@output = `$builddir/hmmpress $tmppfx.hmm             2>&1`;
++@output = `hmmpress $tmppfx.hmm             2>&1`;
  if ($? == 0) { die "FAIL: hmmpress should reject indexing an HMM file with duplicate names\n"; }
  
  
  
  # phmmer should show four results
 -$output = `$builddir/src/phmmer --tblout $tmppfx.tbl $tmppfx.fa $tmppfx.fa 2>&1`;
-+$output = `$builddir/phmmer --tblout $tmppfx.tbl $tmppfx.fa $tmppfx.fa 2>&1`;
++$output = `phmmer --tblout $tmppfx.tbl $tmppfx.fa $tmppfx.fa 2>&1`;
  if ($? != 0) { die "FAIL: phmmer failed\n"; }
  
  &h3::ParseTbl("$tmppfx.tbl");
@@ -45,7 +45,7 @@
  
  # jackhmmer should show four results
 -$output = `$builddir/src/jackhmmer --tblout $tmppfx.tbl $tmppfx.fa $tmppfx.fa 2>&1`;
-+$output = `$builddir/jackhmmer --tblout $tmppfx.tbl $tmppfx.fa $tmppfx.fa 2>&1`;
++$output = `jackhmmer --tblout $tmppfx.tbl $tmppfx.fa $tmppfx.fa 2>&1`;
  if ($? != 0) { die "FAIL: jackhmmer failed\n"; }
  
  &h3::ParseTbl("$tmppfx.tbl");
@@ -54,7 +54,7 @@
  
  # hmmsearch should show four results
 -$output = `$builddir/src/hmmsearch --tblout $tmppfx.tbl $tmppfx.hmm $tmppfx.fa 2>&1`;
-+$output = `$builddir/hmmsearch --tblout $tmppfx.tbl $tmppfx.hmm $tmppfx.fa 2>&1`;
++$output = `hmmsearch --tblout $tmppfx.tbl $tmppfx.hmm $tmppfx.fa 2>&1`;
  if ($? != 0) { die "FAIL: hmmsearch failed\n"; }
  
  &h3::ParseTbl("$tmppfx.tbl");

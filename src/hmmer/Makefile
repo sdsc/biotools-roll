@@ -113,6 +113,7 @@ install::
 	patch $(SOURCE_DIR)/testsuite/i19-hmmpgmd-ga.pl patch-files/i19-hmmpgmd-ga.pl.patch
 	patch $(SOURCE_DIR)/testsuite/i20-fmindex-core.pl patch-files/i20-fmindex-core.pl.patch
 	patch $(SOURCE_DIR)/testsuite/testsuite.sqc  patch-files/testsuite.sqc.patch
+	patch $(SOURCE_DIR)/testsuite/i4-zerolength-seqs.sh patch-files/i4-zerolength-seqs.sh.patch
 	( \
 	  cd $(SOURCE_DIR); \
           make install; \
@@ -123,6 +124,7 @@ install::
           cp tutorial/*.sto $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/*.fa $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/HBB_HUMAN $(ROOT)/$(PKGROOT)/testsuite; \
+          cp src/p7_config.h $(ROOT)/$(PKGROOT)/testsuite; \
           cd src; \
           cp hmmpress.itest.pl itest_brute alimask hmmalign hmmbuild  \
              hmmconvert hmmemit hmmfetch hmmlogo hmmpress hmmscan \
