@@ -1,8 +1,3 @@
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = gnu
-endif
-COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
-
 NAME           = sdsc-htseq
 VERSION        = 0.11.0
 RELEASE        = 0
