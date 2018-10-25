@@ -1,5 +1,5 @@
 --- hmmer-3.2.1/testsuite/i21-rewind.pl	2018-06-13 07:39:03.000000000 -0700
-+++ patch-files/i21-rewind.pl	2018-10-24 17:35:30.817219082 -0700
++++ patch-files/i21-rewind.pl	2018-10-24 18:39:52.336855269 -0700
 @@ -24,10 +24,10 @@
  
  # Verify that we have all the executables we need for the test.
