@@ -106,7 +106,7 @@ install::
           export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  make install; \
-	  cp -r interfaces/Perl/* $(PKGROOT)/tests \
+	  cp -r interfaces/Perl/* $(PKGROOT)/tests; \
           cp -r $(PKGROOT)/* $(VIENNARNA_CACHE) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
