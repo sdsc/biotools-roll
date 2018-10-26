@@ -101,6 +101,9 @@ install::
 	mkdir -p $(VIENNARNA_CACHE)
 	$(PKGROOT_BIND_MOUNT)
 	( \
+          $(MODULE_LOAD_CXX); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  make install; \
 	  cp -r interfaces/Perl/* $(PKGROOT)/tests \
