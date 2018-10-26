@@ -72,4 +72,5 @@ SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name rseqc \
   -not -name stacks \
   -not -name tophat` \
-  bcftools cufflinks miso NucleoATAC randfold rseqc stacks tophat
+  -not -name miRDeep2` \
+  bcftools cufflinks miso miRDeep2 NucleoATAC randfold rseqc stacks tophat
