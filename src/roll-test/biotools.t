@@ -503,15 +503,15 @@ SKIP: {
 module load ViennaRNA
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
-perl test.pl
+perl RNA/t/Design.t
 END
   close(OUT);
   $output = `bash $TESTFILE.sh 2>&1`;
   $count = 0;
   foreach $line(split(/\n/, $output)) {
-    $count++ if $line =~ /^ok/;
+    $count++ if $line =~ /ok /;
   }
-  ok($count >= 23, 'ViennaRNA works');
+  ok($count == 36, 'ViennaRNA works');
   `rm -rf $TESTFILE*`;
 }
 
