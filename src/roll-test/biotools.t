@@ -302,9 +302,9 @@ print OUT <<END;
 module load miRDeep2
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
+rm -f reads_collapsed.fa
 bowtie-build cel_cluster.fa cel_cluster
-mapper.pl reads.fa -c -j -k TCGTATGCCGTCTTCTGCTTGT  -l 18 -m -p cel_cluster -s reads_collapsed.fa -t r
-eads_collapsed_vs_genome.arf -v
+mapper.pl reads.fa -c -j -k TCGTATGCCGTCTTCTGCTTGT  -l 18 -m -p cel_cluster -s reads_collapsed.fa -t r eads_collapsed_vs_genome.arf -v
 quantifier.pl -p precursors_ref_this_species.fa -m mature_ref_this_species.fa -r reads_collapsed.fa -t cel -y 16_19
 miRDeep2.pl reads_collapsed.fa cel_cluster.fa reads_collapsed_vs_genome.arf mature_ref_this_species.fa mature_ref_other_species.fa precursors_ref_this_species.fa -t C.elegans 2> report.log
 cat miRNAs_expressed_all_samples_16_19.csv
