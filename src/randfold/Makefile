@@ -64,6 +64,7 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 SQUID_CACHE = $(REDHAT.ROOT)/cache/build-squid
+RANDFOLD_CACHE = $(REDHAT.ROOT)/cache/build-randfold
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -88,9 +89,13 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(RANDFOLD_CACHE)/tests
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(RANDFOLD_CACHE)/bin
 	cp $(SOURCE_DIR)/randfold $(ROOT)/$(PKGROOT)/bin/
+	cp $(SOURCE_DIR)/randfold $(RANDFOLD_CACHE)/bin/
 	cp $(SOURCE_DIR)/let7.tfa $(ROOT)/$(PKGROOT)/tests/
+	cp $(SOURCE_DIR)/let7.tfa $(RANDFOLD_CACHE)/tests/
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 

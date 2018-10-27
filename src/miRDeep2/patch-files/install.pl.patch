@@ -1,0 +1,177 @@
+--- mirdeep2_0_0_8/install.pl	2016-05-18 02:56:36.000000000 -0700
++++ patch-files/install.pl	2018-10-26 18:28:10.354460481 -0700
+@@ -38,12 +38,12 @@
+ 			
+ 
+ 
+-if($new !~ /no/){
+-    print STDERR "making backup of .bashrc,$shellconf and .cshrc and removing all entries of mirdeep in those files\n";
+-    rem_mirdeep(".bashrc");
+-    rem_mirdeep("$shellconf");
+-    rem_mirdeep(".cshrc");
+-}
++#if($new !~ /no/){
++#    print STDERR "making backup of .bashrc,$shellconf and .cshrc and removing all entries of mirdeep in those files\n";
++#    rem_mirdeep(".bashrc");
++#    rem_mirdeep("$shellconf");
++#    rem_mirdeep(".cshrc");
++#}
+ 
+ my $grep;
+ $grep=`which grep`;
+@@ -144,70 +144,70 @@
+ }
+ 
+ ## check if we have the install path in our files 
+-$in=`$grep "$install_bin_dir" ~/$shellconf`;
+-if(not $in){
+-    my $ret=`$grep $install_bin_dir ~/$shellconf |$grep PATH`;
+-    if(not $ret){
+-	`echo 'export PATH=\$PATH:$install_bin_dir' >> ~/$shellconf`;
+-    }
+-}
++#$in=`$grep "$install_bin_dir" ~/$shellconf`;
++#if(not $in){
++#    my $ret=`$grep $install_bin_dir ~/$shellconf |$grep PATH`;
++#    if(not $ret){
++#	`echo 'export PATH=\$PATH:$install_bin_dir' >> ~/$shellconf`;
++#    }
++#}
+ 
+ ## add this temporarily to make perl installation possible on some systems
+-print STDERR "Checking environment variables ...\n";
+-my $g=`$grep PERL_MB_OPT ~/$shellconf \|$grep install_base `;
+-if($g){
+-}else{
+-    print STDERR "adding variables PERL_MB_OPT,PERL_MM_OPT,PERL5LIB to $shellconf\n";
+-    `echo >> ~/$shellconf`;
+-    `echo 'PERL_MB_OPT=\"--install_base $ENV{'HOME'}/perl5\";export PERL_MB_OPT' >> ~/$shellconf`;
+-    `echo 'PERL_MM_OPT=\"INSTALL_BASE=$ENV{'HOME'}/perl5\";export PERL_MM_OPT' >> ~/$shellconf`;
+-	$g=`grep $dir/lib/perl5 ~/$shellconf`;
+-	if(not $g){
+-		$g=`grep PERL5LIB ~/$shellconf`;
+-		if(not $g){
+-		 `echo 'export PERL5LIB=$dir/lib/perl5' >> ~/$shellconf`;
+-		 }else{
+-			 `echo 'export PERL5LIB=\$PERL5LIB:$dir/lib/perl5' >> ~/$shellconf`;
+-		}	
+-	 }
+-	
+-	`echo >> ~/$shellconf`;
+-    print STDERR "please run the install.pl script again in a new terminal window or just type
+-	
+-	source ~/$shellconf
+-	perl install.pl
+-
+-	so that the new environment variables are visible to the install.pl script\n";
+-
+-    exit;
+-}
+-
+-$g=`$grep $dir/lib/perl5 ~/$shellconf`;
+-if(not $g){
+-	$g=`grep PERL5LIB ~/$shellconf`;
+-	if(not $g){
+-		`echo 'export PERL5LIB=$dir/lib/perl5' >> ~/$shellconf`;
+-	}else{
+-		`echo 'export PERL5LIB=\$PERL5LIB:$dir/lib/perl5' >> ~/$shellconf`;
+-	}	
+-
+-`echo >> ~/$shellconf`;
+-print STDERR "please run the install.pl script again in a new terminal window or just type
++#print STDERR "Checking environment variables ...\n";
++#my $g=`$grep PERL_MB_OPT ~/$shellconf \|$grep install_base `;
++#if($g){
++#}else{
++#    print STDERR "adding variables PERL_MB_OPT,PERL_MM_OPT,PERL5LIB to $shellconf\n";
++#    `echo >> ~/$shellconf`;
++#    `echo 'PERL_MB_OPT=\"--install_base $ENV{'HOME'}/perl5\";export PERL_MB_OPT' >> ~/$shellconf`;
++#    `echo 'PERL_MM_OPT=\"INSTALL_BASE=$ENV{'HOME'}/perl5\";export PERL_MM_OPT' >> ~/$shellconf`;
++#	$g=`grep $dir/lib/perl5 ~/$shellconf`;
++#	if(not $g){
++#		$g=`grep PERL5LIB ~/$shellconf`;
++#		if(not $g){
++#		 `echo 'export PERL5LIB=$dir/lib/perl5' >> ~/$shellconf`;
++#		 }else{
++#			 `echo 'export PERL5LIB=\$PERL5LIB:$dir/lib/perl5' >> ~/$shellconf`;
++#		}	
++#	 }
++#	
++#	`echo >> ~/$shellconf`;
++#    print STDERR "please run the install.pl script again in a new terminal window or just type
++#	
++#	source ~/$shellconf
++#	perl install.pl
++#
++#	so that the new environment variables are visible to the install.pl script\n";
++#
++#    exit;
++#}
+ 
+-source ~/$shellconf
+-perl install.pl
++#$g=`$grep $dir/lib/perl5 ~/$shellconf`;
++#if(not $g){
++#	$g=`grep PERL5LIB ~/$shellconf`;
++#	if(not $g){
++#		`echo 'export PERL5LIB=$dir/lib/perl5' >> ~/$shellconf`;
++#	}else{
++#		`echo 'export PERL5LIB=\$PERL5LIB:$dir/lib/perl5' >> ~/$shellconf`;
++#	}	
++#
++#`echo >> ~/$shellconf`;
++#print STDERR "please run the install.pl script again in a new terminal window or just type
++#
++#source ~/$shellconf
++#perl install.pl
+ 
+-so that the new environment variables are visible to the install.pl script\n";
+-exit;
+-}
++#so that the new environment variables are visible to the install.pl script\n";
++#exit;
++#}
+ 
+-my $in2;
+-if(-f "~/.cshrc"){
+-	$in2=`$grep "$install_bin_dir" ~/.cshrc`;
+-	if(not $in2){
+-		`echo 'setenv PATH \$PATH:$install_bin_dir' >> ~/.cshrc`;
+-	}
+-}
++#my $in2;
++#if(-f "~/.cshrc"){
++#	$in2=`$grep "$install_bin_dir" ~/.cshrc`;
++#	if(not $in2){
++#		`echo 'setenv PATH \$PATH:$install_bin_dir' >> ~/.cshrc`;
++#	}
++#}
+ 
+ my $binnew=1;
+ 
+@@ -311,7 +311,7 @@
+ 
+ }
+ 
+-$ret = checkBIN("RNAfold -h 2","usage");
++$ret = checkBIN("RNAfold -h 2","Usage");
+ #my $rna_inst=`RNAfold 2>&1`;
+ 
+ #if($rna_inst !~ /no\s*RNAfold/i){
+@@ -724,7 +724,7 @@
+ 
+ sub checkBIN{
+     my ($a,$b) = @_;    
+-	my $e = system("$a> tmp 2>tmp2");
++	my $e = system("$a > tmp 2>tmp2");
+ 	
+     open IN,"<tmp";
+     my $found =1;
+@@ -745,6 +745,7 @@
+ 		}
+ 	}
+     close IN;
++    system("rm -f tmp tmp2");
+     return $found;
+ }
+ 
