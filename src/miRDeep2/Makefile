@@ -106,7 +106,7 @@ install::
           export PATH=$(SQUID_CACHE)/bin:$${PATH}; \
           export PATH=$(BOWTIE_CACHE)/bin:$${PATH}; \
           ./install.pl; \
-	  cp *.pl $(ROOT)/$(PKGROOT)/bin; \
+	  cp src/*.pl $(ROOT)/$(PKGROOT)/bin; \
 	  cp -r tutorial_dir/* $(ROOT)/$(PKGROOT)/tests; \
 	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT); \
           cp install_successful $(ROOT)/$(PKGROOT); \
