@@ -1,5 +1,5 @@
 --- mirdeep2_0_0_8/install.pl	2016-05-18 02:56:36.000000000 -0700
-+++ patch-files/install.pl	2018-10-26 18:28:10.354460481 -0700
++++ patch-files/install.pl	2018-10-26 18:44:11.320716611 -0700
 @@ -38,12 +38,12 @@
  			
  
@@ -19,6 +19,15 @@
  
  my $grep;
  $grep=`which grep`;
+@@ -113,7 +113,7 @@
+ my $dfile='';
+ 
+ ##only attach to config file if not yet existing
+-my $in=`$grep "$dir/bin" ~/.bashrc`;
++#my $in=`$grep "$dir/bin" ~/.bashrc`;
+ 
+ 
+ 
 @@ -144,70 +144,70 @@
  }
  
