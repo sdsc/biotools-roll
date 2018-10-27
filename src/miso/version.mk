@@ -1,13 +1,13 @@
 NAME           = sdsc-miso
-VERSION        = 0.5.3
-RELEASE        = 6
+VERSION        = 0.5.4
+RELEASE        = 0
 PKGROOT        = /opt/biotools/miso
 
 SRC_SUBDIR     = miso
 
 SOURCE_NAME    = misopy
 SOURCE_SUFFIX  = tar.gz
-SOURCE_VERSION = 0.5.3
+SOURCE_VERSION = 0.5.4
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
