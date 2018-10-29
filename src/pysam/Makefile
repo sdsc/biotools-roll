@@ -98,7 +98,6 @@ install::
 	  mkdir -p -m 755 $${PYDIR}; \
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cp -r tests/* $(ROOT)/$(PKGROOT)/tests/ \
 	)
 	mkdir -p -m 755 $(PYSAM_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(PYSAM_CACHE)/

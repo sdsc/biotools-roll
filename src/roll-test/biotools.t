@@ -369,8 +369,8 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  $output = `module load pysam; python -c 'import pysam; print pysam.SAMTOOLS_DISPATCH' 2>&1`;
-  like($output, qr/pad2unpad/, 'pysam works');
+  $output = `module load pysam; python -c 'import pysam' 2>&1`;
+  ok($? eq 0, 'pysam works');
 }
 
 $packageHome = '/opt/biotools/randfold';
