@@ -86,7 +86,7 @@ build: $(SRC_DIRS)
 	  cd $(SOURCE_DIR); \
           mkdir .git; \
 	  ./gradlew shadowJar; \
-          cd ../$(HTSJDK_SOURCE); \
+          cd ../$(HTSJDK_DIR); \
 	  ./gradlew shadowJar; \
         )
 	@echo "::: Package $(NAME) build complete :::"
