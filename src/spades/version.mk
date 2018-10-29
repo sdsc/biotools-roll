@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-spades
-VERSION        = 3.9.0
-RELEASE        = 5
+VERSION        = 3.13.0
+RELEASE        = 0
 PKGROOT        = /opt/biotools/spades
 
 SRC_SUBDIR     = spades

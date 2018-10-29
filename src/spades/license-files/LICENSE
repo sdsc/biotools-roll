@@ -1,5 +1,5 @@
 SPADES: SAINT-PETERSBURG GENOME ASSEMBLER
-Copyright (c) 2015 Saint Petersburg State University
+Copyright (c) 2015-2018 Saint Petersburg State University
 Copyright (c) 2011-2014 Saint Petersburg Academic University
 
 SPAdes is free software; you can redistribute it and/or modify
@@ -17,17 +17,25 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 -------------------------------------------------------------------------------
 
+SPAdes
+Genome assembler for single-cell and isolates data sets
+Version: see VERSION
+
+Developed in Center for Algorithmic Biotechnology, Institute of Translational Biomedicine, St. Petersburg State University.
+Developed in Algorithmic Biology Lab of St. Petersburg Academic University of the Russian Academy of Sciences.
+
 Current SPAdes contributors:
 
     Dmitry Antipov,
     Anton Bankevich,
+    Elena Bushmanova,
+    Vasisliy Ershov,
     Yuriy Gorshkov,
     Alexey Gurevich,
     Anton Korobeynikov,
-    Dmitriy Meleshko,
     Sergey Nurk,
     Andrey Prjibelski,
-    Yana Safonova,
+    Ivan Tolstoganov,
     Alla Lapidus and
     Pavel Pevzner
 
@@ -37,9 +45,11 @@ Also contributed:
     Mikhail Dvorkin,
     Alexander Kulikov,
     Valery Lesin,
+    Dmitriy Meleshko,
     Sergey Nikolenko,
     Son Pham,
     Alexey Pyshkin,
+    Yana Safonova,
     Vladislav Saveliev,
     Alexander Sirotkin,
     Yakov Sirotkin,
@@ -48,9 +58,10 @@ Also contributed:
     Irina Vasilinetc,
     Nikolay Vyahhi
 
-Contacts:
-    http://bioinf.spbau.ru/spades
-    spades.support@bioinf.spbau.ru
+Installation instructions and manual can be found on the website:
+http://cab.spbu.ru/software/spades/
+
+Address for communication: spades.support@cab.spbu.ru
 
 References:
 
