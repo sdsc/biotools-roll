@@ -380,7 +380,7 @@ SKIP: {
   like($output, qr/cel-let-7\s+-42.90\s+0.001000/, 'randfold works');
 }
 
-$packageHome = '/opt/biotools/samtools/1.3';
+$packageHome = '/opt/biotools/samtools/1.9';
 SKIP: {
   skip 'samtools not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
