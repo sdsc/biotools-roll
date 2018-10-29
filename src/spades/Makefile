@@ -83,7 +83,6 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/spades_compile.sh patch-files/spades_compile.sh.patch
-	patch $(SOURCE_DIR)/src/modules/dev_support/segfault_handler.hpp patch-files/segfault_handler.hpp.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  perl -pi -e "s!ROLLPATHCC!`which $(CC)`!g" $(SOURCE_DIR)/spades_compile.sh \
