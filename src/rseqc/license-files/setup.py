@@ -14,7 +14,7 @@ if sys.version_info[0] != 2 or sys.version_info[1] < 7:
 
 def main():
 	setup(  name = "RSeQC",
-            version = "2.6.4",
+            version = "2.6.5",
             packages = find_packages( 'lib' ),
             package_dir = { '': 'lib' },
             package_data = { '': ['*.ps'] },
