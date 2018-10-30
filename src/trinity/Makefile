@@ -82,12 +82,20 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
-	  cd $(SOURCE_DIR); \
+          cd $(JELLYFISH_DIR); \
+          ./configure --prefix=$(ROOT)/$(PKGROOT); \
+          make; \
+          make install; \
+	  cd ../$(SOURCE_DIR); \
 	  export FORCE_UNSAFE_CONFIGURE=1; \
 	  $(MAKE); \
 	  $(MAKE) plugins; \
+          cd trinity-plugins; \
+          make trinity_essentials; \
+          mv BIN/* ../bin; \
+          cd ..; \
 	  cp -r * $(ROOT)/$(PKGROOT)/ \
 	)
 	# Remove references to install dir from rpm text files
