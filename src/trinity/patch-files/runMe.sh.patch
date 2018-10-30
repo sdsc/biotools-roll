@@ -1,35 +1,12 @@
---- trinityrnaseq-2.1.1/sample_data/test_Trinity_Assembly/runMe.sh	2015-10-15 05:07:11.000000000 -0700
-+++ patch-files/runMe.sh	2015-11-03 20:56:43.100190617 -0800
-@@ -23,7 +23,7 @@
- ##  Run Trinity to Generate Transcriptome Assemblies ##
- #######################################################
- 
--../../Trinity --seqType fq --max_memory 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4 --no_cleanup
-+ROLLPREFIX/Trinity --seqType fq --max_memory 2G --left reads.left.fq.gz,reads2.left.fq.gz --right reads.right.fq.gz,reads2.right.fq.gz --SS_lib_type RF --CPU 4 --no_cleanup
- 
- ##### Done Running Trinity #####
- 
-@@ -40,19 +40,19 @@
- sleep 2
- 
- # first try RSEM
--../../util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method RSEM --aln_method bowtie --trinity_mode --prep_reference --output_dir RSEM_outdir
-+ROLLPREFIX/util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method RSEM --aln_method bowtie --trinity_mode --prep_reference --output_dir RSEM_outdir
- 
- # try eXpress
--../../util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method eXpress --aln_method bowtie2 --trinity_mode --prep_reference --output_dir eXpress_outdir
-+ROLLPREFIX/util/align_and_estimate_abundance.pl --transcripts trinity_out_dir/Trinity.fasta --seqType fq --left reads.left.fq --right reads.right.fq --SS_lib_type RF --est_method eXpress --aln_method bowtie2 --trinity_mode --prep_reference --output_dir eXpress_outdir
- 
- 
- #######################################
- ## run bowtie PE to get alignment stats
- #######################################
- 
--../../util/bowtie_PE_separate_then_join.pl  --seqType fq --left reads.left.fq --right reads.right.fq --target trinity_out_dir/Trinity.fasta --aligner bowtie
-+ROLLPREFIX/util/bowtie_PE_separate_then_join.pl  --seqType fq --left reads.left.fq --right reads.right.fq --target trinity_out_dir/Trinity.fasta --aligner bowtie
- 
--../../util/SAM_nameSorted_to_uniq_count_stats.pl bowtie_out/bowtie_out.nameSorted.bam
-+ROLLPREFIX/util/SAM_nameSorted_to_uniq_count_stats.pl bowtie_out/bowtie_out.nameSorted.bam
- 
- 
- 
+13c13
+< ${TRINITY_HOME}/Trinity --seqType fq --max_memory 2G \
+---
+> ROLLPREFIX/Trinity --seqType fq --max_memory 2G \
+24c24
+<     ${TRINITY_HOME}/util/misc/illustrate_ref_comparison.pl __indiv_ex_sample_derived/refSeqs.fa trinity_out_dir/Trinity.fasta 90
+---
+>     ROLLPREFIX/util/misc/illustrate_ref_comparison.pl __indiv_ex_sample_derived/refSeqs.fa trinity_out_dir/Trinity.fasta 90
+26c26
+<     ./test_FL.sh --query trinity_out_dir/Trinity.fasta --target __indiv_ex_sample_derived/refSeqs.fa --no_reuse
+---
+>     ROLLPREFIX/test_FL.sh --query trinity_out_dir/Trinity.fasta --target __indiv_ex_sample_derived/refSeqs.fa --no_reuse

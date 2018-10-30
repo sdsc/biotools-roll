@@ -1,14 +1,14 @@
 NAME           = sdsc-trinity
-VERSION        = 2.1.1
-RELEASE        = 2
+VERSION        = 2.8.4
+RELEASE        = 0
 PKGROOT        = /opt/biotools/trinity
 
 SRC_SUBDIR     = trinity
 
-SOURCE_NAME    = trinityrnaseq
+SOURCE_NAME    = trinityrnaseq-Trinity
 SOURCE_SUFFIX  = tar.gz
-SOURCE_VERSION = 2.1.1
-SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_VERSION = 2.8.4
+SOURCE_PKG     = $(SOURCE_NAME)-v$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 TAR_GZ_PKGS    = $(SOURCE_PKG)
