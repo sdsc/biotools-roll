@@ -66,6 +66,7 @@ $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	( \
+          $(DESCRIBE_CMAKE); \
 	  $(DESCRIBE_PKG) \
 	) > $@
 
@@ -82,14 +83,22 @@ build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
+          $(MODULE_LOAD_CMAKE); \
           cd $(JELLYFISH_DIR); \
           ./configure --prefix=$(ROOT)/$(PKGROOT); \
           make; \
           make install; \
+          cd ../$(SALMON_DIR); \
+          mkdir build; \
+          cd build; \
+          cmake -DCMAKE_PREFIX_PATH=$(ROOT)/$(PKGROOT) ..; \
+          make; \
+          make install; \
 	  cd ../$(SOURCE_DIR); \
 	  export FORCE_UNSAFE_CONFIGURE=1; \
+          mkdir bin; \
 	  $(MAKE); \
 	  $(MAKE) plugins; \
           cd trinity-plugins; \
