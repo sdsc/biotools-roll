@@ -104,7 +104,7 @@ install::
           mkdir build; \
           cd build; \
           cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ ..; \
-          make VERBOSE=1 -j 16; \
+          make -j 16; \
           make install; \
 	  cd ../../$(SOURCE_DIR); \
 	  export FORCE_UNSAFE_CONFIGURE=1; \
