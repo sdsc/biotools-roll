@@ -64,10 +64,16 @@ include $(SDSCDEVEL)/Rules.mk
 
 $(NAME).spec: DESCRIPTION LICENSE
 
+override ROLLCOMPILER = gnu
+ROLLNAME              = gnu
+
 DESCRIPTION:
+	$(MODULE_LOAD_CC) 
 	( \
-          $(DESCRIBE_CMAKE); \
 	  $(DESCRIBE_PKG) \
+          $(DESCRIBE_CMAKE); \
+          $(DESCRIBE_CC); \
+          $(DESCRIBE_BOOST) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -86,17 +92,21 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
           $(MODULE_LOAD_CMAKE); \
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_BOOST); \
+          export CC=`which $(CC)`; \
+          export CXX=`which $(CXX)`; \
           cd $(JELLYFISH_DIR); \
           ./configure --prefix=$(ROOT)/$(PKGROOT); \
-          make; \
+          make -j 16; \
           make install; \
           cd ../$(SALMON_DIR); \
           mkdir build; \
           cd build; \
-          cmake -DCMAKE_PREFIX_PATH=$(ROOT)/$(PKGROOT) ..; \
-          make; \
+          cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ ..; \
+          make VERBOSE=1 -j 16; \
           make install; \
-	  cd ../$(SOURCE_DIR); \
+	  cd ../../$(SOURCE_DIR); \
 	  export FORCE_UNSAFE_CONFIGURE=1; \
           mkdir bin; \
 	  $(MAKE); \
