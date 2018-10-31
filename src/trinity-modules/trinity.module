@@ -4,7 +4,7 @@ set biotoolsHome /opt/biotools
 
 module-whatis "trinity VERSION"
 
-module load bowtie samtools 
+module load gnu bowtie samtools 
 set packageHome $biotoolsHome/trinity
 setenv TRINITYHOME $packageHome
 setenv TRINITY_HOME $packageHome
