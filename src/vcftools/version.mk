@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-vcftools
 VERSION        = 0.1.16
-RELEASE        = -
+RELEASE        = 0
 PKGROOT        = /opt/biotools/vcftools
 
 SRC_SUBDIR     = vcftools
