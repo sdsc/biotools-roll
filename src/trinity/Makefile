@@ -113,7 +113,6 @@ install::
 	  $(MAKE) plugins; \
           cd trinity-plugins; \
           make trinity_essentials; \
-          mv BIN/* ../bin; \
           cd ..; \
 	  cp -r * $(ROOT)/$(PKGROOT)/ \
 	)
