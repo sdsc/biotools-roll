@@ -83,8 +83,8 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
 	  patch-files/runMe.sh.patch
-	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
-	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" \
+	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
+	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" \
 	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
 	@echo "::: Package $(NAME) build complete :::"
 
