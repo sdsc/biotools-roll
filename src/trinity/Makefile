@@ -90,6 +90,7 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
           $(MODULE_LOAD_CMAKE); \
           $(MODULE_LOAD_CC); \
@@ -103,7 +104,7 @@ install::
           cd ../$(SALMON_DIR); \
           mkdir build; \
           cd build; \
-          cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ ..; \
+          cmake -DCMAKE_INSTALL_PREFIX=$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ ..; \
           make -j 16; \
           make install; \
 	  cd ../../$(SOURCE_DIR); \
@@ -114,11 +115,9 @@ install::
           cd trinity-plugins; \
           make trinity_essentials; \
           cd ..; \
-	  cp -r * $(ROOT)/$(PKGROOT)/ \
+	  cp -r * $(PKGROOT) \
 	)
-	# Remove references to install dir from rpm text files
-	perl -pi -e "s#$(ROOT)##g" \
-	  `find $(ROOT)/$(PKGROOT)/ -type f -exec grep -Il . {} ';'`
+	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
