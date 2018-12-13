@@ -92,6 +92,7 @@ build: $(SRC_DIRS)
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  export CXXFLAGS='-std=c++98'; \
+          export LDFLAGS=-llzma; \
 	  ./configure -prefix=$(PKGROOT) \
 	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
 	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
