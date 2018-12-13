@@ -65,7 +65,7 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 override ROLLCOMPILER = gnu
-ROLLNAME              = gnu
+COMPILERNAME          = gnu
 
 DESCRIPTION:
 	$(MODULE_LOAD_CC) 
