@@ -98,7 +98,7 @@ install::
           export CC=`which $(CC)`; \
           export CXX=`which $(CXX)`; \
           cd $(JELLYFISH_DIR); \
-          ./configure --prefix=$(ROOT)/$(PKGROOT); \
+          ./configure --prefix=$(PKGROOT); \
           make -j 16; \
           make install; \
           cd ../$(SALMON_DIR); \
