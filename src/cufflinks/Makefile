@@ -92,12 +92,12 @@ build: $(SRC_DIRS)
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  export CXXFLAGS='-std=c++98'; \
-          export LDFLAGS=-llzma; \
+          export LIBS="-llzma -lbz2"; \
 	  ./configure -prefix=$(PKGROOT) \
 	    --with-boost=$${BOOSTHOME} --with-eigen=$${EIGENHOME} \
 	    --with-bam-libdir=$(SAMTOOLS_CACHE)/lib \
 	    --with-bam=$(SAMTOOLS_CACHE); \
-	  $(MAKE) BAM_LIB='-lbam -lhts' \
+	  $(MAKE) -j 16 BAM_LIB='-lbam -lhts' \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
