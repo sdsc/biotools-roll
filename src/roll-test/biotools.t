@@ -13,7 +13,7 @@ my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
-  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
+  'gmap_gsnap', 'hmmer','htseq', 'htslib','idba-ud', 'matt', 'miRDeep2', 'miso',
   'NucleoATAC', 'picard', 'plink', 'pysam', 'randfold', 'rseqc',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
@@ -278,6 +278,15 @@ SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;
   `module load htseq; python -c "import HTSeq" > /dev/null 2>&1`;
   ok($? eq 0, 'htseq works');
+}
+
+$packageHome = '/opt/biotools/htslib';
+SKIP: {
+  skip 'htslib not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  $output=`module load htslib; cd $TESTFILE.dir; cp -r $packageHome/test/* .; REF_PATH=: ./test.pl 2>&1`;
+  like($output, qr/passed  .. 97/, 'htslib works');
+  `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/idba-ud';
