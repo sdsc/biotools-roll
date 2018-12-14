@@ -84,6 +84,7 @@ build: $(SRC_DIRS)
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
+          export LIBS='-llzma -lbz2'; \
 	  ./configure --prefix=$(PKGROOT) --enable-bam \
 	              --with-bam-include-path=$(SAMTOOLS.CACHE)/include/bam  \
 	              --with-bam-lib-path=$(SAMTOOLS.CACHE)/lib; \
