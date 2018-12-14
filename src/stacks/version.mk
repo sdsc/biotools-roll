@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-stacks
 VERSION        = 1.37
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/biotools/stacks
 
 SRC_SUBDIR     = stacks
