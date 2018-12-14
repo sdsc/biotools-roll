@@ -21,7 +21,7 @@ roll please visit their official web pages:
 - <a href="https://pypi.python.org/pypi/bx-python" target="_blank">bx-python</a> consists of tools for manipulating biological data, particularly multiple sequence alignments.
 - <a href="http://wgs-assembler.sourceforge.net/" target="_blank">celera</a> is a de novo whole-genome shotgun (WGS) DNA sequence assembler.
 - <a href="http://cufflinks.cbcb.umd.edu" target="_blank">cufflinks</a> assembles transcripts, estimates their abundances, and tests for differential expression and regulation in RNA-Seq samples.
-- <a href="https://dendropy.org/" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats.
+- <a href="http://pythonhosted.org/DendroPy" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats.
 - <a href="https://github.com/bbuchfink/diamond" target="_blank">diamond</a> is a BLAST-compatible local aligner for mapping protein and translated DNA query sequences against a protein reference database.
 - <a href="http://www.genomic.ch/edena.php" target="_blank">edena</a> is a de novo short reads assembler.
 - <a href="http://emboss.sourceforge.net/" target="_blank">emboss</a> is the European Molecular Biology Open Software Suite. 
@@ -31,6 +31,7 @@ roll please visit their official web pages:
 - <a href="http://research-pub.gene.com/gmap" target="_blank">gmap_gsnap</a> is a genomic mapping and alignment program for mRNA and EST Sequences, and GSNAP: Genomic Short-read Nucleotide Alignment Program.
 - <a href="http://hmmer.org" target="_blank">hmmer</a> is used for searching sequence databases for sequence homologs, and for making sequence alignments. It implements methods using probabilistic models called profile hidden Markov models (profile HMMs).
 - <a href="http://www-huber.embl.de/users/anders/HTSeq" target="_blank">htseq</a> is a Python package that provides infrastructure to process data from high-throughput sequencing assays.
+- <a href="http://www.htslib.org" target="_blank">htslib</a> is a C library for reading/writing high-throughput sequencing data
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a> is a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth.
 - <a href="https://http://matt.cs.tufts.edu/" target="_blank">matt</a> is a multiple protein structure alignment program.
 - <a href="https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep" target="_blank">miRDeep2</a> is a tool which discovers microRNA genes by analyzing sequenced RNAs.

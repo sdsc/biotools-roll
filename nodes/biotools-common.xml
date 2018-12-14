@@ -17,7 +17,7 @@ bwa - http://bio-bwa.sourceforge.net
 bx-python - https://pypi.python.org/pypi/bx-python
 celera - http://wgs-assembler.sourceforge.net/
 Cufflinks - http://cufflinks.cbcb.umd.edu/
-dendropy - https://dendropy.org/
+dendropy - http://pythonhosted.org/DendroPy/
 diamond - https://github.com/bbuchfink/diamond
 edena - http://www.genomic.ch/edena.php
 emboss - http://emboss.sourceforge.net
@@ -27,6 +27,7 @@ GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program) - http://research-pub.gene.com/gmap/
 hmmer - http://hmmer.org
 htseq - http://www-huber.embl.de/users/anders/HTSeq
+htslib - http://http://www.htslib.org/
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
@@ -105,6 +106,8 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-hmmer-modules</package>
 <package>sdsc-htseq</package>
 <package>sdsc-htseq-modules</package>
+<package>sdsc-htslib</package>
+<package>sdsc-htslib-modules</package>
 <package>sdsc-idba-ud</package>
 <package>sdsc-idba-ud-modules</package>
 <package>sdsc-matt</package>
