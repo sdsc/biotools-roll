@@ -90,7 +90,7 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_GSL); \
 	  cd $(SOURCE_DIR); \
 	  make clean; \
-	  make CC=$(CC) CFLAGS="-Wall -Wc++-compat -O2 -I$${GSLHOME}/include" USE_GPL=1 \
+	  make -j 16 CC=$(CC) CFLAGS="-Wall -Wc++-compat -O2 -I$${GSLHOME}/include" USE_GPL=1 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
