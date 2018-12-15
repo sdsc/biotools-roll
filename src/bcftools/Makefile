@@ -88,8 +88,11 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_GSL); \
-	  cd $(SOURCE_DIR); \
-	  make clean; \
+          export CC=$(CC); \
+	  cd $(SOURCE_DIR)/htslib-1.9; \
+          ./configure --prefix=$(PKGROOT); \
+          make -j 16;  \
+          cd ..;  \
 	  make -j 16 CC=$(CC) CFLAGS="-Wall -Wc++-compat -O2 -I$${GSLHOME}/include" USE_GPL=1 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
@@ -98,9 +101,15 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
-	  cd $(SOURCE_DIR); \
+	  cd $(SOURCE_DIR)/htslib-1.9; \
+          make install; \
+          cd ..; \
 	  make prefix=$(PKGROOT) install; \
-	  cp -r test $(PKGROOT) \
+	  cp -r test $(PKGROOT); \
+          cp -r misc $(PKGROOT)/bin; \
+          mkdir -p $(PKGROOT)/bin/test/csq; \
+          cp -r test/csq/make-csq-test $(PKGROOT)/bin/test/csq; \
+          cp -r test/csq/sort-csq $(PKGROOT)/bin/test/csq \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)

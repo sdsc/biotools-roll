@@ -2,6 +2,9 @@ ifndef ROLLCOMPILER
   ROLLCOMPILER = gnu
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+override ROLLCOMPILER=gnu
+override COMPILERNAME=gnu
+
 
 NAME           = sdsc-bcftools
 VERSION        = 1.9
