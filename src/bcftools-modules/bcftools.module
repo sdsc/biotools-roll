@@ -5,7 +5,6 @@ set biotoolsHome /opt/biotools
 module-whatis "bcftools VERSION"
 
 module load ROLLCOMPILER gsl/1.16
-module load htslib
 
 set packageHome $biotoolsHome/bcftools
 prepend-path PATH $packageHome/bin
