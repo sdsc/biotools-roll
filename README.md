@@ -31,7 +31,6 @@ roll please visit their official web pages:
 - <a href="http://research-pub.gene.com/gmap" target="_blank">gmap_gsnap</a> is a genomic mapping and alignment program for mRNA and EST Sequences, and GSNAP: Genomic Short-read Nucleotide Alignment Program.
 - <a href="http://hmmer.org" target="_blank">hmmer</a> is used for searching sequence databases for sequence homologs, and for making sequence alignments. It implements methods using probabilistic models called profile hidden Markov models (profile HMMs).
 - <a href="http://www-huber.embl.de/users/anders/HTSeq" target="_blank">htseq</a> is a Python package that provides infrastructure to process data from high-throughput sequencing assays.
-- <a href="http://www.htslib.org" target="_blank">htslib</a> is a C library for reading/writing high-throughput sequencing data
 - <a href="http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html" target="_blank">idba-ud</a> is a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth.
 - <a href="https://http://matt.cs.tufts.edu/" target="_blank">matt</a> is a multiple protein structure alignment program.
 - <a href="https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep" target="_blank">miRDeep2</a> is a tool which discovers microRNA genes by analyzing sequenced RNAs.
