@@ -131,7 +131,7 @@ END
   close(OUT);
   `bash $TESTFILE.sh 2>&1`;
   $output = `cat $TESTFILE.dir/out`;
-  like($output, qr/Score = 33.7 bits \(36\),  Expect = 3.9/, 'blast works');
+  like($output, qr/Score = 33.7 bits \(36\),  Expect = 4.5/, 'blast works');
   `rm -rf $TESTFILE*`;
 }
 
@@ -148,7 +148,7 @@ $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
   $output = `module load bowtie;export BOWTIE_INDEXES=$packageHome/indexes;bowtie e_coli $packageHome/reads/e_coli_1000.fq 2>&1`;
-  like($output, qr/Reported 699 alignments to 1 output stream\(s\)/, 'bowtie works');
+  like($output, qr/Reported 699 alignments/, 'bowtie works');
 }
 
 $packageHome = '/opt/biotools/bowtie2';
@@ -203,14 +203,14 @@ END
 $packageHome = '/opt/biotools/dendropy';
 SKIP: {
   skip 'dendropy not installed', 1 if ! -d $packageHome;
-  $output = `module load dendropy; python $packageHome/test/test_popgenstat.py 2>&1`;
-  like($output, qr/OK/, 'dendropy works');
+  $output = `module load dendropy; python $packageHome/test/sumtrees.py $packageHome/test/primates.beast.mcct.meanh.tre 2>&1`;
+  like($output, qr/Summarization completed/, 'dendropy works');
 }
 
 $packageHome = '/opt/biotools/diamond';
 SKIP: {
   skip 'diamond not installed', 1 if ! -d $packageHome;
-  $output = `module load diamond; diamond -h 2>&1`;
+  $output = `module load diamond; diamond help 2>&1`;
   like($output, qr/blastp/, 'diamond works');
 }
 
@@ -272,7 +272,7 @@ SKIP: {
   `cp -r $packageHome/testsuite $TESTFILE.dir`;
   `cd $TESTFILE.dir/testsuite;ln -s $packageHome/bin ../bin`;
   $output=`module load hmmer; cd $TESTFILE.dir/testsuite; make check 2>&1`;
-  like($output, qr/All 260 exercises at level <= 2 passed./, 'hmmer works');
+  like($output, qr/All 299 exercises at level <= 2 passed./, 'hmmer works');
   `rm -rf $TESTFILE*`;
 }
 $packageHome = '/opt/biotools/htseq';
