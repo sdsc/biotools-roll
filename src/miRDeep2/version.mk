@@ -1,3 +1,8 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME             = sdsc-miRDeep2
 VERSION          = 0.0.8
 RELEASE          = 0

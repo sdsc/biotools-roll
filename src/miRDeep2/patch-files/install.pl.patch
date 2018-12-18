@@ -1,5 +1,5 @@
 --- mirdeep2_0_0_8/install.pl	2016-05-18 02:56:36.000000000 -0700
-+++ patch-files/install.pl	2018-10-26 18:44:11.320716611 -0700
++++ patch-files/install.pl	2018-12-17 16:26:10.845165848 -0800
 @@ -38,12 +38,12 @@
  			
  
@@ -163,7 +163,7 @@
  }
  
 -$ret = checkBIN("RNAfold -h 2","usage");
-+$ret = checkBIN("RNAfold -h 2","Usage");
++$ret = checkBIN("RNAfold -h","Usage");
  #my $rna_inst=`RNAfold 2>&1`;
  
  #if($rna_inst !~ /no\s*RNAfold/i){

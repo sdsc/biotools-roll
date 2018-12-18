@@ -71,9 +71,11 @@ SQUID_CACHE=$(REDHAT.ROOT)/cache/build-squid
 BOWTIE_CACHE=$(REDHAT.ROOT)/cache/build-bowtie
 
 DESCRIPTION:
+	$(MODULE_LOAD_CC)
 	( \
-	  $(DESCRIBE_PKG) \
-	) > $@
+          $(DESCRIBE_PKG); \
+          $(DESCRIBE_CC) \
+        ) > $@
 
 LICENSE: $(SRC_DIRS)
 	$(CHECK_LICENSE_FILES)
@@ -95,6 +97,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
+          $(MODULE_LOAD_CC); \
 	  cd $(PDF_DIR); \
 	  $(MAKE) install; \
           cd ../$(Font-TTF_DIR); \
