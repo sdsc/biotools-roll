@@ -1,18 +1,17 @@
 .PHONY:$(BIOPERL_NAMES)
 NAME           = sdsc-bioperl
-VERSION        = 1.007002
+VERSION        = 1.7.2
 RELEASE        = 0
 PKGROOT        = /opt/biotools/bioperl
 
-BIOPERL_PACKAGES = version-0.87 IO-String-1.08 CPAN-Meta-Requirements-2.140 Class-Data-Inheritable-0.08 CPAN-Meta-YAML-0.018 CPAN-Meta-2.150010 Test-Simple-1.302136 Devel-StackTrace-2.03 Exception-Class-1.44 Perl-OSType-1.010 inc-latest-0.500 ExtUtils-MakeMaker-7.34 ExtUtils-CBuilder-0.280230 local-lib-2.000024 Module-Metadata-1.000033 Module-Build-0.4224 parent-0.236 Sub-Uplevel-0.2800 Capture-Tiny-0.48 Algorithm-Diff-1.1903 Test-Deep-1.128 Text-Diff-1.45 Test-Differences-0.64 Test-Exception-0.43 Test-Harness-3.42 Test-Warn-0.32 Test-Most-0.35 Bio-ASN1-EntrezGene-1.72
-
+BIOPERL_PACKAGES = CPAN-Meta-Requirements-2.140 CPAN-Meta-YAML-0.018 CPAN-Meta-2.150010 Test-Simple-1.302136 Devel-StackTrace-2.03 Exception-Class-1.44 Perl-OSType-1.010 inc-latest-0.500 ExtUtils-MakeMaker-7.34 ExtUtils-CBuilder-0.280230 local-lib-2.000024 JSON-PP-4.00 Test-Harness-3.42 Module-Metadata-1.000033 Module-Build-0.4224 parent-0.236 Sub-Uplevel-0.2800 Capture-Tiny-0.48 Algorithm-Diff-1.1903 Test-Most-0.35 Test-Deep-1.128 Text-Diff-1.45 Test-Differences-0.64 Test-Exception-0.43 Test-Warn-0.32 Bio-ASN1-EntrezGene-1.72 IO-String-1.08 Data-Stag-0.14 Class-Data-Inheritable-0.08
 
 SRC_SUBDIR     = bioperl
 
-SOURCE_NAME    = BioPerl
+SOURCE_NAME    = bioperl-live-release
 SOURCE_SUFFIX  = tar.gz
-SOURCE_VERSION = $(VERSION)
-SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_VERSION = 1.7.2
+SOURCE_PKG     = $(SOURCE_NAME)-1-7-2.$(SOURCE_SUFFIX)
 SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 

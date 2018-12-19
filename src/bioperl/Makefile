@@ -11,6 +11,8 @@ BIOPERL_CACHE = $(REDHAT.ROOT)/cache/build-bioperl
 
 $(NAME).spec: DESCRIPTION LICENSE
 
+.PHONY: $(BIOPERL_DIRS)
+
 DESCRIPTION:
 	( \
 	  $(DESCRIBE_PKG) \
@@ -46,8 +48,14 @@ build: $(SRC_DIRS) bioperldownload
 	   export PERL5LIB=$(BIOPERL_CACHE)/share/perl5; \
 	   export PERL5LIB=$(BIOPERL_CACHE)/lib64/perl5:$${PERL5LIB}; \
 	   for PERL_PACKAGE in $(BIOPERL_DIRS); do \
+              echo "##### PACKAGE $${PERL_PACKAGE} #####"; \
               cd $${PERL_PACKAGE}; \
-              perl Makefile.PL PREFIX=$(BIOPERL_CACHE); \
+              if [[ $${PERL_PACKAGE} == *"Module-Build"* ]]; then \
+                 perl Makefile.PL INSTALL_BASE=$(BIOPERL_CACHE); \
+                 ./Build install --install_base $(BIOPERL_CACHE); \
+              else \
+                 perl Makefile.PL PREFIX=$(BIOPERL_CACHE) INSTALL_BASE=""; \
+              fi; \
               make; \
               make install; \
               cd ..; \
@@ -59,11 +67,11 @@ build: $(SRC_DIRS) bioperldownload
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-	   export PERL5LIB=$(BIOPERL_CACHE)/share/perl5; \
 	   export PERL5LIB=$(BIOPERL_CACHE)/lib64/perl5:$${PERL5LIB}; \
+	   export PERL5LIB=$(BIOPERL_CACHE)/lib64/perl5/auto:$${PERL5LIB}; \
            cd $(SOURCE_DIR); \
            perl Build.PL < ../bioperl_input; \
-           ./Build install --install_path script=$(BIOPERL_CACHE)/bin --install_path bindoc=$(BIOPERL_CACHE)/man/man1 --install_path libdoc=$(BIOPERL_CACHE)/man/man3 --install_path lib=$(BIOPERL_CACHE)/share/perl5 --install_path arch=$(BIOPERL_CACHE)/lib64; \
+           ./Build install --install_base $(BIOPERL_CACHE); \
            cp -r $(BIOPERL_CACHE)/* $(ROOT)/$(PKGROOT); \
 	   mkdir $(ROOT)/$(PKGROOT)/tests; \
            cp -r t/* $(ROOT)/$(PKGROOT)/tests \

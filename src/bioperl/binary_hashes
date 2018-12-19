@@ -1,6 +1,5 @@
           34174  ff84cdcd99c8407cb5b75303079e2a4d448a34e5  Algorithm-Diff-1.1903.tar.gz
           49080  0b0f32f36a8d75ce5c0c0deacb803eede3ce79e9  Bio-ASN1-EntrezGene-1.72.tar.gz
-       12362741  96dc6ea99e9c59c867c95c21b29292744e23b78d  BioPerl-1.007002.tar.gz
           37480  50e6b1300ec84b26a6132674c534c2a5b94e54d6  Capture-Tiny-0.48.tar.gz
            5660  7e8d823499366f92b6e10b655e4718b8bd709a67  Class-Data-Inheritable-0.08.tar.gz
          115459  95d3ac98a262f58435f33ccbd166b5f98d13542c  CPAN-Meta-2.150010.tar.gz
@@ -27,3 +26,8 @@
           11641  e2959e468a523cd39c92d746dcf025860de3ee50  Test-Warn-0.32.tar.gz
           29599  a4d59b0cb1c3f5d9141a64d49d05c65a4a86aff1  Text-Diff-1.45.tar.gz
          102114  8892d069be41460d8885174ed6d3dffd97021ef9  version-0.87.tar.gz
+          51856  e4abd7acda6498a71b30744c04ff767f8fb15690  JSON-PP-4.00.tar.gz
+       10085909  13c90c34cace11d3bf9bbf5ce061d3b2ad89e6f6  bioperl-live-release-1-7-2.tar.gz
+           7480  9f911afec75b743ad77f590432e845a0e5bcf7f1  IO-String-1.08.tar.gz
+         428107  4b41cd927c1b74d97384995ee90523884eddd2a8  Data-Stag-0.14.tar.gz
+           5660  7e8d823499366f92b6e10b655e4718b8bd709a67  Class-Data-Inheritable-0.08.tar.gz
