@@ -1,8 +1,4 @@
-ifneq ("$(ROLLOPTS)", "$(subst java8home=,,$(ROLLOPTS))")
-  override JAVA_HOME = $(subst java8home=,,$(filter java8home=%,$(ROLLOPTS)))
-endif
-
-PACKAGE     = celera
+PACKAGE     = canu
 CATEGORY    = applications
 
 NAME        = sdsc-$(PACKAGE)-modules

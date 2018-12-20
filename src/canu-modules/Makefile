@@ -10,8 +10,6 @@ $(VERSION_INC): $(VERSION_SRC)
 build:
 
 install:: typical-modulefile-install
-	perl -pi -e 's#JAVA_HOME#$(JAVA_HOME)#g;' \
-	  $(ROOT)/$(PKGROOT)/.version.$(VERSION) $(ROOT)/$(PKGROOT)/$(VERSION)
 
 clean::
 	rm -f $(VERSION_INC)
