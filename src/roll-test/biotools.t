@@ -11,7 +11,7 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
-  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
+  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'canu','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
   'NucleoATAC', 'picard', 'plink', 'pysam', 'randfold', 'rseqc',
@@ -182,21 +182,21 @@ END
      -f 'mg323.sa', 'bwa index run works');
   `/bin/rm -f mg323.*`;
 }
-
-$packageHome = '/opt/biotools/celera';
+ 
+$packageHome = '/opt/biotools/canu';
 SKIP: {
-  skip 'celera not installed', 1 if ! -d $packageHome;
+  skip 'canu not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
 open(OUT, ">$TESTFILE.sh");
 print OUT <<END;
   cd $TESTFILE.dir
-  cp -r $packageHome/test/* .
-  java -jar convertFastaAndQualToFastq.jar pacbio.filtered_subreads.fasta > pacbio.filtered_subreads.fastq
-  module load celera
-  PBcR -threads 4 -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000
+  module load canu
+  curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq
+  canu -trim -p ecoli -d ecoli   genomeSize=4.8m   -pacbio-raw  pacbio.fastq -UseGrid=false
+  canu -trim -p ecoli -d ecoli   genomeSize=4.8m   -pacbio-raw  pacbio.fastq -UseGrid=false
 END
   $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/Contig_SurrBaseLength           1226549/, 'celera works');
+  like($output, qr/Raw:        12528/, 'canu works');
   `rm -rf $TESTFILE*`;
 }
 
