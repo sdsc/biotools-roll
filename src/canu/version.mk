@@ -1,4 +1,4 @@
-NAME               = sdsc-celera
+NAME               = sdsc-canu
 VERSION            = 1.8
 RELEASE            = 0
 PKGROOT            = /opt/biotools/canu
