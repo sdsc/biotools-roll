@@ -15,7 +15,7 @@ bowtie - http://bowtie-bio.sourceforge.net
 bowtie2 - http://bowtie-bio.sourceforge.net/bowtie2
 bwa - http://bio-bwa.sourceforge.net
 bx-python - https://pypi.python.org/pypi/bx-python
-celera - http://wgs-assembler.sourceforge.net/
+canu - https://canu.readthedocs.io
 Cufflinks - http://cufflinks.cbcb.umd.edu/
 dendropy - http://pythonhosted.org/DendroPy/
 diamond - https://github.com/bbuchfink/diamond
@@ -80,8 +80,8 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-bwa-modules</package>
 <package>sdsc-bx-python</package>
 <package>sdsc-bx-python-modules</package>
-<package>sdsc-celera</package>
-<package>sdsc-celera-modules</package>
+<package>sdsc-canu</package>
+<package>sdsc-canu-modules</package>
 <package>sdsc-cufflinks</package>
 <package>sdsc-cufflinks-modules</package>
 <package>sdsc-dendropy</package>
