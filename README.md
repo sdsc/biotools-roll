@@ -19,7 +19,7 @@ roll please visit their official web pages:
 - <a href="http://bowtie-bio.sourceforge.net/bowtie2" target="_blank">bowtie2</a> is a tool for aligning sequencing reads to long reference sequences and has more features than bowtie 1.
 - <a href="http://bio-bwa.sourceforge.net" target="_blank">bwa</a> is a software package for mapping low-divergent sequences against a large reference genome.
 - <a href="https://pypi.python.org/pypi/bx-python" target="_blank">bx-python</a> consists of tools for manipulating biological data, particularly multiple sequence alignments.
-- <a href="http://wgs-assembler.sourceforge.net/" target="_blank">celera</a> is a de novo whole-genome shotgun (WGS) DNA sequence assembler.
+- <a href="https://canu.readthedocs.io" target="_blank">canu</a> is a fork of the Celera Assembler designed for high-noise single-molecule sequencing
 - <a href="http://cufflinks.cbcb.umd.edu" target="_blank">cufflinks</a> assembles transcripts, estimates their abundances, and tests for differential expression and regulation in RNA-Seq samples.
 - <a href="http://pythonhosted.org/DendroPy" target="_blank">dendropy</a> is a Python library for the simulation, processing, and manipulation of phylogenetic trees and character matrices, and supports the reading and writing of phylogenetic data in a range of formats.
 - <a href="https://github.com/bbuchfink/diamond" target="_blank">diamond</a> is a BLAST-compatible local aligner for mapping protein and translated DNA query sequences against a protein reference database.
