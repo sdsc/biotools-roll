@@ -65,19 +65,30 @@ include $(SDSCDEVEL)/Rules.mk
 
 $(NAME).spec: DESCRIPTION LICENSE
 
+VIENNARNA_CACHE=$(REDHAT.ROOT)/cache/build-viennarna
+RANDFOLD_CACHE=$(REDHAT.ROOT)/cache/build-randfold
+SQUID_CACHE=$(REDHAT.ROOT)/cache/build-squid
+BOWTIE_CACHE=$(REDHAT.ROOT)/cache/build-bowtie
+
 DESCRIPTION:
+	$(MODULE_LOAD_CC)
 	( \
-	  $(DESCRIBE_PKG) \
-	) > $@
+          $(DESCRIBE_PKG); \
+          $(DESCRIBE_CC) \
+        ) > $@
 
 LICENSE: $(SRC_DIRS)
 	$(CHECK_LICENSE_FILES)
 	echo unknown > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/install.pl patch-files/install.pl.patch
 	( \
 	  cd $(PDF_DIR); \
-	  perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT); \
+	  perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT) INSTALL_BASE=''; \
+	  $(MAKE); \
+          cd ../$(Font-TTF_DIR); \
+	  perl Makefile.PL PREFIX=$(ROOT)/$(PKGROOT) INSTALL_BASE=''; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
@@ -86,12 +97,22 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
+          $(MODULE_LOAD_CC); \
 	  cd $(PDF_DIR); \
 	  $(MAKE) install; \
+          cd ../$(Font-TTF_DIR); \
+	  $(MAKE) install; \
 	  cd ../$(SOURCE_DIR); \
-	  cp *.pl $(ROOT)/$(PKGROOT)/bin; \
+          export PERL5LIB=$(ROOT)/$(PKGROOT)/share/perl5; \
+          export PATH=$(VIENNARNA_CACHE)/bin:$${PATH}; \
+          export PATH=$(RANDFOLD_CACHE)/bin:$${PATH}; \
+          export PATH=$(SQUID_CACHE)/bin:$${PATH}; \
+          export PATH=$(BOWTIE_CACHE)/bin:$${PATH}; \
+          ./install.pl; \
+	  cp src/*.pl $(ROOT)/$(PKGROOT)/bin; \
 	  cp -r tutorial_dir/* $(ROOT)/$(PKGROOT)/tests; \
-	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT)/bin; \
+	  cp Rfam_for_miRDeep.fa $(ROOT)/$(PKGROOT); \
+          cp install_successful $(ROOT)/$(PKGROOT); \
 	  chmod 755 $(ROOT)/$(PKGROOT)/bin/*.pl \
 	)
 	# Remove $(ROOT) reference from rpm file

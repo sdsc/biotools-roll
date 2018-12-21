@@ -4,7 +4,7 @@ set biotoolsHome /opt/biotools
 
 module-whatis "miRDeep2 VERSION"
 
-module load bowtie
+module load ROLLCOMPILER bowtie ViennaRNA
 
 set packageHome $biotoolsHome/miRDeep2
 append-path PERL5LIB $packageHome/share/perl5
