@@ -11,7 +11,7 @@ my $appliance = $#ARGV >= 0 ? $ARGV[0] :
 my $installedOnAppliancesPattern = '.';
 my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
-  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'celera','cufflinks', 'dendropy',
+  'bowtie', 'bowtie2', 'bwa', 'bx-python', 'canu','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
   'NucleoATAC', 'picard', 'plink', 'pysam', 'randfold', 'rseqc',
@@ -22,6 +22,8 @@ my $isInstalled = -d '/opt/biotools';
 my $output;
 my $TESTFILE = 'tmpbiotools';
 `rm -rf $TESTFILE*`;
+my $COMPILER='ROLLCOMPILER';
+my %CXX = ('gnu' => 'g++', 'intel' => 'icpc', 'pgi' => 'pgc++');
 
 # biotools-common.xml
 if($appliance =~ /$installedOnAppliancesPattern/) {
@@ -38,7 +40,7 @@ SKIP: {
   skip 'bamtools not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
   `cp $packageHome/examples/* $TESTFILE.dir`;
-  $output = `module load bamtools; cd $TESTFILE.dir; g++ -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib/bamtools -lbamtools; ./test test.bam 2>&1`;
+   $output = `module load bamtools; cd $TESTFILE.dir; $CXX{$COMPILER} -o test -I$packageHome/include/bamtools test.cc -L$packageHome/lib64 -lbamtools -lz; ./test test.bam 2>&1`;
   like($output, qr/Qualities ;44999;499<8<8<<<8<<><<<<><7<;<<<>><</, 'bamtools works');
   `rm -rf $TESTFILE*`;
 }
@@ -146,7 +148,7 @@ $packageHome = '/opt/biotools/bowtie';
 SKIP: {
   skip 'bowtie not installed', 1 if ! -d $packageHome;
   $output = `module load bowtie;export BOWTIE_INDEXES=$packageHome/indexes;bowtie e_coli $packageHome/reads/e_coli_1000.fq 2>&1`;
-  like($output, qr/Reported 699 alignments to 1 output stream\(s\)/, 'bowtie works');
+  like($output, qr/Reported 699 alignments/, 'bowtie works');
 }
 
 $packageHome = '/opt/biotools/bowtie2';
@@ -180,35 +182,35 @@ END
      -f 'mg323.sa', 'bwa index run works');
   `/bin/rm -f mg323.*`;
 }
-
-$packageHome = '/opt/biotools/celera';
+ 
+$packageHome = '/opt/biotools/canu';
 SKIP: {
-  skip 'celera not installed', 1 if ! -d $packageHome;
+  skip 'canu not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
 open(OUT, ">$TESTFILE.sh");
 print OUT <<END;
   cd $TESTFILE.dir
-  cp -r $packageHome/test/* .
-  java -jar convertFastaAndQualToFastq.jar pacbio.filtered_subreads.fasta > pacbio.filtered_subreads.fastq
-  module load celera
-  PBcR -threads 4 -length 500 -partitions 200 -l lambda -s pacbio.spec -fastq pacbio.filtered_subreads.fastq genomeSize=50000
+  module load canu
+  curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq
+  canu -trim -p ecoli -d ecoli   genomeSize=4.8m   -pacbio-raw  pacbio.fastq -UseGrid=false
+  canu -trim -p ecoli -d ecoli   genomeSize=4.8m   -pacbio-raw  pacbio.fastq -UseGrid=false
 END
   $output = `bash $TESTFILE.sh 2>&1`;
-  like($output, qr/Contig_SurrBaseLength           1226549/, 'celera works');
+  like($output, qr/Raw:        12528/, 'canu works');
   `rm -rf $TESTFILE*`;
 }
 
 $packageHome = '/opt/biotools/dendropy';
 SKIP: {
   skip 'dendropy not installed', 1 if ! -d $packageHome;
-  $output = `module load dendropy; python $packageHome/test/test_popgenstat.py 2>&1`;
-  like($output, qr/OK/, 'dendropy works');
+  $output = `module load dendropy; python $packageHome/test/sumtrees.py $packageHome/test/primates.beast.mcct.meanh.tre 2>&1`;
+  like($output, qr/Summarization completed/, 'dendropy works');
 }
 
 $packageHome = '/opt/biotools/diamond';
 SKIP: {
   skip 'diamond not installed', 1 if ! -d $packageHome;
-  $output = `module load diamond; diamond -h 2>&1`;
+  $output = `module load diamond; diamond help 2>&1`;
   like($output, qr/blastp/, 'diamond works');
 }
 
@@ -249,11 +251,11 @@ SKIP: {
   $output = `module load GenomeAnalysisTK/3.5; java -jar $packageHome/GenomeAnalysisTK.jar -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam -T CountReads 2>&1`;
   like($output, qr/33 reads in the traversal/, 'GenomeAnalysisTK 3.5 works');
 }
-$packageHome = '/opt/biotools/GenomeAnalysisTK/4.0.4.0';
+$packageHome = '/opt/biotools/GenomeAnalysisTK/4.0.11.0';
 SKIP: {
   skip 'GenomeAnalysisTK not installed', 1 if ! -d $packageHome;
   $output = `module load GenomeAnalysisTK; gatk CountReads -R $packageHome/resources/exampleFASTA.fasta -I $packageHome/resources/exampleBAM.bam 2>&1`;
-  like($output, qr/ProgressMeter - Traversal complete. Processed 33 total reads/, 'GenomeAnalysisTK 4.0.4.0 works');
+  like($output, qr/ProgressMeter - Traversal complete. Processed 33 total reads/, 'GenomeAnalysisTK 4.0.11.0 works');
 }
 
 $packageHome = '/opt/biotools/gmap_gsnap';
@@ -270,7 +272,7 @@ SKIP: {
   `cp -r $packageHome/testsuite $TESTFILE.dir`;
   `cd $TESTFILE.dir/testsuite;ln -s $packageHome/bin ../bin`;
   $output=`module load hmmer; cd $TESTFILE.dir/testsuite; make check 2>&1`;
-  like($output, qr/All 260 exercises at level <= 2 passed./, 'hmmer works');
+  like($output, qr/All 299 exercises at level <= 2 passed./, 'hmmer works');
   `rm -rf $TESTFILE*`;
 }
 $packageHome = '/opt/biotools/htseq';
@@ -302,9 +304,9 @@ print OUT <<END;
 module load miRDeep2
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
+rm -f reads_collapsed.fa
 bowtie-build cel_cluster.fa cel_cluster
-mapper.pl reads.fa -c -j -k TCGTATGCCGTCTTCTGCTTGT  -l 18 -m -p cel_cluster -s reads_collapsed.fa -t r
-eads_collapsed_vs_genome.arf -v
+mapper.pl reads.fa -c -j -k TCGTATGCCGTCTTCTGCTTGT  -l 18 -m -p cel_cluster -s reads_collapsed.fa -t reads_collapsed_vs_genome.arf -v
 quantifier.pl -p precursors_ref_this_species.fa -m mature_ref_this_species.fa -r reads_collapsed.fa -t cel -y 16_19
 miRDeep2.pl reads_collapsed.fa cel_cluster.fa reads_collapsed_vs_genome.arf mature_ref_this_species.fa mature_ref_other_species.fa precursors_ref_this_species.fa -t C.elegans 2> report.log
 cat miRNAs_expressed_all_samples_16_19.csv
@@ -369,8 +371,8 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  $output = `module load pysam; python -c 'import pysam; print pysam.SAMTOOLS_DISPATCH' 2>&1`;
-  like($output, qr/pad2unpad/, 'pysam works');
+  $output = `module load pysam; python -c 'import pysam' 2>&1`;
+  ok($? eq 0, 'pysam works');
 }
 
 $packageHome = '/opt/biotools/randfold';
@@ -380,13 +382,13 @@ SKIP: {
   like($output, qr/cel-let-7\s+-42.90\s+0.001000/, 'randfold works');
 }
 
-$packageHome = '/opt/biotools/samtools/1.3';
+$packageHome = '/opt/biotools/samtools/1.9';
 SKIP: {
   skip 'samtools not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
   `module load samtools; cd $TESTFILE.dir; cp -r $packageHome/examples/* .; samtools faidx ex1.fa`;
   $output = `cat $TESTFILE.dir/ex1.fa.fai`;
-  like($output, qr/seq2/, 'samtools 1.3 index run works');
+  like($output, qr/seq2/, 'samtools 1.9 index run works');
   `/bin/rm -f $packageHome/examples/ex1.fa.fai`;
   `rm -rf $TESTFILE.dir`;
 }
@@ -503,15 +505,15 @@ SKIP: {
 module load ViennaRNA
 cd $TESTFILE.dir
 cp -r $packageHome/tests/* .
-perl test.pl
+perl RNA/t/Design.t
 END
   close(OUT);
   $output = `bash $TESTFILE.sh 2>&1`;
   $count = 0;
   foreach $line(split(/\n/, $output)) {
-    $count++ if $line =~ /^ok/;
+    $count++ if $line =~ /ok /;
   }
-  ok($count >= 23, 'ViennaRNA works');
+  ok($count == 36, 'ViennaRNA works');
   `rm -rf $TESTFILE*`;
 }
 
