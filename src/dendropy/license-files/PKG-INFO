@@ -1,10 +1,10 @@
 Metadata-Version: 1.1
 Name: DendroPy
-Version: 4.0.3
+Version: 4.4.0
 Summary: A Python library for phylogenetics and phylogenetic computing: reading, writing, simulation, processing and manipulation of phylogenetic trees (phylogenies) and characters.
 Home-page: http://packages.python.org/DendroPy/
 Author: Jeet Sukumaran and Mark T. Holder
-Author-email: jeetsukumaran@gmail.com and mtholder@ku.edu
+Author-email: jeetsukumaran@gmail.com, mtholder@ku.edu
 License: BSD
 Description: .. image:: https://raw.githubusercontent.com/jeetsukumaran/DendroPy/DendroPy4/doc/source/_static/dendropy_logo.png
            :align: right
@@ -57,56 +57,6 @@ Description: .. image:: https://raw.githubusercontent.com/jeetsukumaran/DendroPy
         
         and more.
         
-        Testing
-        =======
-        
-        .. note::
-        
-            Note that some tests rely on PAUP* being available on your system.
-            You will need to set the environmental variable ``DENDROPY_PAUP_EXECUTABLE_PATH`` to the path
-            of the PAUP* executable for these tests to be run, e.g.::
-        
-                DENDROPY_PAUP_EXECUTABLE_PATH=/usr/local/bin/paup python setup.py test
-        
-            or::
-        
-                DENDROPY_PAUP_EXECUTABLE_PATH=/usr/local/bin/paup python -m unittest
-        
-            If this variable is not set or set to "NONE", then any tests that rely on
-            PAUP* will NOT be run.
-        
-        Tests can be run by typing::
-        
-            $ python -m dendropy.test
-        
-        By default, all tests are run. You can run specific by providing the
-        fully-qualified name of the modules, test cases, or specific test methods to
-        run, e.g.::
-        
-            $ python -m dendropy.test test_tokenizer
-            $ python -m dendropy.test test_tokenizer.TestCase
-            $ python -m dendropy.test test_tokenizer.TestCase.test1
-            $ python -m dendropy.test test_tokenizer test_datamodel_taxon
-        
-        Or special pre-defined sub-groups of tests, e.g.::
-        
-            $ python -m dendropy.test @datamodel
-            $ python -m dendropy.test @dataio
-            $ python -m dendropy.test @datamodel @newick
-        
-        A list of all available sub-groups can be seen by::
-        
-            $ python -m dendropy.test --help-testgroups
-        
-        For any tests run, you can set the level at which the test progress is logged
-        by::
-        
-            $ python -m dendropy.test -l DEBUG all
-        
-        For all options, type::
-        
-            $ python -m dendropy.test --help
-        
         License and Warranty
         ====================
         
@@ -115,7 +65,7 @@ Description: .. image:: https://raw.githubusercontent.com/jeetsukumaran/DendroPy
         Current Release
         ===============
         
-        The current release of DendroPy is version 4.0.3 (development-master-55d1251, 2015-07-29 01:05:56).
+        The current release of DendroPy is version 4.4.0.
         
         
 Keywords: phylogenetics phylogeny phylogenies phylogeography evolution evolutionary biology systematics coalescent population genetics phyloinformatics bioinformatics
@@ -131,5 +81,7 @@ Classifier: Programming Language :: Python :: 3.1
 Classifier: Programming Language :: Python :: 3.2
 Classifier: Programming Language :: Python :: 3.3
 Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python
 Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
