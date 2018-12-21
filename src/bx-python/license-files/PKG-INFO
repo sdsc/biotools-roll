@@ -1,12 +1,11 @@
 Metadata-Version: 1.1
 Name: bx-python
-Version: 0.8.1
+Version: 0.8.2
 Summary: Tools for manipulating biological data, particularly multiple sequence alignments
-Home-page: http://bitbucket.org/james_taylor/bx-python/wiki/Home
+Home-page: https://github.com/bxlab/bx-python
 Author: James Taylor, Bob Harris, David King, Brent Pedersen, Kanwei Li, and others
 Author-email: james@jamestaylor.org
 License: MIT
-Description-Content-Type: UNKNOWN
 Description: UNKNOWN
 Platform: UNKNOWN
 Classifier: Development Status :: 5 - Production/Stable

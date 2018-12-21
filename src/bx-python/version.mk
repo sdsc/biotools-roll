@@ -4,7 +4,7 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-bx-python
-VERSION        = 0.8.1
+VERSION        = 0.8.2
 RELEASE        = 0
 PKGROOT        = /opt/biotools/bx-python
 
@@ -18,5 +18,5 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No\nAutoProv:No
+RPM.EXTRAS     = AutoReq:No\nAutoProv:No\n%global _python_bytecompile_errors_terminate_build 0
 RPM.PREFIX     = $(PKGROOT)
