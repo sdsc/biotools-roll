@@ -85,18 +85,20 @@ build: $(SRC_DIRS)
 	  export CC=$(CC); \
 	  export CXX=$(CXX); \
 	  export CXXFLAGS='-std=c++98'; \
-	  cmake -DCMAKE_INSTALL_PREFIX=$(ROOT)/$(PKGROOT) ..; \
+	  cmake -DCMAKE_INSTALL_PREFIX=$(PKGROOT) ..; \
 	  make \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/examples
+	$(PKGROOT_BIND_MOUNT)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR)/build; \
 	  make install \
 	)
+	$(PKGROOT_BIND_UMOUNT)
 	cp tests/* $(ROOT)/$(PKGROOT)/examples/
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
