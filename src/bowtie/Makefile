@@ -62,11 +62,15 @@ RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
+BOWTIE_CACHE = $(REDHAT.ROOT)/cache/build-bowtie
+
+ROLLCOMPILER = intel
 
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	( \
+          $(DESCRIBE_MKL); \
 	  $(DESCRIBE_PKG) \
 	) > $@
 
@@ -76,18 +80,25 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-	  cd $(SOURCE_DIR); \
+          $(MODULE_LOAD_CC); \
+          cd $(SOURCE_DIR); \
+          module unload gnu; \
+          module unload gnutools; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 -p $(ROOT)/$(PKGROOT)/bin
+	mkdir -p -m 755 -p $(BOWTIE_CACHE)/bin
 	( \
 	  cd $(SOURCE_DIR); \
 	  cp bowtie bowtie-* $(ROOT)/$(PKGROOT)/bin/; \
+	  cp bowtie bowtie-* $(BOWTIE_CACHE)/bin/; \
 	  cp -r genomes indexes reads scripts $(ROOT)/$(PKGROOT)/; \
-	  chmod -R a+rX $(ROOT)/$(PKGROOT)/* \
+	  cp -r genomes indexes reads scripts $(BOWTIE_CACHE)/; \
+	  chmod -R a+rX $(ROOT)/$(PKGROOT)/*; \
+	  chmod -R a+rX $(BOWTIE_CACHE)/* \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
