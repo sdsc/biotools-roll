@@ -75,15 +75,11 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv3+ > $@
 
 build: $(SRC_DIRS)
-	( \
-           cd $(SOURCE_DIR); \
-           ant build \
-        )
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/bin/* $(ROOT)/$(PKGROOT)/
+	cp -r $(SOURCE_DIR)/* $(ROOT)/$(PKGROOT)/
 	chmod 0755 $(ROOT)/$(PKGROOT)/fastqc
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
