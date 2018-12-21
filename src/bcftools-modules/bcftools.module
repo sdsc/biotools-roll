@@ -8,6 +8,5 @@ module load ROLLCOMPILER gsl/1.16
 
 set packageHome $biotoolsHome/bcftools
 prepend-path PATH $packageHome/bin
-prepend-path PATH /opt/biotools/trinity/trinity-plugins/htslib
 setenv BCFTOOLSHOME $packageHome
 
