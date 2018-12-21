@@ -93,7 +93,7 @@ install::
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
           bx_python_path=`dirname $(PKGROOT)`/bx-python; \
           mkdir -p $${bx_python_path}; \
-          cp -r $(BX_PYTHON_CACHE)/* $${bx-python-path}; \
+          cp -r $(BX_PYTHON_CACHE)/* $${bx_python_path}; \
           export PYTHONPATH=$${bx-python-path}/lib/python$(PYVERSION)/site-packages:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
 	  python setup.py build; \
