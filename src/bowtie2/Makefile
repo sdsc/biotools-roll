@@ -63,6 +63,8 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+ROLLCOMPILER = intel
+
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
@@ -76,6 +78,7 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
+          $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) \
 	)
