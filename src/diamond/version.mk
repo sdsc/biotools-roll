@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-diamond
-VERSION        = 0.7.12
-RELEASE        = 3
+VERSION        = 0.9.22
+RELEASE        = 0
 PKGROOT        = /opt/biotools/diamond
 
 SRC_SUBDIR     = diamond

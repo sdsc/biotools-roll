@@ -75,7 +75,7 @@ DESCRIPTION:
 
 LICENSE: $(SRC_DIRS)
 	$(CHECK_LICENSE_FILES)
-	echo University of Tuebingen > $@
+	echo "GPL Version 3" > $@
 
 build: $(SRC_DIRS)
 	( \
