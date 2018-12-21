@@ -1,31 +1,32 @@
---- hmmer-3.1b2/testsuite/i5-hmmbuild-naming.pl	2015-02-26 04:46:05.000000000 -0800
-+++ patch-files/i5-hmmbuild-naming.pl	2016-05-07 14:11:30.661587376 -0700
+--- hmmer-3.2.1/testsuite/i5-hmmbuild-naming.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i5-hmmbuild-naming.pl	2018-10-24 17:04:13.970512453 -0700
 @@ -12,22 +12,22 @@
  $tmppfx       = shift;
  
  
 -if (! -x "$builddir/src/hmmbuild")        { print "FAIL: didn't find hmmbuild binary $builddir/src/hmmbuild\n"; exit 1; }  
-+if (! -x "$builddir/hmmbuild")        { print "FAIL: didn't find hmmbuild binary $builddir/hmmbuild\n"; exit 1; }  
- if (! -r "$srcdir/testsuite/20aa.sto")    { print "FAIL: didn't find $srcdir/testsuite/20aa.sto\n";             exit 1; }
+-if (! -r "$srcdir/testsuite/20aa.sto")    { print "FAIL: didn't find $srcdir/testsuite/20aa.sto\n";             exit 1; }
 -if (! -r "$srcdir/tutorial/fn3.sto")      { print "FAIL: didn't find $srcdir/tutorial/globins4.sto\n";          exit 1; }
 -if (! -r "$srcdir/tutorial/globins4.sto") { print "FAIL: didn't find $srcdir/tutorial/globins4.sto\n";          exit 1; }
-+if (! -r "$srcdir/testsuite/fn3.sto")      { print "FAIL: didn't find $srcdir/testsuite/globins4.sto\n";          exit 1; }
-+if (! -r "$srcdir/testsuite/globins4.sto") { print "FAIL: didn't find $srcdir/testsuite/globins4.sto\n";          exit 1; }
++if (! -x "../bin/hmmbuild")        { print "FAIL: didn't find hmmbuild binary $builddir/hmmbuild\n"; exit 1; }  
++if (! -r "20aa.sto")    { print "FAIL: didn't find $srcdir/testsuite/20aa.sto\n";             exit 1; }
++if (! -r "fn3.sto")      { print "FAIL: didn't find $srcdir/tutorial/globins4.sto\n";          exit 1; }
++if (! -r "globins4.sto") { print "FAIL: didn't find $srcdir/tutorial/globins4.sto\n";          exit 1; }
  
 -system("$builddir/src/hmmbuild $tmppfx.hmm $srcdir/testsuite/20aa.sto > /dev/null");    
-+system("$builddir/hmmbuild $tmppfx.hmm $srcdir/testsuite/20aa.sto > /dev/null");    
++system("hmmbuild $tmppfx.hmm 20aa.sto > /dev/null");    
  if ($? != 0)                          { print "FAIL: hmmbuild failed unexpectedly\n";         exit 1; }
  $name = `cat $tmppfx.hmm | grep "^NAME"`;
  if ($name !~ /^NAME \s*test/)         { print "FAIL: default naming by MSA name fails\n";     exit 1; }
  
 -system("$builddir/src/hmmbuild $tmppfx.hmm $srcdir/tutorial/globins4.sto > /dev/null"); 
-+system("$builddir/hmmbuild $tmppfx.hmm $srcdir/testsuite/globins4.sto > /dev/null"); 
++system("hmmbuild $tmppfx.hmm globins4.sto > /dev/null"); 
  if ($? != 0)                          { print "FAIL: hmmbuild failed unexpectedly\n";         exit 1; }
  $name = `cat $tmppfx.hmm | grep "^NAME"`;
  if ($name !~ /^NAME \s*globins4/)     { print "FAIL: naming using file name fails\n";         exit 1; }
  
 -system("$builddir/src/hmmbuild -n myname $tmppfx.hmm $srcdir/tutorial/fn3.sto > /dev/null");
-+system("$builddir/hmmbuild -n myname $tmppfx.hmm $srcdir/testsuite/fn3.sto > /dev/null");
++system("hmmbuild -n myname $tmppfx.hmm fn3.sto > /dev/null");
  if ($? != 0)                          { print "FAIL: hmmbuild failed unexpectedly\n";         exit 1; }
  $name = `cat $tmppfx.hmm | grep "^NAME"`;
  if ($name !~ /^NAME \s*myname/)       { print "FAIL: naming using -n fails\n";                exit 1; }
@@ -35,9 +36,10 @@
  #
 -system("cat $srcdir/testsuite/20aa.sto $srcdir/tutorial/fn3.sto > $tmppfx.sto");
 -system("$builddir/src/hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null");                 if ($? != 0) { print "FAIL: hmmbuild failed on multi MSA file\n";    exit 1; }
-+system("cat $srcdir/testsuite/20aa.sto $srcdir/testsuite/fn3.sto > $tmppfx.sto");
-+system("$builddir/hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null");                 if ($? != 0) { print "FAIL: hmmbuild failed on multi MSA file\n";    exit 1; }
- system("$builddir/src/hmmbuild -n myname $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");  if ($? == 0) { print "FAIL: hmmbuild -n should have failed\n";       exit 1; }
+-system("$builddir/src/hmmbuild -n myname $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");  if ($? == 0) { print "FAIL: hmmbuild -n should have failed\n";       exit 1; }
++system("cat 20aa.sto fn3.sto > $tmppfx.sto");
++system("hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null");                 if ($? != 0) { print "FAIL: hmmbuild failed on multi MSA file\n";    exit 1; }
++system("hmmbuild -n myname $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");  if ($? == 0) { print "FAIL: hmmbuild -n should have failed\n";       exit 1; }
  
  # >1 alignment in file; first or second one lacks MSA name.
  # default will fail.
@@ -46,10 +48,10 @@
 -system("$builddir/src/hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");            if ($? == 0) { print "FAIL: hmmbuild should have failed\n";    exit 1; }
 -system("cat $srcdir/tutorial/globins4.sto $srcdir/testsuite/20aa.sto > $tmppfx.sto");
 -system("$builddir/src/hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");            if ($? == 0) { print "FAIL: hmmbuild should have failed\n";    exit 1; }
-+system("cat $srcdir/testsuite/20aa.sto $srcdir/testsuite/globins4.sto > $tmppfx.sto");
-+system("$builddir/hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");            if ($? == 0) { print "FAIL: hmmbuild should have failed\n";    exit 1; }
-+system("cat $srcdir/testsuite/globins4.sto $srcdir/testsuite/20aa.sto > $tmppfx.sto");
-+system("$builddir/hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");            if ($? == 0) { print "FAIL: hmmbuild should have failed\n";    exit 1; }
++system("cat 20aa.sto globins4.sto > $tmppfx.sto");
++system("hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");            if ($? == 0) { print "FAIL: hmmbuild should have failed\n";    exit 1; }
++system("cat globins4.sto 20aa.sto > $tmppfx.sto");
++system("hmmbuild $tmppfx.hmm $tmppfx.sto > /dev/null 2>&1");            if ($? == 0) { print "FAIL: hmmbuild should have failed\n";    exit 1; }
  
  
  print "ok\n"; 

@@ -1,11 +1,11 @@
---- hmmer-3.1b2/testsuite/i20-fmindex-core.pl	2015-02-26 04:46:05.000000000 -0800
-+++ patch-files/i20-fmindex-core.pl	2016-05-05 22:37:43.673369143 -0700
-@@ -25,11 +25,11 @@
+--- hmmer-3.2.1/testsuite/i20-fmindex-core.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i20-fmindex-core.pl	2018-10-24 17:04:13.956512569 -0700
+@@ -23,11 +23,11 @@
  @h3progs =  ( "makenhmmerdb", "exactmatch");
  
  # Verify that we have all the executables and datafiles we need for the test.
 -foreach $h3prog  (@h3progs)  { if (! -x "$builddir/src/$h3prog")              { die "FAIL: didn't find $h3prog executable in $builddir/src\n";              } }
-+foreach $h3prog  (@h3progs)  { if (! -x "$builddir/$h3prog")              { die "FAIL: didn't find $h3prog executable in $builddir/src\n";              } }
++foreach $h3prog  (@h3progs)  { if (! -x "$builddir/$h3prog")              { die "FAIL: didn't find $h3prog executable in $builddir\n";              } }
  
  &create_db_file("$tmppfx.fa");
  
@@ -14,7 +14,7 @@
  $output = do_cmd($cmd);
  if ($? != 0) { die "FAIL: makenhmmerdb failed unexpectedly\n"; } 
  if ($output !~ /# alphabet     :                           dna/ ||
-@@ -42,7 +42,7 @@
+@@ -40,7 +40,7 @@
  &create_search_file("$tmppfx.test");
  
  # Search for hits

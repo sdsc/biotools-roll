@@ -9,8 +9,8 @@ endif
 MPINAME := $(firstword $(subst /, ,$(ROLLMPI)))
 
 NAME           = sdsc-hmmer
-VERSION        = 3.1b2
-RELEASE        = 2
+VERSION        = 3.2.1
+RELEASE        = 0
 PKGROOT        = /opt/biotools/hmmer
 
 SRC_SUBDIR     = hmmer

@@ -1,26 +1,26 @@
---- hmmer-3.1b2/testsuite/i14-hmmemit-consensus.pl	2015-02-26 04:46:05.000000000 -0800
-+++ patch-files/i14-hmmemit-consensus.pl	2016-05-05 22:37:43.673369143 -0700
-@@ -16,8 +16,8 @@
+--- hmmer-3.2.1/testsuite/i14-hmmemit-consensus.pl	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/i14-hmmemit-consensus.pl	2018-10-24 17:04:13.909512960 -0700
+@@ -15,8 +15,8 @@
  }
  
  # Verify that we have all the executables we need for the test.
 -if (! -x "$builddir/src/hmmbuild")  { die "FAIL: didn't find hmmbuild binary in $builddir/src\n";  }
 -if (! -x "$builddir/src/hmmemit")   { die "FAIL: didn't find hmmemit binary in $builddir/src\n";  }
-+if (! -x "$builddir/hmmbuild")  { die "FAIL: didn't find hmmbuild binary in $builddir/\n";  }
-+if (! -x "$builddir/hmmemit")   { die "FAIL: didn't find hmmemit binary in $builddir/\n";  }
++if (! -x "../bin/hmmbuild")  { die "FAIL: didn't find hmmbuild binary in $builddir\n";  }
++if (! -x "../bin/hmmemit")   { die "FAIL: didn't find hmmemit binary in $builddir\n";  }
  
  # Create a carefully constructed test alignment
  #
-@@ -65,10 +65,10 @@
+@@ -64,10 +64,10 @@
  
  for ($i = 0; $i < $#symfrac_choices; $i++)
  {
 -    @output = `$builddir/src/hmmbuild --wnone --pnone --symfrac $symfrac_choices[$i] $tmppfx.hmm $tmppfx.sto 2>&1`;
-+    @output = `$builddir/hmmbuild --wnone --pnone --symfrac $symfrac_choices[$i] $tmppfx.hmm $tmppfx.sto 2>&1`;
++    @output = `hmmbuild --wnone --pnone --symfrac $symfrac_choices[$i] $tmppfx.hmm $tmppfx.sto 2>&1`;
      if ($? != 0) { die "FAIL: hmmbuild failed\n"; }
  
 -    @output = `$builddir/src/hmmemit  -C --minl $minl_choices[$i] --minu $minu_choices[$i] $tmppfx.hmm 2>&1`;
-+    @output = `$builddir/hmmemit  -C --minl $minl_choices[$i] --minu $minu_choices[$i] $tmppfx.hmm 2>&1`;
++    @output = `hmmemit  -C --minl $minl_choices[$i] --minu $minu_choices[$i] $tmppfx.hmm 2>&1`;
      if ($? != 0) { die "FAIL: hmmemit failed\n"; }
  
      if ($output[1] ne $answers[$i]) { die "FAIL: hmmemit, expected $answers[$i]; saw $output[1]\n"; }

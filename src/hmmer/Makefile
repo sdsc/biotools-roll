@@ -81,6 +81,7 @@ LICENSE: $(SRC_DIRS)
 	echo GPL > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/testsuite/Makefile.in patch-files/Makefile.in.patch
 	( \
           $(MODULE_LOAD_CC); \
           $(MODULE_LOAD_MPI); \
@@ -111,7 +112,7 @@ install::
 	patch $(SOURCE_DIR)/testsuite/i18-nhmmer-generic.pl patch-files/i18-nhmmer-generic.pl.patch
 	patch $(SOURCE_DIR)/testsuite/i19-hmmpgmd-ga.pl patch-files/i19-hmmpgmd-ga.pl.patch
 	patch $(SOURCE_DIR)/testsuite/i20-fmindex-core.pl patch-files/i20-fmindex-core.pl.patch
-	patch $(SOURCE_DIR)/testsuite/Makefile patch-files/Makefile.patch
+	patch $(SOURCE_DIR)/testsuite/i21-rewind.pl patch-files/i21-rewind.pl.patch
 	patch $(SOURCE_DIR)/testsuite/testsuite.sqc  patch-files/testsuite.sqc.patch
 	( \
 	  cd $(SOURCE_DIR); \
@@ -121,7 +122,9 @@ install::
           cp easel/formats/BLOSUM62 $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/*.hmm $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/*.sto $(ROOT)/$(PKGROOT)/testsuite; \
+          cp tutorial/*.fa $(ROOT)/$(PKGROOT)/testsuite; \
           cp tutorial/HBB_HUMAN $(ROOT)/$(PKGROOT)/testsuite; \
+          cp src/p7_config.h $(ROOT)/$(PKGROOT)/testsuite; \
           cd src; \
           cp hmmpress.itest.pl itest_brute alimask hmmalign hmmbuild  \
              hmmconvert hmmemit hmmfetch hmmlogo hmmpress hmmscan \
@@ -133,9 +136,9 @@ install::
           cp  src/impl/*_utest easel/*_utest $(ROOT)/$(PKGROOT)/bin; \
           cd easel/miniapps; \
           cp esl-afetch esl-alimanip esl-alimap esl-alimask esl-alimerge esl-alipid \
-             esl-alistat esl-cluster esl-compalign esl-compstruct esl-construct \
+             esl-alistat esl-compalign esl-compstruct esl-construct \
              esl-histplot esl-mask esl-reformat esl-selectn esl-seqrange esl-seqstat \
-             esl-sfetch esl-shuffle esl-ssdraw esl-stranslate esl-weight $(ROOT)/$(PKGROOT)/bin \
+             esl-sfetch esl-shuffle esl-ssdraw esl-weight esl-alirev $(ROOT)/$(PKGROOT)/bin \
         )
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

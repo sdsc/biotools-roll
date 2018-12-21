@@ -1,11 +1,11 @@
---- hmmer-3.1b2/testsuite/Makefile	2016-05-07 14:27:49.473306105 -0700
-+++ patch-files/Makefile	2016-05-05 23:03:19.409699483 -0700
+--- hmmer-3.2.1/testsuite/Makefile.in	2018-06-13 07:39:03.000000000 -0700
++++ patch-files/Makefile.in	2018-10-24 13:56:29.161739847 -0700
 @@ -37,11 +37,11 @@
  	@echo 
  	@echo Running HMMER test suite...
  	@echo
 -	@${srcdir}/../${ESLDIR}/devkit/sqc ${SQCLEVEL} ${srcdir}/testsuite.sqc .. ${srcdir}/..
-+	sqc -v ${SQCLEVEL} ${srcdir}/testsuite.sqc .. ..
++	@sqc -v ${SQCLEVEL} ${srcdir}/testsuite.sqc .. .
  
  hmms:
  	for ali in ${ALIS}; do\
