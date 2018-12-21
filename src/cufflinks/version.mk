@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-cufflinks
 VERSION        = 2.2.1
-RELEASE        = 6
+RELEASE        = 7
 PKGROOT        = /opt/biotools/cufflinks
 
 SRC_SUBDIR     = cufflinks
