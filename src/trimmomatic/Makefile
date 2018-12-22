@@ -76,6 +76,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	@echo "::: Package $(NAME) build complete :::"
 	( \
+          export JAVA_HOME=`dirname \`which java\``/..; \
 	  cd $(SOURCE_DIR); \
 	  ant \
 	)
