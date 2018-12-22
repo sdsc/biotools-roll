@@ -64,9 +64,16 @@ include $(SDSCDEVEL)/Rules.mk
 
 $(NAME).spec: DESCRIPTION LICENSE
 
+override ROLLCOMPILER = gnu
+COMPILERNAME          = gnu
+
 DESCRIPTION:
+	$(MODULE_LOAD_CC) 
 	( \
 	  $(DESCRIBE_PKG) \
+          $(DESCRIBE_CMAKE); \
+          $(DESCRIBE_CC); \
+          $(DESCRIBE_BOOST) \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -76,23 +83,41 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
 	  patch-files/runMe.sh.patch
-	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
-	perl -pi -e "s!ROLLPREFIX!$(ROOT)/$(PKGROOT)!g" \
+	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
+	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" \
 	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
-	  cd $(SOURCE_DIR); \
+          $(MODULE_LOAD_CMAKE); \
+          $(MODULE_LOAD_CC); \
+          $(MODULE_LOAD_BOOST); \
+          export CC=`which $(CC)`; \
+          export CXX=`which $(CXX)`; \
+          cd $(JELLYFISH_DIR); \
+          ./configure --prefix=$(PKGROOT); \
+          make -j 16; \
+          make install; \
+          cd ../$(SALMON_DIR); \
+          mkdir build; \
+          cd build; \
+          cmake -DCMAKE_INSTALL_PREFIX=$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ ..; \
+          make -j 16; \
+          make install; \
+	  cd ../../$(SOURCE_DIR); \
 	  export FORCE_UNSAFE_CONFIGURE=1; \
+          mkdir bin; \
 	  $(MAKE); \
 	  $(MAKE) plugins; \
-	  cp -r * $(ROOT)/$(PKGROOT)/ \
+          cd trinity-plugins; \
+          make trinity_essentials; \
+          cd ..; \
+	  cp -r * $(PKGROOT) \
 	)
-	# Remove references to install dir from rpm text files
-	perl -pi -e "s#$(ROOT)##g" \
-	  `find $(ROOT)/$(PKGROOT)/ -type f -exec grep -Il . {} ';'`
+	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
