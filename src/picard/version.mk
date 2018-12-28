@@ -3,8 +3,8 @@ ifneq ("$(ROLLOPTS)", "$(subst java8home=,,$(ROLLOPTS))")
 endif
 
 NAME                  = sdsc-picard
-VERSION               = 2.3.0
-RELEASE               = 2
+VERSION               = 2.18.15
+RELEASE               = 0
 PKGROOT               = /opt/biotools/picard
 
 SRC_SUBDIR            = picard
@@ -15,13 +15,13 @@ SOURCE_VERSION        = $(VERSION)
 SOURCE_PKG            = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR            = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
-HTSJDK_SOURCE_NAME    = htsjdk
-HTSJDK_SOURCE_SUFFIX  = tar.gz
-HTSJDK_SOURCE_VERSION = $(VERSION)
-HTSJDK_SOURCE_PKG     = $(HTSJDK_SOURCE_NAME)-$(HTSJDK_SOURCE_VERSION).$(HTSJDK_SOURCE_SUFFIX)
-HTSJDK_SOURCE_DIR     = htsjdk
+HTSJDK_NAME    = htsjdk
+HTSJDK_SUFFIX  = tar.gz
+HTSJDK_VERSION = 2.16.1
+HTSJDK_PKG     = $(HTSJDK_NAME)-$(HTSJDK_VERSION).$(HTSJDK_SUFFIX)
+HTSJDK_DIR     = $(HTSJDK_PKG:%.$(HTSJDK_SUFFIX)=%)
 
-TAR_GZ_PKGS           = $(SOURCE_PKG) $(HTSJDK_SOURCE_PKG)
+TAR_GZ_PKGS           = $(SOURCE_PKG) $(HTSJDK_PKG)
 
 RPM.EXTRAS            = AutoReq:No\nAutoProv:No
 RPM.PREFIX            = $(PKGROOT)

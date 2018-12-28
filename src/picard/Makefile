@@ -83,15 +83,18 @@ build: $(SRC_DIRS)
 	( \
 	  export JAVA_HOME=$(JAVA_HOME); \
 	  export PATH=$${JAVA_HOME}/bin:$${PATH}; \
-          mv $(HTSJDK_SOURCE_DIR) $(SOURCE_DIR); \
 	  cd $(SOURCE_DIR); \
-	  ant \
+          mkdir .git; \
+	  ./gradlew shadowJar; \
+          cd ../$(HTSJDK_DIR); \
+	  ./gradlew shadowJar; \
         )
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	cp -r $(SOURCE_DIR)/dist/* $(ROOT)/$(PKGROOT) 
+	cp -r $(SOURCE_DIR)/build/libs/picard.jar $(ROOT)/$(PKGROOT) 
+	cp -r $(HTSJDK_DIR)/build/libs/*.jar $(ROOT)/$(PKGROOT)/htsjdk.jar
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
