@@ -76,37 +76,17 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	( \
-          cd $(SOURCE_DIR)/kmer; \
-          make; \
-          make install; \
-          cd ../src; \
-          make \
+          cd $(SOURCE_DIR)/src; \
+          make -j 16; \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/test
-	$(PKGROOT_BIND_MOUNT)
 	( \
-          cp -r $(SAMPLE_DIR)/* $(PKGROOT)/test; \
-          chmod 0644 $(PKGROOT)/test/*; \
-	  mkdir -p -m 755 $(PKGROOT)/lib; \
-          cd $(STATISTICS_DIR); \
-          perl Makefile.PL PREFIX=$(PKGROOT); \
-          make; \
-          make install; \
-          cd ../$(LIST_DIR); \
-          perl Makefile.PL PREFIX=$(PKGROOT); \
-          make; \
-          make install; \
-          cd ../$(EXPORTER_DIR); \
-          perl Makefile.PL PREFIX=$(PKGROOT); \
-          make; \
-          make install; \
-	  cd ../$(SOURCE_DIR); \
-          cp -r Linux-amd64 $(PKGROOT) \
+          cp -r $(SAMPLE_DIR)/* $(ROOT)/$(PKGROOT)/test; \
+          cp -r $(SOURCE_DIR)/Linux-amd64/* $(ROOT)/$(PKGROOT) \
         )
-	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
