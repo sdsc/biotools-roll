@@ -57,6 +57,7 @@
 
 REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
+VIENNARNA_CACHE = $(REDHAT.ROOT)/cache/build-viennarna
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -66,8 +67,10 @@ include $(SDSCDEVEL)/Rules.mk
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
+	$(MODULE_LOAD_CXX); \
 	( \
-	  $(DESCRIBE_PKG) \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CXX); \
 	) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -78,6 +81,9 @@ build: $(SRC_DIRS)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
+          $(MODULE_LOAD_CXX); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(EXTUTILS_DIR); \
 	  perl Makefile.PL PREFIX=$(PKGROOT); \
 	  $(MAKE); \
@@ -85,18 +91,23 @@ build: $(SRC_DIRS)
           export PERL5LIB=$(PKGROOT)/share/perl5:$${PERL5LIB}; \
 	  cd ../$(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT); \
-	  $(MAKE) \
+	  $(MAKE) -j 16 \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p $(VIENNARNA_CACHE)
 	$(PKGROOT_BIND_MOUNT)
 	( \
+          $(MODULE_LOAD_CXX); \
+          export CC=$(CC); \
+          export CXX=$(CXX); \
 	  cd $(SOURCE_DIR); \
 	  make install; \
-	  cp -r interfaces/Perl/* $(PKGROOT)/tests \
+	  cp -r interfaces/Perl/* $(PKGROOT)/tests; \
+          cp -r $(PKGROOT)/* $(VIENNARNA_CACHE) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
