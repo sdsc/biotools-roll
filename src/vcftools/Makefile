@@ -76,16 +76,14 @@ LICENSE: $(SRC_DIRS)
 	echo GPLv3 > $@
 
 build: $(SRC_DIRS)
-	patch $(SOURCE_DIR)/configure.ac patch-files/configure.ac.patch
 	( \
           $(MODULE_LOAD_CC); \
            cd $(SOURCE_DIR); \
-           ./autogen.sh; \
            export CC=$(CC); \
            export CXX=$(CXX); \
            export LDFLAGS=-lz; \
            ./configure --prefix=$(ROOT)/$(PKGROOT); \
-	   $(MAKE) \
+	   $(MAKE) -j 16 \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
