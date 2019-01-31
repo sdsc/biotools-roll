@@ -74,6 +74,6 @@ SRCDIRS = `find . -maxdepth 1 -type d -not -name CVS -not -name . \
   -not -name rseqc \
   -not -name squid \
   -not -name stacks \
-  -not -name ViennaRna \
+  -not -name ViennaRNA \
   -not -name tophat`  \
   bcftools bowtie cufflinks miso NucleoATAC squid randfold rseqc stacks tophat ViennaRNA miRDeep2
