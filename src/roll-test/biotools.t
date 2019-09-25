@@ -278,7 +278,7 @@ SKIP: {
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;
-  `module load htseq; python -c "import HTSeq" > /dev/null 2>&1`;
+  `module load htseq; python3 -c "import HTSeq" > /dev/null 2>&1`;
   ok($? eq 0, 'htseq works');
 }
 
