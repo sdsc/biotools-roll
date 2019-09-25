@@ -161,7 +161,7 @@ SKIP: {
 $packageHome = '/opt/biotools/bx-python';
 SKIP: {
   skip 'bx-python not installed', 1 if ! -d $packageHome;
-  $output=`module load bx-python; python -c 'from bx import binned_array_tests; print binned_array_tests.setup()' 2>&1`;
+  $output=`module load bx-python; python3 -c 'from bx import binned_array_tests; print binned_array_tests.setup()' 2>&1`;
   like($output, qr/bx.binned_array.BinnedArray object/, 'bx-python works');
 }
 
@@ -320,7 +320,7 @@ END
 $packageHome = '/opt/biotools/miso';
 SKIP: {
   skip 'miso not installed', 1 if ! -d $packageHome;
-  $output = `module load miso; python $packageHome/lib/python2.7/site-packages/misopy/test_miso.py 2>&1`;
+  $output = `module load miso; python3 $packageHome/lib/python2.7/site-packages/misopy/test_miso.py 2>&1`;
   like($output, qr/OK/, 'miso works');
 }
 

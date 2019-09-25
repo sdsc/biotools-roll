@@ -89,8 +89,9 @@ install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  $(MODULE_LOAD_SCIPY); \
-          export PYTHONPATH=$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
+          python_version=`python3 -c "from __future__ import print_function;import sys; print(sys.version[:3])"`; \
+          export PYTHONPATH=$(PYSAM_CACHE)/lib/python$${python_version}/site-packages:$${PYTHONPATH}; \
+	  pip3 install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \
 	)
 	$(INSTALL_LICENSE_FILES)
