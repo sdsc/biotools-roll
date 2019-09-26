@@ -88,8 +88,8 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
-	  $(MODULE_LOAD_SCIPY); \
           python_version=`python3 -c "from __future__ import print_function;import sys; print(sys.version[:3])"`; \
+          $(call MODULE_LOAD_PACKAGE, scipy/$${python_version}, SCIPYHOME); \
           export PYTHONPATH=$(PYSAM_CACHE)/lib/python$${python_version}/site-packages:$${PYTHONPATH}; \
 	  pip3 install --install-option="--prefix=$(ROOT)/$(PKGROOT)" \
 	      $(SOURCE_PKG) \

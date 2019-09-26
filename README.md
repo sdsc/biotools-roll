@@ -35,7 +35,6 @@ roll please visit their official web pages:
 - <a href="https://http://matt.cs.tufts.edu/" target="_blank">matt</a> is a multiple protein structure alignment program.
 - <a href="https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep" target="_blank">miRDeep2</a> is a tool which discovers microRNA genes by analyzing sequenced RNAs.
 - <a href="https://http://genes.mit.edu/burgelab/miso/software.html" target="_blank">miso</a> uses a statistical model to estimate the expression of alternatively spliced exons and isoforms and to assesses confidence in these estimates. 
-- <a href="https://github.com/GreenleafLab/NucleoATAC">NucleoATAC</a> is a Python package for calling nucleosomes using ATAC-seq data.
 - <a href="http://http://http://broadinstitute.github.io/picard" target="_blank">picard</a> comprises Java-based command-line utilities that manipulate SAM files, and a Java API (HTSJDK) for creating new programs that read and write SAM files.
 - <a href="https://www.cog-genomics.org/plink2" target="_blank">plink</a> is a toolset for genome-wide association studies (GWAS) and research in population genetics.
 - <a href="https://github.com/pysam-developers" target="_blank">pysam</a> is a python module for reading and manipulating Samfiles.

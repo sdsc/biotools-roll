@@ -1,6 +1,6 @@
 NAME           = sdsc-pysam
 VERSION        = 0.15.1
-RELEASE        = 0
+RELEASE        = 1
 PKGROOT        = /opt/biotools/pysam
 
 SRC_SUBDIR     = pysam

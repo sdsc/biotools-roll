@@ -14,7 +14,7 @@ my @packages = (
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'canu','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
-  'NucleoATAC', 'picard', 'plink', 'pysam', 'randfold', 'rseqc',
+  'picard', 'plink', 'pysam', 'randfold', 'rseqc',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
@@ -324,13 +324,6 @@ SKIP: {
   like($output, qr/OK/, 'miso works');
 }
 
-$packageHome = '/opt/biotools/NucleoATAC';
-SKIP: {
-  skip 'NucleoATAC not installed', 1 if ! -d $packageHome;
-  $output = `module load NucleoATAC; nucleoatac run --help 2>&1`;
-  like($output, qr/start run at:/, 'NucleoATAC works');
-}
-
 $packageHome = '/opt/biotools/picard';
 SKIP: {
   skip 'picard not installed', 1 if ! -d $packageHome;
@@ -371,7 +364,7 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  $output = `module load pysam; python -c 'import pysam' 2>&1`;
+  $output = `module load pysam; python3 -c 'import pysam' 2>&1`;
   ok($? eq 0, 'pysam works');
 }
 
