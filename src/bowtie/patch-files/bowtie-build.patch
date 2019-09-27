@@ -1,0 +1,8 @@
+--- bowtie-1.2.2/bowtie-build	2016-11-11 06:51:00.000000000 -0800
++++ patch-files/bowtie-build	2019-09-27 12:43:45.800253626 -0700
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+  Copyright 2014, Ben Langmead <langmea@cs.jhu.edu>

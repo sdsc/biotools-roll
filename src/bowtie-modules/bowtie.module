@@ -8,4 +8,4 @@ set packageHome $biotoolsHome/bowtie
 setenv BOWTIEHOME $packageHome
 append-path PATH $packageHome/bin
 append-path PATH $packageHome/scripts
-module load intel
+module load python intel
