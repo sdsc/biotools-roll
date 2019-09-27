@@ -408,7 +408,7 @@ SKIP: {
 $packageHome = '/opt/biotools/spades';
 SKIP: {
   skip 'spades not installed', 1 if ! -d $packageHome;
-  $output = `module load spades; python $packageHome/bin/spades.py --test 2>&1`;
+  $output = `module load spades; python3 $packageHome/bin/spades.py --test 2>&1`;
   like($output, qr/TEST PASSED CORRECTLY./, 'spades executable works');
   `rm -rf spades_test`;
 }

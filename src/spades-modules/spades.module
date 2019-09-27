@@ -8,7 +8,4 @@ set packageHome $biotoolsHome/spades
 setenv SPADESHOME $packageHome
 append-path PATH $packageHome/bin
 
-module load ROLLCOMPILER
-if {"ROLLCOMPILER" == "intel"} {
-  module load gnu
-}
+module load python ROLLCOMPILER
