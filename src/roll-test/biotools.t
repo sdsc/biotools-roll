@@ -85,7 +85,7 @@ SKIP: {
 $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
-  $output = `module load biopython; python $packageHome/Tests/test_lowess.py 2>&1`;
+  $output = `module load biopython; python3 $packageHome/Tests/test_lowess.py 2>&1`;
   like($output, qr/OK/, 'biopython works');
 }
 
