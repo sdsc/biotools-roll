@@ -30,7 +30,6 @@ htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
-miso - http://genes.mit.edu/burgelab/miso/software.html
 picard - http://http://broadinstitute.github.io/picard
 plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
@@ -110,8 +109,6 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-matt-modules</package>
 <package>sdsc-miRDeep2</package>
 <package>sdsc-miRDeep2-modules</package>
-<package>sdsc-miso</package>
-<package>sdsc-miso-modules</package>
 <package>sdsc-picard</package>
 <package>sdsc-picard-modules</package>
 <package>sdsc-plink</package>

@@ -13,7 +13,7 @@ my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'canu','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
-  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
+  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2',
   'picard', 'plink', 'pysam', 'randfold', 'rseqc',
   'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
@@ -315,13 +315,6 @@ END
   $output = `bash $TESTFILE.sh 2>&1`;
   like($output, qr/cel-miR-41\s+87.00/, 'miRDeep2 works');
   `rm -rf $TESTFILE*`;
-}
-
-$packageHome = '/opt/biotools/miso';
-SKIP: {
-  skip 'miso not installed', 1 if ! -d $packageHome;
-  $output = `module load miso; python3 $packageHome/lib/python2.7/site-packages/misopy/test_miso.py 2>&1`;
-  like($output, qr/OK/, 'miso works');
 }
 
 $packageHome = '/opt/biotools/picard';
