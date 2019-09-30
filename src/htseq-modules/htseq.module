@@ -9,3 +9,4 @@ module load python ROLLCOMPILER
 set packageHome $biotoolsHome/htseq
 setenv HTSEQHOME $packageHome
 append-path PYTHONPATH $packageHome/lib
+prepend-path PATH $packageHome/bin

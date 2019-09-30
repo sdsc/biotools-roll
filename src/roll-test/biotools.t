@@ -85,7 +85,7 @@ SKIP: {
 $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
-  $output = `module load biopython; python3 $packageHome/Tests/test_lowess.py 2>&1`;
+  $output = `module load biopython; python $packageHome/Tests/test_lowess.py 2>&1`;
   like($output, qr/OK/, 'biopython works');
 }
 
@@ -161,7 +161,7 @@ SKIP: {
 $packageHome = '/opt/biotools/bx-python';
 SKIP: {
   skip 'bx-python not installed', 1 if ! -d $packageHome;
-  $output=`module load bx-python; python3 -c 'from bx import binned_array_tests; print(binned_array_tests.setup())' 2>&1`;
+  $output=`module load bx-python; python -c 'from bx import binned_array_tests; print(binned_array_tests.setup())' 2>&1`;
   like($output, qr/bx.binned_array.BinnedArray object/, 'bx-python works');
 }
 
@@ -278,7 +278,7 @@ SKIP: {
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;
-  `module load htseq; python3 -c "import HTSeq" > /dev/null 2>&1`;
+  `module load htseq; python -c "import HTSeq" > /dev/null 2>&1`;
   ok($? eq 0, 'htseq works');
 }
 
@@ -357,7 +357,7 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  $output = `module load pysam; python3 -c 'import pysam' 2>&1`;
+  $output = `module load pysam; python -c 'import pysam' 2>&1`;
   ok($? eq 0, 'pysam works');
 }
 
@@ -408,7 +408,7 @@ SKIP: {
 $packageHome = '/opt/biotools/spades';
 SKIP: {
   skip 'spades not installed', 1 if ! -d $packageHome;
-  $output = `module load spades; python3 $packageHome/bin/spades.py --test 2>&1`;
+  $output = `module load spades; python $packageHome/bin/spades.py --test 2>&1`;
   like($output, qr/TEST PASSED CORRECTLY./, 'spades executable works');
   `rm -rf spades_test`;
 }
@@ -506,7 +506,7 @@ SKIP: {
 $packageHome = '/opt/biotools/rseqc';
 SKIP: {
   skip 'rseqc not installed', 1 if ! -d $packageHome;
-  $output = `module load rseqc;clipping_profile.py 2>&1`;
+  $output = `module load rseqc;python clipping_profile.py 2>&1`;
   like($output, qr/This program is used estimate clipping profile/, 'rseqc works');
 }
 

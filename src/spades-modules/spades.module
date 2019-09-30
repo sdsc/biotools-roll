@@ -6,6 +6,6 @@ module-whatis "spades VERSION"
 
 set packageHome $biotoolsHome/spades
 setenv SPADESHOME $packageHome
-append-path PATH $packageHome/bin
 
 module load python ROLLCOMPILER
+prepend-path PATH $packageHome/bin

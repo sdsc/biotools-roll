@@ -74,7 +74,8 @@ DESCRIPTION:
 	$(MODULE_LOAD_CC)
 	( \
           $(DESCRIBE_PKG); \
-          $(DESCRIBE_CC) \
+          $(DESCRIBE_CC); \
+          $(DESCRIBE_PYTHON) \
         ) > $@
 
 LICENSE: $(SRC_DIRS)
@@ -97,6 +98,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
+          $(MODULE_LOAD_PYTHON); \
           $(MODULE_LOAD_CC); \
 	  cd $(PDF_DIR); \
 	  $(MAKE) install; \

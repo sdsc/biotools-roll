@@ -70,8 +70,8 @@ COMPILERNAME          = gnu
 DESCRIPTION:
 	$(MODULE_LOAD_CC) 
 	( \
-	  $(DESCRIBE_PKG) \
-          $(DESCRIBE_CMAKE); \
+	  $(DESCRIBE_PKG); \
+          $(DESCRIBE_PYTHON); \
           $(DESCRIBE_CC); \
           $(DESCRIBE_BOOST) \
 	) > $@
@@ -92,9 +92,14 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
+          $(MODULE_LOAD_PYTHON);  \
           $(MODULE_LOAD_CMAKE); \
           $(MODULE_LOAD_CC); \
           $(MODULE_LOAD_BOOST); \
+          rm -rf $(REDHAT.ROOT)/src/trinity/bin; \
+          mkdir $(REDHAT.ROOT)/src/trinity/bin; \
+          ln -s `which python3` $(REDHAT.ROOT)/src/trinity/bin/python; \
+          export $PATH=$(REDHAT.ROOT)/src/trinity/bin:$${PATH}; \
           export CC=`which $(CC)`; \
           export CXX=`which $(CXX)`; \
           cd $(JELLYFISH_DIR); \
@@ -115,7 +120,8 @@ install::
           cd trinity-plugins; \
           make trinity_essentials; \
           cd ..; \
-	  cp -r * $(PKGROOT) \
+	  cp -r * $(PKGROOT); \
+          ln -s `which python3` $(PKGROOT)/bin/python \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)

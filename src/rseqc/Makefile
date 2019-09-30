@@ -59,7 +59,6 @@ REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 ROLLPY = python
-PYVERSION = 2.7
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -88,16 +87,18 @@ build: $(SRC_DIRS)
 install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
-	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+          python_version=`python3 -c "from __future__ import print_function;import sys; print(sys.version[:3])"`; \
+	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$${python_version}/site-packages; \
 	  mkdir -p -m 755 $${sitepath}; \
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
           bx_python_path=`dirname $(PKGROOT)`/bx-python; \
           mkdir -p $${bx_python_path}; \
           cp -r $(BX_PYTHON_CACHE)/* $${bx_python_path}; \
-          export PYTHONPATH=$${bx-python-path}/lib/python$(PYVERSION)/site-packages:$(PYSAM_CACHE)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
+          export PYTHONPATH=$${bx-python-path}/lib/python$${python_version}/site-packages:$(PYSAM_CACHE)/lib/python$${python_version}/site-packages:$${PYTHONPATH}; \
 	  cd $(SOURCE_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  python3 setup.py build; \
+	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          ln -s `which python3` $(ROOT)/$(PKGROOAT)/bin/python; \
           rm -rf $${bx-python-path} \
 	)
 	$(INSTALL_LICENSE_FILES)

@@ -10,6 +10,6 @@ set packageHome $biotoolsHome/rseqc
 setenv RSEQCHOME $packageHome
 set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
 append-path PYTHONPATH $lib
-append-path PATH $packageHome/bin
 module load pysam
 module load bx-python
+prepend-path PATH $packageHome/bin

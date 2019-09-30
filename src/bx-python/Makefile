@@ -102,7 +102,8 @@ install::
           mkdir -p -m 755 $${PYDIR}; \
           export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
           cd $(SOURCE_DIR); \
-          python3 setup.py install --prefix=$(ROOT)/$(PKGROOT) \
+          python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
         )
 	mkdir -p -m 755 $(BX_PYTHON_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(BX_PYTHON_CACHE)/

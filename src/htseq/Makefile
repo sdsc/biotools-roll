@@ -88,6 +88,7 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_PYTHON); \
@@ -95,7 +96,8 @@ install::
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
 	  python3 setup.py install \
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
-	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
+	     --install-scripts=$(ROOT)/$(PKGROOT)/bin; \
+          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

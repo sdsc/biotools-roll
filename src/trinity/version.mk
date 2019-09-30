@@ -1,6 +1,6 @@
 NAME              = sdsc-trinity
 VERSION           = 2.8.4
-RELEASE           = 0
+RELEASE           = 1
 PKGROOT           = /opt/biotools/trinity
 
 SRC_SUBDIR        = trinity

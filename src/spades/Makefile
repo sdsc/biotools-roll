@@ -74,6 +74,7 @@ DESCRIPTION:
 	$(MODULE_LOAD_CC); \
 	( \
 	  $(DESCRIBE_PKG); \
+          $(DESCRIBE_PYTHON); \
 	  $(DESCRIBE_CC) \
 	) > $@
 
@@ -91,6 +92,7 @@ build: $(SRC_DIRS)
 
 install::
 	( \
+	  $(MODULE_LOAD_PYTHON); \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_CMAKE); \
 	  if test "$(COMPILERNAME)" = "intel"; then \
@@ -98,7 +100,8 @@ install::
 	  fi; \
 	  cd $(SOURCE_DIR); \
 	  export PREFIX=$(ROOT)/$(PKGROOT); \
-	  ./spades_compile.sh \
+	  ./spades_compile.sh; \
+          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

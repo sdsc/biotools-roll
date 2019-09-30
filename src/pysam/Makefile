@@ -90,6 +90,7 @@ build: $(SRC_DIRS)
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
@@ -98,6 +99,7 @@ install::
 	  mkdir -p -m 755 $${PYDIR}; \
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
 	)
 	mkdir -p -m 755 $(PYSAM_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(PYSAM_CACHE)/
