@@ -41,7 +41,6 @@ SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
 squid http://eddylab.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
-tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.github.io
 vcftools - http://vcftools.github.io/
@@ -132,8 +131,6 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-squid-modules</package>
 <package>sdsc-stacks</package>
 <package>sdsc-stacks-modules</package>
-<package>sdsc-tophat</package>
-<package>sdsc-tophat-modules</package>
 <package>sdsc-trimmomatic</package>
 <package>sdsc-trimmomatic-modules</package>
 <package>sdsc-trinity</package>

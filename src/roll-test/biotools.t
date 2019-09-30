@@ -15,7 +15,7 @@ my @packages = (
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
   'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2',
   'picard', 'plink', 'pysam', 'randfold', 'rseqc',
-  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
+  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
 my $isInstalled = -d '/opt/biotools';
@@ -439,13 +439,6 @@ END
   }
   ok($count == 8, 'squid works');
   `rm -rf $TESTFILE*`;
-}
-
-$packageHome = '/opt/biotools/tophat';
-SKIP: {
-  skip 'tophat not installed', 1 if ! -d $packageHome;
-  $output = `module load tophat; tophat --help 2>&1`;
-  like($output, qr/TopHat maps short sequences from spliced transcripts to whole genomes./, 'tophat executable works');
 }
 
 $packageHome = '/opt/biotools/trimmomatic';
