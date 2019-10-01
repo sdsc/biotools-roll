@@ -2,7 +2,7 @@
 
 set biotoolsHome /opt/biotools
 
-module-whatis "rseqc VERSION"
+module-whatis "rseqc 3.0.1"
 
 module load python
 
@@ -12,4 +12,9 @@ set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
 append-path PYTHONPATH $lib
 module load pysam
 module load bx-python
+if {[string first ROLLCOMPILER intel] >= 0 && [module-info mode load]}  {
+    setenv LD_PRELOAD $::env(INTELHOME)/compiler/lib/intel64/libirc.so
+} elseif {[string first intel "intel"] >= 0 && [module-info mode remove]} {
+    unsetenv LD_PRELOAD
+}
 prepend-path PATH $packageHome/bin
