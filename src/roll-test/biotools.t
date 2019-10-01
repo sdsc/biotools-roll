@@ -506,7 +506,7 @@ SKIP: {
 $packageHome = '/opt/biotools/rseqc';
 SKIP: {
   skip 'rseqc not installed', 1 if ! -d $packageHome;
-  $output = `module load rseqc;python clipping_profile.py 2>&1`;
+  $output = `module load rseqc;python $packageHome/tests/clipping_profile.py 2>&1`;
   like($output, qr/This program is used estimate clipping profile/, 'rseqc works');
 }
 

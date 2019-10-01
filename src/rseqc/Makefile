@@ -88,6 +88,7 @@ install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
           python_version=`python3 -c "from __future__ import print_function;import sys; print(sys.version[:3])"`; \
+          mkdir -p $(ROOT)/$(PKGROOT)/tests; \
 	  sitepath=$(ROOT)/$(PKGROOT)/lib/python$${python_version}/site-packages; \
 	  mkdir -p -m 755 $${sitepath}; \
 	  export PYTHONPATH=$${sitepath}:$${PYTHONPATH}; \
@@ -98,6 +99,7 @@ install::
 	  cd $(SOURCE_DIR); \
 	  python3 setup.py build; \
 	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cp scripts/* $(ROOT)/$(PKGROOT)/tests; \
           ln -s `which python3` $(ROOT)/$(PKGROOAT)/bin/python; \
           rm -rf $${bx-python-path} \
 	)
