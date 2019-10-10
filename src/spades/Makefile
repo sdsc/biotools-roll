@@ -101,7 +101,6 @@ install::
 	  cd $(SOURCE_DIR); \
 	  export PREFIX=$(ROOT)/$(PKGROOT); \
 	  ./spades_compile.sh; \
-          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

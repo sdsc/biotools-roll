@@ -121,7 +121,6 @@ install::
           make trinity_essentials; \
           cd ..; \
 	  cp -r * $(PKGROOT); \
-          ln -s `which python3` $(PKGROOT)/bin/python \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)

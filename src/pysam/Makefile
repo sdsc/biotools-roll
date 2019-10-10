@@ -99,7 +99,6 @@ install::
 	  mkdir -p -m 755 $${PYDIR}; \
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
 	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
 	)
 	mkdir -p -m 755 $(PYSAM_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(PYSAM_CACHE)/

@@ -97,7 +97,6 @@ install::
 	  python3 setup.py install \
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
 	     --install-scripts=$(ROOT)/$(PKGROOT)/bin; \
-          ln -s `which python3` $(ROOT)/$(PKGROOT)/bin/python \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

@@ -100,7 +100,6 @@ install::
 	  python3 setup.py build; \
 	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cp scripts/* $(ROOT)/$(PKGROOT)/tests; \
-          ln -s `which python3` $(ROOT)/$(PKGROOAT)/bin/python; \
           rm -rf $${bx-python-path} \
 	)
 	$(INSTALL_LICENSE_FILES)
