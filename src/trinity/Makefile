@@ -121,6 +121,10 @@ install::
           make trinity_essentials; \
           cd ..; \
 	  cp -r * $(PKGROOT); \
+          PYTHONFILES=`find $(PKGROOT) -name \*.py`; \
+          for file in $${PYTHONFILES};  do \
+	        sed -i 's/#\!\/usr\/bin\/env python/#\!\/usr\/bin\/env python3/' $${file}; \
+          done \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
