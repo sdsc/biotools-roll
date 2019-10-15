@@ -59,7 +59,6 @@ REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 ROLLPY = python
-PYVERSION = 2.7
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -85,19 +84,21 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
-	  python setup.py build \
+	  python3 setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
-	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+          python_version=`python3 -c "from __future__ import print_function;import sys; print(sys.version[:3])"`; \
+	  PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${python_version}/site-packages; \
 	  mkdir -p -m 755 $${PYDIR}; \
 	  export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	)
 	mkdir -p -m 755 $(PYSAM_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(PYSAM_CACHE)/

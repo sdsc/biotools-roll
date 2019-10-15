@@ -67,8 +67,10 @@ build: $(SRC_DIRS) bioperldownload
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	( \
-	   export PERL5LIB=$(BIOPERL_CACHE)/lib64/perl5:$${PERL5LIB}; \
-	   export PERL5LIB=$(BIOPERL_CACHE)/lib64/perl5/auto:$${PERL5LIB}; \
+	   export PERL5LIB=$(BIOPERL_CACHE)/lib/perl5:$${PERL5LIB}; \
+	   export PERL5LIB=$(BIOPERL_CACHE)/lib/perl5/Module:$${PERL5LIB}; \
+	   export PERL5LIB=$(BIOPERL_CACHE)/lib/perl5/auto:$${PERL5LIB}; \
+	   export PERL5LIB=$(BIOPERL_CACHE)/share/perl5:$${PERL5LIB}; \
            cd $(SOURCE_DIR); \
            perl Build.PL < ../bioperl_input; \
            ./Build install --install_base $(BIOPERL_CACHE); \

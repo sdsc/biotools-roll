@@ -6,15 +6,14 @@ import sys, os, platform, glob
 from distutils.core import setup
 from setuptools import *
 
-
-if sys.version_info[0] != 2 or sys.version_info[1] < 7:
-	print >> sys.stderr, "ERROR: RSeQC requires Python 2.7"
-	sys.exit()
-	
+if sys.version_info[0] != 3:
+	print("\nYou are using python" + str(sys.version_info[0]) + '.' + str(sys.version_info[1]) + " This verion of RSeQC needs python3!\n", file=sys.stderr)
+	sys.exit()	
 
 def main():
 	setup(  name = "RSeQC",
-            version = "2.6.5",
+            version = "3.0.1",
+            python_requires='>=3.5',
             packages = find_packages( 'lib' ),
             package_dir = { '': 'lib' },
             package_data = { '': ['*.ps'] },
@@ -27,7 +26,7 @@ def main():
 			author_email ="wangliguo78@gmail.com",
 			platforms = ['Linux','MacOS'],
 			requires = ['cython (>=0.17)'],
-			install_requires = ['cython>=0.17','pysam','bx-python','numpy'], 
+			install_requires = ['cython>=0.17','pysam','bx-python','numpy', 'pyBigWig'], 
             description = "RNA-seq QC Package",
             url = "http://rseqc.sourceforge.net/",
             zip_safe = False,

@@ -79,6 +79,9 @@ LICENSE: $(SRC_DIRS)
 	echo OSI > $@
 
 build: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/bowtie patch-files/bowtie.patch
+	patch $(SOURCE_DIR)/bowtie-build patch-files/bowtie-build.patch
+	patch $(SOURCE_DIR)/bowtie-inspect patch-files/bowtie-inspect.patch
 	( \
           $(MODULE_LOAD_CC); \
           cd $(SOURCE_DIR); \

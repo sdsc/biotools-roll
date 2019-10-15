@@ -71,6 +71,7 @@ DESCRIPTION:
 	) > $@
 
 LICENSE: $(SRC_DIRS)
+	patch $(SOURCE_DIR)/gatk patch-files/gatk.patch
 	( \
            cd $(SOURCE_DIR); \
            jar xvf gatk-package-$(VERSION)-local.jar license \

@@ -30,8 +30,6 @@ htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
-miso - http://genes.mit.edu/burgelab/miso/software.html
-NucleoATAC - https://github.com/GreenleafLab/NucleoATAC/releases
 picard - http://http://broadinstitute.github.io/picard
 plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
@@ -43,7 +41,6 @@ SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
 squid http://eddylab.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
-tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.github.io
 vcftools - http://vcftools.github.io/
@@ -111,10 +108,6 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-matt-modules</package>
 <package>sdsc-miRDeep2</package>
 <package>sdsc-miRDeep2-modules</package>
-<package>sdsc-miso</package>
-<package>sdsc-miso-modules</package>
-<package>sdsc-NucleoATAC</package>
-<package>sdsc-NucleoATAC-modules</package>
 <package>sdsc-picard</package>
 <package>sdsc-picard-modules</package>
 <package>sdsc-plink</package>
@@ -138,8 +131,6 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-squid-modules</package>
 <package>sdsc-stacks</package>
 <package>sdsc-stacks-modules</package>
-<package>sdsc-tophat</package>
-<package>sdsc-tophat-modules</package>
 <package>sdsc-trimmomatic</package>
 <package>sdsc-trimmomatic-modules</package>
 <package>sdsc-trinity</package>

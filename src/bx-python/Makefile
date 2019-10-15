@@ -59,7 +59,6 @@ REDHAT.ROOT = $(CURDIR)/../../
 RPM.EXTRAS=%define __os_install_post /usr/lib/rpm/brp-compress
 
 ROLLPY = python
-PYVERSION = 2.7
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
@@ -89,7 +88,7 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_PYTHON); \
 	  export CC=$(CC); \
 	  cd $(SOURCE_DIR); \
-	  python setup.py build \
+	  python3 setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
@@ -97,12 +96,13 @@ install::
 	( \
           $(MODULE_LOAD_CC); \
           $(MODULE_LOAD_PYTHON); \
+          python_version=`python3 -c "from __future__ import print_function;import sys; print(sys.version[:3])"`; \
           export CC=$(CC); \
-          PYDIR=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+          PYDIR=$(ROOT)/$(PKGROOT)/lib/python$${python_version}/site-packages; \
           mkdir -p -m 755 $${PYDIR}; \
           export PYTHONPATH=$${PYDIR}:$${PYTHONPATH}; \
           cd $(SOURCE_DIR); \
-          python setup.py install --prefix=$(ROOT)/$(PKGROOT) \
+          python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
         )
 	mkdir -p -m 755 $(BX_PYTHON_CACHE)
 	cp -r $(ROOT)/$(PKGROOT)/* $(BX_PYTHON_CACHE)/

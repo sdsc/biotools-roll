@@ -9,3 +9,4 @@ setenv GATKHOME $packageHome
 prepend-path PATH JAVA_HOME/bin
 prepend-path PATH $biotoolsHome/GenomeAnalysisTK/VERSION
 append-path CLASSPATH $packageHome/GenomeAnalysisTK.jar
+module load python

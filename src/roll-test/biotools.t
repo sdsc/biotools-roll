@@ -13,9 +13,9 @@ my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'canu','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
-  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2', 'miso',
-  'NucleoATAC', 'picard', 'plink', 'pysam', 'randfold', 'rseqc',
-  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks', 'tophat',
+  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2',
+  'picard', 'plink', 'pysam', 'randfold', 'rseqc',
+  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
 my $isInstalled = -d '/opt/biotools';
@@ -85,7 +85,7 @@ SKIP: {
 $packageHome = '/opt/biotools/biopython';
 SKIP: {
   skip 'biopython not installed', 1 if ! -d $packageHome;
-  $output = `module load biopython; python $packageHome/Tests/test_lowess.py 2>&1`;
+  $output = `module load biopython; python3 $packageHome/Tests/test_lowess.py 2>&1`;
   like($output, qr/OK/, 'biopython works');
 }
 
@@ -161,7 +161,7 @@ SKIP: {
 $packageHome = '/opt/biotools/bx-python';
 SKIP: {
   skip 'bx-python not installed', 1 if ! -d $packageHome;
-  $output=`module load bx-python; python -c 'from bx import binned_array_tests; print binned_array_tests.setup()' 2>&1`;
+  $output=`module load bx-python; python3 -c 'from bx import binned_array_tests; print(binned_array_tests.setup())' 2>&1`;
   like($output, qr/bx.binned_array.BinnedArray object/, 'bx-python works');
 }
 
@@ -278,7 +278,7 @@ SKIP: {
 $packageHome = '/opt/biotools/htseq';
 SKIP: {
   skip 'htseq not installed', 1 if ! -d $packageHome;
-  `module load htseq; python -c "import HTSeq" > /dev/null 2>&1`;
+  `module load htseq; python3 -c "import HTSeq" > /dev/null 2>&1`;
   ok($? eq 0, 'htseq works');
 }
 
@@ -315,20 +315,6 @@ END
   $output = `bash $TESTFILE.sh 2>&1`;
   like($output, qr/cel-miR-41\s+87.00/, 'miRDeep2 works');
   `rm -rf $TESTFILE*`;
-}
-
-$packageHome = '/opt/biotools/miso';
-SKIP: {
-  skip 'miso not installed', 1 if ! -d $packageHome;
-  $output = `module load miso; python $packageHome/lib/python2.7/site-packages/misopy/test_miso.py 2>&1`;
-  like($output, qr/OK/, 'miso works');
-}
-
-$packageHome = '/opt/biotools/NucleoATAC';
-SKIP: {
-  skip 'NucleoATAC not installed', 1 if ! -d $packageHome;
-  $output = `module load NucleoATAC; nucleoatac run --help 2>&1`;
-  like($output, qr/start run at:/, 'NucleoATAC works');
 }
 
 $packageHome = '/opt/biotools/picard';
@@ -371,7 +357,7 @@ SKIP: {
 $packageHome = '/opt/biotools/pysam';
 SKIP: {
   skip 'pysam not installed', 1 if ! -d $packageHome;
-  $output = `module load pysam; python -c 'import pysam' 2>&1`;
+  $output = `module load pysam; python3 -c 'import pysam' 2>&1`;
   ok($? eq 0, 'pysam works');
 }
 
@@ -455,13 +441,6 @@ END
   `rm -rf $TESTFILE*`;
 }
 
-$packageHome = '/opt/biotools/tophat';
-SKIP: {
-  skip 'tophat not installed', 1 if ! -d $packageHome;
-  $output = `module load tophat; tophat --help 2>&1`;
-  like($output, qr/TopHat maps short sequences from spliced transcripts to whole genomes./, 'tophat executable works');
-}
-
 $packageHome = '/opt/biotools/trimmomatic';
 SKIP: {
   skip 'trimmomatic not installed', 1 if ! -d $packageHome;
@@ -527,8 +506,8 @@ SKIP: {
 $packageHome = '/opt/biotools/rseqc';
 SKIP: {
   skip 'rseqc not installed', 1 if ! -d $packageHome;
-  $output = `module load rseqc;clipping_profile.py 2>&1`;
-  like($output, qr/This program is used estimate clipping profile/, 'rseqc works');
+  $output = `module load rseqc;python3 $packageHome/tests/clipping_profile.py 2>&1`;
+  like($output, qr/This program is to estimate clipping profile/, 'rseqc works');
 }
 
 SKIP: {

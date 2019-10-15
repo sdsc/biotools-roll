@@ -10,3 +10,4 @@ set packageHome $biotoolsHome/pysam
 setenv PYSAMHOME $packageHome
 set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
 append-path PYTHONPATH $lib
+prepend-path PATH  $packageHome/bin

@@ -30,8 +30,6 @@ htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
 matt - http://matt.cs.tufts.edu
 miRDeep2 - https://www.mdc-berlin.de/8551903/en/research/research_teams/systems_biology_of_gene_regulatory_elements/projects/miRDeep
-miso - http://genes.mit.edu/burgelab/miso/software.html
-NucleoATAC - https://github.com/GreenleafLab/NucleoATAC/releases
 picard - http://http://broadinstitute.github.io/picard
 plink - https://www.cog-genomics.org/plink2
 pysam - https://github.com/pysam-developers
@@ -43,7 +41,6 @@ SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
 squid http://eddylab.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
-tophat - http://ccb.jhu.edu/software/tophat/index.shtml
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.github.io
 vcftools - http://vcftools.github.io/

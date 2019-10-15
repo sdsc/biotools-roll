@@ -10,3 +10,4 @@ set packageHome $biotoolsHome/bx-python
 setenv BXPYTHONHOME $packageHome
 set lib [glob -nocomplain $packageHome/lib*/python*/site-packages]
 append-path PYTHONPATH $lib
+prepend-path PATH $biotoolsHome/bx-python/bin

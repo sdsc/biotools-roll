@@ -82,18 +82,19 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
-	  python setup.py build \
+	  python3 setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/Tests
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT):$${PYTHONPATH}; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests/ \
+	  python3 setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cp -r Tests/* $(ROOT)/$(PKGROOT)/Tests/; \
 	)
 	cp patch-files/test.py $(ROOT)/$(PKGROOT)/Tests/
 	$(INSTALL_LICENSE_FILES)

@@ -82,20 +82,21 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
-	  python setup.py build \
+	  python3 setup.py build \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/bin
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_PYTHON); \
 	  cd $(SOURCE_DIR); \
 	  export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib:$${PYTHONPATH}; \
-	  python setup.py install \
+	  python3 setup.py install \
 	     --install-lib=$(ROOT)/$(PKGROOT)/lib \
-	     --install-scripts=$(ROOT)/$(PKGROOT)/bin \
+	     --install-scripts=$(ROOT)/$(PKGROOT)/bin; \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
