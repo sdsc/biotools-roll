@@ -269,7 +269,7 @@ $packageHome = '/opt/biotools/hisat2';
 SKIP: {
   skip 'hisat2 not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  $output=`module load bedtools; cd $TESTFILE.dir;$packageHome/bin/hisat2-build-l $packageHome/example/reference/22_20-21M.fa --snp $packageHome/example/reference/22_20-21M.snp 22_20-21M_snp 2>&1`;
+  $output=`module load hisat2; cd $TESTFILE.dir;$packageHome/bin/hisat2-build-l $packageHome/example/reference/22_20-21M.fa --snp $packageHome/example/reference/22_20-21M.snp 22_20-21M_snp 2>&1`;
   like($output, qr/fchr\[C\]: 224989/, 'hisat2 works');
   `rm -rf $TESTFILE.dir`;
 }

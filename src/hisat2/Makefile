@@ -87,6 +87,7 @@ install::
 	cp $(SOURCE_DIR)/hisat2-inspect-s $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/hisat2-align-l $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/hisat2-align-s $(ROOT)/$(PKGROOT)/bin
+	cp $(SOURCE_DIR)/hisat2-build $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/hisat2-build-s $(ROOT)/$(PKGROOT)/bin
 	cp $(SOURCE_DIR)/hisat2-build-l $(ROOT)/$(PKGROOT)/bin
 	cp -r $(SOURCE_DIR)/example $(ROOT)/$(PKGROOT)
