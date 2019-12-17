@@ -25,6 +25,7 @@ fastqc - http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 fastx - http://hannonlab.cshl.edu/fastx_toolkit
 GenomeAnalysisTK - http://www.broadinstitute.org/gatk
 gmap_gsnap (Genomic Mapping and Alignment Program,Genomic Short-read Nucleotide Alignment Program) - http://research-pub.gene.com/gmap/
+hisat2 - http://ccb.jhu.edu/software/hisat2/index.shtml
 hmmer - http://hmmer.org
 htseq - http://www-huber.embl.de/users/anders/HTSeq
 idba-ud - http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/index.html
@@ -41,6 +42,7 @@ SOAPsnp - http://soap.genomics.org.cn/soapsnp.html
 spades - http://bioinf.spbau.ru/en/spades
 squid http://eddylab.org/software.html
 stacks http://http://creskolab.uoregon.edu/stacks
+stringtie - http://ccb.jhu.edu/software/stringtie
 trimmomatic - http://www.usadellab.org/cms/?page=trimmomatic
 trinity (Inchworm, Chrysalis,Butterfly) - http://trinityrnaseq.github.io
 vcftools - http://vcftools.github.io/
@@ -100,6 +102,8 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-gmap_gsnap-modules</package>
 <package>sdsc-hmmer</package>
 <package>sdsc-hmmer-modules</package>
+<package>sdsc-hisat2</package>
+<package>sdsc-hisat2-modules</package>
 <package>sdsc-htseq</package>
 <package>sdsc-htseq-modules</package>
 <package>sdsc-idba-ud</package>
@@ -131,6 +135,8 @@ All rights reserved. Rocks(r) v7 www.rocksclusters.org
 <package>sdsc-squid-modules</package>
 <package>sdsc-stacks</package>
 <package>sdsc-stacks-modules</package>
+<package>sdsc-stringtie</package>
+<package>sdsc-stringtie-modules</package>
 <package>sdsc-trimmomatic</package>
 <package>sdsc-trimmomatic-modules</package>
 <package>sdsc-trinity</package>

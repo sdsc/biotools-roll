@@ -13,9 +13,9 @@ my @packages = (
   'bamtools', 'bcftools', 'bedtools', 'biopython', 'bioperl','bismark', 'blast', 'blat',
   'bowtie', 'bowtie2', 'bwa', 'bx-python', 'canu','cufflinks', 'dendropy',
   'diamond', 'edena', 'emboss','fastqc', 'fastx', 'GenomeAnalysisTK',
-  'gmap_gsnap', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2',
+  'gmap_gsnap', 'hisat2', 'hmmer','htseq', 'idba-ud', 'matt', 'miRDeep2',
   'picard', 'plink', 'pysam', 'randfold', 'rseqc',
-  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks',
+  'samtools', 'soapdenovo', 'SOAPsnp', 'spades', 'squid', 'stacks','stringtie',
   'trimmomatic', 'trinity', 'vcftools', 'velvet', 'ViennaRNA'
 );
 my $isInstalled = -d '/opt/biotools';
@@ -263,6 +263,24 @@ SKIP: {
   skip 'gmap_gsnap not installed', 1 if ! -d $packageHome;
   $output = `module load gmap_gsnap; gmap -A -g $packageHome/tests/ss.chr17test $packageHome/tests/ss.her2 2>&1`;
   like($output, qr/Trimmed coverage: 100.0 \(trimmed length: 4624 bp, trimmed region: 1..4624\)/, 'gmap_gsnap works');
+}
+
+$packageHome = '/opt/biotools/hisat2';
+SKIP: {
+  skip 'hisat2 not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  $output=`module load hisat2; cd $TESTFILE.dir;$packageHome/bin/hisat2-build-l $packageHome/example/reference/22_20-21M.fa --snp $packageHome/example/reference/22_20-21M.snp 22_20-21M_snp 2>&1`;
+  like($output, qr/fchr\[C\]: 224989/, 'hisat2 works');
+  `rm -rf $TESTFILE.dir`;
+}
+
+$packageHome = '/opt/biotools/stringtie';
+SKIP: {
+  skip 'stringtie not installed', 1 if ! -d $packageHome;
+  `mkdir $TESTFILE.dir`;
+  `module load stringtie;cd $TESTFILE.dir;$packageHome/bin/run_tests.sh >& out.$$`;
+  ok(`grep -c OK $TESTFILE.dir/out.$$` == 4, 'stringtie works');
+  `rm -rf $TESTFILE.dir`;
 }
 
 $packageHome = '/opt/biotools/hmmer';

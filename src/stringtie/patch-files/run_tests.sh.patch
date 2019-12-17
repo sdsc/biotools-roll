@@ -1,0 +1,11 @@
+--- stringtie-2.0.4/run_tests.sh	2019-10-29 13:33:36.000000000 -0700
++++ patch-files/run_tests.sh	2019-12-04 13:58:27.547460573 -0800
+@@ -48,7 +48,7 @@
+  ((n++))
+  echo "Test ${n}: ${arrmsg[$i]}"
+  fin=${arrins[$i]}.bam
+- ../stringtie ${arrparms[$i]} -o $fout $fin
++ stringtie ${arrparms[$i]} -o $fout $fin
+  if [ ! -f $fout ]; then
+    echo "Error: file $fout not created! Failed running stringtie on $fin"
+    exit 1
