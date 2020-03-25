@@ -1,5 +1,5 @@
 NAME       = sdsc-biotools-roll-test
-VERSION    = 6
+VERSION    = 7
 RELEASE    = 0
 PKGROOT    = /root/rolltests
 
