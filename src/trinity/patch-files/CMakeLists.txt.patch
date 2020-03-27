@@ -1,0 +1,35 @@
+--- salmon-1.1.0/CMakeLists.txt	2019-12-19 12:36:46.000000000 -0800
++++ patch-files/CMakeLists.txt	2020-03-26 14:27:01.709850676 -0700
+@@ -148,6 +148,8 @@
+ ## this get's set differently below if we
+ ## are on clang & apple
+ set(NON_APPLECLANG_LIBS gomp)
++set(NON_APPLECLANG_LIBS pthread)
++set(NON_APPLECLANG_LIBS pthread_nonshared)
+ 
+ if(UNIX AND NOT APPLE)
+   set(LIBRT rt)
+@@ -596,7 +598,7 @@
+ message("Build system will fetch and build Intel Threading Building Blocks")
+ message("==================================================================")
+ # These are useful for the custom install step we'll do later
+-set(TBB_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/tbb-2019_U8)
++set(TBB_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/oneTBB-2019_U8)
+ set(TBB_INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/install)
+ 
+ if("${TBB_COMPILER}" STREQUAL "gcc")
+@@ -609,10 +611,10 @@
+ 
+ externalproject_add(libtbb
+   DOWNLOAD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external
+-  DOWNLOAD_COMMAND curl -k -L https://github.com/intel/tbb/archive/2019_U8.tar.gz -o tbb-2019_U8.tgz &&
+-    ${SHASUM} 7b1fd8caea14be72ae4175896510bf99c809cd7031306a1917565e6de7382fba tbb-2019_U8.tgz &&
+-    tar -xzvf tbb-2019_U8.tgz
+-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/tbb-2019_U8
++  DOWNLOAD_COMMAND curl -k -L file://ROLLPATH/oneTBB-2019_U8.zip -o oneTBB-2019_U8.zip &&
++    ${SHASUM} c28469231ada5552d7f213ace82fb97cfee4e142de30fd7e6cc5c7b092095de7 oneTBB-2019_U8.zip &&
++    unzip oneTBB-2019_U8.zip
++  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/oneTBB-2019_U8
+   INSTALL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/install
+   PATCH_COMMAND "${TBB_PATCH_STEP}"
+   CONFIGURE_COMMAND ""

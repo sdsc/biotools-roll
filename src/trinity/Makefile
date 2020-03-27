@@ -83,9 +83,11 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	patch $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh \
 	  patch-files/runMe.sh.patch
+	patch $(SALMON_DIR)/CMakeLists.txt patch-files/CMakeLists.txt.patch
 	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" $(SOURCE_DIR)/Makefile
 	perl -pi -e "s!ROLLPREFIX!$(PKGROOT)!g" \
-	  $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
+          $(SOURCE_DIR)/sample_data/test_Trinity_Assembly/runMe.sh
+	perl -pi -e "s!ROLLPATH!$(CURDIR)!g" $(SALMON_DIR)/CMakeLists.txt
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
@@ -104,29 +106,30 @@ install::
           export CXX=`which $(CXX)`; \
           cd $(JELLYFISH_DIR); \
           ./configure --prefix=$(PKGROOT); \
-          make -j 16; \
+          make -j `/bin/nproc --ignore=2`; \
           make install; \
           cd ../$(SALMON_DIR); \
           mkdir build; \
           cd build; \
-          cmake -DCMAKE_INSTALL_PREFIX=$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ ..; \
-          make -j 16; \
+          cmake -DCMAKE_INSTALL_PREFIX=$(PKGROOT) -DCMAKE_CXX_COMPILER=`which $(CXX)` -DCMAKE_C_COMPILER=`which $(CC)` -DBOOST_INCLUDEDIR=$${BOOSTHOME}/include -DBOOST_LIBRARYDIR=$${BOOSTHOME}/lib -DEXTRA_CMAKE_LIBRARY_FLAGS=-lstdc++ -DNO_IPO=TRUE ..; \
+          make -j `/bin/nproc --ignore=2`; \
           make install; \
-	  cd ../../$(SOURCE_DIR); \
-	  export FORCE_UNSAFE_CONFIGURE=1; \
+          cd ../../$(SOURCE_DIR); \
+          export FORCE_UNSAFE_CONFIGURE=1; \
           mkdir bin; \
-	  $(MAKE); \
-	  $(MAKE) plugins; \
+          $(MAKE); \
+          $(MAKE) plugins; \
           cd trinity-plugins; \
           make trinity_essentials; \
           cd ..; \
-	  cp -r * $(PKGROOT); \
+          cp -r * $(PKGROOT); \
           PYTHONFILES=`find $(PKGROOT) -name \*.py`; \
           for file in $${PYTHONFILES};  do \
-	        sed -i 's/#\!\/usr\/bin\/env python$$/#\!\/usr\/bin\/env python3/' $${file}; \
+                sed -i 's/#\!\/usr\/bin\/env python$$/#\!\/usr\/bin\/env python3/' $${file}; \
  	        sed -i 's/#\!\/usr\/bin\/python$$/#\!\/usr\/bin\/python3/' $${file}; \
-          done \
-	)
+          done; \
+          rm -rf $(REDHAT.ROOT)/src/trinity/bin \
+        )
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

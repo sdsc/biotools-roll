@@ -100,8 +100,8 @@ $packageHome = '/opt/biotools/blast';
 SKIP: {
   skip 'blast not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  if(-e 'drosoph.nt.gz') {
-    `cp drosoph.nt.gz $TESTFILE.dir/`;
+  if(-e 'dgri-all-gene_extended2000-r1.04.fasta.gz') {
+    `cp dgri-all-gene_extended2000-r1.04.fasta.gz $TESTFILE.dir/`;
   } else {
     `cd $TESTFILE.dir; wget ftp://ftp.flybase.net/genomes/Drosophila_grimshawi/dgri_r1.04_FB2017_01/fasta/dgri-all-gene_extended2000-r1.04.fasta.gz 2>&1 /dev/null`;
   }
