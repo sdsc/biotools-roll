@@ -100,13 +100,13 @@ $packageHome = '/opt/biotools/blast';
 SKIP: {
   skip 'blast not installed', 1 if ! -d $packageHome;
   `mkdir $TESTFILE.dir`;
-  if(-e 'drosoph.nt.gz') {
-    `cp drosoph.nt.gz $TESTFILE.dir/`;
+  if(-e 'dgri-all-gene_extended2000-r1.04.fasta.gz') {
+    `cp dgri-all-gene_extended2000-r1.04.fasta.gz $TESTFILE.dir/`;
   } else {
-    `cd $TESTFILE.dir; wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/drosoph.nt.gz 2>&1 /dev/null`;
+    `cd $TESTFILE.dir; wget ftp://ftp.flybase.net/genomes/Drosophila_grimshawi/dgri_r1.04_FB2017_01/fasta/dgri-all-gene_extended2000-r1.04.fasta.gz 2>&1 /dev/null`;
   }
   skip 'unable to retrieve blast test data', 1
-    if ! -e "$TESTFILE.dir/drosoph.nt.gz";
+    if ! -e "$TESTFILE.dir/dgri-all-gene_extended2000-r1.04.fasta.gz";
   open(OUT, ">$TESTFILE.dir/$TESTFILE.in");
   print OUT <<END;
 >
@@ -124,14 +124,14 @@ END
   print OUT <<END;
 module load blast
 cd $TESTFILE.dir
-gunzip drosoph.nt.gz
-makeblastdb -dbtype nucl -in *.nt
-blastn -db *.nt  -query $TESTFILE.in -task blastn -out out
+gunzip dgri-all-gene_extended2000-r1.04.fasta.gz
+makeblastdb -dbtype nucl -in *.fasta
+blastn -db *.fasta  -query $TESTFILE.in -task blastn -out out
 END
   close(OUT);
   `bash $TESTFILE.sh 2>&1`;
   $output = `cat $TESTFILE.dir/out`;
-  like($output, qr/Score = 33.7 bits \(36\),  Expect = 4.5/, 'blast works');
+  like($output, qr/Score = 39.2 bits \(42\),  Expect = 0.12/, 'blast works');
   `rm -rf $TESTFILE*`;
 }
 
