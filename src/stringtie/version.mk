@@ -1,5 +1,5 @@
 NAME           = sdsc-stringtie
-VERSION        = 2.1.1
+VERSION        = 2.1.3b
 RELEASE        = 0
 PKGROOT        = /opt/biotools/stringtie
 
